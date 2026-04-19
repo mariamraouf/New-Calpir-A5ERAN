@@ -49,28 +49,6 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
             />
           );
         })}
-        
-        {/* Connecting Lines between nodes */}
-        {nodes.map((node, i) => {
-          const nextNode = nodes[(i + 1) % nodes.length];
-          const x1 = centerX + radius * Math.cos((node.angle * Math.PI) / 180);
-          const y1 = centerY + radius * Math.sin((node.angle * Math.PI) / 180);
-          const x2 = centerX + radius * Math.cos((nextNode.angle * Math.PI) / 180);
-          const y2 = centerY + radius * Math.sin((nextNode.angle * Math.PI) / 180);
-          return (
-            <line
-              key={`inter-${node.id}`}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              stroke="#064e3b"
-              strokeWidth="1"
-              strokeDasharray="4 4"
-              opacity="0.1"
-            />
-          );
-        })}
       </svg>
 
       {/* Center Node */}
@@ -79,11 +57,11 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
-        <div className="h-20 w-20 rounded-full overflow-hidden bg-black flex items-center justify-center">
+        <div className="h-20 w-20 rounded-full overflow-hidden flex items-center justify-center bg-black">
           <img 
             src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
             alt="Calpir Logo" 
-            className="h-full w-full object-cover scale-110"
+            className="h-full w-full object-cover scale-[2.8]"
           />
         </div>
       </motion.div>
