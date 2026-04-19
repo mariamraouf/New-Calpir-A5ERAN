@@ -11,13 +11,11 @@ const Footer = () => {
         {/* Column 1 */}
         <div className="space-y-6">
           <Link to="/" className="flex items-center group">
-            <div className="h-12 w-12 rounded-full overflow-hidden flex items-center justify-center bg-black">
-              <img 
-                src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
-                alt="Calpir Logo" 
-                className="h-full w-full object-cover scale-[2.8]"
-              />
-            </div>
+            <img 
+              src="dyad-media://Calpir-fotor-bg-remover-20260419172055.png" 
+              alt="Calpir Logo" 
+              className="h-12 w-auto object-contain"
+            />
             <span className="ml-3 text-2xl font-black tracking-tighter uppercase text-white">Calpir</span>
           </Link>
           <p className="text-[0.95rem] leading-relaxed mono text-white/40">
