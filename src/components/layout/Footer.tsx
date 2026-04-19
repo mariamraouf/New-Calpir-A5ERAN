@@ -6,18 +6,16 @@ import { Twitter, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0a0a0a] text-white/70 pt-24 pb-12 px-6 border-t border-white/10">
+    <footer className="bg-black text-white/70 pt-24 pb-12 px-6 border-t border-white/10">
       <div className="container-custom grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
         {/* Column 1 */}
         <div className="space-y-6">
           <Link to="/" className="flex items-center group">
-            <div className="relative h-12 w-12 overflow-hidden">
-              <img 
-                src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
-                alt="Calpir Logo" 
-                className="h-full w-full object-contain"
-              />
-            </div>
+            <img 
+              src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
+              alt="Calpir Logo" 
+              className="h-12 w-auto object-contain"
+            />
             <span className="ml-3 text-2xl font-black tracking-tighter uppercase text-white">Calpir</span>
           </Link>
           <p className="text-[0.95rem] leading-relaxed mono text-white/40">

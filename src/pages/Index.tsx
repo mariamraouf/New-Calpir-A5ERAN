@@ -23,23 +23,11 @@ const Index = () => {
   } as const;
 
   return (
-    <div className="min-h-screen bg-black bg-grid">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       {/* Hero */}
       <section className="pt-64 pb-32 px-6 border-b border-white/10 relative overflow-hidden">
-        {/* Floating Elements */}
-        <motion.div 
-          animate={{ y: [0, -20, 0] }} 
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute top-40 left-[10%] w-4 h-4 bg-[#064e3b]/20 blur-sm"
-        />
-        <motion.div 
-          animate={{ y: [0, 20, 0] }} 
-          transition={{ duration: 5, repeat: Infinity }}
-          className="absolute bottom-40 right-[15%] w-6 h-6 bg-[#064e3b]/10 blur-md"
-        />
-
         <div className="container-custom text-center">
           <motion.div {...reveal}>
             <div className="inline-block border border-[#064e3b] px-4 py-1 mb-8 mono text-[0.7rem] uppercase tracking-widest text-[#064e3b]">
@@ -64,7 +52,7 @@ const Index = () => {
       </section>
 
       {/* Social Proof Stats */}
-      <section className="py-20 border-b border-white/10 bg-white/5">
+      <section className="py-20 border-b border-white/10">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             {[
@@ -104,7 +92,7 @@ const Index = () => {
                 pkg: "Ultimate"
               }
             ].map((card, i) => (
-              <div key={i} className="border border-white/10 p-12 bg-white/5 card-hover">
+              <div key={i} className="border border-white/10 p-12 bg-black card-hover">
                 <h3 className="text-3xl mb-6">{card.title}</h3>
                 <p className="text-white/40 mono text-sm leading-relaxed mb-8">{card.desc}</p>
                 <div className="pt-8 border-t border-white/10 flex justify-between items-center">
@@ -132,7 +120,6 @@ const Index = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-[#064e3b]/10 blur-[120px] rounded-full" />
               <ConnectedEcosystem className="relative z-10" />
             </div>
           </div>
@@ -140,7 +127,7 @@ const Index = () => {
       </section>
 
       {/* Services Overview */}
-      <section id="services" className="section-padding border-b border-white/10 bg-white/5">
+      <section id="services" className="section-padding border-b border-white/10">
         <div className="container-custom">
           <SectionLabel>Services</SectionLabel>
           <h2 className="text-5xl md:text-7xl mb-8">Everything Your <br /> Business Needs.</h2>
@@ -180,7 +167,7 @@ const Index = () => {
           <SectionLabel>Why Calpir</SectionLabel>
           <h2 className="text-5xl md:text-7xl mb-20">Stop Juggling <br /> 6 Different Vendors.</h2>
           
-          <div className="border border-white/10 bg-white/5 overflow-x-auto">
+          <div className="border border-white/10 bg-black overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-white/10">
@@ -209,25 +196,18 @@ const Index = () => {
               </tbody>
             </table>
           </div>
-          <p className="mt-8 mono text-[0.6rem] uppercase tracking-widest text-white/40 text-center">
-            All systems integrated out of the box. No vendor management, no compatibility headaches.
-          </p>
         </div>
       </section>
 
-      {/* ROI Calculator Integration */}
       <ROICalculator />
 
       {/* Process Section */}
-      <section className="section-padding border-b border-white/10 bg-white/5">
+      <section className="section-padding border-b border-white/10">
         <div className="container-custom">
           <SectionLabel>How It Works</SectionLabel>
           <h2 className="text-5xl md:text-7xl mb-20">From Idea to <br /> Launch in 4 Steps.</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
-            {/* Connecting Line */}
-            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-white/10 -z-10" />
-            
             {[
               { step: "01", title: "Free Consultation", desc: "30-minute call. We listen, understand your goals, assess your current tools, and map out exactly what you need." },
               { step: "02", title: "Strategy & Blueprint", desc: "1-hour deep dive. We build a custom implementation plan with clear deliverables, timeline, and pricing." },
@@ -256,7 +236,7 @@ const Index = () => {
               { quote: "The AI chatbot they set up handles 75% of our customer inquiries now. Our support costs dropped by half and response time went from hours to seconds.", author: "Marcus T.", role: "CEO, UrbanStack" },
               { quote: "We went from idea to taking our first paying customers in under two weeks. The automation setup alone saves us 20+ hours a week.", author: "Lena M.", role: "Co-founder, GreenLoop" }
             ].map((t, i) => (
-              <div key={i} className="border border-white/10 p-12 bg-white/5 relative">
+              <div key={i} className="border border-white/10 p-12 bg-black relative">
                 <div className="absolute top-8 right-8 text-[#064e3b]/20"><Star size={40} fill="currentColor" /></div>
                 <p className="text-xl mono leading-relaxed mb-12 italic">"{t.quote}"</p>
                 <div className="pt-8 border-t border-white/10">
@@ -269,11 +249,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
       <FAQ />
 
       {/* Newsletter Section */}
-      <section className="section-padding border-b border-white/10 bg-white/5">
+      <section className="section-padding border-b border-white/10">
         <div className="container-custom">
           <div className="max-w-[800px] mx-auto text-center">
             <SectionLabel>Intelligence</SectionLabel>

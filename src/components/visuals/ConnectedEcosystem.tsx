@@ -79,13 +79,11 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
-        <div className="text-center p-2">
-          <img 
-            src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
-            alt="Calpir Logo" 
-            className="w-full h-auto object-contain"
-          />
-        </div>
+        <img 
+          src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
+          alt="Calpir Logo" 
+          className="w-full h-auto object-contain"
+        />
       </motion.div>
 
       {/* Outer Nodes */}
@@ -99,7 +97,7 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
             key={node.id}
             className={cn(
               "absolute w-14 h-14 flex items-center justify-center transition-all duration-500 border border-white/10",
-              isActive ? "bg-[#064e3b] text-white scale-125 shadow-[0_0_20px_rgba(6,78,59,0.5)]" : "bg-white/5 text-[#064e3b] hover:scale-110 hover:bg-white/10"
+              isActive ? "bg-[#064e3b] text-white scale-125 shadow-[0_0_20px_rgba(6,78,59,0.5)]" : "bg-black text-[#064e3b] hover:scale-110 hover:bg-white/10"
             )}
             style={{ 
               left: x, 
