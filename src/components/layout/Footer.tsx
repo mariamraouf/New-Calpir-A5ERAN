@@ -13,7 +13,7 @@ const Footer = () => {
           <Link to="/" className="flex items-center group">
             <div className="relative h-12 w-12 overflow-hidden">
               <img 
-                src="dyad-media://media/hopping-hedgehog-flip/.dyad/media/aaf13a2acb2d6c1af5d5955db40d3525.png" 
+                src="dyad-media://media/hopping-hedgehog-flip/.dyad/media/66666666666666666666666666666666.png" 
                 alt="Calpir Logo" 
                 className="h-full w-full object-contain"
               />
