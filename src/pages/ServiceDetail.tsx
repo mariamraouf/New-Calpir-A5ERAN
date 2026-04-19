@@ -165,7 +165,7 @@ const ServiceDetail = () => {
   if (!data) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-black bg-grid">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       {/* Hero */}

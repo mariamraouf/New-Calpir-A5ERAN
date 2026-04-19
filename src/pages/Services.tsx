@@ -72,7 +72,7 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black bg-grid relative">
+    <div className="min-h-screen bg-black relative">
       <Navbar />
       
       {/* Hero */}

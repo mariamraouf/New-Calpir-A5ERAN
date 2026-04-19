@@ -20,7 +20,7 @@ const About = () => {
   } as const;
 
   return (
-    <div className="min-h-screen bg-black bg-grid">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       {/* Hero */}

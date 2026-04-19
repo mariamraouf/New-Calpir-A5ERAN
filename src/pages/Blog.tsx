@@ -41,7 +41,7 @@ const Blog = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black bg-grid">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       <section className="pt-64 pb-32 px-6">

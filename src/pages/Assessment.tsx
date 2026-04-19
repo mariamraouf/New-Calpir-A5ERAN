@@ -130,7 +130,7 @@ const Assessment = () => {
   const results = calculateResults();
 
   return (
-    <div className="min-h-screen bg-black bg-grid">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       <main className="pt-48 pb-24 px-6">

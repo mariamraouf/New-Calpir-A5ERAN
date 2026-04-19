@@ -162,7 +162,7 @@ const BlogPost = () => {
 
           <p>
             The secret to a 7-figure workspace isn't the features—it's the hierarchy. 
-            We build our clients' workspaces with a strict **Space &gt; Folder &gt; List** structure that mirrors their actual business departments. 
+            We build our clients' workspaces with a strict **Space > Folder > List** structure that mirrors their actual business departments. 
             Marketing doesn't see Engineering's mess. Operations sees everything.
           </p>
         </div>
@@ -205,7 +205,7 @@ const BlogPost = () => {
   if (!post) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-black bg-grid">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
       {/* Hero */}
