@@ -81,7 +81,7 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
       >
         <div className="text-center p-2">
           <img 
-            src="dyad-media://media/hopping-hedgehog-flip/.dyad/media/66666666666666666666666666666666.png" 
+            src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
             alt="Calpir Logo" 
             className="w-full h-auto object-contain"
           />

@@ -34,7 +34,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center group">
           <div className="relative h-10 w-10 overflow-hidden">
             <img 
-              src="dyad-media://media/hopping-hedgehog-flip/.dyad/media/66666666666666666666666666666666.png" 
+              src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
               alt="Calpir Logo" 
               className="h-full w-full object-contain"
             />
