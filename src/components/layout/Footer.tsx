@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="space-y-6">
           <Link to="/" className="flex items-center group">
             <img 
-              src="dyad-media://Calpir-fotor-bg-remover-20260419172055.png" 
+              src="dyad-media://media/New%20Calpir/.dyad/media/080b0c4f9572e601de177c28f301359f.png" 
               alt="Calpir Logo" 
               className="h-12 w-auto object-contain"
             />
