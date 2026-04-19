@@ -79,11 +79,11 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
-        <div className="text-center p-2 rounded-full overflow-hidden">
+        <div className="text-center p-2">
           <img 
-            src="dyad-media://media/New%20Calpir/.dyad/media/66666666666666666666666666666666.jpg" 
+            src="dyad-media://media/New%20Calpir/.dyad/media/d011c1c67d349a9d48292ce478d49712.png" 
             alt="Calpir Logo" 
-            className="w-full h-auto object-contain rounded-full"
+            className="w-full h-auto object-contain"
           />
         </div>
       </motion.div>
