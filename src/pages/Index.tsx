@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Globe, BarChart3, Megaphone, Settings, Bot, Zap, Brain, CheckCircle2, Star, Mail } from 'lucide-react';
+import { ArrowRight, Globe, BarChart3, Megaphone, Settings, Bot, Zap, CheckCircle2, Star, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -31,7 +31,7 @@ const Index = () => {
         <div className="container-custom text-center">
           <motion.div {...reveal}>
             <div className="inline-block border border-[#064e3b] px-4 py-1 mb-8 mono text-[0.7rem] uppercase tracking-widest text-[#064e3b]">
-              Now with AI Automation & Agent Setup
+              Bristol-Based AI Automation & Agent Setup
             </div>
             <h1 className="text-6xl md:text-[9rem] leading-[0.8] mb-12 font-black uppercase tracking-tighter">
               All-in-One <br /> Business Launch, <br /> <span className="text-[#064e3b]">Done Right.</span>
@@ -178,14 +178,14 @@ const Index = () => {
               </thead>
               <tbody className="mono text-sm">
                 {[
-                  { need: "Website & Branding", diy: "Freelance designer ($2-5K) + builder ($15-45/mo)", cal: "✓ Included" },
-                  { need: "CRM & Sales", diy: "HubSpot/GHL ($97-297/mo) + setup consultant", cal: "✓ Included & configured" },
-                  { need: "Marketing & SEO", diy: "Agency retainer ($2-5K/mo)", cal: "✓ Included" },
-                  { need: "Operations & HR", diy: "Multiple tools ($50-200/mo) + learning curve", cal: "✓ Included" },
-                  { need: "AI Agents", diy: "AI platforms ($20-200/mo) + dev time", cal: "✓ Built & deployed" },
-                  { need: "Automations", diy: "Zapier/Make ($20-99/mo) + figuring it out", cal: "✓ Connected & running" },
+                  { need: "Website & Branding", diy: "Freelance designer (£2-5K) + builder (£15-45/mo)", cal: "✓ Included" },
+                  { need: "CRM & Sales", diy: "HubSpot/GHL (£97-297/mo) + setup consultant", cal: "✓ Included & configured" },
+                  { need: "Marketing & SEO", diy: "Agency retainer (£2-5K/mo)", cal: "✓ Included" },
+                  { need: "Operations & HR", diy: "Multiple tools (£50-200/mo) + learning curve", cal: "✓ Included" },
+                  { need: "AI Agents", diy: "AI platforms (£20-200/mo) + dev time", cal: "✓ Built & deployed" },
+                  { need: "Automations", diy: "Zapier/Make (£20-99/mo) + figuring it out", cal: "✓ Connected & running" },
                   { need: "Timeline", diy: "3-6 months", cal: "7-28 days" },
-                  { need: "Total Year 1 Cost", diy: "$15,000-30,000+", cal: "Starting at $1,499" }
+                  { need: "Total Year 1 Cost", diy: "£15,000-30,000+", cal: "Starting at £1,499" }
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-white/5 last:border-0">
                     <td className="p-8 font-bold uppercase">{row.need}</td>
