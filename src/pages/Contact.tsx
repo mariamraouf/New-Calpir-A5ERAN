@@ -53,7 +53,7 @@ const Contact = () => {
                   <div className="text-[#064e3b]"><MessageSquare size={32} /></div>
                   <div>
                     <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Live Chat</div>
-                    <div className="text-xl font-black">MON-FRI // 9AM-6PM EST</div>
+                    <div className="text-xl font-black">MON-FRI // 9AM-6PM GMT</div>
                   </div>
                 </div>
 
@@ -61,17 +61,16 @@ const Contact = () => {
                   <div className="text-[#064e3b]"><MapPin size={32} /></div>
                   <div>
                     <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Location</div>
-                    <div className="text-xl font-black">AUSTIN, TX // REMOTE</div>
+                    <div className="text-xl font-black">BRISTOL, UNITED KINGDOM</div>
                   </div>
                 </div>
               </div>
 
               <div className="pt-12 border-t border-white/10">
-                <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-6">Trusted by founders from</div>
-                <div className="flex flex-wrap gap-12 opacity-20 grayscale">
-                  <div className="text-2xl font-black">AMAZON</div>
-                  <div className="text-2xl font-black">GOOGLE</div>
-                  <div className="text-2xl font-black">SLACK</div>
+                <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-6">Operational Status</div>
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 bg-[#064e3b] rounded-full animate-pulse" />
+                  <span className="mono text-sm uppercase tracking-widest font-bold">Systems Online // Accepting New Projects</span>
                 </div>
               </div>
             </div>

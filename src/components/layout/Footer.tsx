@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Mail } from 'lucide-react';
+import { Twitter, Linkedin, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="space-y-6">
           <Link to="/" className="flex items-center group">
             <img 
-              src="dyad-media://media/New%20Calpir/.dyad/media/080b0c4f9572e601de177c28f301359f.png" 
+              src="dyad-media://Calpir-fotor-bg-remover-20260419172055.png" 
               alt="Calpir Logo" 
               className="h-12 w-auto object-contain"
             />
@@ -21,6 +21,9 @@ const Footer = () => {
           <p className="text-[0.95rem] leading-relaxed mono text-white/40">
             All-in-one business launch with AI-powered systems. Built by founders, for founders.
           </p>
+          <div className="flex items-center gap-2 text-xs mono text-white/20">
+            <MapPin size={14} /> BRISTOL, UNITED KINGDOM
+          </div>
         </div>
 
         {/* Column 2 */}
