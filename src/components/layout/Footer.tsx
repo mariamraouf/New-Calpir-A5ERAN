@@ -11,12 +11,7 @@ const Footer = () => {
         {/* Column 1 */}
         <div className="space-y-6">
           <Link to="/" className="flex items-center group">
-            <img 
-              src="dyad-media://media/New%20Calpir/.dyad/media/080b0c4f9572e601de177c28f301359f.png" 
-              alt="Calpir Logo" 
-              className="h-10 w-auto object-contain"
-            />
-            <span className="ml-3 text-2xl font-black tracking-tighter uppercase text-white">Calpir</span>
+            <span className="text-2xl font-black tracking-tighter uppercase text-white">Calpir</span>
           </Link>
           <p className="text-[0.95rem] leading-relaxed mono text-white/40">
             All in one business launch with AI powered systems. Built by founders, for founders.
