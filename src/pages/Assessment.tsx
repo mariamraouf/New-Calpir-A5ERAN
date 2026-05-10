@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ArrowRight, RefreshCcw, Share2, AlertTriangle, TrendingDown, Zap } from 'lucide-react';
+import { CheckCircle2, ArrowRight, RefreshCcw, Share2, Zap, Rocket, Shield, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -21,7 +21,7 @@ const Assessment = () => {
       id: 'stage',
       title: "What stage is your business at?",
       options: [
-        { label: "Pre-launch — I have an idea but haven't started yet", value: "pre-launch" },
+        { label: "Pre launch — I have an idea but haven't started yet", value: "pre-launch" },
         { label: "Just launched — Under 6 months, getting first customers", value: "just-launched" },
         { label: "Growing — 6 months to 2 years, need to scale systems", value: "growing" },
         { label: "Established — 2+ years, looking to optimize and add AI", value: "established" }
@@ -32,8 +32,8 @@ const Assessment = () => {
       title: "What is your current monthly burn rate?",
       options: [
         { label: "Under $1,000 (Bootstrapped)", value: "low" },
-        { label: "$1,000 - $5,000", value: "mid" },
-        { label: "$5,000 - $20,000", value: "high" },
+        { label: "$1,000 $5,000", value: "mid" },
+        { label: "$5,000 $20,000", value: "high" },
         { label: "$20,000+ (VC Backed / High Growth)", value: "vc" }
       ]
     },
@@ -62,18 +62,9 @@ const Assessment = () => {
       title: "How many hours per week do you spend on repetitive manual tasks?",
       options: [
         { label: "5 or less", value: 5 },
-        { label: "5-15 hours", value: 15 },
-        { label: "15-25 hours", value: 25 },
+        { label: "5 15 hours", value: 15 },
+        { label: "15 25 hours", value: 25 },
         { label: "25+ hours", value: 40 }
-      ]
-    },
-    {
-      id: 'fatigue',
-      title: "How many tools are you paying for but not using effectively?",
-      options: [
-        { label: "0-2 tools", value: "low" },
-        { label: "3-5 tools", value: "mid" },
-        { label: "6+ tools (Tool Fatigue)", value: "high" }
       ]
     },
     {
@@ -82,21 +73,10 @@ const Assessment = () => {
       options: [
         { label: "Getting found online (no visibility)", value: "visibility" },
         { label: "Converting visitors into leads/customers", value: "conversion" },
-        { label: "Managing leads and follow-ups", value: "leads" },
+        { label: "Managing leads and follow ups", value: "leads" },
         { label: "Too much manual/repetitive work", value: "manual" },
         { label: "No systems — doing everything ad hoc", value: "systems" },
         { label: "I know I need AI but don't know where to start", value: "ai" }
-      ]
-    },
-    {
-      id: 'budget',
-      title: "What's your budget range for getting your business properly set up?",
-      options: [
-        { label: "Under $1,000", value: "low" },
-        { label: "$1,000 - $2,500", value: "starter" },
-        { label: "$2,500 - $5,000", value: "growth" },
-        { label: "$5,000 - $10,000", value: "ultimate" },
-        { label: "$10,000+", value: "enterprise" }
       ]
     }
   ];
@@ -112,19 +92,23 @@ const Assessment = () => {
   };
 
   const calculateResults = () => {
-    let score = 0;
-    if (answers.stage === 'pre-launch') score += 1;
-    else if (answers.stage === 'just-launched') score += 3;
-    else if (answers.stage === 'growing') score += 6;
-    else score += 8;
-
     const wastedMoney = (answers.hours || 0) * 50 * 4;
     
-    let pkg = "Starter";
-    if (answers.budget === 'growth' || answers.stage === 'growing') pkg = "Growth";
-    if (answers.budget === 'ultimate' || answers.budget === 'enterprise' || answers.stage === 'established') pkg = "Ultimate";
+    let suggestions = [];
+    if (answers.website === 'none' || answers.website === 'outdated') {
+      suggestions.push({ title: "High Conversion Web Architecture", desc: "You need a digital foundation that doesn't just look good but actually converts visitors into revenue." });
+    }
+    if (answers.crm === 'manual' || answers.crm === 'none') {
+      suggestions.push({ title: "Automated CRM Pipeline", desc: "Stop losing leads. We'll set up a system that captures every inquiry and automates the follow up process." });
+    }
+    if (answers.hours > 10) {
+      suggestions.push({ title: "Custom Workflow Automation", desc: "We can eliminate those " + answers.hours + " hours of manual work by connecting your tools into a seamless engine." });
+    }
+    if (answers.bottleneck === 'ai' || answers.stage === 'established') {
+      suggestions.push({ title: "Autonomous AI Agents", desc: "Deploy 24/7 agents to handle support and lead qualification while you sleep." });
+    }
 
-    return { score, wastedMoney, pkg };
+    return { wastedMoney, suggestions };
   };
 
   const results = calculateResults();
@@ -176,47 +160,56 @@ const Assessment = () => {
           ) : (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-20">
               <div className="text-center">
-                <SectionLabel>Assessment Complete</SectionLabel>
+                <SectionLabel>Analysis Complete</SectionLabel>
                 <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6">Your Growth <br /> Roadmap.</h1>
-                <p className="text-xl mono text-white/40">Based on your answers, here is your personalized business analysis.</p>
+                <p className="text-xl mono text-white/40">We've analyzed your inputs. Here is your path to a scalable, automated business.</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="border border-white/10 p-12 bg-white/5">
-                  <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-6">Business Stage Score</div>
-                  <div className="flex items-end gap-2 mb-6">
-                    <span className="text-8xl font-black text-[#064e3b]">{results.score}</span>
-                    <span className="text-3xl font-black text-white/20 mb-4">/ 10</span>
-                  </div>
+                  <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-6">Efficiency Leak</div>
+                  <div className="text-7xl font-black text-red-900 mb-6">${results.wastedMoney.toLocaleString()}</div>
                   <p className="mono text-sm text-white/60 leading-relaxed">
-                    {results.score <= 3 ? "Starting from scratch. You need a solid foundation." : 
-                     results.score <= 6 ? "Foundation needs work. You're ready to professionalize." : 
-                     "Good foundation. You're ready to scale with AI."}
+                    This is the monthly capital you are losing to manual tasks. Over a year, this is ${ (results.wastedMoney * 12).toLocaleString() } in pure overhead.
                   </p>
                 </div>
 
-                <div className="border border-white/10 p-12 bg-white/5">
-                  <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-6">Estimated Monthly Waste</div>
-                  <div className="text-7xl font-black text-red-900 mb-6">${results.wastedMoney.toLocaleString()}</div>
+                <div className="border border-white/10 p-12 bg-[#064e3b]/10">
+                  <div className="mono text-[0.6rem] uppercase tracking-widest text-[#064e3b] mb-6">Primary Objective</div>
+                  <h3 className="text-3xl font-black uppercase mb-4">System Integration</h3>
                   <p className="mono text-sm text-white/60 leading-relaxed">
-                    This is the estimated cost of manual tasks that could be automated. {results.wastedMoney > 2000 ? "That's essentially a part-time employee's worth of wasted time." : ""}
+                    Your current bottleneck is {answers.bottleneck}. You need a unified ecosystem where data flows without human intervention.
                   </p>
                 </div>
               </div>
 
+              <div className="space-y-8">
+                <SectionLabel>Strategic Suggestions</SectionLabel>
+                <div className="grid grid-cols-1 gap-6">
+                  {results.suggestions.map((s, i) => (
+                    <div key={i} className="border border-white/10 p-10 bg-white/5 flex flex-col md:flex-row gap-8 items-start">
+                      <div className="w-16 h-16 bg-[#064e3b] flex items-center justify-center shrink-0">
+                        <Zap className="text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-2xl font-black uppercase mb-2">{s.title}</h4>
+                        <p className="mono text-sm text-white/40 leading-relaxed">{s.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="bg-[#064e3b] p-16 text-center">
-                <h3 className="text-4xl md:text-6xl mb-8">Recommended Package: <br /> <span className="text-white">{results.pkg}</span></h3>
+                <h3 className="text-4xl md:text-6xl mb-8">Ready to Fix Your <br /> Infrastructure?</h3>
                 <Button asChild className="bg-white text-black hover:bg-black hover:text-white px-16 py-10 rounded-none font-black text-2xl uppercase tracking-tighter transition-all">
-                  <Link to="/contact">Book Free Consultation</Link>
+                  <Link to="/contact">Book Strategy Call with Maria</Link>
                 </Button>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="outline" className="flex-1 border-white/10 py-8 rounded-none font-black text-xl uppercase tracking-tighter" onClick={() => window.location.reload()}>
                   <RefreshCcw className="mr-2" /> Retake Assessment
-                </Button>
-                <Button variant="outline" className="flex-1 border-white/10 py-8 rounded-none font-black text-xl uppercase tracking-tighter">
-                  <Share2 className="mr-2" /> Share Results
                 </Button>
               </div>
             </motion.div>

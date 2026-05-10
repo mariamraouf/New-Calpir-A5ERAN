@@ -2,13 +2,11 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, MapPin, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, Calendar } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import BookingSystem from '@/components/booking/BookingSystem';
 
 const Contact = () => {
   const reveal = {
@@ -32,12 +30,13 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-32 px-6">
+      <section className="py-32 px-6 border-b border-white/10">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
             <div className="space-y-16">
+              <SectionLabel>Direct Inquiry</SectionLabel>
               <p className="text-2xl mono text-white/60 leading-tight">
-                Ready to deploy your infrastructure? Send us your requirements and we'll get back to you within 24 hours.
+                Ready to deploy your infrastructure or build a custom application? Use our secure portal below.
               </p>
               
               <div className="space-y-12">
@@ -45,7 +44,7 @@ const Contact = () => {
                   <div className="text-[#064e3b]"><Mail size={32} /></div>
                   <div>
                     <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Email</div>
-                    <div className="text-xl font-black">HELLO@CALPIR.COM</div>
+                    <div className="text-xl font-black uppercase">hello@calpir.com</div>
                   </div>
                 </div>
                 
@@ -53,7 +52,7 @@ const Contact = () => {
                   <div className="text-[#064e3b]"><MessageSquare size={32} /></div>
                   <div>
                     <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Live Chat</div>
-                    <div className="text-xl font-black">MON-FRI // 9AM-6PM GMT</div>
+                    <div className="text-xl font-black uppercase">Mon Fri // 9AM 6PM GMT</div>
                   </div>
                 </div>
 
@@ -61,7 +60,7 @@ const Contact = () => {
                   <div className="text-[#064e3b]"><MapPin size={32} /></div>
                   <div>
                     <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Location</div>
-                    <div className="text-xl font-black">BRISTOL, UNITED KINGDOM</div>
+                    <div className="text-xl font-black uppercase">Bristol, United Kingdom</div>
                   </div>
                 </div>
               </div>
@@ -75,34 +74,29 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="border border-white/10 p-12 bg-white/5 backdrop-blur-sm">
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Full Name</label>
-                    <Input placeholder="John Doe" className="bg-black border-white/10 rounded-none h-14 focus:border-[#064e3b] text-white" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Email Address</label>
-                    <Input type="email" placeholder="john@company.com" className="bg-black border-white/10 rounded-none h-14 focus:border-[#064e3b] text-white" />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Company Website</label>
-                  <Input placeholder="https://yourcompany.com" className="bg-black border-white/10 rounded-none h-14 focus:border-[#064e3b] text-white" />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Message</label>
-                  <Textarea placeholder="Tell us about your project and goals..." className="bg-black border-white/10 rounded-none min-h-[150px] focus:border-[#064e3b] text-white" />
-                </div>
-                
-                <Button className="w-full bg-[#064e3b] hover:bg-[#053e2f] text-white py-8 rounded-none font-black text-xl uppercase tracking-tighter">
-                  Send Message <Send className="ml-2" size={20} />
-                </Button>
-              </form>
+            <div className="border border-white/10 bg-white/5 min-h-[600px]">
+              <iframe 
+                className="clickup-embed clickup-dynamic-height" 
+                src="https://forms.clickup.com/9015087055/f/8cnekyf-9075/KTKDU2NQ8W95RF5TJ1" 
+                width="100%" 
+                height="100%" 
+                style={{ background: 'transparent', border: 'none' }}
+              ></iframe>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Section */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="max-w-[900px] mx-auto">
+            <div className="text-center mb-16">
+              <SectionLabel>Consultation</SectionLabel>
+              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">Book with Maria.</h2>
+              <p className="text-xl mono text-white/40">Select a time for your 30 minute strategy session. All times are converted to your local zone.</p>
+            </div>
+            <BookingSystem />
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Mail, MapPin } from 'lucide-react';
+import { Linkedin, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -12,14 +12,14 @@ const Footer = () => {
         <div className="space-y-6">
           <Link to="/" className="flex items-center group">
             <img 
-              src="dyad-media://Calpir-fotor-bg-remover-20260419172055.png" 
+              src="dyad-media://media/New%20Calpir/.dyad/media/080b0c4f9572e601de177c28f301359f.png" 
               alt="Calpir Logo" 
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
             <span className="ml-3 text-2xl font-black tracking-tighter uppercase text-white">Calpir</span>
           </Link>
           <p className="text-[0.95rem] leading-relaxed mono text-white/40">
-            All-in-one business launch with AI-powered systems. Built by founders, for founders.
+            All in one business launch with AI powered systems. Built by founders, for founders.
           </p>
           <div className="flex items-center gap-2 text-xs mono text-white/20">
             <MapPin size={14} /> BRISTOL, UNITED KINGDOM
@@ -56,9 +56,6 @@ const Footer = () => {
         <div className="space-y-6">
           <h4 className="text-white font-bold uppercase text-xs tracking-widest mono">Connect</h4>
           <div className="flex flex-col gap-4 mono">
-            <a href="https://twitter.com/calpir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[#064e3b] transition-colors">
-              <Twitter size={18} /> <span>Twitter / X</span>
-            </a>
             <a href="https://linkedin.com/company/calpir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[#064e3b] transition-colors">
               <Linkedin size={18} /> <span>LinkedIn</span>
             </a>
