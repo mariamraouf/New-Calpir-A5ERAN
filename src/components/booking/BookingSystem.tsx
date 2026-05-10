@@ -5,14 +5,27 @@ import { format, addDays, startOfDay, isBefore, addMinutes, parse, setHours, set
 import { formatInTimeZone, toDate } from 'date-fns-tz';
 import { Calendar as CalendarIcon, Clock, Globe, User, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { showSuccess } from '@/utils/toast';
+
+const timezones = [
+  "Europe/London",
+  "America/New_York",
+  "America/Los_Angeles",
+  "Europe/Paris",
+  "Asia/Dubai",
+  "Asia/Singapore",
+  "Australia/Sydney"
+];
 
 const BookingSystem = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(addDays(startOfDay(new Date()), 1));
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [userTimezone, setUserTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
   const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({ name: '', email: '' });
 
   // UK Time: 1 PM (13:00) to 12 AM (00:00)
   const generateTimeSlots = () => {
@@ -30,7 +43,7 @@ const BookingSystem = () => {
   const timeSlots = generateTimeSlots();
 
   const handleBooking = () => {
-    showSuccess("Booking request sent! Maria will send the Google Meet link shortly.");
+    showSuccess(`Booking confirmed for ${formData.name}! The Google Meet link has been sent to ${formData.email}.`);
     setStep(3);
   };
 
@@ -87,8 +100,17 @@ const BookingSystem = () => {
                 <label className="mono text-[0.6rem] uppercase tracking-widest text-white/40 flex items-center gap-2">
                   <Clock size={14} /> Select Time
                 </label>
-                <div className="flex items-center gap-2 monotext-[0.6rem] uppercase tracking-widest text-white/20">
-                  <Globe size={12} /> {userTimezone}
+                <div className="w-40">
+                  <Select value={userTimezone} onValueChange={setUserTimezone}>
+                    <SelectTrigger className="bg-black border-white/10 mono text-[0.6rem] uppercase h-8">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-black border-white/10">
+                      {timezones.map(tz => (
+                        <SelectItem key={tz} value={tz} className="mono text-[0.6rem] uppercase">{tz}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
@@ -122,7 +144,23 @@ const BookingSystem = () => {
         <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4">
           <div className="text-center">
             <h3 className="text-4xl font-black uppercase mb-4">Finalize Booking</h3>
-            <p className="mono text-sm text-white/40">Review your session details with Maria</p>
+            <p className="mono text-sm text-white/40">Enter your details to receive the meeting link</p>
+          </div>
+
+          <div className="space-y-6">
+            <Input 
+              placeholder="YOUR NAME" 
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="bg-black border-white/10 rounded-none h-16 mono text-lg focus:border-[#064e3b]"
+            />
+            <Input 
+              placeholder="YOUR EMAIL" 
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className="bg-black border-white/10 rounded-none h-16 mono text-lg focus:border-[#064e3b]"
+            />
           </div>
 
           <div className="bg-white/5 border border-white/10 p-8 space-y-6">
@@ -134,10 +172,6 @@ const BookingSystem = () => {
               <span className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Time</span>
               <span className="font-black uppercase">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
             </div>
-            <div className="flex justify-between items-center border-b border-white/10 pb-4">
-              <span className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Duration</span>
-              <span className="font-black uppercase">30 Minutes</span>
-            </div>
             <div className="flex justify-between items-center">
               <span className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Platform</span>
               <span className="font-black uppercase text-[#064e3b]">Google Meet</span>
@@ -146,7 +180,13 @@ const BookingSystem = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <Button variant="outline" onClick={() => setStep(1)} className="border-white/10 py-8 rounded-none font-black uppercase">Back</Button>
-            <Button onClick={handleBooking} className="bg-[#064e3b] hover:bg-[#053e2f] text-white py-8 rounded-none font-black uppercase">Book Now</Button>
+            <Button 
+              disabled={!formData.name || !formData.email}
+              onClick={handleBooking} 
+              className="bg-[#064e3b] hover:bg-[#053e2f] text-white py-8 rounded-none font-black uppercase"
+            >
+              Book Now
+            </Button>
           </div>
         </div>
       )}
@@ -158,7 +198,7 @@ const BookingSystem = () => {
           </div>
           <h3 className="text-5xl font-black uppercase">Booking Confirmed</h3>
           <p className="mono text-lg text-white/40 max-w-[500px] mx-auto">
-            Your session with Maria is locked in. A Google Meet invitation has been sent to your email address.
+            Your session with Maria is locked in. A Google Meet invitation has been sent to {formData.email}.
           </p>
           <Button asChild variant="outline" className="border-white/10 py-8 px-12 rounded-none font-black uppercase">
             <a href="/">Return Home</a>

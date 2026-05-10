@@ -54,9 +54,6 @@ const Footer = () => {
             <a href="https://linkedin.com/company/calpir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[#064e3b] transition-colors">
               <Linkedin size={18} /> <span>LinkedIn</span>
             </a>
-            <a href="mailto:hello@calpir.com" className="flex items-center gap-3 hover:text-[#064e3b] transition-colors">
-              <Mail size={18} /> <span>hello@calpir.com</span>
-            </a>
           </div>
         </div>
       </div>

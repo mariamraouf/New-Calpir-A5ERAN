@@ -4,7 +4,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   Globe, BarChart3, Megaphone, Settings, 
-  Bot, Zap, Brain, CheckCircle2, ArrowRight 
+  Bot, Zap, Brain, CheckCircle2, ArrowRight, Code 
 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -25,18 +25,18 @@ const ServiceDetail = () => {
       tagline: "Your digital foundation, designed to convert",
       icon: <Globe size={48} />,
       included: [
-        "Custom website design (mobile-first, responsive)",
-        "Up to 5 pages (Starter) or 10 pages (Ultimate)",
+        "Custom website design",
+        "Up to 5 pages or 10 pages",
         "Professional logo design",
-        "Brand identity kit (colors, fonts, guidelines)",
-        "UI/UX design with conversion-optimized layouts",
-        "Contact forms and lead capture integration",
-        "Speed optimization and performance tuning",
-        "SSL certificate and security setup",
-        "Analytics tracking installation (GA4)",
-        "SEO foundation (meta tags, sitemap, schema markup)"
+        "Brand identity kit",
+        "UI/UX design",
+        "Contact forms integration",
+        "Speed optimization",
+        "SSL certificate setup",
+        "Analytics tracking",
+        "SEO foundation"
       ],
-      who: "Pre-launch founders needing their first website | Existing businesses with outdated or underperforming sites | Startups rebranding for a new market",
+      who: "Pre launch founders needing their first website | Existing businesses with outdated sites",
       get: "Full website source code, Brand guidelines PDF, Logo source files, Analytics access"
     },
     'crm-sales': {
@@ -45,58 +45,19 @@ const ServiceDetail = () => {
       tagline: "Never lose a lead again",
       icon: <BarChart3 size={48} />,
       included: [
-        "CRM platform setup (HubSpot, GoHighLevel, or best fit)",
-        "Sales pipeline configuration with custom stages",
-        "Contact management and segmentation",
-        "Lead scoring and qualification rules",
-        "Automated follow-up email sequences",
-        "Meeting/appointment scheduling integration",
-        "Deal tracking and forecasting dashboards",
-        "Customer data migration from existing tools",
-        "Team permissions and workflow setup",
-        "Integration with website forms and chatbots"
+        "CRM platform setup",
+        "Sales pipeline configuration",
+        "Contact management",
+        "Lead scoring rules",
+        "Automated follow up sequences",
+        "Meeting scheduling integration",
+        "Deal tracking dashboards",
+        "Customer data migration",
+        "Team permissions setup",
+        "Integration with website forms"
       ],
-      who: "Startups managing leads in spreadsheets | Businesses with a CRM they never properly set up | Sales teams drowning in manual follow-ups",
+      who: "Startups managing leads in spreadsheets | Businesses with a CRM they never properly set up",
       get: "Configured CRM account, Sales pipeline map, Automated sequence templates, Team training"
-    },
-    'marketing-branding': {
-      id: 'marketing',
-      title: "Marketing & Social Media",
-      tagline: "Get found. Get noticed. Get customers.",
-      icon: <Megaphone size={48} />,
-      included: [
-        "SEO optimization and technical setup",
-        "Social media profile setup and optimization",
-        "Social media content creation (5-15 posts/month)",
-        "Email marketing system setup",
-        "Content marketing strategy and editorial calendar",
-        "Google Business Profile setup",
-        "Brand voice and messaging guidelines",
-        "Marketing automation workflows",
-        "Analytics and reporting dashboards"
-      ],
-      who: "Businesses invisible online | Founders who know they need to post but never do | Companies with no email list or nurture sequences",
-      get: "Marketing strategy doc, Content calendar, SEO report, Analytics dashboard"
-    },
-    'operations-hr': {
-      id: 'ops',
-      title: "Operations & HR Systems",
-      tagline: "Run your business like a real company from day one",
-      icon: <Settings size={48} />,
-      included: [
-        "Project management tool setup and configuration",
-        "Standard Operating Procedures (SOP) creation",
-        "Workflow optimization and documentation",
-        "Payroll system setup",
-        "Accounting system setup and integration",
-        "HR onboarding system for new hires",
-        "Employee handbook template",
-        "Compliance checklist for your industry",
-        "Internal communication tools setup",
-        "Performance review framework"
-      ],
-      who: "Founders doing everything manually | Startups hiring their first employees | Businesses with no documented processes",
-      get: "SOP library, PM tool configuration, HR handbook, Payroll setup"
     },
     'ai-agents': {
       id: 'ai-agents',
@@ -104,59 +65,39 @@ const ServiceDetail = () => {
       tagline: "Your 24/7 team members that never sleep",
       icon: <Bot size={48} />,
       included: [
-        "Custom AI customer support chatbot (trained on YOUR business data)",
-        "Lead qualification agent (asks questions, scores leads, books meetings)",
-        "Appointment scheduling bot connected to your calendar",
-        "Internal knowledge base assistant for your team",
-        "Multi-channel deployment (website, WhatsApp, Instagram, email)",
-        "AI agent training on your FAQs, product info, and processes",
-        "Escalation rules — AI handles 70-80%, routes complex issues to humans",
+        "Custom AI customer support chatbot",
+        "Lead qualification agent",
+        "Appointment scheduling bot",
+        "Internal knowledge base assistant",
+        "Multi channel deployment",
+        "AI agent training",
+        "Escalation rules",
         "Conversation analytics dashboard",
-        "Monthly optimization and retraining",
-        "Integration with your CRM (leads flow directly into pipeline)"
+        "Monthly optimization",
+        "Integration with your CRM"
       ],
-      who: "Businesses losing leads because they can't respond fast enough | Support teams overwhelmed with repetitive questions | Companies that want to serve customers 24/7 without hiring night shifts",
+      who: "Businesses losing leads because they can't respond fast enough | Support teams overwhelmed",
       get: "Deployed AI agents, Training data set, Analytics dashboard, Retraining schedule"
     },
-    'ai-automation': {
-      id: 'automation',
-      title: "Workflow Automation & AI Integration",
-      tagline: "Eliminate the work that's keeping you from growing",
-      icon: <Zap size={48} />,
+    'custom-apps': {
+      id: 'custom-apps',
+      title: "Custom Apps & Agents",
+      tagline: "Bespoke software for complex business logic",
+      icon: <Code size={48} />,
       included: [
-        "Automation audit (identify highest-impact opportunities)",
-        "CRM workflow automation (lead routing, follow-ups, deal progression)",
-        "Email sequence automation (welcome, nurture, re-engagement, abandoned cart)",
-        "Invoice and payment processing automation",
-        "Data sync between all your tools (CRM ↔ website ↔ email ↔ analytics)",
-        "Social media scheduling automation",
-        "Reporting automation (weekly/monthly reports generated and sent automatically)",
-        "Custom Zapier/Make/n8n workflow builds",
-        "Cross-platform integrations (connect any tools you use)",
-        "Documentation of all automations for your team"
+        "Full stack web application development",
+        "Custom SaaS architecture design",
+        "Bespoke AI agent fleets",
+        "Internal operational dashboards",
+        "API first development and integration",
+        "Scalable cloud infrastructure setup",
+        "Custom database architecture",
+        "Real time data processing",
+        "User authentication and security",
+        "Ongoing technical maintenance"
       ],
-      who: "Business owners spending 15+ hours/week on repetitive tasks | Teams copying data between tools manually | Anyone who's said 'there has to be a better way to do this'",
-      get: "Active automated workflows, Integration map, Documentation, Maintenance guide"
-    },
-    'ai-consulting': {
-      id: 'strategy',
-      title: "AI Strategy Consulting",
-      tagline: "Know exactly where AI will — and won't — help your business",
-      icon: <Brain size={48} />,
-      included: [
-        "Full AI readiness assessment of your current operations",
-        "Process-by-process evaluation (what to automate, what to keep human)",
-        "ROI projections for each recommended AI implementation",
-        "Tool selection and vendor evaluation (we're platform-agnostic)",
-        "Custom AI roadmap with phased implementation plan",
-        "Team training sessions (make your team comfortable with AI)",
-        "Change management guidance",
-        "Ongoing optimization recommendations",
-        "Quarterly AI strategy reviews",
-        "Access to our AI tool recommendations database"
-      ],
-      who: "Business owners who know AI is important but don't know where to start | Companies that tried AI tools and got overwhelmed | Leaders who want ROI projections before investing",
-      get: "AI Roadmap document, ROI analysis, Tool database access, Training materials"
+      who: "Founders building unique SaaS products | Businesses needing custom internal tooling | Companies scaling complex operations",
+      get: "Full application source code, Technical documentation, Infrastructure access, Deployment guide"
     }
   };
 

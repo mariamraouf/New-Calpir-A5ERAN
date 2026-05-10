@@ -41,14 +41,6 @@ const Contact = () => {
               
               <div className="space-y-12">
                 <div className="flex items-center gap-6">
-                  <div className="text-[#064e3b]"><Mail size={32} /></div>
-                  <div>
-                    <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Email</div>
-                    <div className="text-xl font-black uppercase">hello@calpir.com</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-6">
                   <div className="text-[#064e3b]"><MessageSquare size={32} /></div>
                   <div>
                     <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Live Chat</div>

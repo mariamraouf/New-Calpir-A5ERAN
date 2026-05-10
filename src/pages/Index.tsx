@@ -33,10 +33,10 @@ const Index = () => {
               Bristol Based AI Automation & Custom App Development
             </div>
             <h1 className="text-6xl md:text-[9rem] leading-[0.8] mb-12 font-black uppercase tracking-tighter">
-              We Turn Your <br /> Steak Into <br /> <span className="text-[#064e3b]">Pancakes.</span>
+              Launch Your <br /> Business. <br /> <span className="text-[#064e3b]">In 7 Days.</span>
             </h1>
             <p className="text-xl md:text-2xl mono text-white/60 leading-tight max-w-[900px] mx-auto mb-16">
-              We build custom applications and autonomous AI agents that transform complex operations into simple, automated workflows. Live in 7 28 days.
+              Complete business infrastructure deployed in record time. Website, CRM, Operations, and AI Agents integrated into one powerful system.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button asChild className="bg-[#064e3b] hover:bg-[#053e2f] text-white px-12 py-8 rounded-none font-black text-xl uppercase tracking-tighter btn-hover">
@@ -50,63 +50,29 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Custom App Section */}
-      <section className="section-padding border-b border-white/10 bg-white/5">
+      {/* Services Grid */}
+      <section className="section-padding border-b border-white/10">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <SectionLabel>Custom Engineering</SectionLabel>
-              <h2 className="text-5xl md:text-7xl mb-8">Any App. <br /> Any Agent. <br /> Any Workflow.</h2>
-              <p className="text-xl mono text-white/40 leading-relaxed mb-12">
-                Our team specializes in turning complex business logic into high performance software. Whether you need a custom SaaS platform, a internal tool, or a fleet of AI agents, we build it fast and we build it right.
-              </p>
-              <div className="grid grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <Code className="text-[#064e3b]" size={32} />
-                  <h4 className="text-xl font-black uppercase">Custom Apps</h4>
-                  <p className="mono text-xs text-white/40">Full stack web applications built with React and Next.js.</p>
-                </div>
-                <div className="space-y-4">
-                  <Bot className="text-[#064e3b]" size={32} />
-                  <h4 className="text-xl font-black uppercase">AI Agents</h4>
-                  <p className="mono text-xs text-white/40">Autonomous agents that handle support, sales, and ops.</p>
-                </div>
-              </div>
-            </div>
-            <div className="border border-white/10 p-12 bg-black">
-              <div className="mono text-[0.6rem] text-[#064e3b] mb-8 uppercase tracking-widest font-bold">System Architecture // Custom_Build</div>
-              <div className="space-y-6">
-                {[
-                  "Initializing Custom Logic Engine...",
-                  "Mapping Operational Workflows...",
-                  "Deploying AI Agent Ecosystem...",
-                  "Optimizing Data Pipelines...",
-                  "Status: Operational"
-                ].map((line, i) => (
-                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-2 h-2 bg-[#064e3b] rounded-full animate-pulse" />
-                    <span className="mono text-sm text-white/60">{line}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Proof Stats */}
-      <section className="py-20 border-b border-white/10">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <SectionLabel>The Modules</SectionLabel>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { label: "Projects Launched", val: "1,000+" },
-              { label: "Fastest Setup", val: "7 Days" },
-              { label: "Cost Savings vs. DIY", val: "40 60%" }
+              { title: "Website & Branding", icon: <Globe />, desc: "High conversion digital foundation built for speed and scale.", link: "/services/website-development" },
+              { title: "CRM & Sales Systems", icon: <BarChart3 />, desc: "Automated lead capture and pipeline management.", link: "/services/crm-sales" },
+              { title: "AI Agent Development", icon: <Bot />, desc: "Autonomous agents that handle support and sales 24/7.", link: "/services/ai-agents" },
+              { title: "Workflow Automation", icon: <Zap />, desc: "Eliminate manual tasks with intelligent integrations.", link: "/services/ai-automation" },
+              { title: "Custom Apps & Agents", icon: <Code />, desc: "We turn your complex logic into high performance software.", link: "/services/custom-apps" },
+              { title: "Operations & HR", icon: <Settings />, desc: "Documented processes and systems for team growth.", link: "/services/operations-hr" }
             ].map((s, i) => (
-              <div key={i}>
-                <div className="text-6xl font-black text-[#064e3b] mb-2">{s.val}</div>
-                <div className="mono text-[0.7rem] uppercase tracking-widest text-white/40">{s.label}</div>
-              </div>
+              <Link key={i} to={s.link} className="border border-white/10 p-12 bg-white/5 card-hover group">
+                <div className="text-[#064e3b] mb-8 group-hover:scale-110 transition-transform">
+                  {React.cloneElement(s.icon as React.ReactElement<any>, { size: 32 })}
+                </div>
+                <h3 className="text-2xl mb-4">{s.title}</h3>
+                <p className="text-white/40 mono text-xs leading-relaxed mb-8">{s.desc}</p>
+                <div className="flex items-center gap-2 text-[#064e3b] mono text-[0.6rem] uppercase tracking-widest font-bold">
+                  Explore Module <ArrowRight size={14} />
+                </div>
+              </Link>
             ))}
           </div>
         </div>

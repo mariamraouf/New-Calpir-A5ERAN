@@ -17,6 +17,7 @@ const Navbar = () => {
     { name: 'AI Agent Development', href: '/services/ai-agents' },
     { name: 'Workflow Automation', href: '/services/ai-automation' },
     { name: 'AI Strategy Consulting', href: '/services/ai-consulting' },
+    { name: 'Custom Apps & Agents', href: '/services/custom-apps' },
   ];
 
   const navLinks = [
