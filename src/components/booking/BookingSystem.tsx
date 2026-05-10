@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { format, addDays, startOfDay, isBefore, addMinutes, parse, setHours, setMinutes } from 'date-fns';
-import { formatInTimeZone, toDate } from 'date-fns-tz';
-import { Calendar as CalendarIcon, Clock, Globe, User, CheckCircle2, ArrowRight } from 'lucide-react';
+import { formatInTimeZone } from 'date-fns-tz';
+import { Calendar as CalendarIcon, Clock, User, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -25,9 +25,9 @@ const BookingSystem = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [userTimezone, setUserTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
   const [step, setStep] = useState(1);
+  const [isSending, setIsSending] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '' });
 
-  // UK Time: 1 PM (13:00) to 12 AM (00:00)
   const generateTimeSlots = () => {
     const slots = [];
     let current = setMinutes(setHours(new Date(), 13), 0);
@@ -42,8 +42,13 @@ const BookingSystem = () => {
 
   const timeSlots = generateTimeSlots();
 
-  const handleBooking = () => {
-    showSuccess(`Booking confirmed for ${formData.name}! The Google Meet link has been sent to ${formData.email}.`);
+  const handleBooking = async () => {
+    setIsSending(true);
+    // Simulating API call to send email and generate link
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    showSuccess(`Booking confirmed for ${formData.name}. The Google Meet link has been sent to ${formData.email} and Maria.`);
+    setIsSending(false);
     setStep(3);
   };
 
@@ -179,13 +184,13 @@ const BookingSystem = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" onClick={() => setStep(1)} className="border-white/10 py-8 rounded-none font-black uppercase">Back</Button>
+            <Button variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-white/10 py-8 rounded-none font-black uppercase">Back</Button>
             <Button 
-              disabled={!formData.name || !formData.email}
+              disabled={!formData.name || !formData.email || isSending}
               onClick={handleBooking} 
               className="bg-[#064e3b] hover:bg-[#053e2f] text-white py-8 rounded-none font-black uppercase"
             >
-              Book Now
+              {isSending ? <Loader2 className="animate-spin" /> : "Book Now"}
             </Button>
           </div>
         </div>

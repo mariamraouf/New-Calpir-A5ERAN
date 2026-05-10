@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, Mail, MapPin } from 'lucide-react';
+import { Linkedin, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
