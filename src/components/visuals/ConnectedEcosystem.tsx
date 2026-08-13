@@ -53,14 +53,14 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
 
       {/* Center Node */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 flex items-center justify-center z-10"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-white p-1 flex items-center justify-center overflow-hidden z-10 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 3, repeat: Infinity }}
       >
         <img 
-          src="dyad-media://media/New%20Calpir/.dyad/media/080b0c4f9572e601de177c28f301359f.png" 
+          src="/logo.png" 
           alt="Calpir Logo" 
-          className="w-full h-auto object-contain"
+          className="w-full h-full object-contain rounded-full"
         />
       </motion.div>
 
