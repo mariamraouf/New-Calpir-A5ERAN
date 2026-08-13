@@ -4,7 +4,7 @@ import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
-import { CheckCircle2, X } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -19,33 +19,34 @@ const Packages = () => {
       features: [
         "Professional website (up to 3 pages)",
         "Basic CRM setup with contact management",
+        "Email system setup",
         "Accounting system setup",
         "HR basics (onboarding, compliance)",
         "Brand identity starter kit",
         "Google Analytics setup",
         "Social media profiles created",
-        "Basic email marketing setup",
         "1 AI chatbot (FAQ support)",
-        "2 weeks post-launch support"
+        "2 weeks post launch support"
       ]
     },
     {
       name: "Growth",
       price: "$3,499",
-      badge: "Most Popular — 14 days",
+      badge: "Most Popular // Launch in 14 days",
       featured: true,
-      desc: "The all-in-one package for ambitious startups scaling fast.",
+      desc: "The all in one package for ambitious startups scaling fast.",
       features: [
         "Everything in Starter, plus:",
         "Website up to 6 pages (advanced design)",
-        "Advanced CRM (pipeline & lead scoring)",
+        "Advanced CRM (pipeline and lead scoring)",
+        "Email and phone system setup",
         "Project management tools setup",
         "5 automated workflows",
         "SOP creation for core processes",
         "Full brand identity package",
         "Marketing automation setup",
-        "AI agent (support + lead qual)",
-        "30 days post-launch support"
+        "AI agent (support and lead qual)",
+        "30 days post launch support"
       ]
     },
     {
@@ -79,7 +80,7 @@ const Packages = () => {
             Launch <br /> <span className="text-[#064e3b]">Packages.</span>
           </h1>
           <p className="text-xl md:text-2xl mono text-white/40 max-w-[900px] mx-auto">
-            Complete business launch packages that save you 40-60% compared to hiring separate vendors. Start with what you need, upgrade when you're ready.
+            Complete business launch packages that save you 40% to 60% compared to hiring separate vendors. Start with what you need, upgrade when you are ready.
           </p>
         </div>
       </section>
@@ -117,14 +118,14 @@ const Packages = () => {
 
           {/* Add-ons */}
           <div className="mb-32">
-            <SectionLabel>Add-Ons</SectionLabel>
+            <SectionLabel>Add Ons</SectionLabel>
             <h2 className="text-4xl mb-12">Need Something Specific?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { name: "SEO Optimization", price: "$199" },
                 { name: "Design & Branding", price: "$499" },
                 { name: "Social Media (10 posts)", price: "$189" },
-                { name: "Email System Setup", price: "$299" }
+                { name: "Email & Phone Setup", price: "$299" }
               ].map((add, i) => (
                 <div key={i} className="border border-white/10 p-8 bg-white/5">
                   <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-2">{add.name}</div>
@@ -149,9 +150,10 @@ const Packages = () => {
                 {[
                   { f: "Website Pages", s: "3", g: "6", u: "10" },
                   { f: "CRM Setup", s: "Basic", g: "Advanced", u: "Custom" },
-                  { f: "AI Agents", s: "1 FAQ Bot", g: "Support + Lead Qual", u: "Full Ecosystem" },
-                  { f: "Automations", s: "—", g: "5 Workflows", u: "Unlimited" },
-                  { f: "Payroll Setup", s: "—", g: "—", u: "✓" },
+                  { f: "Email & Phone Systems", s: "Email System", g: "Email and Phone", u: "Full Suite" },
+                  { f: "AI Agents", s: "1 FAQ Bot", g: "Support and Lead Qual", u: "Full Ecosystem" },
+                  { f: "Automations", s: "Included", g: "5 Workflows", u: "Unlimited" },
+                  { f: "Payroll Setup", s: "Optional", g: "Optional", u: "Included" },
                   { f: "Support Period", s: "2 Weeks", g: "30 Days", u: "90 Days" },
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-white/5 last:border-0">

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp, Clock, Zap, CheckCircle2, Globe } from 'lucide-react';
+import { TrendingUp, Clock, Zap, CheckCircle2, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -26,9 +26,9 @@ const CaseStudies = () => {
       title: "From Zero to Full Infrastructure",
       challenge: "A startup in Saudi Arabia with nothing but a vision. No digital presence, no systems, and no technical foundation.",
       built: [
-        "Complete bilingual (Arabic/English) high-conversion website",
+        "Complete bilingual Arabic and English high conversion website",
         "Integrated patient management CRM",
-        "Automated appointment scheduling & reminders",
+        "Automated appointment scheduling and reminders",
         "Full brand identity and digital assets",
         "Operational workflows for medical staff"
       ],
@@ -37,7 +37,7 @@ const CaseStudies = () => {
         { label: "Launch", value: "100%", icon: <Zap size={20} /> },
         { label: "Market Ready", value: "Day 1", icon: <Globe size={20} /> }
       ],
-      quote: "Calpir built our entire company's digital nervous system from scratch. We went from an idea to a fully operational startup in weeks.",
+      quote: "Calpir built our entire company digital nervous system from scratch. We went from an idea to a fully operational startup in weeks.",
       author: "Founder, Amad Health",
       image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&q=80&w=800"
     },
@@ -46,13 +46,13 @@ const CaseStudies = () => {
       client: "Create More Productions",
       industry: "Media Production // Michigan, USA",
       title: "The Production Powerhouse System",
-      challenge: "A Michigan-based production company struggling with fragmented tools and manual project tracking.",
+      challenge: "A Michigan based production company struggling with fragmented tools and manual project tracking.",
       built: [
-        "End-to-end business management system",
+        "End to end business management system",
         "Automated client onboarding and contract signing",
-        "Project management integration with real-time tracking",
+        "Project management integration with real time tracking",
         "Financial automation for invoicing and payments",
-        "Custom CRM for high-ticket production leads"
+        "Custom CRM for high ticket production leads"
       ],
       timeline: "14 days",
       results: [
@@ -65,23 +65,23 @@ const CaseStudies = () => {
     },
     {
       id: "03",
-      client: "7-Figure Enterprise",
+      client: "7 Figure Enterprise",
       industry: "Professional Services // Canada",
       title: "Scaling a Canadian Giant",
-      challenge: "A 7+ figure company in Canada outgrowing their legacy systems and needing a modern, AI-ready infrastructure.",
+      challenge: "A 7 figure plus company in Canada outgrowing their legacy systems and needing a modern, AI ready infrastructure.",
       built: [
-        "Enterprise-grade website architecture",
-        "Advanced AI-powered lead qualification system",
-        "Custom workflow automations for high-volume operations",
-        "Integrated CRM with 7-figure pipeline management",
+        "Enterprise grade website architecture",
+        "Advanced AI powered lead qualification system",
+        "Custom workflow automations for high volume operations",
+        "Integrated CRM with 7 figure pipeline management",
         "Automated reporting and data visualization"
       ],
       timeline: "28 days",
       results: [
-        { label: "Revenue", value: "7-Figure+", icon: <TrendingUp size={20} /> },
+        { label: "Revenue", value: "7 Figure+", icon: <TrendingUp size={20} /> },
         { label: "AI Deflection", value: "65%", icon: <Zap size={20} /> }
       ],
-      quote: "Calpir didn't just build a website; they built a scalable engine that supports our 7-figure growth.",
+      quote: "Calpir did not just build a website; they built a scalable engine that supports our 7 figure growth.",
       author: "Managing Director, Canada",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
     }

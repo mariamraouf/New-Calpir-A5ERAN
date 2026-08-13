@@ -12,7 +12,7 @@ import SectionLabel from '../ui/SectionLabel';
 const faqs = [
   {
     question: "How can you launch a whole business in 7 days?",
-    answer: "We don't start from scratch. We've built a proprietary 'Base Stack' of pre-integrated tools (Website, CRM, Ops, AI). When you sign on, we deploy this battle-tested infrastructure and then customize the branding, content, and specific workflows for your business. It's the difference between building a car from raw steel vs. customizing a high-performance chassis."
+    answer: "We do not start from scratch. We have built a proprietary Base Stack of pre integrated tools (Website, CRM, Ops, AI). When you sign on, we deploy this battle tested infrastructure and then customize the branding, content, and specific workflows for your business. It is the difference between building a car from raw steel vs. customizing a high performance chassis."
   },
   {
     question: "Do I own the code and the accounts?",
@@ -20,15 +20,15 @@ const faqs = [
   },
   {
     question: "What happens after the launch?",
-    answer: "Every package includes a post-launch support period (2-12 weeks depending on the tier). During this time, we monitor your systems, fix any bugs, and provide training for your team. After that, you can choose to manage it yourself or sign up for one of our ongoing optimization retainers."
+    answer: "Every package includes a post launch support period (2 to 12 weeks depending on the tier). During this time, we monitor your systems, fix any issues, and provide training for your team. After that, you can choose to manage it yourself or sign up for one of our ongoing optimization retainers."
   },
   {
-    question: "Can I use my existing tools (like Slack or Shopify)?",
-    answer: "Yes. While we have a recommended 'Golden Stack' that we know works perfectly together, our automation engine is platform-agnostic. We can integrate almost any modern tool with an API into your new ecosystem."
+    question: "Can I use my existing tools like Slack or Shopify?",
+    answer: "Yes. While we have a recommended Golden Stack that works seamlessly together, our automation engine is platform agnostic. We can integrate almost any modern tool with an API into your new ecosystem."
   },
   {
     question: "Is the AI actually useful or just a chatbot?",
-    answer: "We build 'Agents', not just 'Chatbots'. Our agents are trained on your specific business data, can access your CRM to qualify leads, and can even trigger workflows like booking meetings or sending invoices. They are designed to replace manual labor, not just answer FAQs."
+    answer: "We build Agents, not just Chatbots. Our agents are trained on your specific business data, can access your CRM to qualify leads, and can even trigger workflows like booking meetings or sending invoices. They are designed to replace manual labor, not just answer FAQs."
   }
 ];
 

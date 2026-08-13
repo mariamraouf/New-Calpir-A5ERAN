@@ -33,7 +33,7 @@ const About = () => {
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end">
               <p className="text-2xl md:text-3xl mono text-white/60 leading-tight">
-                We've been in your shoes. That's why we built the system we wished existed when we were starting out.
+                We have been in your shoes. That is why we built the system we wished existed when we were starting out.
               </p>
               <div className="max-w-[400px] w-full ml-auto">
                 <SystemStatus />
@@ -50,7 +50,7 @@ const About = () => {
             {[
               { label: "Businesses Launched", val: "1,000+" },
               { label: "Fastest Launch", val: "7 Days" },
-              { label: "Avg. Savings", val: "40-60%" },
+              { label: "Avg. Savings", val: "40% to 60%" },
               { label: "AI Systems Running", val: "24/7" }
             ].map((s, i) => (
               <div key={i}>
@@ -69,30 +69,30 @@ const About = () => {
             <div>
               <h2 className="text-4xl mb-8">The Problem We Solve</h2>
               <p className="text-xl mono text-white/40 leading-relaxed">
-                Starting a business should be exciting. Instead, most founders spend their first months drowning in decisions: which website builder, which CRM, which payment processor, which HR tool. By the time everything is "set up," they've burned through months and thousands of dollars — and half their tools don't even talk to each other.
+                Starting a business should be exciting. Instead, most founders spend their first months drowning in decisions: which website builder, which CRM, which payment processor, which HR tool. By the time everything is set up, they have burned through months and thousands of dollars, and half their tools do not even talk to each other.
               </p>
               <p className="text-xl mono text-white/40 leading-relaxed mt-8">
-                We built Calpir to fix that. One team, one package, one integrated system — launched in days, not months. We handle the website, CRM, operations, branding, marketing, and now AI automations and intelligent agents. Everything connected, everything working together from day one.
+                We built Calpir to fix that. One team, one package, one integrated system launched in days, not months. We handle the website, CRM, operations, branding, marketing, and now AI automations and intelligent agents. Everything connected, everything working together from day one.
               </p>
             </div>
 
             <div>
               <h2 className="text-4xl mb-8">Why AI Changes Everything</h2>
               <p className="text-xl mono text-white/40 leading-relaxed">
-                In 2026, launching a business without AI is like launching one without a website in 2010 — technically possible, but a massive disadvantage. AI agents can handle your customer support at 2 AM. Workflow automation can eliminate 20+ hours of manual work per week. AI-powered lead qualification can double your sales team's efficiency.
+                In 2026, launching a business without AI is like launching one without a website in 2010: technically possible, but a massive disadvantage. AI agents can handle your customer support at 2 AM. Workflow automation can eliminate 20+ hours of manual work per week. AI powered lead qualification can double your sales team efficiency.
               </p>
               <p className="text-xl mono text-white/40 leading-relaxed mt-8">
-                Most founders know they should be using AI, but they don't know where to start. That's where we come in. We don't just set up your business — we set it up with AI baked into every layer.
+                Most founders know they should be using AI, but they do not know where to start. That is where we come in. We do not just set up your business: we set it up with AI baked into every layer.
               </p>
             </div>
 
             <div>
               <h2 className="text-4xl mb-8">How We Work</h2>
               <p className="text-xl mono text-white/40 leading-relaxed">
-                We speak plainly, set honest expectations, and deliver exactly what we promise. No inflated timelines, no surprise fees, no excuses. Every engagement starts with a free 30-minute consultation where we listen, ask the right questions, and map out what your business actually needs.
+                We speak plainly, set honest expectations, and deliver exactly what we promise. No inflated timelines, no surprise fees, no excuses. Every engagement starts with a free 30 minute consultation where we listen, ask the right questions, and map out what your business actually needs.
               </p>
               <p className="text-xl mono text-white/40 leading-relaxed mt-8">
-                Once we start, you get a dedicated team: developers building your website, designers crafting your brand, automation specialists wiring up your AI agents and workflows. You stay in the loop with regular updates, but you don't have to manage a thing.
+                Once we start, you get a dedicated team: developers building your website, designers crafting your brand, automation specialists wiring up your AI agents and workflows. You stay in the loop with regular updates, but you do not have to manage a thing.
               </p>
             </div>
           </div>
@@ -107,7 +107,7 @@ const About = () => {
             {[
               { title: "Speed Over Perfection", icon: <Zap />, desc: "In business, speed is the ultimate competitive advantage. We build fast so you can launch fast." },
               { title: "Integration Over Isolation", icon: <Users />, desc: "Disconnected tools are a liability. We build unified systems where everything talks to everything." },
-              { title: "AI-First Thinking", icon: <Target />, desc: "We don't just add AI as an afterthought. We build systems with AI baked into the core architecture." },
+              { title: "AI First Thinking", icon: <Target />, desc: "We do not just add AI as an afterthought. We build systems with AI baked into the core architecture." },
               { title: "Radical Transparency", icon: <Shield />, desc: "No hidden fees, no technical jargon, no fluff. Just clear communication and results." }
             ].map((v, i) => (
               <div key={i} className="border border-white/10 p-12 bg-black card-hover">
