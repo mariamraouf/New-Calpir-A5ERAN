@@ -32,15 +32,13 @@ const Navbar = () => {
     <nav className="bg-black border-b border-white/10 sticky top-0 z-[100]">
       <div className="container-custom h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center group">
-          <div className="w-10 h-10 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden shrink-0">
-            <img 
-              src="/logo.png" 
-              alt="Calpir Logo" 
-              className="w-full h-full object-contain rounded-full"
-            />
-          </div>
-          <span className="ml-3 text-xl font-black tracking-tighter uppercase group-hover:text-[#064e3b] transition-colors">Calpir</span>
+        <Link to="/" className="flex items-center group gap-3">
+          <img 
+            src="/logo.png" 
+            alt="Calpir Logo" 
+            className="h-12 md:h-14 w-auto object-contain rounded-full bg-white p-0.5 shrink-0"
+          />
+          <span className="text-2xl font-black tracking-tighter uppercase group-hover:text-[#064e3b] transition-colors">Calpir</span>
         </Link>
 
         {/* Desktop Nav */}

@@ -10,15 +10,13 @@ const Footer = () => {
       <div className="container-custom grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
         {/* Column 1 */}
         <div className="space-y-6">
-          <Link to="/" className="flex items-center group">
-            <div className="w-10 h-10 rounded-full bg-white p-0.5 flex items-center justify-center overflow-hidden shrink-0">
-              <img 
-                src="/logo.png" 
-                alt="Calpir Logo" 
-                className="w-full h-full object-contain rounded-full"
-              />
-            </div>
-            <span className="ml-3 text-2xl font-black tracking-tighter uppercase text-white">Calpir</span>
+          <Link to="/" className="flex items-center group gap-3">
+            <img 
+              src="/logo.png" 
+              alt="Calpir Logo" 
+              className="h-12 md:h-14 w-auto object-contain rounded-full bg-white p-0.5 shrink-0"
+            />
+            <span className="text-3xl font-black tracking-tighter uppercase text-white">Calpir</span>
           </Link>
           <p className="text-[0.95rem] leading-relaxed mono text-white/40">
             All in one business launch with AI powered systems. Built by founders, for founders.
