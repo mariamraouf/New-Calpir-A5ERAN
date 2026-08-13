@@ -14,7 +14,7 @@ const Footer = () => {
             <img 
               src="/logo.png" 
               alt="Calpir Logo" 
-              className="h-12 md:h-14 w-auto object-contain rounded-full bg-white p-0.5 shrink-0"
+              className="h-12 md:h-14 w-auto object-contain shrink-0"
             />
             <span className="text-3xl font-black tracking-tighter uppercase text-white">Calpir</span>
           </Link>

@@ -36,7 +36,7 @@ const Navbar = () => {
           <img 
             src="/logo.png" 
             alt="Calpir Logo" 
-            className="h-12 md:h-14 w-auto object-contain rounded-full bg-white p-0.5 shrink-0"
+            className="h-12 md:h-14 w-auto object-contain shrink-0"
           />
           <span className="text-2xl font-black tracking-tighter uppercase group-hover:text-[#064e3b] transition-colors">Calpir</span>
         </Link>
