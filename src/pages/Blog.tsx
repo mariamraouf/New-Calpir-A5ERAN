@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, User, Calendar, Clock } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -10,16 +10,86 @@ import ScrollToTop from '@/components/ui/ScrollToTop';
 
 const Blog = () => {
   const posts = [
-    { id: "01", tag: "LEGAL", title: "Setting Up a UK Limited Company: The 2026 Founder's Guide", excerpt: "Everything you need to know about Companies House, VAT, and legalizing your Bristol based startup.", link: "/blog/setup-uk-limited-company" },
-    { id: "02", tag: "LEGAL", title: "Launching a US LLC as a Foreign Founder: The Complete Guide", excerpt: "How to set up your US entity, get an EIN, and open a US bank account from anywhere in the world.", link: "/blog/setup-us-llc-foreign-founder" },
-    { id: "03", tag: "AI_AGENTS", title: "How to Deploy AI Agents for 24/7 Customer Support", excerpt: "Stop losing leads at 3 AM. Learn how to build and train agents that actually solve problems.", link: "/blog/deploy-ai-agents-support" },
-    { id: "04", tag: "AUTOMATION", title: "10 Workflow Automations Every Founder Needs in 2026", excerpt: "Save 20+ hours a week by automating the repetitive tasks eating your time.", link: "/blog/essential-workflow-automations" },
-    { id: "05", tag: "CRM", title: "HubSpot vs. GoHighLevel: Choosing the Right CRM for Scale", excerpt: "A technical comparison of the two most powerful sales systems for growing businesses.", link: "/blog/hubspot-vs-gohighlevel" },
-    { id: "06", tag: "SEO", title: "Technical SEO for Startups: Getting Found in the AI Search Era", excerpt: "How to optimize your site for both Google and AI powered search engines like Perplexity.", link: "/blog/technical-seo-startups" },
-    { id: "07", tag: "BRANDING", title: "Building a Brand Identity That Converts: More Than Just a Logo", excerpt: "The psychology of design and how to build a visual system that builds trust instantly.", link: "/blog/brand-identity-conversion" },
-    { id: "08", tag: "FINANCE", title: "Automating Your Payroll and Accounting: Zero Touch Finance", excerpt: "How to integrate Xero, Quickbooks, and payroll tools into one seamless ecosystem.", link: "/blog/automate-payroll-accounting" },
-    { id: "09", tag: "STRATEGY", title: "The AI Strategy Roadmap: Where to Start and What to Ignore", excerpt: "Don't get distracted by hype. Focus on the AI implementations that drive actual ROI.", link: "/blog/ai-strategy-roadmap" },
-    { id: "10", tag: "SALES", title: "Lead Qualification with AI: Doubling Your Sales Team's Efficiency", excerpt: "How to use AI to score leads and book meetings before a human even touches the deal.", link: "/blog/ai-lead-qualification" }
+    { 
+      id: "01", 
+      tag: "FOUNDER_GUIDE", 
+      title: "How to Set Up a New Business in 2026: The Ultimate Founder's Blueprint", 
+      excerpt: "A comprehensive 2,000-word step-by-step roadmap covering incorporation, legal structures, tech stack setup, and revenue engines.", 
+      author: "Calpir Experts",
+      date: "March 28, 2026",
+      readTime: "22 min read",
+      link: "/blog/how-to-setup-new-business-2026" 
+    },
+    { 
+      id: "02", 
+      tag: "STRATEGY", 
+      title: "Where to Begin? The Essential First 30 Days of Launching Your Business", 
+      excerpt: "What to prioritize and what to ignore in your first month. Learn how to launch fast without burning capital.", 
+      author: "Calpir Experts",
+      date: "March 26, 2026",
+      readTime: "18 min read",
+      link: "/blog/what-to-start-with-launch-guide" 
+    },
+    { 
+      id: "03", 
+      tag: "CRM_COMPARISON", 
+      title: "The Definitive 2026 CRM Comparison: HubSpot vs GoHighLevel vs Salesforce vs Zoho", 
+      excerpt: "An in-depth technical analysis of top CRM platforms to help you pick the exact sales system for your stage.", 
+      author: "Calpir Experts",
+      date: "March 25, 2026",
+      readTime: "20 min read",
+      link: "/blog/best-crm-tools-comparison" 
+    },
+    { 
+      id: "04", 
+      tag: "AI_AGENTS", 
+      title: "How Autonomous AI Agents Are Replacing Traditional SaaS Tools", 
+      excerpt: "Why paying $50/user/month for legacy SaaS is dying and how custom AI agents cut software operational costs by 70%.", 
+      author: "Calpir Experts",
+      date: "March 24, 2026",
+      readTime: "16 min read",
+      link: "/blog/ai-agents-replacing-saas" 
+    },
+    { 
+      id: "05", 
+      tag: "AUTOMATION", 
+      title: "The Golden Tech Stack: Essential Automations Every Modern Business Needs", 
+      excerpt: "Detailed architectural guide to connecting your website, CRM, invoicing, and support into a self-running system.", 
+      author: "Calpir Experts",
+      date: "March 23, 2026",
+      readTime: "19 min read",
+      link: "/blog/essential-tech-stack-automations" 
+    },
+    { 
+      id: "06", 
+      tag: "LEGAL", 
+      title: "Setting Up a UK Limited Company: The Complete Founder's Guide", 
+      excerpt: "Everything you need to know about Companies House, VAT, virtual offices, and legalizing your Bristol startup.", 
+      author: "Calpir Experts",
+      date: "March 22, 2026",
+      readTime: "15 min read",
+      link: "/blog/setup-uk-limited-company" 
+    },
+    { 
+      id: "07", 
+      tag: "LEGAL", 
+      title: "Launching a US LLC as a Foreign Founder: Step-by-Step Guide", 
+      excerpt: "How to set up your US entity, get an EIN without an SSN, and open US bank accounts remotely from anywhere.", 
+      author: "Calpir Experts",
+      date: "March 20, 2026",
+      readTime: "14 min read",
+      link: "/blog/setup-us-llc-foreign-founder" 
+    },
+    { 
+      id: "08", 
+      tag: "AI_AGENTS", 
+      title: "How to Deploy AI Agents for 24/7 Customer Support & Sales", 
+      excerpt: "Stop losing leads at 3 AM. Build RAG-powered agents that access your CRM and schedule qualified meetings.", 
+      author: "Calpir Experts",
+      date: "March 18, 2026",
+      readTime: "17 min read",
+      link: "/blog/deploy-ai-agents-support" 
+    }
   ];
 
   return (
@@ -29,23 +99,32 @@ const Blog = () => {
       <section className="pt-64 pb-32 px-6">
         <div className="container-custom">
           <SectionLabel>The Intelligence Hub</SectionLabel>
-          <h1 className="text-6xl md:text-[8rem] leading-[0.85] mb-24">Insights.</h1>
+          <h1 className="text-6xl md:text-[8rem] leading-[0.85] mb-8 font-black uppercase tracking-tighter">Insights.</h1>
+          <p className="text-xl md:text-2xl mono text-white/40 max-w-[800px] mb-20 leading-relaxed">
+            In-depth guides, technical comparisons, and operational blueprints published by the engineering team at Calpir.
+          </p>
           
           <div className="space-y-px bg-white/10 border border-white/10">
             {posts.map((post) => (
               <Link 
                 key={post.id} 
                 to={post.link}
-                className="group bg-black p-12 flex flex-col md:flex-row md:items-center justify-between hover:bg-[#064e3b]/10 transition-all"
+                className="group bg-black p-10 md:p-14 flex flex-col md:flex-row md:items-center justify-between hover:bg-[#064e3b]/10 transition-all"
               >
-                <div className="max-w-[600px]">
-                  <div className="mono text-[#064e3b] text-xs font-bold mb-4 tracking-widest">
-                    [{post.id}] // {post.tag}
+                <div className="max-w-[800px]">
+                  <div className="flex flex-wrap items-center gap-4 mono text-[0.65rem] text-white/40 uppercase tracking-widest mb-4">
+                    <span className="text-[#064e3b] font-bold">[{post.id}] // {post.tag}</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1"><User size={12} className="text-[#064e3b]" /> {post.author}</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-1"><Clock size={12} className="text-[#064e3b]" /> {post.readTime}</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl group-hover:text-[#064e3b] transition-colors">{post.title}</h3>
-                  <p className="text-white/40 mono mt-4">{post.excerpt}</p>
+                  <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tight group-hover:text-[#064e3b] transition-colors mb-4">
+                    {post.title}
+                  </h3>
+                  <p className="text-white/50 mono text-sm leading-relaxed">{post.excerpt}</p>
                 </div>
-                <div className="mt-8 md:mt-0">
+                <div className="mt-8 md:mt-0 shrink-0">
                   <div className="w-16 h-16 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                     <ArrowRight />
                   </div>
