@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, User, Clock } from 'lucide-react';
+import { ArrowRight, User, Calendar, Clock } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -93,40 +93,40 @@ const Blog = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-black">
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6">
+      <section className="pt-64 pb-32 px-6">
         <div className="container-custom">
           <SectionLabel>The Intelligence Hub</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">Insights.</h1>
-          <p className="text-lg md:text-2xl text-zinc-200 max-w-[800px] mb-16 leading-relaxed">
+          <h1 className="text-6xl md:text-[8rem] leading-[0.85] mb-8 font-black uppercase tracking-tighter">Insights.</h1>
+          <p className="text-xl md:text-2xl mono text-white/40 max-w-[800px] mb-20 leading-relaxed">
             In-depth guides, technical comparisons, and operational blueprints published by the engineering team at Calpir.
           </p>
           
-          <div className="space-y-px bg-white/15 border border-white/15">
+          <div className="space-y-px bg-white/10 border border-white/10">
             {posts.map((post) => (
               <Link 
                 key={post.id} 
                 to={post.link}
-                className="group bg-[#0c0c0c] p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between hover:bg-emerald-950/30 transition-all block"
+                className="group bg-black p-10 md:p-14 flex flex-col md:flex-row md:items-center justify-between hover:bg-[#064e3b]/10 transition-all"
               >
                 <div className="max-w-[800px]">
-                  <div className="flex flex-wrap items-center gap-3 mono text-xs text-zinc-400 uppercase tracking-widest mb-3">
-                    <span className="text-emerald-400 font-bold">[{post.id}] // {post.tag}</span>
+                  <div className="flex flex-wrap items-center gap-4 mono text-[0.65rem] text-white/40 uppercase tracking-widest mb-4">
+                    <span className="text-[#064e3b] font-bold">[{post.id}] // {post.tag}</span>
                     <span>•</span>
-                    <span className="flex items-center gap-1"><User size={13} className="text-emerald-400" /> {post.author}</span>
+                    <span className="flex items-center gap-1"><User size={12} className="text-[#064e3b]" /> {post.author}</span>
                     <span>•</span>
-                    <span className="flex items-center gap-1"><Clock size={13} className="text-emerald-400" /> {post.readTime}</span>
+                    <span className="flex items-center gap-1"><Clock size={12} className="text-[#064e3b]" /> {post.readTime}</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white group-hover:text-emerald-400 transition-colors mb-3">
+                  <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tight group-hover:text-[#064e3b] transition-colors mb-4">
                     {post.title}
                   </h3>
-                  <p className="text-zinc-300 text-sm leading-relaxed">{post.excerpt}</p>
+                  <p className="text-white/50 mono text-sm leading-relaxed">{post.excerpt}</p>
                 </div>
-                <div className="mt-6 md:mt-0 shrink-0">
-                  <div className="w-14 h-14 border border-white/20 flex items-center justify-center text-white group-hover:bg-emerald-500 group-hover:text-black group-hover:border-emerald-400 transition-all">
-                    <ArrowRight size={20} />
+                <div className="mt-8 md:mt-0 shrink-0">
+                  <div className="w-16 h-16 border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                    <ArrowRight />
                   </div>
                 </div>
               </Link>

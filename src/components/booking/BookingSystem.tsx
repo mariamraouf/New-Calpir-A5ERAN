@@ -29,7 +29,48 @@ const BookingSystem = () => {
   const [formData, setFormData] = useState({ name: '', email: '' });
 
   const generateTimeSlots = () => {
-    const slots: string[] = [];
+    const slots = [];
+    let current = setMinutes(setHours(new Date(), 13), 0);
+    const end = setMinutes(setHours(new Date(), 23), 30);
+
+    while (isBefore(current, addMinutes(end, 1))) {
+      slots.push(format(current, 'HH:mm'));
+      current = addMinutes(current, 30);
+    }
+    return slots;
+  <dyad-write path="src/components/booking/BookingSystem.tsx" description="Complete and fix the BookingSystem component without truncation">
+"use client";
+
+import React, { useState } from 'react';
+import { format, addDays, startOfDay, isBefore, addMinutes, parse, setHours, setMinutes } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
+import { Calendar as CalendarIcon, Clock, User, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
+import { showSuccess } from '@/utils/toast';
+
+const timezones = [
+  "Europe/London",
+  "America/New_York",
+  "America/Los_Angeles",
+  "Europe/Paris",
+  "Asia/Dubai",
+  "Asia/Singapore",
+  "Australia/Sydney"
+];
+
+const BookingSystem = () => {
+  const [selectedDate, setSelectedDate] = useState<Date>(addDays(startOfDay(new Date()), 1));
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [userTimezone, setUserTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  const [step, setStep] = useState(1);
+  const [isSending, setIsSending] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+
+  const generateTimeSlots = () => {
+    const slots = [];
     let current = setMinutes(setHours(new Date(), 13), 0);
     const end = setMinutes(setHours(new Date(), 23), 30);
 
@@ -44,9 +85,9 @@ const BookingSystem = () => {
 
   const handleBooking = async () => {
     setIsSending(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     
-    showSuccess(`Booking confirmed for ${formData.name}. Google Meet link sent to ${formData.email}.`);
+    showSuccess(`Booking confirmed for ${formData.name}. The Google Meet link has been sent to ${formData.email} and Maria.`);
     setIsSending(false);
     setStep(3);
   };
@@ -85,7 +126,6 @@ const BookingSystem = () => {
                   return (
                     <button
                       key={i}
-                      type="button"
                       onClick={() => setSelectedDate(date)}
                       className={cn(
                         "p-3 border mono text-xs flex flex-col items-center transition-all font-bold",
@@ -122,7 +162,6 @@ const BookingSystem = () => {
                 {timeSlots.map((time) => (
                   <button
                     key={time}
-                    type="button"
                     onClick={() => setSelectedTime(time)}
                     className={cn(
                       "p-3 border mono text-xs font-bold transition-all",
@@ -137,7 +176,6 @@ const BookingSystem = () => {
           </div>
 
           <Button 
-            type="button"
             disabled={!selectedTime}
             onClick={() => setStep(2)}
             className="w-full bg-emerald-500 hover:bg-emerald-600 text-black py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover"
@@ -186,9 +224,8 @@ const BookingSystem = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-white/20 text-white py-7 rounded-none font-bold uppercase">Back</Button>
+            <Button variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-white/20 text-white py-7 rounded-none font-bold uppercase">Back</Button>
             <Button 
-              type="button"
               disabled={!formData.name || !formData.email || isSending}
               onClick={handleBooking} 
               className="bg-emerald-500 hover:bg-emerald-600 text-black py-7 rounded-none font-black uppercase"
