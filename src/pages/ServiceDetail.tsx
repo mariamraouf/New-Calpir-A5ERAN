@@ -4,7 +4,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   Globe, BarChart3, Megaphone, Settings, 
-  Bot, Zap, Brain, CheckCircle2, ArrowRight, Code, Shield, Layers, Cpu, Database
+  Bot, Zap, Brain, CheckCircle2, ArrowRight, Code
 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -22,7 +22,7 @@ const ServiceDetail = () => {
       id: 'website',
       title: "Website & Branding Architecture",
       tagline: "Your high-conversion digital foundation engineered for speed and scale",
-      icon: <Globe size={48} />,
+      icon: <Globe size={48} className="text-emerald-400" />,
       overview: "A website shouldn't just be an online business card; it should be your highest-performing sales channel. We build custom, ultra-fast web architectures backed by solid brand identity systems that capture attention and drive revenue from day one.",
       included: [
         "Custom Next.js / React application development",
@@ -43,7 +43,7 @@ const ServiceDetail = () => {
       id: 'crm',
       title: "CRM & Sales System Setup",
       tagline: "Never lose a lead again with automated pipelines and instant routing",
-      icon: <BarChart3 size={48} />,
+      icon: <BarChart3 size={48} className="text-emerald-400" />,
       overview: "Managing leads in spreadsheets or disjointed tools guarantees lost deals. We design, configure, and automate robust CRM environments in HubSpot or GoHighLevel that automatically route, score, and follow up with leads 24/7.",
       included: [
         "Complete CRM platform deployment & custom pipeline creation",
@@ -64,7 +64,7 @@ const ServiceDetail = () => {
       id: 'marketing',
       title: "Marketing & Social Systems",
       tagline: "Omnichannel presence and automated lead generation engines",
-      icon: <Megaphone size={48} />,
+      icon: <Megaphone size={48} className="text-emerald-400" />,
       overview: "In 2026, consistent brand messaging across all touchpoints is mandatory. We set up your complete digital marketing infrastructure, from content distribution pipelines to automated email marketing flows that nurture prospects into buyers.",
       included: [
         "Omnichannel social media profile creation & verification",
@@ -85,7 +85,7 @@ const ServiceDetail = () => {
       id: 'ops',
       title: "Operations & HR Infrastructure",
       tagline: "Bulletproof internal systems that allow your company to scale without chaos",
-      icon: <Settings size={48} />,
+      icon: <Settings size={48} className="text-emerald-400" />,
       overview: "Scaling a team without documented processes leads to bottlenecks and burnout. We build standard operating procedures (SOPs), payroll structures, contract management, and project tracking boards so your business operates like a well-oiled machine.",
       included: [
         "Centralized project management workspace setup (ClickUp / Notion / Linear)",
@@ -106,7 +106,7 @@ const ServiceDetail = () => {
       id: 'ai-agents',
       title: "Autonomous AI Agent Development",
       tagline: "Intelligent digital employees that work 24/7/365 without rest",
-      icon: <Bot size={48} />,
+      icon: <Bot size={48} className="text-emerald-400" />,
       overview: "Traditional chatbots rely on decision trees that frustrate users. We build custom AI Agents powered by Retrieval-Augmented Generation (RAG) that connect directly to your knowledge base, access your CRM, and execute complex business actions.",
       included: [
         "Custom LLM fine-tuning on your business documentation & SOPs",
@@ -127,7 +127,7 @@ const ServiceDetail = () => {
       id: 'automation',
       title: "Workflow Automation Systems",
       tagline: "Connect every tool in your business and eliminate manual data entry",
-      icon: <Zap size={48} />,
+      icon: <Zap size={48} className="text-emerald-400" />,
       overview: "Your team shouldn't be copying and pasting data between apps. We build custom automation pipelines using Make.com, Zapier, and Python scripts to unite your website, CRM, accounting, and communication tools into a single sync engine.",
       included: [
         "Complete tech stack audit & workflow mapping",
@@ -148,7 +148,7 @@ const ServiceDetail = () => {
       id: 'strategy',
       title: "AI Strategy & Executive Consulting",
       tagline: "Actionable AI roadmaps built for real ROI, not hype",
-      icon: <Brain size={48} />,
+      icon: <Brain size={48} className="text-emerald-400" />,
       overview: "With thousands of AI tools flooding the market, deciding where to invest can feel overwhelming. We work directly with leadership teams to identify high-ROI opportunities, audit operations, and implement realistic AI transformation roadmaps.",
       included: [
         "Comprehensive operational audit & AI readiness assessment",
@@ -169,7 +169,7 @@ const ServiceDetail = () => {
       id: 'custom-apps',
       title: "Custom Apps & Bespoke Software",
       tagline: "Turn complex business logic into high-performance web software",
-      icon: <Code size={48} />,
+      icon: <Code size={48} className="text-emerald-400" />,
       overview: "When off-the-shelf software doesn't fit your business model, we build custom web applications, SaaS platforms, internal tools, and specialized AI agent fleets from scratch using modern, scalable full-stack technology.",
       included: [
         "Full-stack React / TypeScript application development",
@@ -193,20 +193,20 @@ const ServiceDetail = () => {
   if (!data) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#080808]">
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-64 pb-32 px-6 border-b border-white/10">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-white/15">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="w-32 h-32 bg-white/5 border border-[#064e3b] text-[#064e3b] flex items-center justify-center shrink-0">
+            <div className="w-28 h-28 bg-white/5 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
               {data.icon}
             </div>
             <div>
               <SectionLabel>Service Module Specification</SectionLabel>
-              <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-4">{data.title}</h1>
-              <p className="text-xl md:text-2xl mono text-white/40">{data.tagline}</p>
+              <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tight mb-4 text-white">{data.title}</h1>
+              <p className="text-xl md:text-2xl mono text-zinc-300">{data.tagline}</p>
             </div>
           </div>
         </div>
@@ -215,12 +215,12 @@ const ServiceDetail = () => {
       {/* Overview & Deliverables */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
-            <div className="lg:col-span-2 space-y-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            <div className="lg:col-span-2 space-y-16">
               {/* Executive Summary */}
               <div>
                 <h2 className="text-3xl font-black uppercase mb-6 text-white">System Overview</h2>
-                <p className="mono text-lg text-white/70 leading-relaxed bg-white/5 p-8 border border-white/10">
+                <p className="mono text-lg text-zinc-200 leading-relaxed bg-white/[0.03] p-8 border border-white/15">
                   {data.overview}
                 </p>
               </div>
@@ -228,40 +228,40 @@ const ServiceDetail = () => {
               {/* What's Included */}
               <div>
                 <h2 className="text-3xl font-black uppercase mb-8 text-white">Module Specifications & Features</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {data.included.map((item: string, i: number) => (
-                    <div key={i} className="flex gap-4 p-4 border border-white/5 bg-white/5 items-start">
-                      <CheckCircle2 className="text-[#064e3b] shrink-0 mt-1" size={20} />
-                      <span className="mono text-xs uppercase tracking-wider text-white/80 leading-relaxed">{item}</span>
+                    <div key={i} className="flex gap-4 p-4 border border-white/10 bg-white/[0.02] items-start">
+                      <CheckCircle2 className="text-emerald-400 shrink-0 mt-1" size={18} />
+                      <span className="mono text-xs uppercase tracking-wider text-zinc-200 leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Who & What You Get */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="border border-white/10 p-8 bg-white/5">
-                  <div className="mono text-xs uppercase tracking-widest text-[#064e3b] mb-4 font-bold">Ideal Deployment Candidate</div>
-                  <h3 className="text-xl font-black uppercase mb-4">Who This Is For</h3>
-                  <p className="mono text-sm text-white/50 leading-relaxed">{data.who}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="border border-white/15 p-8 bg-white/[0.03]">
+                  <div className="mono text-xs uppercase tracking-widest text-emerald-400 mb-3 font-bold">Ideal Deployment Candidate</div>
+                  <h3 className="text-xl font-black uppercase mb-4 text-white">Who This Is For</h3>
+                  <p className="mono text-sm text-zinc-300 leading-relaxed">{data.who}</p>
                 </div>
-                <div className="border border-white/10 p-8 bg-white/5">
-                  <div className="mono text-xs uppercase tracking-widest text-[#064e3b] mb-4 font-bold">Final Assets Handover</div>
-                  <h3 className="text-xl font-black uppercase mb-4">What You Receive</h3>
-                  <p className="mono text-sm text-white/50 leading-relaxed">{data.get}</p>
+                <div className="border border-white/15 p-8 bg-white/[0.03]">
+                  <div className="mono text-xs uppercase tracking-widest text-emerald-400 mb-3 font-bold">Final Assets Handover</div>
+                  <h3 className="text-xl font-black uppercase mb-4 text-white">What You Receive</h3>
+                  <p className="mono text-sm text-zinc-300 leading-relaxed">{data.get}</p>
                 </div>
               </div>
             </div>
 
             {/* Sidebar Sticky */}
             <div className="space-y-8">
-              <div className="border border-white/10 p-8 bg-black sticky top-32">
-                <h3 className="text-2xl font-black uppercase mb-6">Ecosystem Placement</h3>
+              <div className="border border-white/15 p-8 bg-[#0c0c0c] sticky top-28">
+                <h3 className="text-2xl font-black uppercase mb-6 text-white">Ecosystem Placement</h3>
                 <ConnectedEcosystem className="w-full h-[280px] mb-8" highlightedNode={data.id} />
-                <p className="mono text-[0.7rem] text-white/40 mb-8">
+                <p className="mono text-xs text-zinc-400 mb-8 leading-relaxed">
                   This module connects directly with your broader business infrastructure to eliminate data silos.
                 </p>
-                <Button asChild className="w-full bg-[#064e3b] hover:bg-[#053e2f] text-white py-8 rounded-none font-black text-xl uppercase tracking-tighter btn-hover">
+                <Button asChild className="w-full bg-emerald-500 hover:bg-emerald-600 text-black py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover">
                   <Link to="/contact">Book Deployment Call <ArrowRight className="ml-2" size={18} /></Link>
                 </Button>
               </div>

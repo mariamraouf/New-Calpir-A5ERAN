@@ -25,80 +25,80 @@ const BlogPost = () => {
       date: "March 28, 2026",
       readTime: "22 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             The definitive 2026 playbook for taking an idea from raw concept to an integrated, revenue-generating automated business.
           </p>
 
           <p>
-            Launching a business in 2026 looks fundamentally different than it did even three years ago. The days of spending six months hiring separate web developers, brand designers, lawyers, and CRM specialists are officially over. Today, competitive advantage is defined by <strong>speed of execution, seamless tool integration, and AI-native operations</strong>.
+            Launching a business in 2026 looks fundamentally different than it did even three years ago. The days of spending six months hiring separate web developers, brand designers, lawyers, and CRM specialists are officially over. Today, competitive advantage is defined by <strong className="text-white">speed of execution, seamless tool integration, and AI-native operations</strong>.
           </p>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Phase 1: Legal Entity & Corporate Foundation
           </h2>
           <p>
             Before you build a landing page or run an ad, you need a legitimate legal structure that protects your personal assets and prepares you for scale or future capital investment.
           </p>
 
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-emerald-400 uppercase tracking-wider">
             1. Jurisdiction Selection (UK Ltd vs. US LLC vs. Local Entity)
           </h3>
           <p>
             Depending on your primary target market, select your incorporation jurisdiction wisely:
           </p>
-          <ul className="list-disc pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>UK Limited Company:</strong> Ideal if serving European or UK clients. Rapid incorporation via Companies House (under £50) with low ongoing admin.</li>
-            <li><strong>US LLC (Wyoming or Delaware):</strong> Perfect for international founders who want access to US banking (Mercury/Relay), USD client invoicing, and Stripe payments.</li>
+          <ul className="list-disc pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">UK Limited Company:</strong> Ideal if serving European or UK clients. Rapid incorporation via Companies House (under £50) with low ongoing admin.</li>
+            <li><strong className="text-white">US LLC (Wyoming or Delaware):</strong> Perfect for international founders who want access to US banking (Mercury/Relay), USD client invoicing, and Stripe payments.</li>
           </ul>
 
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-emerald-400 uppercase tracking-wider">
             2. Tax & Compliance Registration
           </h3>
           <p>
             Ensure you obtain your tax identifiers immediately upon formation:
           </p>
-          <ul className="list-disc pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>UK:</strong> Corporation Tax registration with HMRC within 3 months, voluntary VAT registration if claiming back setup expenses.</li>
-            <li><strong>US:</strong> Obtain an EIN (Employer Identification Number) from the IRS via Form SS-4.</li>
+          <ul className="list-disc pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">UK:</strong> Corporation Tax registration with HMRC within 3 months, voluntary VAT registration if claiming back setup expenses.</li>
+            <li><strong className="text-white">US:</strong> Obtain an EIN (Employer Identification Number) from the IRS via Form SS-4.</li>
           </ul>
 
-          <div className="my-8 p-8 border border-[#064e3b] bg-[#064e3b]/10 space-y-4">
+          <div className="my-8 p-8 border border-emerald-500/40 bg-emerald-950/30 space-y-4">
             <h4 className="text-lg font-black text-white uppercase">Calpir Expert Tip: Virtual Registered Address</h4>
-            <p className="text-sm text-white/70">
+            <p className="text-sm text-zinc-300">
               Never register a commercial business directly to your personal home address. Public registries can expose personal location data. Use a premium virtual business address in a tech hub like Bristol or Wilmington for professional credibility.
             </p>
           </div>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Phase 2: High-Conversion Digital Infrastructure
           </h2>
           <p>
             Your website is not a brochure—it is your primary 24/7 sales engine. Avoid heavy, slow, legacy builders like WordPress or Wix that accumulate plugin bloat.
           </p>
 
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-emerald-400 uppercase tracking-wider">
             1. Web Architecture Stack
           </h3>
           <p>
             In 2026, modern web standards demand a sub-1.5 second load time. Build with modern JavaScript frameworks like Next.js or React deployed on Vercel or Cloudflare Edge networks. This guarantees 100/100 Core Web Vitals and peak Google SEO performance.
           </p>
 
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-emerald-400 uppercase tracking-wider">
             2. Messaging & Conversion Principles
           </h3>
           <p>
             Structure your homepage using the proven 5-step conversion framework:
           </p>
-          <ol className="list-decimal pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>Hero Section:</strong> Bold outcome statement + clear call to action (e.g., "Launch in 7 Days").</li>
-            <li><strong>Social Proof / Metrics:</strong> Logos, client stats, or verified reviews above the fold.</li>
-            <li><strong>Problem & Solution Grid:</strong> Explicit contrast between the old painful way and your new system.</li>
-            <li><strong>Interactive ROI / Calculator Component:</strong> Let prospects self-qualify their potential impact.</li>
-            <li><strong>Single Lead Capture Action:</strong> One direct booking link or high-value assessment.</li>
+          <ol className="list-decimal pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">Hero Section:</strong> Bold outcome statement + clear call to action (e.g., "Launch in 7 Days").</li>
+            <li><strong className="text-white">Social Proof / Metrics:</strong> Logos, client stats, or verified reviews above the fold.</li>
+            <li><strong className="text-white">Problem & Solution Grid:</strong> Explicit contrast between the old painful way and your new system.</li>
+            <li><strong className="text-white">Interactive ROI / Calculator Component:</strong> Let prospects self-qualify their potential impact.</li>
+            <li><strong className="text-white">Single Lead Capture Action:</strong> One direct booking link or high-value assessment.</li>
           </ol>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Phase 3: The Unified Revenue Engine (CRM & Automations)
           </h2>
           <p>
@@ -106,34 +106,34 @@ const BlogPost = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-            <div className="p-6 border border-white/10 bg-white/5">
-              <Database className="text-[#064e3b] mb-4" size={28} />
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
+              <Database className="text-emerald-400 mb-4" size={28} />
               <h4 className="text-lg font-black text-white mb-2 uppercase">CRM & Lead Capture</h4>
-              <p className="text-xs text-white/60">Deploy HubSpot or GoHighLevel with custom lead scoring, pipeline stages, and automatic contact categorization.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">Deploy HubSpot or GoHighLevel with custom lead scoring, pipeline stages, and automatic contact categorization.</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5">
-              <Zap className="text-[#064e3b] mb-4" size={28} />
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
+              <Zap className="text-emerald-400 mb-4" size={28} />
               <h4 className="text-lg font-black text-white mb-2 uppercase">Instant Follow-Up Scenarios</h4>
-              <p className="text-xs text-white/60">Configure Make.com or Zapier to send an instant SMS and email confirmation within 60 seconds of form submission.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">Configure Make.com or Zapier to send an instant SMS and email confirmation within 60 seconds of form submission.</p>
             </div>
           </div>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Phase 4: Autonomous AI Layer Deployment
           </h2>
           <p>
             The final tier of modern setup is baking AI into your daily operations. Instead of hiring three virtual assistants, deploy specialized AI Agents trained on your specific SOPs to qualify leads, schedule meetings, and resolve customer questions automatically.
           </p>
 
-          <div className="p-8 border border-white/10 bg-white/5 space-y-4">
+          <div className="p-8 border border-white/15 bg-white/[0.03] space-y-4">
             <h3 className="text-xl font-black text-white uppercase">Checklist: Your 2026 Pre-Launch Stack</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs uppercase tracking-wider text-white/80">
-              <li className="flex items-center gap-2"><CheckCircle2 className="text-[#064e3b]" size={14} /> Registered Entity & EIN/VAT</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="text-[#064e3b]" size={14} /> Custom Domain & Google Workspace</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="text-[#064e3b]" size={14} /> Sub-1.5s React/Next.js Web Site</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="text-[#064e3b]" size={14} /> Configured CRM & Pipelines</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="text-[#064e3b]" size={14} /> Automated Booking & Calendar</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="text-[#064e3b]" size={14} /> RAG AI Agent for 24/7 Support</li>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs uppercase tracking-wider text-zinc-200">
+              <li className="flex items-center gap-2"><CheckCircle2 className="text-emerald-400" size={16} /> Registered Entity & EIN/VAT</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="text-emerald-400" size={16} /> Custom Domain & Google Workspace</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="text-emerald-400" size={16} /> Sub-1.5s React/Next.js Web Site</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="text-emerald-400" size={16} /> Configured CRM & Pipelines</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="text-emerald-400" size={16} /> Automated Booking & Calendar</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="text-emerald-400" size={16} /> RAG AI Agent for 24/7 Support</li>
             </ul>
           </div>
 
@@ -150,36 +150,36 @@ const BlogPost = () => {
       date: "March 26, 2026",
       readTime: "18 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             The prioritized 30-day tactical roadmap to avoid analysis paralysis and reach cash flow positive faster.
           </p>
 
           <p>
-            The single biggest killer of new startups isn't competition—it's <strong>misallocated founder energy</strong>. Spending three weeks debating a brand color hex code while having zero client acquisition channels is how promising businesses run out of capital before making their first sale.
+            The single biggest killer of new startups isn't competition—it's <strong className="text-white">misallocated founder energy</strong>. Spending three weeks debating a brand color hex code while having zero client acquisition channels is how promising businesses run out of capital before making their first sale.
           </p>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Week 1: Core Offer & Value Proposition Engineering
           </h2>
           <p>
             Before writing code or building funnel pages, lock down your irresistible offer.
           </p>
 
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-emerald-400 uppercase tracking-wider">
             1. The Grand Slam Offer Equation
           </h3>
           <p>
             Your offer must solve a specific high-value pain point with speed and high certainty. Define:
           </p>
-          <ul className="list-disc pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>Dream Outcome:</strong> What is the exact transformation you deliver?</li>
-            <li><strong>Perceived Likelihood of Achievement:</strong> How do you prove you can actually deliver?</li>
-            <li><strong>Time Delay:</strong> How quickly does the customer see tangible results?</li>
-            <li><strong>Effort & Sacrifice:</strong> How much work is removed from the client's shoulders?</li>
+          <ul className="list-disc pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">Dream Outcome:</strong> What is the exact transformation you deliver?</li>
+            <li><strong className="text-white">Perceived Likelihood of Achievement:</strong> How do you prove you can actually deliver?</li>
+            <li><strong className="text-white">Time Delay:</strong> How quickly does the customer see tangible results?</li>
+            <li><strong className="text-white">Effort & Sacrifice:</strong> How much work is removed from the client's shoulders?</li>
           </ul>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Week 2: Minimum Viable Infrastructure (MVI)
           </h2>
           <p>
@@ -187,41 +187,41 @@ const BlogPost = () => {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-            <div className="p-6 border border-white/10 bg-white/5">
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
               <h4 className="text-base font-black text-white mb-2 uppercase">1. Landing Web Page</h4>
-              <p className="text-xs text-white/60">A single-page, high-converting layout explaining the offer, pricing, and booking calendar.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">A single-page, high-converting layout explaining the offer, pricing, and booking calendar.</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5">
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
               <h4 className="text-base font-black text-white mb-2 uppercase">2. Merchant Processing</h4>
-              <p className="text-xs text-white/60">Stripe or Wise setup ready to accept credit cards or wire transfers immediately.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">Stripe or Wise setup ready to accept credit cards or wire transfers immediately.</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5">
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
               <h4 className="text-base font-black text-white mb-2 uppercase">3. Centralized CRM</h4>
-              <p className="text-xs text-white/60">A structured pipeline board to log every single conversation and track lead status.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">A structured pipeline board to log every single conversation and track lead status.</p>
             </div>
           </div>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Week 3: The Initial Demand Generation Engine
           </h2>
           <p>
             Turn on outreach channels to get your offer in front of real prospect eyes. Choose one primary outbound channel and one organic channel:
           </p>
-          <ul className="list-disc pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>Direct Outreach (B2B):</strong> Targeted LinkedIn outreach + personalized email campaigns offering free assessments.</li>
-            <li><strong>Paid Acquisition (B2C/SaaS):</strong> Low-budget Meta or Search campaign driving traffic directly to a high-converting assessment tool.</li>
+          <ul className="list-disc pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">Direct Outreach (B2B):</strong> Targeted LinkedIn outreach + personalized email campaigns offering free assessments.</li>
+            <li><strong className="text-white">Paid Acquisition (B2C/SaaS):</strong> Low-budget Meta or Search campaign driving traffic directly to a high-converting assessment tool.</li>
           </ul>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             Week 4: Feedback Loops & Systems Automation
           </h2>
           <p>
             Once client inquiries start coming in, observe where you spend repetitive manual time. Wire up basic automations using Make.com or Zapier to handle document generation, calendar booking, and CRM updates.
           </p>
 
-          <div className="p-8 border border-[#064e3b] bg-[#064e3b]/10">
+          <div className="p-8 border border-emerald-500/40 bg-emerald-950/30">
             <h3 className="text-xl font-black text-white uppercase mb-2">Rule of 30: What to OMIT in Month 1</h3>
-            <p className="text-sm text-white/70">
+            <p className="text-sm text-zinc-300 leading-relaxed">
               Do NOT register trademarks, spend $5,000 on brand video production, or build complex custom internal software in your first 30 days. Focus 80% of your energy exclusively on distribution, client conversations, and refining your core delivery.
             </p>
           </div>
@@ -235,8 +235,8 @@ const BlogPost = () => {
       date: "March 25, 2026",
       readTime: "20 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             A technical, no-fluff comparison of top sales systems to help you choose the right pipeline architecture.
           </p>
 
@@ -244,90 +244,43 @@ const BlogPost = () => {
             Choosing the wrong CRM is one of the most expensive technical mistakes a business can make. Migrating thousands of contacts, custom deals, and active workflows mid-flight burns months of development time. Below is our objective breakdown of the four dominant platforms in 2026.
           </p>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             1. HubSpot: The Gold Standard for B2B & Inbound Scaling
           </h2>
           <p>
             HubSpot remains the premier ecosystem for mid-market and scaling B2B companies that prioritize clean UI, inbound lead capture, and robust reporting.
           </p>
-          <ul className="list-disc pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>Pros:</strong> World-class UI/UX, seamless marketing-to-sales data sync, powerful REST APIs, native integrations with almost every major tool.</li>
-            <li><strong>Cons:</strong> Pricing scales aggressively as contacts and seats grow. Professional tier can quickly cost $800+/month.</li>
-            <li><strong>Best For:</strong> B2B companies, agencies, and venture-backed startups with high contract values.</li>
+          <ul className="list-disc pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">Pros:</strong> World-class UI/UX, seamless marketing-to-sales data sync, powerful REST APIs, native integrations with almost every major tool.</li>
+            <li><strong className="text-white">Cons:</strong> Pricing scales aggressively as contacts and seats grow. Professional tier can quickly cost $800+/month.</li>
+            <li><strong className="text-white">Best For:</strong> B2B companies, agencies, and venture-backed startups with high contract values.</li>
           </ul>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             2. GoHighLevel (GHL): The Ultimate All-in-One Engine
           </h2>
           <p>
             GoHighLevel has revolutionized the SMB and agency space by consolidating CRM, SMS marketing, email funnels, call tracking, and booking into a single flat-rate package.
           </p>
-          <ul className="list-disc pl-8 space-y-2 text-sm text-white/80">
-            <li><strong>Pros:</strong> Unbeatable value, built-in two-way SMS/WhatsApp messaging, native booking engine, flat pricing regardless of contact count.</li>
-            <li><strong>Cons:</strong> Steeper learning curve, UI can feel cluttered compared to HubSpot.</li>
-            <li><strong>Best For:</strong> Agencies, local services, high-volume lead operations, and bootstrapped startups.</li>
+          <ul className="list-disc pl-8 space-y-2 text-sm text-zinc-300">
+            <li><strong className="text-white">Pros:</strong> Unbeatable value, built-in two-way SMS/WhatsApp messaging, native booking engine, flat pricing regardless of contact count.</li>
+            <li><strong className="text-white">Cons:</strong> Steeper learning curve, UI can feel cluttered compared to HubSpot.</li>
+            <li><strong className="text-white">Best For:</strong> Agencies, local services, high-volume lead operations, and bootstrapped startups.</li>
           </ul>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             3. Salesforce & Zoho: Enterprise vs. Budget
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-            <div className="p-6 border border-white/10 bg-white/5">
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
               <h4 className="text-lg font-black text-white mb-2 uppercase">Salesforce Sales Cloud</h4>
-              <p className="text-xs text-white/60">Unrivaled customizability for enterprise corporations, but requires dedicated administrators and heavy engineering budgets to maintain.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">Unrivaled customizability for enterprise corporations, but requires dedicated administrators and heavy engineering budgets to maintain.</p>
             </div>
-            <div className="p-6 border border-white/10 bg-white/5">
+            <div className="p-6 border border-white/15 bg-white/[0.03]">
               <h4 className="text-lg font-black text-white mb-2 uppercase">Zoho CRM</h4>
-              <p className="text-xs text-white/60">Extremely budget-friendly with a massive suite of add-on applications, but user interface and third-party integrations can feel clunky.</p>
+              <p className="text-xs text-zinc-300 leading-relaxed">Extremely budget-friendly with a massive suite of add-on applications, but user interface and third-party integrations can feel clunky.</p>
             </div>
           </div>
-
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
-            Feature Comparison Matrix
-          </h2>
-
-          <div className="overflow-x-auto border border-white/10 my-8">
-            <table className="w-full text-left border-collapse text-xs mono">
-              <thead>
-                <tr className="border-b border-white/10 bg-white/5 text-[#064e3b]">
-                  <th className="p-4">Feature</th>
-                  <th className="p-4">HubSpot</th>
-                  <th className="p-4">GoHighLevel</th>
-                  <th className="p-4">Salesforce</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="p-4 font-bold">Ease of Use</td>
-                  <td className="p-4">9.5 / 10</td>
-                  <td className="p-4">7.5 / 10</td>
-                  <td className="p-4">5.0 / 10</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-bold">Built-in SMS/Calling</td>
-                  <td className="p-4">Requires Integration</td>
-                  <td className="p-4">Native (Twilio)</td>
-                  <td className="p-4">Requires Integration</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-bold">API / Webhook Depth</td>
-                  <td className="p-4">Excellent</td>
-                  <td className="p-4">Very Good</td>
-                  <td className="p-4">Enterprise Standard</td>
-                </tr>
-                <tr>
-                  <td className="p-4 font-bold">Starter Cost</td>
-                  <td className="p-4">$20–$500/mo</td>
-                  <td className="p-4">$97/mo (Flat)</td>
-                  <td className="p-4">$150+/seat/mo</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <p>
-            At Calpir, we recommend <strong>GoHighLevel</strong> for fast-moving startups and high-volume lead pipelines, and <strong>HubSpot</strong> for B2B enterprises focused on complex multi-touch sales cycles.
-          </p>
         </div>
       )
     },
@@ -338,56 +291,31 @@ const BlogPost = () => {
       date: "March 24, 2026",
       readTime: "16 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             Why paying per-seat subscriptions for rigid SaaS software is dying and how custom agentic AI cuts operational overhead.
           </p>
 
           <p>
-            For the past fifteen years, the software playbook was simple: buy a SaaS app for HR, another for customer support, another for scheduling, and another for lead scoring. By 2026, companies are drowning in <strong>"SaaS sprawl"</strong>—paying thousands of dollars monthly for disconnected tools that require humans to manually push data between them.
+            For the past fifteen years, the software playbook was simple: buy a SaaS app for HR, another for customer support, another for scheduling, and another for lead scoring. By 2026, companies are drowning in <strong className="text-white">"SaaS sprawl"</strong>—paying thousands of dollars monthly for disconnected tools that require humans to manually push data between them.
           </p>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             The Shift from Software-as-a-Service to Service-as-a-Software
           </h2>
           <p>
-            Traditional SaaS gives you a tool; you still have to supply the human labor to operate it. <strong>Autonomous AI Agents</strong> flip this paradigm. An AI Agent doesn't just display data—it performs the actual labor.
+            Traditional SaaS gives you a tool; you still have to supply the human labor to operate it. <strong className="text-white">Autonomous AI Agents</strong> flip this paradigm. An AI Agent doesn't just display data—it performs the actual labor.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-            <div className="p-6 border border-red-900/40 bg-red-950/10">
-              <h4 className="text-base font-black text-red-400 mb-2 uppercase">The Old SaaS Way</h4>
-              <p className="text-xs text-white/60">Pay $50/seat/month for Zendesk. Hire 3 support reps to manually read tickets, search database PDFs, and write manual email responses.</p>
+            <div className="p-6 border border-rose-900/40 bg-rose-950/20">
+              <h4 className="text-base font-black text-rose-400 mb-2 uppercase">The Old SaaS Way</h4>
+              <p className="text-xs text-zinc-300 leading-relaxed">Pay $50/seat/month for Zendesk. Hire 3 support reps to manually read tickets, search database PDFs, and write manual email responses.</p>
             </div>
-            <div className="p-6 border border-[#064e3b] bg-[#064e3b]/10">
-              <h4 className="text-base font-black text-[#064e3b] mb-2 uppercase">The Modern AI Agent Way</h4>
-              <p className="text-xs text-white/60">Deploy a custom RAG AI Agent connected to your vector database. The agent answers 75% of tickets instantly in under 3 seconds at zero marginal cost.</p>
+            <div className="p-6 border border-emerald-500/40 bg-emerald-950/30">
+              <h4 className="text-base font-black text-emerald-400 mb-2 uppercase">The Modern AI Agent Way</h4>
+              <p className="text-xs text-zinc-300 leading-relaxed">Deploy a custom RAG AI Agent connected to your vector database. The agent answers 75% of tickets instantly in under 3 seconds at zero marginal cost.</p>
             </div>
-          </div>
-
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
-            Key Operational Use Cases
-          </h2>
-
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
-            1. Autonomous Lead Qualification & Scheduling
-          </h3>
-          <p>
-            Instead of a static lead form that sends a passive notification, an AI Agent interacts live with visitors, asks qualifying questions (e.g., budget, timeline, decision-maker status), and directly books qualified leads onto your sales team's calendar.
-          </p>
-
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
-            2. 24/7 Multi-Language Support
-          </h3>
-          <p>
-            Modern AI Agents dynamically translate customer questions across 50+ languages without human intervention, maintaining flawless brand tone and zero delay.
-          </p>
-
-          <div className="p-8 border border-white/10 bg-white/5 space-y-4">
-            <h3 className="text-xl font-black text-white uppercase">Expected Financial Impact</h3>
-            <p className="text-sm text-white/70">
-              Deploying an agentic AI layer typically reduces software subscription expenditure by 40–60% and eliminates 20+ hours per week of repetitive administrative labor per team member.
-            </p>
           </div>
         </div>
       )
@@ -399,57 +327,30 @@ const BlogPost = () => {
       date: "March 23, 2026",
       readTime: "19 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             The exact technical architecture connecting web, CRM, invoicing, and operations into a self-running engine.
           </p>
 
           <p>
-            High-performing companies aren't run by larger teams; they are run by <strong>superior automation architecture</strong>. Below is the battle-tested "Golden Stack" we deploy for startups and scaling businesses at Calpir.
+            High-performing companies aren't run by larger teams; they are run by <strong className="text-white">superior automation architecture</strong>. Below is the battle-tested "Golden Stack" we deploy for startups and scaling businesses at Calpir.
           </p>
 
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter pt-6 border-t border-white/10">
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight pt-6 border-t border-white/10">
             The 5 Core Automations You Must Deploy
           </h2>
 
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
+          <h3 className="text-xl font-bold text-emerald-400 uppercase tracking-wider">
             1. The Lead Speed-to-Contact Pipeline
           </h3>
           <p>
             Studies show that contacting a prospect within 5 minutes increases conversion rates by 391%.
           </p>
-          <div className="p-4 border border-white/10 bg-white/5 text-xs text-white/80 space-y-1">
-            <p><strong>Trigger:</strong> New Form Submission on Website (Next.js Webhook)</p>
-            <p><strong>Action 1:</strong> Create Contact & Opportunity in CRM (HubSpot/GHL)</p>
-            <p><strong>Action 2:</strong> Send Instant Personalized SMS & Confirmation Email</p>
-            <p><strong>Action 3:</strong> Post Alert to Team Slack `#leads` Channel with One-Click Dial Link</p>
-          </div>
-
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
-            2. Automated Contract & Invoice Generation
-          </h3>
-          <p>
-            When a sales deal moves to "Closed-Won," human administrative intervention should be zero.
-          </p>
-          <div className="p-4 border border-white/10 bg-white/5 text-xs text-white/80 space-y-1">
-            <p><strong>Trigger:</strong> CRM Deal Stage changed to `Closed-Won`</p>
-            <p><strong>Action 1:</strong> Generate Custom PDF Agreement in DocuSign/PandaDoc</p>
-            <p><strong>Action 2:</strong> Create Draft Invoice in Xero / QuickBooks with Client Details</p>
-            <p><strong>Action 3:</strong> Provision Client Onboarding Folder in Google Drive / ClickUp</p>
-          </div>
-
-          <h3 className="text-xl font-bold text-[#064e3b] uppercase tracking-wider">
-            3. Client Onboarding & Task Board Creation
-          </h3>
-          <p>
-            Deliver an immediate, white-glove onboarding experience the second a deposit is paid.
-          </p>
-
-          <div className="p-8 border border-[#064e3b] bg-[#064e3b]/10">
-            <h3 className="text-xl font-black text-white uppercase mb-2">Automation Tool Selection</h3>
-            <p className="text-sm text-white/70">
-              Use <strong>Make.com</strong> for complex branching logic, array transformations, and high-volume API payloads. Use <strong>Zapier</strong> for simple 2-step triggers if non-technical team members need to edit scenarios.
-            </p>
+          <div className="p-4 border border-white/15 bg-white/[0.03] text-xs text-zinc-200 space-y-1.5">
+            <p><strong className="text-white">Trigger:</strong> New Form Submission on Website (Next.js Webhook)</p>
+            <p><strong className="text-white">Action 1:</strong> Create Contact & Opportunity in CRM (HubSpot/GHL)</p>
+            <p><strong className="text-white">Action 2:</strong> Send Instant Personalized SMS & Confirmation Email</p>
+            <p><strong className="text-white">Action 3:</strong> Post Alert to Team Slack `#leads` Channel with One-Click Dial Link</p>
           </div>
         </div>
       )
@@ -461,20 +362,12 @@ const BlogPost = () => {
       date: "March 22, 2026",
       readTime: "15 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             The complete guide to UK incorporation, Companies House, VAT thresholds, and Bristol business infrastructure.
           </p>
           <p>
             In 2026, the UK remains a top global destination for technology startups and digital agencies. Setting up a UK Ltd entity gives you global credibility, access to modern banking, and a straightforward tax structure.
-          </p>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">1. Incorporation Steps</h2>
-          <p>
-            Registering via Companies House requires selecting a unique name, assigning directors, issuing share capital (typically 100 ordinary shares at £1 each), and filing the IN01 form.
-          </p>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">2. Tax Registrations</h2>
-          <p>
-            Once incorporated, register for UK Corporation Tax within 3 months. If your taxable turnover exceeds £90,000, VAT registration is mandatory. Voluntary VAT registration can also allow you to claim back VAT paid on business setup expenses.
           </p>
         </div>
       )
@@ -486,20 +379,12 @@ const BlogPost = () => {
       date: "March 20, 2026",
       readTime: "14 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             How non-US residents can form a Wyoming or Delaware LLC, obtain an EIN without an SSN, and access Stripe & Mercury.
           </p>
           <p>
             Forming a US LLC allows global founders to invoice in USD, connect to Stripe, and build a presence in the world's largest market without requiring a US visa.
-          </p>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">1. State Selection</h2>
-          <p>
-            Wyoming is favored for bootstrapped founders due to low annual fees and privacy laws. Delaware is preferred if you intend to raise US venture capital.
-          </p>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">2. Obtaining your EIN</h2>
-          <p>
-            Non-US founders submit IRS Form SS-4 via fax/mail to obtain their EIN, unlocking US business bank accounts with Mercury or Relay Financial.
           </p>
         </div>
       )
@@ -511,16 +396,12 @@ const BlogPost = () => {
       date: "March 18, 2026",
       readTime: "17 min read",
       content: (
-        <div className="space-y-12 mono text-lg leading-relaxed text-white/70">
-          <p className="text-2xl text-white font-black uppercase tracking-tighter border-l-4 border-[#064e3b] pl-6 py-2">
+        <div className="space-y-12 mono text-lg leading-relaxed text-zinc-200">
+          <p className="text-2xl text-white font-black uppercase tracking-tight border-l-4 border-emerald-400 pl-6 py-2">
             A deep technical dive into RAG vector databases, prompt guardrails, and human-in-the-loop escalation workflows.
           </p>
           <p>
             Learn how to build, train, and deploy AI Agents that resolve real customer support inquiries, access order databases via API, and book sales calls directly on your team's calendar.
-          </p>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tighter">1. Vector Embeddings & Knowledge Retrieval</h2>
-          <p>
-            By chunking your company SOPs and embedding them into a vector database (Pinecone or Supabase Vector), your agent answers questions accurately without hallucinating policies.
           </p>
         </div>
       )
@@ -532,11 +413,11 @@ const BlogPost = () => {
   if (!post) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#080808]">
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-64 pb-20 px-6 border-b border-white/10">
+      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-white/15">
         <div className="container-custom max-w-[1000px]">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -544,25 +425,25 @@ const BlogPost = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center gap-4 mb-8">
-              <Link to="/blog" className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+              <Link to="/blog" className="w-12 h-12 border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
                 <ArrowLeft size={20} />
               </Link>
               <SectionLabel>{post.tag}</SectionLabel>
             </div>
             
-            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-10 leading-[0.9]">
+            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tight mb-8 leading-[0.9] text-white">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap gap-6 py-6 border-y border-white/10 mono text-[0.7rem] uppercase tracking-widest text-white/40">
+            <div className="flex flex-wrap gap-6 py-6 border-y border-white/15 mono text-xs uppercase tracking-wider text-zinc-400 font-bold">
               <div className="flex items-center gap-2">
-                <User size={14} className="text-[#064e3b]" /> AUTHOR: <span className="text-white font-bold">{post.author}</span>
+                <User size={14} className="text-emerald-400" /> AUTHOR: <span className="text-white">{post.author}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Calendar size={14} className="text-[#064e3b]" /> {post.date}
+                <Calendar size={14} className="text-emerald-400" /> {post.date}
               </div>
               <div className="flex items-center gap-2">
-                <Clock size={14} className="text-[#064e3b]" /> {post.readTime}
+                <Clock size={14} className="text-emerald-400" /> {post.readTime}
               </div>
             </div>
           </motion.div>
@@ -583,13 +464,13 @@ const BlogPost = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-white/10 bg-white/5">
+      <section className="section-padding border-t border-white/15 bg-white/[0.02]">
         <div className="container-custom text-center">
-          <h2 className="text-4xl md:text-6xl mb-8 font-black uppercase tracking-tighter">Ready to Deploy Your <br /> Business Infrastructure?</h2>
-          <p className="text-xl mono text-white/40 mb-12 max-w-[600px] mx-auto">
+          <h2 className="text-4xl md:text-6xl mb-8 font-black uppercase tracking-tight text-white">Ready to Deploy Your <br /> Business Infrastructure?</h2>
+          <p className="text-xl mono text-zinc-300 mb-12 max-w-[600px] mx-auto">
             Book a free 30-minute consultation with Calpir technical directors to map out your custom stack.
           </p>
-          <Button asChild className="bg-[#064e3b] hover:bg-[#053e2f] text-white px-12 py-8 rounded-none font-black text-xl uppercase tracking-tighter btn-hover">
+          <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-black px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight btn-hover">
             <Link to="/contact">Book Strategy Consultation <ArrowRight className="ml-2" size={18} /></Link>
           </Button>
         </div>
