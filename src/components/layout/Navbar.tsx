@@ -34,9 +34,15 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center group gap-3">
           <img 
-            src="/logo.png" 
+            src="/logo-with-transparent-background.png"
+            onError={(e) => {
+              // fallback if needed
+              if (e.currentTarget.src !== '/logo.png') {
+                e.currentTarget.src = '/logo.png';
+              }
+            }}
             alt="Calpir Logo" 
-            className="h-12 md:h-14 w-auto object-contain shrink-0"
+            className="h-10 md:h-12 w-auto object-contain shrink-0 bg-transparent"
           />
           <span className="text-2xl font-black tracking-tighter uppercase group-hover:text-[#064e3b] transition-colors">Calpir</span>
         </Link>

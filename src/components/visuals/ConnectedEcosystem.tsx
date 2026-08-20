@@ -58,9 +58,14 @@ const ConnectedEcosystem = ({ className, highlightedNode }: { className?: string
         transition={{ duration: 3, repeat: Infinity }}
       >
         <img 
-          src="/logo.png" 
+          src="/logo-with-transparent-background.png" 
+          onError={(e) => {
+            if (e.currentTarget.src !== '/logo.png') {
+              e.currentTarget.src = '/logo.png';
+            }
+          }}
           alt="Calpir Logo" 
-          className="w-full h-full object-contain rounded-full"
+          className="w-full h-full object-contain bg-transparent"
         />
       </motion.div>
 
