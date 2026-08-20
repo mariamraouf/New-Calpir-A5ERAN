@@ -12,7 +12,7 @@ import SectionLabel from '../ui/SectionLabel';
 const faqs = [
   {
     question: "How can you launch a whole business in 7 days?",
-    answer: "We do not start from scratch. We have built a proprietary Base Stack of pre integrated tools (Website, CRM, Ops, AI). When you sign on, we deploy this battle tested infrastructure and then customize the branding, content, and specific workflows for your business. It is the difference between building a car from raw steel vs. customizing a high performance chassis."
+    answer: "We do not start from scratch. We have built a proprietary Base Stack of pre-integrated tools (Website, CRM, Ops, AI). When you sign on, we deploy this battle-tested infrastructure and then customize the branding, content, and specific workflows for your business. It is the difference between building a car from raw steel vs. customizing a high-performance chassis."
   },
   {
     question: "Do I own the code and the accounts?",
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "What happens after the launch?",
-    answer: "Every package includes a post launch support period (2 to 12 weeks depending on the tier). During this time, we monitor your systems, fix any issues, and provide training for your team. After that, you can choose to manage it yourself or sign up for one of our ongoing optimization retainers."
+    answer: "Every package includes a post-launch support period (2 to 12 weeks depending on the tier). During this time, we monitor your systems, fix any issues, and provide training for your team. After that, you can choose to manage it yourself or sign up for one of our ongoing optimization retainers."
   },
   {
     question: "Can I use my existing tools like Slack or Shopify?",
@@ -34,13 +34,15 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section className="section-padding border-b border-white/10">
+    <section className="section-padding border-b border-white/15">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           <div>
             <SectionLabel>Inquiry</SectionLabel>
-            <h2 className="text-5xl md:text-7xl mb-8">Common <br /> Questions.</h2>
-            <p className="text-white/40 mono text-lg leading-relaxed">
+            <h2 className="text-4xl md:text-6xl mb-6 text-white font-black">
+              Common <br /> Questions.
+            </h2>
+            <p className="text-zinc-200 text-lg leading-relaxed">
               Everything you need to know about the Calpir deployment process and our technical philosophy.
             </p>
           </div>
@@ -48,12 +50,12 @@ const FAQ = () => {
           <div className="lg:col-span-2">
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="border border-white/10 px-8 bg-white/5">
-                  <AccordionTrigger className="hover:no-underline py-8 text-left">
-                    <span className="text-xl md:text-2xl font-black uppercase tracking-tighter">{faq.question}</span>
+                <AccordionItem key={i} value={`item-${i}`} className="border border-white/15 px-6 md:px-8 bg-white/[0.03]">
+                  <AccordionTrigger className="hover:no-underline py-6 text-left text-white hover:text-emerald-400 transition-colors">
+                    <span className="text-lg md:text-xl font-bold uppercase tracking-tight">{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-8">
-                    <p className="text-white/50 mono text-sm leading-relaxed max-w-[700px]">
+                  <AccordionContent className="pb-6">
+                    <p className="text-zinc-200 text-sm md:text-base leading-relaxed">
                       {faq.answer}
                     </p>
                   </AccordionContent>

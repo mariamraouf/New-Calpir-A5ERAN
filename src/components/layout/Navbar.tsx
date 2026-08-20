@@ -29,14 +29,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-black border-b border-white/10 sticky top-0 z-[100]">
+    <nav className="bg-[#080808]/95 backdrop-blur-md border-b border-white/15 sticky top-0 z-[100]">
       <div className="container-custom h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center group gap-3">
+        <Link to="/" className="flex items-center group gap-3.5">
           <img 
             src="/logo-with-transparent-background.png"
             onError={(e) => {
-              // fallback if needed
               if (e.currentTarget.src !== '/logo.png') {
                 e.currentTarget.src = '/logo.png';
               }
@@ -44,7 +43,9 @@ const Navbar = () => {
             alt="Calpir Logo" 
             className="h-10 md:h-12 w-auto object-contain shrink-0 bg-transparent"
           />
-          <span className="text-2xl font-black tracking-tighter uppercase group-hover:text-[#064e3b] transition-colors">Calpir</span>
+          <span className="text-2xl font-black tracking-tight uppercase text-white group-hover:text-emerald-400 transition-colors">
+            Calpir
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -54,17 +55,17 @@ const Navbar = () => {
             onMouseEnter={() => setIsServicesOpen(true)}
             onMouseLeave={() => setIsServicesOpen(false)}
           >
-            <button className="flex items-center gap-1 mono text-[0.7rem] uppercase tracking-widest font-bold text-white/60 hover:text-[#064e3b] transition-colors py-8">
-              Services <ChevronDown size={14} className={cn("transition-transform", isServicesOpen && "rotate-180")} />
+            <button className="flex items-center gap-1.5 mono text-xs uppercase tracking-wider font-bold text-zinc-300 hover:text-emerald-400 transition-colors py-8">
+              Services <ChevronDown size={14} className={cn("transition-transform text-emerald-400", isServicesOpen && "rotate-180")} />
             </button>
             
             {isServicesOpen && (
-              <div className="absolute top-full left-0 w-72 bg-black border border-white/10 shadow-2xl p-2 animate-in fade-in slide-in-from-top-2">
+              <div className="absolute top-full left-0 w-80 bg-[#111111] border border-white/20 shadow-2xl p-2 animate-in fade-in slide-in-from-top-2">
                 {services.map((s) => (
                   <Link 
                     key={s.name} 
                     to={s.href} 
-                    className="block px-4 py-3 mono text-[0.6rem] uppercase tracking-widest font-bold text-white/40 hover:text-[#064e3b] hover:bg-white/5 transition-all"
+                    className="block px-4 py-3 text-xs uppercase font-bold tracking-wider text-zinc-300 hover:text-white hover:bg-emerald-600/20 border-l-2 border-transparent hover:border-emerald-400 transition-all"
                   >
                     {s.name}
                   </Link>
@@ -77,42 +78,42 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.href}
-              className="mono text-[0.7rem] uppercase tracking-widest font-bold text-white/60 hover:text-[#064e3b] transition-colors"
+              className="mono text-xs uppercase tracking-wider font-bold text-zinc-300 hover:text-emerald-400 transition-colors"
             >
               {link.name}
             </Link>
           ))}
           
-          <Link to="/contact" className="bg-[#064e3b] text-white px-8 py-3 rounded-none mono text-[0.7rem] uppercase tracking-widest font-black btn-hover">
+          <Link to="/contact" className="bg-emerald-500 hover:bg-emerald-600 text-black font-black px-6 py-3 rounded-none mono text-xs uppercase tracking-wider btn-hover">
             Free Consultation
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
+        <button className="lg:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div className={cn(
-        "lg:hidden absolute top-full left-0 right-0 bg-black border-b border-white/10 transition-all duration-300 overflow-hidden shadow-2xl",
+        "lg:hidden absolute top-full left-0 right-0 bg-[#0f0f0f] border-b border-white/20 transition-all duration-300 overflow-hidden shadow-2xl",
         isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
       )}>
-        <div className="flex flex-col p-8 gap-6">
-          <div className="mono text-[0.6rem] uppercase tracking-widest text-white/20">Services</div>
+        <div className="flex flex-col p-8 gap-4">
+          <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold">Services</div>
           {services.map((s) => (
-            <Link key={s.name} to={s.href} onClick={() => setIsOpen(false)} className="text-xl font-black uppercase text-white">
+            <Link key={s.name} to={s.href} onClick={() => setIsOpen(false)} className="text-lg font-bold uppercase text-zinc-200 hover:text-emerald-400 transition-colors">
               {s.name}
             </Link>
           ))}
-          <div className="h-px bg-white/10 my-4" />
+          <div className="h-px bg-white/15 my-2" />
           {navLinks.map((link) => (
-            <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="text-xl font-black uppercase text-white">
+            <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="text-lg font-bold uppercase text-zinc-200 hover:text-emerald-400 transition-colors">
               {link.name}
             </Link>
           ))}
-          <Link to="/contact" onClick={() => setIsOpen(false)} className="bg-[#064e3b] text-white text-center py-6 font-black uppercase tracking-tighter mt-4">
+          <Link to="/contact" onClick={() => setIsOpen(false)} className="bg-emerald-500 hover:bg-emerald-600 text-black text-center py-4 font-black uppercase tracking-wider mt-4">
             Free Consultation
           </Link>
         </div>

@@ -1,21 +1,18 @@
 "use client";
 
 import React from 'react';
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface SectionLabelProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const SectionLabel = ({ children, className }: SectionLabelProps) => {
+const SectionLabel: React.FC<SectionLabelProps> = ({ children, className }) => {
   return (
-    <div className={cn("flex items-center gap-4 mb-8", className)}>
-      <div className="w-2 h-2 bg-[#064e3b]" />
-      <span className="mono text-[0.7rem] font-bold uppercase tracking-[0.3em] text-white/50">
-        {children}
-      </span>
-      <div className="h-px bg-white/10 flex-grow" />
+    <div className={cn("inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 mono text-xs font-bold uppercase tracking-widest", className)}>
+      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+      {children}
     </div>
   );
 };

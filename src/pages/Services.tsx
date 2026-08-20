@@ -3,10 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Globe, Database, Bot, Workflow, 
-  CheckCircle2, ArrowRight, Shield, 
-  Cpu, Layers, Code2, Terminal,
-  Search, BarChart, Zap, Brain, Code
+  Globe, Database, Bot, CheckCircle2, ArrowRight, Code
 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -27,15 +24,15 @@ const Services = () => {
     {
       id: "01",
       title: "High Conversion Web Architecture",
-      icon: <Globe className="text-[#064e3b]" size={40} />,
-      desc: "We don't build sites. We build high performance digital storefronts engineered for speed and conversion. Every line of code is optimized for SEO and user retention.",
-      longDesc: "Our web development process is rooted in technical excellence. We prioritize Core Web Vitals, ensuring your site loads in under 1.5 seconds globally. By using server side rendering (SSR) and static site generation (SSG), we provide a lightning fast experience.",
+      icon: <Globe className="text-emerald-400" size={40} />,
+      desc: "We don't build standard brochure sites. We build high-performance digital storefronts engineered for sub-second speed and maximum conversion. Every line of code is optimized for SEO and customer retention.",
+      longDesc: "Our web development process is rooted in technical excellence. We prioritize Core Web Vitals, ensuring your site loads in under 1.5 seconds globally using modern React & Next.js architectures with edge network delivery.",
       features: [
         "Custom React & Next.js Development",
         "Edge Network Content Delivery",
         "Technical SEO & Schema Markup",
         "Conversion Rate Optimization Design",
-        "Mobile First Responsive Architecture",
+        "Mobile-First Responsive Architecture",
         "Accessibility Compliance"
       ],
       slug: "website-development"
@@ -43,47 +40,47 @@ const Services = () => {
     {
       id: "02",
       title: "Integrated CRM & Sales Systems",
-      icon: <Database className="text-[#064e3b]" size={40} />,
-      desc: "Your website should be your best salesperson. We integrate your site directly with industry leading CRMs to ensure every lead is captured automatically.",
-      longDesc: "A CRM is only as good as its implementation. We go beyond basic setup, creating custom objects, automated pipelines, and deep data enrichment. Whether it's HubSpot or GoHighLevel, we ensure your CRM is the single source of truth.",
+      icon: <Database className="text-emerald-400" size={40} />,
+      desc: "Your website should be your best salesperson. We integrate your site directly with industry-leading CRMs to ensure every lead is captured, routed, and followed up with automatically.",
+      longDesc: "A CRM is only as good as its implementation. We go beyond basic setup, creating custom objects, automated pipelines, and deep data enrichment across HubSpot or GoHighLevel so your sales engine is fully synchronized.",
       features: [
-        "CRM Setup & Custom Object Configuration",
-        "Automated Lead Scoring & Routing",
-        "Sales Pipeline Visualization",
-        "Real time Data Synchronization",
+        "CRM Setup & Custom Pipeline Configuration",
+        "Automated Lead Scoring & Instant Routing",
+        "Sales Pipeline Visualization & Tracking",
+        "Real-Time Data Synchronization",
         "Custom Dashboard & Reporting",
-        "Team Training & Adoption Support"
+        "Team Training & Onboarding"
       ],
       slug: "crm-sales"
     },
     {
       id: "03",
       title: "Autonomous AI Agents",
-      icon: <Bot className="text-[#064e3b]" size={40} />,
-      desc: "Deploy 24/7 intelligent agents that handle customer support, qualify leads, and book meetings. Our AI agents learn your business and interact naturally.",
-      longDesc: "We build agents using Retrieval Augmented Generation (RAG), connecting them to your specific business documentation. This ensures they provide accurate, brand aligned answers. Our agents don't just talk; they take action.",
+      icon: <Bot className="text-emerald-400" size={40} />,
+      desc: "Deploy 24/7 intelligent agents that handle customer support, qualify leads, and book meetings. Our AI agents learn your business and interact naturally with zero hallucination.",
+      longDesc: "We build agents using Retrieval-Augmented Generation (RAG), connecting them to your specific company documentation. This ensures they provide accurate, brand-aligned answers and trigger actual business workflows.",
       features: [
-        "Custom LLM Training on Your Data",
-        "Multi channel Support",
+        "Custom LLM Training on Company Data",
+        "Multi-Channel Support (Web, WhatsApp, Slack)",
         "Automated Meeting Scheduling",
         "Instant Lead Qualification",
         "Natural Language Processing",
-        "Continuous Learning Cycles"
+        "Continuous Learning & Auditing"
       ],
       slug: "ai-agents"
     },
     {
       id: "04",
       title: "Custom Apps & Agents",
-      icon: <Code className="text-[#064e3b]" size={40} />,
-      desc: "We turn your complex business logic into high performance software. Custom SaaS, internal tools, or specialized AI agents built for your unique needs.",
-      longDesc: "Our engineering team specializes in building bespoke applications that solve specific operational challenges. From complex data dashboards to autonomous agent fleets, we build robust, scalable software that drives actual business value.",
+      icon: <Code className="text-emerald-400" size={40} />,
+      desc: "We turn your complex business logic into high-performance software. Custom SaaS platforms, internal tools, or specialized AI agent fleets built specifically for your unique needs.",
+      longDesc: "Our engineering team specializes in building bespoke applications that solve specific operational challenges. From complex client portals to autonomous agent fleets, we build robust software that drives real business value.",
       features: [
-        "Full Stack Web Application Development",
+        "Full-Stack Web Application Development",
         "Bespoke SaaS Architecture",
         "Custom AI Agent Fleets",
         "Internal Tooling & Dashboards",
-        "API First Development",
+        "API-First Architecture",
         "Scalable Cloud Infrastructure"
       ],
       slug: "custom-apps"
@@ -91,67 +88,67 @@ const Services = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-[#080808] relative">
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-64 pb-32 px-6 border-b border-white/10">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-white/15">
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>The Capabilities</SectionLabel>
-            <h1 className="text-6xl md:text-[8rem] leading-[0.85] mb-12 font-black uppercase tracking-tighter">
-              Our <br /> <span className="text-[#064e3b]">Services.</span>
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">
+              Our <br /> <span className="text-emerald-400">Services.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/40 max-w-[800px] mono leading-relaxed">
-              We provide the technical foundation for modern businesses. From initial architecture to autonomous operations, we build the systems that drive growth.
+            <p className="text-lg md:text-2xl text-zinc-200 max-w-[800px] leading-relaxed">
+              We provide the technical foundation for modern businesses. From initial architecture to autonomous operations, we build the systems that drive real growth.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Detailed Services List */}
-      <section className="py-32 px-6 border-b border-white/10">
+      <section className="py-24 px-6 border-b border-white/15">
         <div className="container-custom">
-          <div className="space-y-48">
+          <div className="space-y-32">
             {serviceDetails.map((service, index) => (
               <motion.div 
                 key={service.id}
                 {...reveal}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-20 items-start ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-start ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
               >
                 <div className={index % 2 !== 0 ? 'lg:order-2' : ''}>
-                  <div className="mono text-[#064e3b] text-sm font-bold mb-6 tracking-widest">
+                  <div className="mono text-emerald-400 text-xs font-bold mb-4 tracking-widest">
                     [{service.id}] // MODULE_SPEC
                   </div>
-                  <div className="mb-8">{service.icon}</div>
-                  <h2 className="text-4xl md:text-5xl mb-8 font-black uppercase tracking-tighter">{service.title}</h2>
-                  <p className="text-white/50 mono text-lg leading-relaxed mb-6">
+                  <div className="mb-6">{service.icon}</div>
+                  <h2 className="text-3xl md:text-5xl mb-6 font-black uppercase tracking-tight text-white">{service.title}</h2>
+                  <p className="text-zinc-100 text-lg leading-relaxed mb-4">
                     {service.desc}
                   </p>
-                  <p className="text-white/30 mono text-sm leading-relaxed mb-10">
+                  <p className="text-zinc-300 text-sm leading-relaxed mb-8">
                     {service.longDesc}
                   </p>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
                     {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-4 mono text-[0.7rem] text-white/70 uppercase tracking-widest">
-                        <CheckCircle2 size={14} className="text-[#064e3b]" /> {feature}
+                      <li key={feature} className="flex items-center gap-3 mono text-xs text-zinc-200 uppercase tracking-wider font-semibold">
+                        <CheckCircle2 size={16} className="text-emerald-400 shrink-0" /> {feature}
                       </li>
                     ))}
                   </ul>
-                  <Button asChild variant="outline" className="border-white/10 text-white px-8 py-6 rounded-none font-black uppercase tracking-tighter hover:bg-white hover:text-black">
+                  <Button asChild variant="outline" className="border-white/30 text-white px-8 py-6 rounded-none font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-all">
                     <Link to={`/services/${service.slug}`}>Explore Module <ArrowRight className="ml-2" size={16} /></Link>
                   </Button>
                 </div>
-                <div className={`aspect-square bg-white/5 border border-white/10 relative overflow-hidden group ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#064e3b]/20 to-transparent opacity-50 group-hover:opacity-80 transition-opacity" />
+                <div className={`aspect-square bg-white/[0.03] border border-white/15 relative overflow-hidden group ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 to-transparent opacity-60 group-hover:opacity-90 transition-opacity" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-12">
-                    <div className="mono text-[0.6rem] text-white/10 whitespace-pre font-bold mb-8">
+                    <div className="mono text-xs text-emerald-300 whitespace-pre font-bold mb-8 text-center leading-relaxed">
                       {`// INITIALIZING_${service.title.toUpperCase().replace(/ /g, '_')}\n// LOADING_RESOURCES...\n// OPTIMIZING_PERFORMANCE...\n// STATUS: READY`}
                     </div>
-                    <div className="grid grid-cols-3 gap-4 w-full opacity-20 group-hover:opacity-40 transition-opacity">
+                    <div className="grid grid-cols-3 gap-4 w-full opacity-30 group-hover:opacity-60 transition-opacity">
                       {[...Array(9)].map((_, i) => (
-                        <div key={i} className="aspect-square border border-white/20 flex items-center justify-center">
-                          <div className="w-1 h-1 bg-[#064e3b] rounded-full animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                        <div key={i} className="aspect-square border border-emerald-500/30 flex items-center justify-center">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                         </div>
                       ))}
                     </div>

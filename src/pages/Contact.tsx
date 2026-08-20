@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, MessageSquare, Calendar } from 'lucide-react';
+import { MapPin, MessageSquare } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -16,57 +16,63 @@ const Contact = () => {
   } as const;
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#080808]">
       <Navbar />
       
-      <section className="pt-64 pb-32 px-6 border-b border-white/10">
+      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-white/15">
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>Transmission</SectionLabel>
-            <h1 className="text-6xl md:text-[8rem] leading-[0.85] mb-16 font-black uppercase tracking-tighter">
-              Get in <br /> <span className="text-[#064e3b]">Touch.</span>
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">
+              Get in <br /> <span className="text-emerald-400">Touch.</span>
             </h1>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-32 px-6 border-b border-white/10">
+      <section className="py-20 px-6 border-b border-white/15">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-32">
-            <div className="space-y-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-12">
               <SectionLabel>Direct Inquiry</SectionLabel>
-              <p className="text-2xl mono text-white/60 leading-tight">
-                Ready to deploy your infrastructure or build a custom application? Use our secure portal below.
+              <p className="text-xl md:text-2xl text-zinc-200 leading-relaxed">
+                Ready to deploy your infrastructure or build a custom application? Send us your requirements below or book a direct strategy call.
               </p>
               
-              <div className="space-y-12">
-                <div className="flex items-center gap-6">
-                  <div className="text-[#064e3b]"><MessageSquare size={32} /></div>
+              <div className="space-y-8">
+                <div className="flex items-center gap-5">
+                  <div className="text-emerald-400 p-3 bg-emerald-950/40 border border-emerald-500/30">
+                    <MessageSquare size={28} />
+                  </div>
                   <div>
-                    <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Live Chat</div>
-                    <div className="text-xl font-black uppercase">Mon Fri // 9AM 6PM GMT</div>
+                    <div className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold mb-1">Live Chat</div>
+                    <div className="text-lg font-black uppercase text-white">Mon - Fri // 9AM - 6PM GMT</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6">
-                  <div className="text-[#064e3b]"><MapPin size={32} /></div>
+                <div className="flex items-center gap-5">
+                  <div className="text-emerald-400 p-3 bg-emerald-950/40 border border-emerald-500/30">
+                    <MapPin size={28} />
+                  </div>
                   <div>
-                    <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40">Location</div>
-                    <div className="text-xl font-black uppercase">Bristol, United Kingdom</div>
+                    <div className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold mb-1">Location</div>
+                    <div className="text-lg font-black uppercase text-white">Bristol, United Kingdom</div>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-12 border-t border-white/10">
-                <div className="mono text-[0.6rem] uppercase tracking-widest text-white/40 mb-6">Operational Status</div>
-                <div className="flex items-center gap-4">
-                  <div className="w-3 h-3 bg-[#064e3b] rounded-full animate-pulse" />
-                  <span className="mono text-sm uppercase tracking-widest font-bold">Systems Online // Accepting New Projects</span>
+              <div className="pt-8 border-t border-white/15">
+                <div className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold mb-4">Operational Status</div>
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-emerald-400 rounded-full animate-pulse" />
+                  <span className="mono text-sm uppercase tracking-wider font-bold text-emerald-400">
+                    Systems Online // Accepting New Projects
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div className="border border-white/10 bg-white/5 min-h-[600px]">
+            <div className="border border-white/15 bg-white/[0.03] min-h-[600px] p-2">
               <iframe 
                 className="clickup-embed clickup-dynamic-height" 
                 src="https://forms.clickup.com/9015087055/f/8cnekyf-9075/KTKDU2NQ8W95RF5TJ1" 
@@ -83,10 +89,14 @@ const Contact = () => {
       <section className="section-padding">
         <div className="container-custom">
           <div className="max-w-[900px] mx-auto">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <SectionLabel>Consultation</SectionLabel>
-              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6">Book with Maria.</h2>
-              <p className="text-xl mono text-white/40">Select a time for your 30 minute strategy session. All times are converted to your local zone.</p>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white mb-4">
+                Book with Maria.
+              </h2>
+              <p className="text-lg text-zinc-300 leading-relaxed">
+                Select a time for your 30 minute strategy session. All times are automatically converted to your local time zone.
+              </p>
             </div>
             <BookingSystem />
           </div>
