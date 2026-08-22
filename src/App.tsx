@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Packages from "./pages/Packages";
+import SoloServices from "./pages/SoloServices";
+import SoftwareStack from "./pages/SoftwareStack";
 import About from "./pages/About";
 import CaseStudies from "./pages/CaseStudies";
 import Assessment from "./pages/Assessment";
@@ -30,6 +32,8 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/packages" element={<Packages />} />
+          <Route path="/solo-services" element={<SoloServices />} />
+          <Route path="/software-stack" element={<SoftwareStack />} />
           <Route path="/about" element={<About />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/assessment" element={<Assessment />} />

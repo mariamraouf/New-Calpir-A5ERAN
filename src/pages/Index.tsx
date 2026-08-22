@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Code } from 'lucide-react';
+import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Code, Layers, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import ConnectedEcosystem from '@/components/visuals/ConnectedEcosystem';
 import ROICalculator from '@/components/home/ROICalculator';
 import FAQ from '@/components/home/FAQ';
+import SectorsSection from '@/components/home/SectorsSection';
 
 const Index = () => {
   const reveal = {
@@ -29,39 +30,42 @@ const Index = () => {
       <section className="pt-40 md:pt-48 pb-28 px-6 border-b border-white/15 relative overflow-hidden">
         <div className="container-custom text-center">
           <motion.div {...reveal}>
-            <div className="inline-block border border-emerald-500/50 bg-emerald-950/40 px-5 py-2 mb-8 mono text-xs uppercase tracking-widest text-emerald-300 font-bold">
-              Bristol Based AI Automation & Custom App Development
+            <div className="inline-flex items-center gap-2 border border-emerald-500/50 bg-emerald-950/40 px-5 py-2 mb-8 mono text-xs uppercase tracking-widest text-emerald-300 font-bold">
+              <Sparkles size={14} className="text-emerald-400" /> Bristol Based AI Automation & Business Infrastructure Squad
             </div>
             <h1 className="text-5xl sm:text-7xl md:text-[7.5rem] leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">
               Launch Your <br /> Business. <br /> <span className="text-emerald-400">In 7 Days.</span>
             </h1>
             <p className="text-lg md:text-2xl text-zinc-200 leading-relaxed max-w-[850px] mx-auto mb-12">
-              Complete business infrastructure deployed in record time. Website, CRM, Operations, and AI Agents integrated into one powerful system.
+              We genuinely love building businesses and seeing founders win. Complete digital infrastructure: Website, Domain & SSL, CRM, Google Indexing, and Autonomous AI Agents deployed in days.
             </p>
             <div className="flex flex-col sm:flex-row gap-5 justify-center">
-              <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-black px-10 py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover">
-                <Link to="/contact">Book Strategy Call with Maria</Link>
+              <Button asChild className="bg-emerald-500 hover:bg-emerald-400 text-black px-10 py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover">
+                <Link to="/contact">Book Free Consultation Call</Link>
               </Button>
               <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white hover:text-black px-10 py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover">
-                <Link to="/assessment">Take the Free Assessment</Link>
+                <Link to="/packages">Explore All Packages (7-28d)</Link>
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* Sectors Section */}
+      <SectorsSection />
+
       {/* Services Grid */}
       <section className="section-padding border-b border-white/15">
         <div className="container-custom">
-          <SectionLabel>The Modules</SectionLabel>
+          <SectionLabel>The Core Modules</SectionLabel>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Website & Branding", icon: <Globe />, desc: "High conversion digital foundation built for speed, SEO, and massive scale.", link: "/services/website-development" },
-              { title: "CRM & Sales Systems", icon: <BarChart3 />, desc: "Automated lead capture, instant pipeline routing, and closing workflows.", link: "/services/crm-sales" },
-              { title: "AI Agent Development", icon: <Bot />, desc: "Autonomous intelligent agents that handle support, inquiries, and sales 24/7.", link: "/services/ai-agents" },
-              { title: "Workflow Automation", icon: <Zap />, desc: "Eliminate repetitive manual tasks with seamless, self-running automations.", link: "/services/ai-automation" },
-              { title: "Custom Apps & Agents", icon: <Code />, desc: "Turn your complex business logic into high-performance software applications.", link: "/services/custom-apps" },
-              { title: "Operations & HR", icon: <Settings />, desc: "Documented processes, onboarding SOPs, and bulletproof infrastructure.", link: "/services/operations-hr" }
+              { title: "Website, Domain & SSL", icon: <Globe />, desc: "Sub-second digital foundation with domain purchasing, SSL encryption, and Google indexing.", link: "/services/website-development" },
+              { title: "CRM & Sales Systems", icon: <BarChart3 />, desc: "Automated lead capture, instant SMS routing, and 60-second response pipelines.", link: "/services/crm-sales" },
+              { title: "AI Agent Development", icon: <Bot />, desc: "Autonomous intelligent agents that answer inquiries, qualify leads, and book calls 24/7.", link: "/services/ai-agents" },
+              { title: "Workflow Automation", icon: <Zap />, desc: "Eliminate repetitive manual tasks with Make.com & Zapier pipelines that run automatically.", link: "/services/ai-automation" },
+              { title: "Custom Apps & Fleets", icon: <Code />, desc: "Turn complex business logic into high-performance web software and AI agent fleets.", link: "/services/custom-apps" },
+              { title: "Operations & HR", icon: <Settings />, desc: "Documented SOP wikis, payroll setups, and bulletproof team onboarding systems.", link: "/services/operations-hr" }
             ].map((s, i) => (
               <Link key={i} to={s.link} className="border border-white/15 p-10 bg-white/[0.03] card-hover group block">
                 <div className="text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
@@ -75,6 +79,12 @@ const Index = () => {
               </Link>
             ))}
           </div>
+
+          <div className="mt-12 text-center">
+            <Link to="/solo-services" className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-emerald-400 font-black hover:underline underline-offset-4">
+              <Layers size={14} /> Looking for à la carte services? Browse all Solo Services here <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -83,7 +93,7 @@ const Index = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-              <SectionLabel>The Calpir System</SectionLabel>
+              <SectionLabel>The Calpir Unified Stack</SectionLabel>
               <h2 className="text-4xl md:text-6xl mb-6 text-white font-black">
                 Everything Connected. <br /> Everything Working Together.
               </h2>
@@ -114,8 +124,8 @@ const Index = () => {
           <p className="text-lg md:text-xl text-zinc-300 mb-12 max-w-[700px] mx-auto leading-relaxed">
             Book a free 30 minute consultation with Maria. We'll map out exactly what your business needs to launch and scale.
           </p>
-          <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-black px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover">
-            <Link to="/contact">Book Your Free Call</Link>
+          <Button asChild className="bg-emerald-500 hover:bg-emerald-400 text-black px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover">
+            <Link to="/contact">Book Your Free Call with Maria</Link>
           </Button>
         </div>
       </section>
