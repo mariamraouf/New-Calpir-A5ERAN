@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RefreshCcw, Zap, Lock, Mail, CheckCircle2, ArrowRight, Loader2, Sparkles } from 'lucide-react';
+import { RefreshCcw, Zap, Lock, Mail, CheckCircle2, ArrowRight, Loader2, Sparkles, User, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -10,6 +10,7 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
+import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 
@@ -27,64 +28,64 @@ interface Question {
 const questions: Question[] = [
   {
     id: 'stage',
-    title: "What stage is your business at?",
+    title: "What stage is your business at right now?",
     options: [
-      { label: "Pre launch — I have an idea but haven't started yet", value: "pre-launch" },
-      { label: "Just launched — Under 6 months, getting first customers", value: "just-launched" },
-      { label: "Growing — 6 months to 2 years, need to scale systems", value: "growing" },
-      { label: "Established — 2+ years, looking to optimize and add AI", value: "established" }
+      { label: "Pre launch — I have a clear idea and want to launch properly", value: "pre-launch" },
+      { label: "Just launched — Under 6 months, getting initial customers", value: "just-launched" },
+      { label: "Growing — 6 months to 2 years, ready to automate and scale", value: "growing" },
+      { label: "Established — 2+ years, modernising infrastructure with AI", value: "established" }
     ]
   },
   {
     id: 'burn',
-    title: "What is your current monthly burn rate or budget?",
+    title: "What is your current monthly budget or operating capital?",
     options: [
       { label: "Under $1,000 (Lean Bootstrapped)", value: "low" },
       { label: "$1,000 to $5,000", value: "mid" },
       { label: "$5,000 to $20,000", value: "high" },
-      { label: "$20,000+ (Funded or Rapid Scaling)", value: "vc" }
+      { label: "$20,000+ (Rapid Growth or Funded)", value: "vc" }
     ]
   },
   {
     id: 'website',
-    title: "Do you currently have a functioning website?",
+    title: "How is your current website situation?",
     options: [
-      { label: "No website or domain yet", value: "none" },
-      { label: "Yes, but it's slow/outdated and doesn't convert", value: "outdated" },
-      { label: "Yes, it's decent but needs modern automation & speed", value: "decent" },
-      { label: "Yes, it's high-performance and converting well", value: "pro" }
+      { label: "No website or registered domain yet", value: "none" },
+      { label: "I have a slow outdated site that barely converts", value: "outdated" },
+      { label: "Decent site, but needs modern speed and automations", value: "decent" },
+      { label: "Fast custom site, looking to connect AI and CRM", value: "pro" }
     ]
   },
   {
     id: 'crm',
-    title: "How do you currently track leads and client deals?",
+    title: "How are you tracking leads and client conversations?",
     options: [
-      { label: "Spreadsheets, direct DMs, or memory", value: "manual" },
-      { label: "A CRM I set up myself (disorganized and unautomated)", value: "messy" },
-      { label: "A CRM configured with automated pipelines", value: "pro" },
-      { label: "We don't really capture or track leads consistently", value: "none" }
+      { label: "Notes, spreadsheets, DMs, or memory", value: "manual" },
+      { label: "A CRM I set up myself that is messy and unautomated", value: "messy" },
+      { label: "Properly configured CRM with automated pipelines", value: "pro" },
+      { label: "We do not consistently capture or track leads yet", value: "none" }
     ]
   },
   {
     id: 'hours',
-    title: "How many hours per week do you waste on manual clerical work?",
+    title: "How many hours each week do you spend on repetitive admin work?",
     options: [
-      { label: "5 or fewer hours", value: 5 },
+      { label: "5 hours or fewer", value: 5 },
       { label: "5 to 15 hours", value: 15 },
       { label: "15 to 25 hours", value: 25 },
-      { label: "25+ hours per week", value: 40 }
+      { label: "25+ hours every week", value: 40 }
     ]
   },
   {
     id: 'bottleneck',
-    title: "What is your single biggest bottleneck right now?",
+    title: "What is your number one priority or bottleneck?",
     options: [
-      { label: "Zero online discoverability & no Google rankings", value: "visibility" },
-      { label: "Low website conversion & lack of credibility", value: "conversion" },
-      { label: "Slow follow-ups losing warm deals", value: "leads" },
-      { label: "Drowning in repetitive manual tasks & copy-pasting", value: "manual" },
-      { label: "Disjointed tools that don't talk to each other", value: "systems" },
-      { label: "We need 24/7 AI agents but don't know where to start", value: "ai" }
+      { label: "Getting online fast with Google ranking and instant trust", value: "visibility" },
+      { label: "Turning more website visitors into paying clients", value: "conversion" },
+      { label: "Faster lead response times so deals stop going cold", value: "leads" },
+      { label: "Automating repetitive copy-pasting and manual admin", value: "manual" },
+      { label: "Unifying 6 disconnected apps into one sync engine", value: "systems" },
+      { label: "Deploying 24/7 autonomous AI support agents", value: "ai" }
     ]
   }
 ];
@@ -95,6 +96,8 @@ const Assessment = () => {
   const [showResults, setShowResults] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
+  const [userPhone, setUserPhone] = useState('');
+  const [isHuman, setIsHuman] = useState(false);
   const [isSendingReport, setIsSendingReport] = useState(false);
   const [isReportUnlocked, setIsReportUnlocked] = useState(false);
 
@@ -116,20 +119,20 @@ const Assessment = () => {
 
     const recommendations = [
       {
-        title: "Domain, SSL & Rapid Google Search Indexing",
-        desc: "We secure your clean domain, configure SSL encryption, and submit XML sitemaps to Google Search Console for day-one indexing."
+        title: "Domain Setup, SSL Certificate & Instant Google Search Indexing",
+        desc: "We secure your custom domain, activate 256-bit SSL encryption, and submit XML sitemaps to Google Search Console for day-one indexing."
       },
       {
         title: "Sub-1.5s High-Conversion Web Architecture",
-        desc: "Upgrade to modern React/Next.js edge architecture designed for high-conversion and 100/100 Core Web Vitals."
+        desc: "Upgrade to modern React and Next.js edge architecture designed for high conversion, mobile responsiveness, and 100/100 Core Web Vitals."
       },
       {
         title: "Automated CRM & 60-Second Lead Routing",
-        desc: "Deploy HubSpot or GoHighLevel with SMS alerts so every new prospect is contacted within 60 seconds."
+        desc: "Deploy HubSpot or GoHighLevel with instant SMS alerts so every new inquiry is contacted within 60 seconds."
       },
       {
         title: "Autonomous RAG AI Agent Fleet",
-        desc: "Deploy 24/7 intelligent agents trained on your business data to qualify leads and book calendar appointments automatically."
+        desc: "Deploy 24/7 intelligent agents trained on your business data to qualify leads, answer FAQs, and book calendar appointments automatically."
       }
     ];
 
@@ -140,6 +143,11 @@ const Assessment = () => {
 
   const handleSendReport = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isHuman) {
+      showError("Please check the human verification box before unlocking.");
+      return;
+    }
+
     setIsSendingReport(true);
 
     try {
@@ -151,7 +159,8 @@ const Assessment = () => {
         },
         body: JSON.stringify({
           recipientName: userName,
-          recipientEmail: userEmail,
+          email: userEmail,
+          phone: userPhone,
           stage: answers.stage,
           budgetTier: answers.burn,
           websiteState: answers.website,
@@ -159,7 +168,8 @@ const Assessment = () => {
           weeklyWastedHours: answers.hours,
           primaryBottleneck: answers.bottleneck,
           monthlyFinancialLoss: `$${results.wastedMoney.toLocaleString()}`,
-          annualFinancialLoss: `$${results.annualWaste.toLocaleString()}`
+          annualFinancialLoss: `$${results.annualWaste.toLocaleString()}`,
+          message: `Assessment completed by ${userName}. Stage: ${answers.stage}. Bottleneck: ${answers.bottleneck}. Potential annual savings: $${results.annualWaste.toLocaleString()}`
         })
       });
 
@@ -177,14 +187,14 @@ const Assessment = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-[#070707]">
       <Navbar />
 
-      <main className="pt-40 md:pt-48 pb-24 px-6">
-        <div className="container-custom max-w-[900px]">
+      <main className="pt-36 md:pt-44 pb-24 px-4 md:px-6">
+        <div className="container-custom max-w-4xl">
           {!showResults ? (
             <div>
-              <div className="mb-16">
+              <div className="mb-12">
                 <div className="flex justify-between items-end mb-4">
                   <span className="text-emerald-400 mono font-bold uppercase tracking-widest text-xs">
                     Question {step + 1} of {questions.length}
@@ -193,7 +203,7 @@ const Assessment = () => {
                     {Math.round(((step + 1) / questions.length) * 100)}% Complete
                   </span>
                 </div>
-                <Progress value={((step + 1) / questions.length) * 100} className="h-1.5 bg-white/10" />
+                <Progress value={((step + 1) / questions.length) * 100} className="h-2 bg-white/10" />
               </div>
 
               <AnimatePresence mode="wait">
@@ -202,22 +212,22 @@ const Assessment = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="space-y-12"
+                  className="space-y-8"
                 >
-                  <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white">
+                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-tight">
                     {questions[step].title}
                   </h1>
-                  <div className="grid grid-cols-1 gap-4">
+                  <div className="grid grid-cols-1 gap-3.5">
                     {questions[step].options.map((opt) => (
                       <button
                         key={String(opt.value)}
                         type="button"
                         onClick={() => handleAnswer(opt.value)}
                         className={cn(
-                          "p-6 md:p-8 text-left border transition-all font-bold text-lg md:text-xl uppercase tracking-tight",
+                          "p-6 md:p-7 text-left border transition-all font-bold text-base md:text-lg uppercase tracking-tight",
                           answers[questions[step].id] === opt.value
                             ? "border-emerald-400 bg-emerald-950/60 text-emerald-300"
-                            : "border-white/15 bg-white/[0.03] text-zinc-100 hover:border-emerald-400 hover:bg-white/[0.08]"
+                            : "border-white/15 bg-white/[0.02] text-zinc-100 hover:border-emerald-400 hover:bg-white/[0.06]"
                         )}
                       >
                         {opt.label}
@@ -228,80 +238,110 @@ const Assessment = () => {
               </AnimatePresence>
             </div>
           ) : (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-16">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
               <div className="text-center">
                 <SectionLabel>Analysis Complete</SectionLabel>
-                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight text-white mb-6">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white mb-4">
                   Your Systems <br /> <span className="text-emerald-400">Blueprint.</span>
                 </h1>
-                <p className="text-xl mono text-zinc-300">
-                  We've calculated your exact operational bottlenecks and projected ROI improvements.
+                <p className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto">
+                  We have mapped out your exact operational bottlenecks and projected ROI improvements.
                 </p>
               </div>
 
               {/* Preliminary Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="border border-white/15 p-10 bg-white/[0.03]">
-                  <div className="mono text-xs uppercase tracking-widest text-zinc-400 font-bold mb-4">
-                    Estimated Monthly Waste
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="border border-white/15 p-8 bg-white/[0.02]">
+                  <div className="mono text-xs uppercase tracking-widest text-zinc-400 font-bold mb-3">
+                    Estimated Monthly Financial Drag
                   </div>
-                  <div className="text-6xl md:text-7xl font-black text-rose-500 mb-4">
+                  <div className="text-5xl md:text-6xl font-black text-rose-500 mb-3">
                     ${results.wastedMoney.toLocaleString()}
                   </div>
-                  <p className="mono text-sm text-zinc-300 leading-relaxed">
-                    Based on {results.rawHours} hours/week of manual admin, you are losing ${(results.annualWaste).toLocaleString()} annually in preventable overhead.
+                  <p className="mono text-xs md:text-sm text-zinc-300 leading-relaxed">
+                    Based on {results.rawHours} hours per week of manual admin, you are losing ${(results.annualWaste).toLocaleString()} every year in preventable overhead.
                   </p>
                 </div>
 
-                <div className="border border-emerald-500/40 p-10 bg-emerald-950/30">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-4">
+                <div className="border border-emerald-500/40 p-8 bg-emerald-950/20">
+                  <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-3">
                     Primary Strategic Objective
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-white mb-4">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-white mb-3">
                     System Synchronization
                   </h3>
-                  <p className="mono text-sm text-zinc-300 leading-relaxed">
-                    Eliminate the {String(answers.bottleneck || 'operational drag')} bottleneck by integrating your website, CRM, and AI workflows into one self-running engine.
+                  <p className="mono text-xs md:text-sm text-zinc-300 leading-relaxed">
+                    Eliminate your operational bottleneck by connecting your website, CRM, and AI workflows into one smooth self-running engine.
                   </p>
                 </div>
               </div>
 
-              {/* Gate with Formspree */}
+              {/* Gate with Formspree moearjyk */}
               {!isReportUnlocked ? (
-                <div className="border-2 border-emerald-500 bg-[#0f0f12] p-8 md:p-12 shadow-2xl relative">
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-black px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5">
-                    <Lock size={13} /> Full Report Locked
+                <div className="border-2 border-emerald-500 bg-[#0c0c0e] p-6 md:p-10 shadow-2xl relative">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-500 text-black px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5">
+                    <Lock size={13} /> Full Report Ready To Dispatch
                   </div>
 
-                  <div className="text-center max-w-[600px] mx-auto space-y-4 mb-8 pt-2">
-                    <h3 className="text-3xl md:text-4xl font-black uppercase text-white tracking-tight">
+                  <div className="text-center max-w-xl mx-auto space-y-3 mb-8 pt-2">
+                    <h3 className="text-2xl sm:text-3xl font-black uppercase text-white tracking-tight">
                       Unlock Your Complete 8-Page Infrastructure Blueprint
                     </h3>
-                    <p className="text-zinc-300 text-sm leading-relaxed mono">
-                      Enter your email below to instantly view your tailored module roadmap and receive the PDF copy in your inbox.
+                    <p className="text-zinc-300 text-xs md:text-sm leading-relaxed mono">
+                      Enter your details below to instantly view your tailored module roadmap and receive the PDF copy in your inbox.
                     </p>
                   </div>
 
-                  <form onSubmit={handleSendReport} className="max-w-[550px] mx-auto space-y-4">
-                    <Input
-                      required
-                      placeholder="YOUR FULL NAME"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      className="bg-black text-white border-white/20 rounded-none h-13 mono text-sm focus:border-emerald-400"
-                    />
-                    <Input
-                      required
-                      type="email"
-                      placeholder="YOUR WORK EMAIL ADDRESS"
-                      value={userEmail}
-                      onChange={(e) => setUserEmail(e.target.value)}
-                      className="bg-black text-white border-white/20 rounded-none h-13 mono text-sm focus:border-emerald-400"
-                    />
+                  <form onSubmit={handleSendReport} className="max-w-md mx-auto space-y-4">
+                    <div>
+                      <label className="mono text-[11px] uppercase text-zinc-400 font-bold block mb-1.5">
+                        Your Full Name *
+                      </label>
+                      <Input
+                        required
+                        placeholder="Alex Smith"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                        className="bg-black text-white border-white/20 rounded-none h-12 mono text-sm focus:border-emerald-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mono text-[11px] uppercase text-zinc-400 font-bold block mb-1.5">
+                        Work Email Address *
+                      </label>
+                      <Input
+                        required
+                        type="email"
+                        name="email"
+                        placeholder="alex@company.com"
+                        value={userEmail}
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        className="bg-black text-white border-white/20 rounded-none h-12 mono text-sm focus:border-emerald-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mono text-[11px] uppercase text-zinc-400 font-bold block mb-1.5">
+                        Phone / WhatsApp (Optional)
+                      </label>
+                      <Input
+                        placeholder="+44 7000 000000"
+                        value={userPhone}
+                        onChange={(e) => setUserPhone(e.target.value)}
+                        className="bg-black text-white border-white/20 rounded-none h-12 mono text-sm focus:border-emerald-400"
+                      />
+                    </div>
+
+                    {/* Human Verification */}
+                    <div className="pt-1">
+                      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
+                    </div>
+
                     <Button
                       type="submit"
                       disabled={isSendingReport || !userEmail || !userName}
-                      className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover flex items-center justify-center gap-2"
+                      className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-7 rounded-none font-black text-base md:text-lg uppercase tracking-tight btn-hover flex items-center justify-center gap-2"
                     >
                       {isSendingReport ? (
                         <Loader2 className="animate-spin" />
@@ -314,54 +354,57 @@ const Assessment = () => {
                   </form>
                 </div>
               ) : (
-                <div className="space-y-12 animate-in fade-in duration-500">
-                  <div className="p-6 bg-emerald-950/50 border border-emerald-500/40 text-center mono text-sm text-emerald-300 font-bold">
+                <div className="space-y-10 animate-in fade-in duration-500">
+                  <div className="p-5 bg-emerald-950/50 border border-emerald-500/40 text-center mono text-xs md:text-sm text-emerald-300 font-bold">
                     ✓ Full Architecture Report Dispatched to <span className="text-white">{userEmail}</span>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     <SectionLabel>Your Recommended Execution Modules</SectionLabel>
                     <div className="grid grid-cols-1 gap-4">
                       {results.recommendations.map((s, i) => (
-                        <div key={i} className="border border-white/15 p-8 bg-white/[0.03] flex flex-col md:flex-row gap-6 items-start">
-                          <div className="w-14 h-14 bg-emerald-500 text-black flex items-center justify-center shrink-0">
-                            <Zap size={28} />
+                        <div key={i} className="border border-white/15 p-6 md:p-8 bg-white/[0.02] flex flex-col md:flex-row gap-5 items-start">
+                          <div className="w-12 h-12 bg-emerald-500 text-black flex items-center justify-center shrink-0">
+                            <Zap size={24} />
                           </div>
                           <div>
-                            <h4 className="text-2xl font-black uppercase text-white mb-2">{s.title}</h4>
-                            <p className="mono text-sm text-zinc-300 leading-relaxed">{s.desc}</p>
+                            <h4 className="text-xl md:text-2xl font-black uppercase text-white mb-1.5">{s.title}</h4>
+                            <p className="mono text-xs md:text-sm text-zinc-300 leading-relaxed">{s.desc}</p>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="bg-emerald-500 text-black p-12 md:p-16 text-center space-y-6">
-                    <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tight">
-                      Ready to Deploy This <br /> Exact Infrastructure?
+                  <div className="bg-emerald-500 text-black p-8 md:p-12 text-center space-y-4">
+                    <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">
+                      Ready to Deploy This Infrastructure?
                     </h3>
-                    <p className="text-black/80 font-bold max-w-[550px] mx-auto text-base">
+                    <p className="text-black/90 font-bold max-w-lg mx-auto text-sm md:text-base">
                       Book a free 30 minute strategy session with Maria to review your custom blueprint together.
                     </p>
-                    <Button asChild className="bg-black text-white hover:bg-zinc-900 px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all">
-                      <Link to="/contact">Book Free Consultation Call</Link>
-                    </Button>
+                    <div className="pt-2">
+                      <Button asChild className="bg-black text-white hover:bg-zinc-900 px-10 py-6 rounded-none font-black text-base uppercase tracking-tight transition-all">
+                        <Link to="/contact">Book Free Strategy Session with Maria</Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-8">
+              <div className="flex justify-center pt-4">
                 <Button
                   variant="outline"
-                  className="flex-1 border-white/20 text-white py-7 rounded-none font-bold text-lg uppercase tracking-wider hover:bg-white hover:text-black"
+                  className="border-white/20 text-white py-6 px-8 rounded-none font-bold text-xs uppercase tracking-wider hover:bg-white hover:text-black"
                   onClick={() => {
                     setStep(0);
                     setAnswers({});
                     setShowResults(false);
                     setIsReportUnlocked(false);
+                    setIsHuman(false);
                   }}
                 >
-                  <RefreshCcw className="mr-2" size={18} /> Retake Assessment
+                  <RefreshCcw className="mr-2" size={16} /> Retake Assessment
                 </Button>
               </div>
             </motion.div>

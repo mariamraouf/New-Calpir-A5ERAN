@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 98%;
-    --primary: 154 65% 45%; /* Calm, eye-friendly organic emerald */
+    --primary: 156 72% 42%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 11%;
-    --muted: 0 0% 20%;
-    --border: 0 0% 18%;
+    --secondary: 0 0% 10%;
+    --muted: 0 0% 18%;
+    --border: 0 0% 16%;
     --radius: 8px;
   }
 }
 
 @layer base {
   body {
-    @apply bg-[#0a0a0a] text-zinc-100 antialiased selection:bg-emerald-500 selection:text-black;
+    @apply bg-[#070707] text-zinc-100 antialiased selection:bg-emerald-500 selection:text-black;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
@@ -30,21 +30,20 @@
   }
 }
 
-/* Eye friendly brand gradients */
-.brand-gradient {
-  background: linear-gradient(135deg, #059669 0%, #064e3b 100%);
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
 }
 
-.brand-glow {
-  box-shadow: 0 0 35px rgba(16, 185, 129, 0.18);
+.section-padding {
+  @apply py-20 md:py-28;
 }
 
 .card-dark {
-  @apply bg-[#111111] border border-white/10 hover:border-emerald-500/40 transition-all duration-300;
+  @apply bg-[#0d0d0f] border border-white/10 hover:border-emerald-500/40 transition-all duration-300;
 }
 
-.btn-brand {
-  @apply bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold transition-all duration-200 shadow-md hover:shadow-emerald-500/20 active:scale-[0.98];
+.btn-hover {
+  @apply transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg hover:shadow-emerald-500/20;
 }
 
 /* Custom scrollbars */
@@ -53,12 +52,12 @@
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d0d0d;
+  background: #09090b;
 }
 ::-webkit-scrollbar-thumb {
   background: #27272a;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #059669;
+  background: #10b981;
 }

@@ -1,182 +1,189 @@
 "use client";
 
-import React from 'react';
-import { CheckCircle2, ArrowRight, HeartHandshake } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, HeartHandshake, ArrowRight, Sparkles, CheckCircle2, Layers } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
-
-interface ToolCategory {
-  category: string;
-  badge: string;
-  desc: string;
-  tools: {
-    name: string;
-    useCase: string;
-    level: string;
-  }[];
-}
-
-const softwareCategories: ToolCategory[] = [
-  {
-    category: "CRM & Sales Engines",
-    badge: "REVENUE // PIPELINES",
-    desc: "We configure, clean up, and automate your entire customer lifecycle.",
-    tools: [
-      { name: "HubSpot", useCase: "B2B sales pipelines, deal stages & marketing automation", level: "Certified Pro" },
-      { name: "GoHighLevel (GHL)", useCase: "All-in-one SMS, call tracking, funnels & client booking", level: "Mastery" },
-      { name: "Salesforce Sales Cloud", useCase: "Enterprise data models & custom object pipelines", level: "Advanced" },
-      { name: "Zoho CRM & Bigin", useCase: "Lean startup contact management & email sync", level: "Proficient" },
-      { name: "Pipedrive", useCase: "Visual activity-based sales routing & deal scoring", level: "Expert" }
-    ]
-  },
-  {
-    category: "Web & Frontend Architecture",
-    badge: "PERFORMANCE // SPEED",
-    desc: "Blazing sub-second websites engineered for high conversion and Google rankings.",
-    tools: [
-      { name: "React & Next.js", useCase: "Ultra-fast custom web apps & edge deployment", level: "Core Stack" },
-      { name: "Shopify / Shopify Plus", useCase: "High-volume e-commerce storefronts & checkout systems", level: "Expert" },
-      { name: "Webflow", useCase: "Visual CMS builds with clean responsive code", level: "Expert" },
-      { name: "WordPress & WooCommerce", useCase: "Legacy migrations, speed audits & custom theme builds", level: "Mastery" },
-      { name: "Framer", useCase: "Interactive micro-animations & rapid landing pages", level: "Advanced" }
-    ]
-  },
-  {
-    category: "Automation & Integration Logic",
-    badge: "WORKFLOWS // ZERO MANUAL WORK",
-    desc: "The glue that connects all your tools into one cohesive machine.",
-    tools: [
-      { name: "Make.com (Integromat)", useCase: "Complex multi-step scenario logic, routers & webhooks", level: "Mastery" },
-      { name: "Zapier", useCase: "Instant triggers, app zaps & rapid tool bridging", level: "Expert" },
-      { name: "n8n", useCase: "Self-hosted privacy-focused workflow automation", level: "Advanced" },
-      { name: "Custom Webhooks & REST APIs", useCase: "Direct database connections & custom endpoint pipelines", level: "Core Stack" }
-    ]
-  },
-  {
-    category: "AI & Agent Frameworks",
-    badge: "INTELLIGENCE // 24/7 AGENTS",
-    desc: "Autonomous bots that perform actual labor instead of just spitting out FAQs.",
-    tools: [
-      { name: "OpenAI GPT-4o / Claude 3.5 Sonnet", useCase: "LLM fine-tuning, system prompts & cognitive workflows", level: "Core Stack" },
-      { name: "Pinecone & Supabase pgvector", useCase: "RAG vector databases for zero-hallucination answers", level: "Expert" },
-      { name: "LangChain & Flowise", useCase: "Chained reasoning agents & automated tool-calling", level: "Advanced" },
-      { name: "Voice AI (Vapi / Retell / Bland)", useCase: "Autonomous inbound & outbound phone calling agents", level: "Certified" }
-    ]
-  },
-  {
-    category: "Operations, PM & Cloud Databases",
-    badge: "ORGANIZATION // INFRASTRUCTURE",
-    desc: "Streamlined task management, client portals, and cloud data architecture.",
-    tools: [
-      { name: "ClickUp", useCase: "Client onboarding templates, task automation & team boards", level: "Mastery" },
-      { name: "Notion & Linear", useCase: "Company wikis, technical roadmaps & internal SOP vaults", level: "Expert" },
-      { name: "Airtable", useCase: "Relational cloud bases, forms & internal business tools", level: "Mastery" },
-      { name: "Supabase & PostgreSQL", useCase: "Scalable authentication, secure tables & row-level security", level: "Core Stack" },
-      { name: "Google Workspace & Office 365", useCase: "Enterprise email security, SPF/DKIM & cloud storage", level: "Mastery" }
-    ]
-  },
-  {
-    category: "Marketing, Media & Search Visibility",
-    badge: "GROWTH // ASSETS",
-    desc: "Everything required to get noticed, indexed, and convert organic attention.",
-    tools: [
-      { name: "Google Search Console & GA4", useCase: "Instant page indexing, sitemap submissions & conversion analytics", level: "Mastery" },
-      { name: "Google Business Profile (GBP)", useCase: "Local search map dominance & automated review engines", level: "Mastery" },
-      { name: "Klaviyo & ActiveCampaign", useCase: "Automated email sequences, segmenting & cart recovery", level: "Expert" },
-      { name: "Adobe Premiere & CapCut Pro", useCase: "High-retention short-form video reels & kinetic subtitling", level: "Expert" },
-      { name: "Figma", useCase: "Brand identity kits, vector palettes & UI/UX wireframes", level: "Core Stack" }
-    ]
-  }
-];
+import { allSoftwareStack, softwareCategoriesList } from '@/data/softwareCatalog';
+import { cn } from '@/lib/utils';
 
 const SoftwareStack = () => {
+  const [search, setSearch] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const filteredTools = useMemo(() => {
+    return allSoftwareStack.filter((tool) => {
+      const matchesCat = activeCategory === 'All' || tool.category === activeCategory;
+      const matchesSearch =
+        tool.name.toLowerCase().includes(search.toLowerCase()) ||
+        tool.useCase.toLowerCase().includes(search.toLowerCase()) ||
+        tool.category.toLowerCase().includes(search.toLowerCase());
+      return matchesCat && matchesSearch;
+    });
+  }, [search, activeCategory]);
+
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-[#070707]">
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-white/15">
+      <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-white/10">
         <div className="container-custom">
-          <SectionLabel>Tools & Ecosystem Mastery</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">
+          <SectionLabel>100+ Supported Tools & Platforms</SectionLabel>
+          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-black uppercase tracking-tight text-white">
             Our Software <br /> <span className="text-emerald-400">Stack.</span>
           </h1>
-          <p className="text-lg md:text-2xl text-zinc-200 max-w-[850px] leading-relaxed">
-            Here are the platforms, languages, and tools our team builds with every day.
+          <p className="text-lg md:text-2xl text-zinc-200 max-w-3xl leading-relaxed">
+            Here are the 100+ platforms, languages, and tools our team builds with every day.
           </p>
 
-          {/* Reassurance Banner */}
-          <div className="mt-12 p-8 border border-emerald-500/40 bg-emerald-950/30 flex flex-col md:flex-row gap-6 items-start">
+          {/* Warm Reassurance Box */}
+          <div className="mt-8 p-6 md:p-8 border border-emerald-500/30 bg-emerald-950/20 flex flex-col md:flex-row gap-5 items-start">
             <div className="p-3 bg-emerald-500 text-black shrink-0">
-              <HeartHandshake size={32} />
+              <HeartHandshake size={28} />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <h2 className="text-xl md:text-2xl font-black uppercase text-white tracking-tight">
-                Don't Stress: You Don't Need to Pick or Learn Any of This!
+                Don't Stress: You Don't Need to Pick or Learn Any of This
               </h2>
               <p className="text-sm md:text-base text-zinc-300 leading-relaxed">
-                You never have to waste 100 hours running trials or comparing 50 different apps. That's literally why we exist! We listen to your goals, pick the exact right tools for your business size, configure everything, and hand you a simple, self-running engine.
+                You never have to waste 100 hours running trials or comparing 50 apps yourself. That is why we are here as your dedicated squad. We listen to what you want to achieve, handpick the exact right tools for your business, configure everything, and hand you a simple, self-running engine.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="section-padding">
+      {/* Search & Filter Bar */}
+      <section className="py-8 border-b border-white/10 sticky top-20 bg-[#070707]/95 backdrop-blur-md z-40">
         <div className="container-custom">
-          <div className="space-y-16">
-            {softwareCategories.map((cat, i) => (
-              <div key={i} className="border border-white/15 p-8 md:p-12 bg-white/[0.02]">
-                <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-8 border-b border-white/10 gap-4">
-                  <div>
-                    <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-1">
-                      {cat.badge}
-                    </div>
-                    <h3 className="text-2xl md:text-4xl font-black uppercase text-white tracking-tight">
-                      {cat.category}
-                    </h3>
-                  </div>
-                  <p className="text-zinc-300 text-sm max-w-[420px]">{cat.desc}</p>
-                </div>
+          <div className="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-md">
+              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
+              <Input
+                placeholder="Search by tool name, use case, or category..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-11 bg-black text-white border-white/20 rounded-none h-12 mono text-xs uppercase tracking-wider focus:border-emerald-400 w-full"
+              />
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {cat.tools.map((t, j) => (
-                    <div key={j} className="border border-white/10 p-6 bg-black/50 flex flex-col justify-between hover:border-emerald-500/40 transition-colors">
-                      <div>
-                        <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-lg font-black uppercase text-white">{t.name}</h4>
-                          <span className="mono text-[10px] uppercase font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 border border-emerald-500/30">
-                            {t.level}
-                          </span>
-                        </div>
-                        <p className="text-zinc-300 text-xs leading-relaxed mono mb-4">{t.useCase}</p>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs text-zinc-400 mono pt-2 border-t border-white/5">
-                        <CheckCircle2 size={13} className="text-emerald-400" /> Fully Supported & Integrated
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+            {/* Total Count badge */}
+            <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold hidden sm:block">
+              Showing {filteredTools.length} of {allSoftwareStack.length} Tools
+            </div>
           </div>
 
-          {/* CTA Banner */}
-          <div className="mt-20 border border-emerald-500 bg-emerald-950/40 p-10 md:p-16 text-center space-y-6">
-            <h3 className="text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
-              Have a tool not listed here?
+          {/* Categories Pills */}
+          <div className="flex gap-2 overflow-x-auto pt-4 pb-1 custom-scrollbar">
+            {softwareCategoriesList.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={cn(
+                  "px-4 py-2 mono text-xs uppercase tracking-wider font-bold whitespace-nowrap transition-all border",
+                  activeCategory === cat
+                    ? "border-emerald-400 bg-emerald-500 text-black"
+                    : "border-white/15 bg-white/[0.03] text-zinc-300 hover:border-emerald-400 hover:text-white"
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Grid of 100+ Softwares */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <AnimatePresence mode="popLayout">
+              {filteredTools.map((tool, idx) => (
+                <motion.div
+                  key={tool.name}
+                  layout
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2, delay: Math.min(idx * 0.02, 0.3) }}
+                  className="border border-white/10 p-5 bg-[#0c0c0e] flex flex-col justify-between hover:border-emerald-500/40 hover:bg-emerald-950/10 transition-all group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      {/* Brand Logo from SimpleIcons CDN */}
+                      <div className="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center p-2 group-hover:border-emerald-400/50 transition-colors">
+                        <img
+                          src={`https://cdn.simpleicons.org/${tool.slug}/ffffff`}
+                          alt={`${tool.name} Logo`}
+                          className="w-full h-full object-contain group-hover:scale-110 transition-transform"
+                          onError={(e) => {
+                            // Fallback to simple generic icon if CDN slug varies
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      </div>
+
+                      <span className="mono text-[9px] uppercase font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 border border-emerald-500/30">
+                        {tool.tag}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-black uppercase text-white tracking-tight mb-1 group-hover:text-emerald-400 transition-colors">
+                      {tool.name}
+                    </h3>
+                    <div className="mono text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-2">
+                      {tool.category}
+                    </div>
+
+                    <p className="text-zinc-300 text-xs leading-relaxed mono">
+                      {tool.useCase}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 mt-4 border-t border-white/5 flex items-center gap-1.5 text-[11px] text-zinc-400 mono">
+                    <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
+                    <span>Tested & Integrated</span>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {filteredTools.length === 0 && (
+            <div className="text-center py-20 border border-white/10 p-12 bg-white/[0.02]">
+              <div className="text-4xl mb-3">🔍</div>
+              <h3 className="text-2xl font-black uppercase text-white mb-2">No tools found matching "{search}"</h3>
+              <p className="text-zinc-400 text-sm mono mb-6">
+                Have a niche or proprietary platform? If it has an API, webhook or database, we can wire it up for you.
+              </p>
+              <Button onClick={() => { setSearch(''); setActiveCategory('All'); }} variant="outline" className="border-white/20 text-white rounded-none mono text-xs uppercase">
+                Reset Search Filters
+              </Button>
+            </div>
+          )}
+
+          {/* Bottom Banner */}
+          <div className="mt-16 border border-emerald-500/40 bg-emerald-950/30 p-8 md:p-12 text-center space-y-4">
+            <div className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-emerald-400 font-bold">
+              <Sparkles size={14} /> Custom API & Webhook Integrations
+            </div>
+            <h3 className="text-2xl sm:text-4xl font-black uppercase text-white tracking-tight">
+              Using a tool not listed here?
             </h3>
-            <p className="text-zinc-300 max-w-[650px] mx-auto text-base leading-relaxed">
-              If it has an API or webhook, we can connect it into your ecosystem seamlessly. Let's look at your current stack on a quick call.
+            <p className="text-zinc-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+              We connect custom internal databases, niche software, and bespoke webhooks every day. Tell us what you are currently using and we will connect it into your new ecosystem.
             </p>
             <div className="pt-2">
-              <Button asChild className="bg-emerald-500 hover:bg-emerald-400 text-black px-10 py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover">
-                <Link to="/contact">Book Free Consultation <ArrowRight size={18} className="ml-2" /></Link>
+              <Button asChild className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-6 rounded-none font-black text-sm uppercase tracking-wider btn-hover">
+                <Link to="/contact">Book Free Consultation Call <ArrowRight size={16} className="ml-2" /></Link>
               </Button>
             </div>
           </div>
