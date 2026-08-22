@@ -34,10 +34,11 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
   const centerY = size / 2;
   const radius = compact ? 95 : 125;
   const nodeBoxSize = compact ? 38 : 46;
+  const logoSize = compact ? 52 : 64;
 
   return (
     <div 
-      className={cn("relative mx-auto select-none my-4", className)}
+      className={cn("relative mx-auto select-none my-2 flex items-center justify-center", className)}
       style={{ width: `${size}px`, height: `${size}px` }}
     >
       <svg 
@@ -62,7 +63,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               initial={{ pathLength: 0, opacity: 0.2 }}
               animate={{ 
                 pathLength: 1, 
-                opacity: isHighlighted ? 1 : 0.35,
+                opacity: isHighlighted ? 1 : 0.4,
                 strokeWidth: isHighlighted ? 2.5 : 1.5
               }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -71,13 +72,17 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         })}
       </svg>
 
-      {/* Center Logo Node */}
+      {/* Center Logo - No circle, perfectly dead-center */}
       <motion.div 
-        className={cn(
-          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-emerald-500/50 bg-black flex items-center justify-center p-2 overflow-hidden z-10 shadow-[0_0_25px_rgba(16,185,129,0.3)]",
-          compact ? "w-14 h-14" : "w-18 h-18"
-        )}
-        animate={{ scale: [1, 1.05, 1] }}
+        className="absolute flex items-center justify-center z-20 pointer-events-none"
+        style={{
+          left: `${centerX}px`,
+          top: `${centerY}px`,
+          width: `${logoSize}px`,
+          height: `${logoSize}px`,
+          transform: 'translate(-50%, -50%)'
+        }}
+        animate={{ scale: [1, 1.06, 1] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
         <img 
@@ -88,7 +93,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             }
           }}
           alt="Calpir Logo" 
-          className="w-full h-full object-contain bg-transparent"
+          className="w-full h-full object-contain drop-shadow-[0_0_16px_rgba(16,185,129,0.5)]"
         />
       </motion.div>
 
@@ -104,7 +109,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             className={cn(
               "absolute flex items-center justify-center transition-all duration-300 border",
               isActive 
-                ? "bg-emerald-500 text-black border-emerald-300 scale-110 shadow-[0_0_20px_rgba(16,185,129,0.6)] z-20" 
+                ? "bg-emerald-500 text-black border-emerald-300 scale-110 shadow-[0_0_20px_rgba(16,185,129,0.6)] z-30" 
                 : "bg-[#0f0f12] text-emerald-400 border-white/15 hover:border-emerald-500/50 hover:bg-emerald-950/30 hover:scale-105 z-10"
             )}
             style={{ 
