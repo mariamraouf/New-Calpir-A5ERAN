@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import SoftwareLogo from '@/components/ui/SoftwareLogo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
@@ -118,17 +119,8 @@ const SoftwareStack = () => {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      {/* Brand Logo from SimpleIcons CDN */}
-                      <div className="w-10 h-10 bg-zinc-50 border border-zinc-200 flex items-center justify-center p-2 group-hover:border-emerald-600 transition-colors">
-                        <img
-                          src={`https://cdn.simpleicons.org/${tool.slug}/059669`}
-                          alt={`${tool.name} Logo`}
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </div>
+                      {/* Robust Multi-Tier Software Logo */}
+                      <SoftwareLogo tool={tool} />
 
                       <span className="mono text-[9px] uppercase font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
                         {tool.tag}
