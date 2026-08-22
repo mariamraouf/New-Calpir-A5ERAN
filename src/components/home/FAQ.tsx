@@ -34,15 +34,15 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section className="section-padding border-b border-white/15">
+    <section className="section-padding border-b border-zinc-200 bg-zinc-50/50">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
           <div>
             <SectionLabel>Inquiry</SectionLabel>
-            <h2 className="text-4xl md:text-6xl mb-6 text-white font-black">
+            <h2 className="text-4xl md:text-6xl mb-6 text-zinc-950 font-black">
               Common <br /> Questions.
             </h2>
-            <p className="text-zinc-200 text-lg leading-relaxed">
+            <p className="text-zinc-600 text-lg leading-relaxed">
               Everything you need to know about the Calpir deployment process and our technical philosophy.
             </p>
           </div>
@@ -50,12 +50,12 @@ const FAQ = () => {
           <div className="lg:col-span-2">
             <Accordion type="single" collapsible className="w-full space-y-4">
               {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="border border-white/15 px-6 md:px-8 bg-white/[0.03]">
-                  <AccordionTrigger className="hover:no-underline py-6 text-left text-white hover:text-emerald-400 transition-colors">
+                <AccordionItem key={i} value={`item-${i}`} className="border border-zinc-200 px-6 md:px-8 bg-white shadow-sm">
+                  <AccordionTrigger className="hover:no-underline py-6 text-left text-zinc-950 hover:text-emerald-700 transition-colors">
                     <span className="text-lg md:text-xl font-bold uppercase tracking-tight">{faq.question}</span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-6">
-                    <p className="text-zinc-200 text-sm md:text-base leading-relaxed">
+                    <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
                       {faq.answer}
                     </p>
                   </AccordionContent>

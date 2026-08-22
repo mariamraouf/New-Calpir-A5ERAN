@@ -22,7 +22,7 @@ const ServiceDetail = () => {
       id: 'website',
       title: "Website & Branding Architecture",
       tagline: "Your high-conversion digital foundation engineered for speed and scale",
-      icon: <Globe size={48} className="text-emerald-400" />,
+      icon: <Globe size={48} className="text-emerald-700" />,
       overview: "A website shouldn't just be an online business card; it should be your highest-performing sales channel. We build custom, ultra-fast web architectures backed by solid brand identity systems that capture attention and drive revenue from day one.",
       included: [
         "Custom Next.js / React application development",
@@ -43,7 +43,7 @@ const ServiceDetail = () => {
       id: 'crm',
       title: "CRM & Sales System Setup",
       tagline: "Never lose a lead again with automated pipelines and instant routing",
-      icon: <BarChart3 size={48} className="text-emerald-400" />,
+      icon: <BarChart3 size={48} className="text-emerald-700" />,
       overview: "Managing leads in spreadsheets or disjointed tools guarantees lost deals. We design, configure, and automate robust CRM environments in HubSpot or GoHighLevel that automatically route, score, and follow up with leads 24/7.",
       included: [
         "Complete CRM platform deployment & custom pipeline creation",
@@ -64,7 +64,7 @@ const ServiceDetail = () => {
       id: 'marketing',
       title: "Marketing & Social Systems",
       tagline: "Omnichannel presence and automated lead generation engines",
-      icon: <Megaphone size={48} className="text-emerald-400" />,
+      icon: <Megaphone size={48} className="text-emerald-700" />,
       overview: "Consistent brand messaging across all touchpoints is mandatory. We set up your complete digital marketing infrastructure, from content distribution pipelines to automated email marketing flows that nurture prospects into buyers.",
       included: [
         "Omnichannel social media profile creation & verification",
@@ -85,7 +85,7 @@ const ServiceDetail = () => {
       id: 'ops',
       title: "Operations & HR Infrastructure",
       tagline: "Bulletproof internal systems that allow your company to scale without chaos",
-      icon: <Settings size={48} className="text-emerald-400" />,
+      icon: <Settings size={48} className="text-emerald-700" />,
       overview: "Scaling a team without documented processes leads to bottlenecks and burnout. We build standard operating procedures (SOPs), payroll structures, contract management, and project tracking boards so your business operates like a well-oiled machine.",
       included: [
         "Centralized project management workspace setup (ClickUp / Notion / Linear)",
@@ -106,7 +106,7 @@ const ServiceDetail = () => {
       id: 'ai-agents',
       title: "Autonomous AI Agent Development",
       tagline: "Intelligent digital employees that work 24/7/365 without rest",
-      icon: <Bot size={48} className="text-emerald-400" />,
+      icon: <Bot size={48} className="text-emerald-700" />,
       overview: "Traditional chatbots rely on decision trees that frustrate users. We build custom AI Agents powered by Retrieval-Augmented Generation (RAG) that connect directly to your knowledge base, access your CRM, and execute complex business actions.",
       included: [
         "Custom LLM fine-tuning on your business documentation & SOPs",
@@ -127,7 +127,7 @@ const ServiceDetail = () => {
       id: 'automation',
       title: "Workflow Automation Systems",
       tagline: "Connect every tool in your business and eliminate manual data entry",
-      icon: <Zap size={48} className="text-emerald-400" />,
+      icon: <Zap size={48} className="text-emerald-700" />,
       overview: "Your team shouldn't be copying and pasting data between apps. We build custom automation pipelines using Make.com, Zapier, and Python scripts to unite your website, CRM, accounting, and communication tools into a single sync engine.",
       included: [
         "Complete tech stack audit & workflow mapping",
@@ -148,7 +148,7 @@ const ServiceDetail = () => {
       id: 'strategy',
       title: "AI Strategy & Executive Consulting",
       tagline: "Actionable AI roadmaps built for real ROI, not hype",
-      icon: <Brain size={48} className="text-emerald-400" />,
+      icon: <Brain size={48} className="text-emerald-700" />,
       overview: "With thousands of AI tools flooding the market, deciding where to invest can feel overwhelming. We work directly with leadership teams to identify high-ROI opportunities, audit operations, and implement realistic AI transformation roadmaps.",
       included: [
         "Comprehensive operational audit & AI readiness assessment",
@@ -169,7 +169,7 @@ const ServiceDetail = () => {
       id: 'custom-apps',
       title: "Custom Apps & Bespoke Software",
       tagline: "Turn complex business logic into high-performance web software",
-      icon: <Code size={48} className="text-emerald-400" />,
+      icon: <Code size={48} className="text-emerald-700" />,
       overview: "When off-the-shelf software doesn't fit your business model, we build custom web applications, SaaS platforms, internal tools, and specialized AI agent fleets from scratch using modern, scalable full-stack technology.",
       included: [
         "Full-stack React / TypeScript application development",
@@ -193,20 +193,20 @@ const ServiceDetail = () => {
   if (!data) return <NotFound />;
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-white">
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-white/15">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="w-24 h-24 md:w-28 md:h-28 bg-white/5 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
+            <div className="w-24 h-24 md:w-28 md:h-28 bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm">
               {data.icon}
             </div>
             <div>
               <SectionLabel>Service Module Specification</SectionLabel>
-              <h1 className="text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-tight mb-4 text-white">{data.title}</h1>
-              <p className="text-lg md:text-2xl mono text-zinc-300">{data.tagline}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-tight mb-4 text-zinc-950">{data.title}</h1>
+              <p className="text-lg md:text-2xl mono text-zinc-600">{data.tagline}</p>
             </div>
           </div>
         </div>
@@ -219,20 +219,20 @@ const ServiceDetail = () => {
             <div className="lg:col-span-2 space-y-12 md:space-y-16">
               {/* Executive Summary */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 text-white">System Overview</h2>
-                <p className="mono text-base md:text-lg text-zinc-200 leading-relaxed bg-white/[0.03] p-6 md:p-8 border border-white/15">
+                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 text-zinc-950">System Overview</h2>
+                <p className="mono text-base md:text-lg text-zinc-800 leading-relaxed bg-zinc-50 p-6 md:p-8 border border-zinc-200 shadow-sm">
                   {data.overview}
                 </p>
               </div>
 
               {/* What's Included */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 md:mb-8 text-white">Module Specifications & Features</h2>
+                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 md:mb-8 text-zinc-950">Module Specifications & Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {data.included.map((item: string, i: number) => (
-                    <div key={i} className="flex gap-4 p-4 border border-white/10 bg-white/[0.02] items-start">
-                      <CheckCircle2 className="text-emerald-400 shrink-0 mt-1" size={18} />
-                      <span className="mono text-xs uppercase tracking-wider text-zinc-200 leading-relaxed">{item}</span>
+                    <div key={i} className="flex gap-4 p-4 border border-zinc-200 bg-zinc-50 items-start shadow-sm">
+                      <CheckCircle2 className="text-emerald-600 shrink-0 mt-1" size={18} />
+                      <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -240,24 +240,24 @@ const ServiceDetail = () => {
 
               {/* Who & What You Get */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="border border-white/15 p-6 md:p-8 bg-white/[0.03]">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-400 mb-3 font-bold">Ideal Deployment Candidate</div>
-                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-white">Who This Is For</h3>
-                  <p className="mono text-sm text-zinc-300 leading-relaxed">{data.who}</p>
+                <div className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 shadow-sm">
+                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 mb-3 font-bold">Ideal Deployment Candidate</div>
+                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-zinc-950">Who This Is For</h3>
+                  <p className="mono text-sm text-zinc-600 leading-relaxed">{data.who}</p>
                 </div>
-                <div className="border border-white/15 p-6 md:p-8 bg-white/[0.03]">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-400 mb-3 font-bold">Final Assets Handover</div>
-                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-white">What You Receive</h3>
-                  <p className="mono text-sm text-zinc-300 leading-relaxed">{data.get}</p>
+                <div className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 shadow-sm">
+                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 mb-3 font-bold">Final Assets Handover</div>
+                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-zinc-950">What You Receive</h3>
+                  <p className="mono text-sm text-zinc-600 leading-relaxed">{data.get}</p>
                 </div>
               </div>
             </div>
 
             {/* Sidebar Sticky */}
             <div className="lg:sticky lg:top-28">
-              <div className="border border-white/15 p-6 md:p-8 bg-[#0c0c0e] shadow-2xl flex flex-col items-center text-center">
-                <h3 className="text-xl md:text-2xl font-black uppercase mb-2 text-white tracking-tight">Ecosystem Placement</h3>
-                <p className="mono text-xs text-zinc-400 mb-4">
+              <div className="border border-zinc-200 p-6 md:p-8 bg-white shadow-xl flex flex-col items-center text-center">
+                <h3 className="text-xl md:text-2xl font-black uppercase mb-2 text-zinc-950 tracking-tight">Ecosystem Placement</h3>
+                <p className="mono text-xs text-zinc-500 mb-4">
                   Visual relationship inside your unified Calpir nervous system
                 </p>
 
@@ -266,11 +266,11 @@ const ServiceDetail = () => {
                   <ConnectedEcosystem compact={true} highlightedNode={data.id} />
                 </div>
 
-                <p className="mono text-xs text-zinc-400 my-4 leading-relaxed max-w-xs">
+                <p className="mono text-xs text-zinc-600 my-4 leading-relaxed max-w-xs">
                   This module connects directly with your broader business infrastructure to eliminate data silos.
                 </p>
 
-                <Button asChild className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-7 rounded-none font-black text-base uppercase tracking-tight btn-hover">
+                <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-black text-base uppercase tracking-tight btn-hover">
                   <Link to="/contact" className="flex items-center justify-center gap-2">
                     Book Deployment Call <ArrowRight size={18} />
                   </Link>

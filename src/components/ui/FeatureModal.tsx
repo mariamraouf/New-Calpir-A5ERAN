@@ -8,10 +8,10 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { CheckCircle2, Sparkles, HelpCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { featureDetailsMap, FeatureDetail } from '@/data/featureDetails';
+import { featureDetailsMap } from '@/data/featureDetails';
 
 interface FeatureModalProps {
   featureKey: string | null;
@@ -20,59 +20,62 @@ interface FeatureModalProps {
 
 const FeatureModal: React.FC<FeatureModalProps> = ({ featureKey, onClose }) => {
   if (!featureKey) return null;
-  const detail: FeatureDetail | undefined = featureDetailsMap[featureKey];
-
+  const detail = featureDetailsMap[featureKey];
   if (!detail) return null;
 
   return (
     <Dialog open={!!featureKey} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="bg-[#0f0f11] border border-emerald-500/30 text-white max-w-[620px] p-6 md:p-8 rounded-none shadow-2xl">
-        <DialogHeader className="space-y-3 text-left">
-          <div className="flex items-center gap-2 mono text-xs uppercase tracking-widest text-emerald-400 font-black">
-            <Sparkles size={14} />
-            <span>{detail.badge}</span>
+      <DialogContent className="bg-white border border-zinc-200 text-zinc-950 max-w-2xl p-6 md:p-8 rounded-none shadow-2xl">
+        <DialogHeader className="text-left space-y-2 border-b border-zinc-200 pb-4">
+          <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1 border border-emerald-200 inline-block w-fit">
+            {detail.badge}
           </div>
-          <DialogTitle className="text-2xl md:text-3xl font-black uppercase text-white tracking-tight">
+          <DialogTitle className="text-2xl md:text-3xl font-black uppercase tracking-tight text-zinc-950">
             {detail.title}
           </DialogTitle>
-          <DialogDescription className="text-zinc-300 text-sm leading-relaxed">
+          <DialogDescription className="mono text-xs md:text-sm text-zinc-600 leading-relaxed pt-1">
             {detail.summary}
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6 my-4 border-t border-white/10 pt-4">
+        <div className="space-y-6 my-4">
           <div>
-            <div className="mono text-xs uppercase tracking-wider text-emerald-400 font-bold mb-3">
-              What Calpir Does Exactly For You:
-            </div>
-            <ul className="space-y-2.5">
-              {detail.whatWeDo.map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-xs text-zinc-200 mono leading-relaxed">
-                  <CheckCircle2 size={16} className="text-emerald-400 shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </li>
+            <h4 className="mono text-xs uppercase tracking-wider text-zinc-700 font-bold mb-3">
+              What Our Squad Actually Delivers:
+            </h4>
+            <div className="space-y-2.5">
+              {detail.whatWeDo.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3 text-xs md:text-sm mono text-zinc-800">
+                  <CheckCircle2 size={16} className="text-emerald-600 shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
-          <div className="p-4 bg-emerald-950/30 border border-emerald-500/30">
-            <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase mono mb-1">
-              <HelpCircle size={14} /> Why This Helps You Win
+          <div className="p-4 border border-emerald-200 bg-emerald-50 space-y-1.5">
+            <div className="mono text-[11px] uppercase tracking-wider text-emerald-900 font-bold">
+              Why This Matters For Your Business:
             </div>
-            <p className="text-xs text-zinc-300 leading-relaxed mono">
+            <p className="text-xs md:text-sm text-zinc-700 mono leading-relaxed">
               {detail.whyItMatters}
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-2">
-          <Button asChild className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-black font-black uppercase tracking-wider text-xs py-5 rounded-none">
-            <Link to="/contact" onClick={onClose}>
-              Talk To Our Squad <ArrowRight size={14} className="ml-1.5" />
-            </Link>
+        <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-zinc-200">
+          <Button 
+            type="button" 
+            variant="outline" 
+            onClick={onClose}
+            className="border-zinc-300 text-zinc-900 hover:bg-zinc-100 rounded-none mono text-xs uppercase font-bold"
+          >
+            Close Window
           </Button>
-          <Button variant="outline" onClick={onClose} className="border-white/20 text-white hover:bg-white hover:text-black font-bold uppercase text-xs py-5 rounded-none">
-            Got It
+          <Button asChild className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-none mono text-xs uppercase font-black btn-hover">
+            <Link to="/contact" onClick={onClose}>
+              Discuss This With Our Team <ArrowRight size={14} className="ml-1" />
+            </Link>
           </Button>
         </div>
       </DialogContent>

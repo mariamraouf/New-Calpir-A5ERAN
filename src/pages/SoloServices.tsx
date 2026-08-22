@@ -2,10 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Globe, Shield, Search, Palette, Share2, Database, Bot, Zap, 
-  Video, FileCode, CheckCircle2, ArrowRight, HelpCircle, Sparkles, Layers 
-} from 'lucide-react';
+import { CheckCircle2, ArrowRight, HelpCircle } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -130,16 +127,16 @@ const SoloServices = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-white">
       <Navbar />
 
-      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-white/15">
+      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>À La Carte Solutions</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">
-            Solo <br /> <span className="text-emerald-400">Services.</span>
+          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">
+            Solo <br /> <span className="text-emerald-700">Services.</span>
           </h1>
-          <p className="text-lg md:text-2xl text-zinc-200 max-w-[850px] leading-relaxed">
+          <p className="text-lg md:text-2xl text-zinc-600 max-w-[850px] leading-relaxed">
             Need one specific superpower instead of a full business package? Pick exactly what you need à la carte. Every service is delivered with surgical precision by our in-house squad.
           </p>
         </div>
@@ -151,47 +148,47 @@ const SoloServices = () => {
             {soloServices.map((service) => (
               <div 
                 key={service.id}
-                className="border border-white/15 p-8 md:p-10 bg-white/[0.02] flex flex-col justify-between hover:border-emerald-500/50 hover:bg-emerald-950/10 transition-all"
+                className="border border-zinc-200 p-8 md:p-10 bg-white flex flex-col justify-between hover:border-emerald-600 hover:shadow-lg transition-all"
               >
                 <div>
                   <div className="flex justify-between items-start mb-4">
-                    <span className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold">
+                    <span className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1 border border-emerald-200">
                       {service.category}
                     </span>
-                    <span className="mono text-xs text-zinc-400 border border-white/10 px-2.5 py-1">
+                    <span className="mono text-xs text-zinc-600 border border-zinc-200 px-2.5 py-1 bg-zinc-50">
                       ⏱ {service.turnaround}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-white mb-2 tracking-tight">
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 mb-2 tracking-tight">
                     {service.title}
                   </h3>
-                  <div className="text-4xl font-black text-emerald-400 mb-4">{service.price}</div>
-                  <p className="text-zinc-300 text-sm leading-relaxed mb-6">{service.desc}</p>
+                  <div className="text-4xl font-black text-emerald-700 mb-4">{service.price}</div>
+                  <p className="text-zinc-600 text-sm leading-relaxed mb-6">{service.desc}</p>
 
-                  <div className="space-y-2 mb-8 pt-4 border-t border-white/10">
-                    <div className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold mb-2">Included Deliverables:</div>
+                  <div className="space-y-2 mb-8 pt-4 border-t border-zinc-100">
+                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold mb-2">Included Deliverables:</div>
                     {service.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-zinc-200 mono font-semibold">
-                        <CheckCircle2 size={14} className="text-emerald-400 shrink-0" />
+                      <div key={idx} className="flex items-center gap-2 text-xs text-zinc-800 mono font-semibold">
+                        <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
                         <span>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/10">
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-zinc-100">
                   {service.modalKey && (
                     <Button 
                       type="button"
                       variant="outline"
                       onClick={() => setActiveModal(service.modalKey || null)}
-                      className="border-white/20 text-white hover:bg-white hover:text-black font-bold uppercase text-xs py-6 rounded-none flex items-center justify-center gap-1.5"
+                      className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 font-bold uppercase text-xs py-6 rounded-none flex items-center justify-center gap-1.5"
                     >
-                      <HelpCircle size={14} className="text-emerald-400" /> Inspect Details
+                      <HelpCircle size={14} className="text-emerald-600" /> Inspect Details
                     </Button>
                   )}
-                  <Button asChild className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-black font-black uppercase tracking-wider text-xs py-6 rounded-none btn-hover">
+                  <Button asChild className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-black uppercase tracking-wider text-xs py-6 rounded-none btn-hover">
                     <Link to="/contact">Order This Service <ArrowRight size={14} className="ml-1" /></Link>
                   </Button>
                 </div>
@@ -200,17 +197,17 @@ const SoloServices = () => {
           </div>
 
           {/* Bundle Banner */}
-          <div className="mt-16 border border-white/15 bg-white/[0.03] p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="mt-16 border border-zinc-200 bg-zinc-50 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-sm">
             <div>
-              <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-2">Want 3 or more solo services?</div>
-              <h3 className="text-2xl md:text-4xl font-black uppercase text-white tracking-tight mb-2">
+              <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">Want 3 or more solo services?</div>
+              <h3 className="text-2xl md:text-4xl font-black uppercase text-zinc-950 tracking-tight mb-2">
                 Our Full Launch Packages Save You 40% to 60%
               </h3>
-              <p className="text-zinc-300 text-sm max-w-[650px] leading-relaxed">
+              <p className="text-zinc-600 text-sm max-w-[650px] leading-relaxed">
                 Instead of booking 5 individual services separately, our all-in-one Starter, Growth, and Ultimate packages bundle everything together seamlessly.
               </p>
             </div>
-            <Button asChild className="bg-white text-black hover:bg-emerald-500 hover:text-black font-black uppercase px-8 py-6 rounded-none text-sm shrink-0">
+            <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700 font-black uppercase px-8 py-6 rounded-none text-sm shrink-0">
               <Link to="/packages">View All-In-One Packages</Link>
             </Button>
           </div>

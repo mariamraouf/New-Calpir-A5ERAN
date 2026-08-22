@@ -93,24 +93,24 @@ const BookingSystem = () => {
   };
 
   return (
-    <div className="border border-white/15 bg-[#0b0b0d] p-6 md:p-10 shadow-2xl">
+    <div className="border border-zinc-200 bg-white p-6 md:p-10 shadow-lg">
       {step === 1 && (
         <div className="space-y-8">
-          <div className="flex items-center gap-5 pb-6 border-b border-white/10">
-            <div className="w-14 h-14 bg-emerald-500 flex items-center justify-center shrink-0 text-black">
+          <div className="flex items-center gap-5 pb-6 border-b border-zinc-200">
+            <div className="w-14 h-14 bg-emerald-600 flex items-center justify-center shrink-0 text-white shadow-sm">
               <User size={28} />
             </div>
             <div>
-              <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold">Squad Lead</div>
-              <h3 className="text-2xl md:text-3xl font-black uppercase text-white">Maria</h3>
-              <p className="mono text-xs text-zinc-300 font-bold">30 MINUTE FREE STRATEGY CONSULTATION</p>
+              <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold">Squad Lead</div>
+              <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950">Maria</h3>
+              <p className="mono text-xs text-zinc-600 font-bold">30 MINUTE FREE STRATEGY CONSULTATION</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="space-y-3">
-              <label className="mono text-xs uppercase tracking-wider text-zinc-200 font-bold flex items-center gap-2">
-                <CalendarIcon size={16} className="text-emerald-400" /> 1. Select Date
+              <label className="mono text-xs uppercase tracking-wider text-zinc-800 font-bold flex items-center gap-2">
+                <CalendarIcon size={16} className="text-emerald-600" /> 1. Select Date
               </label>
               <div className="grid grid-cols-4 gap-2">
                 {[...Array(8)].map((_, i) => {
@@ -123,10 +123,10 @@ const BookingSystem = () => {
                       onClick={() => setSelectedDate(date)}
                       className={cn(
                         "p-3 border mono text-xs flex flex-col items-center transition-all font-bold",
-                        isSelected ? "border-emerald-400 bg-emerald-500 text-black" : "border-white/15 text-zinc-300 hover:border-emerald-400 hover:text-white bg-white/[0.02]"
+                        isSelected ? "border-emerald-600 bg-emerald-600 text-white shadow-sm" : "border-zinc-200 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950 bg-zinc-50"
                       )}
                     >
-                      <span className={isSelected ? "text-black/80" : "text-zinc-400"}>{format(date, 'EEE')}</span>
+                      <span className={isSelected ? "text-emerald-100" : "text-zinc-500"}>{format(date, 'EEE')}</span>
                       <span className="text-lg font-black">{format(date, 'dd')}</span>
                     </button>
                   );
@@ -136,17 +136,17 @@ const BookingSystem = () => {
 
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <label className="mono text-xs uppercase tracking-wider text-zinc-200 font-bold flex items-center gap-2">
-                  <Clock size={16} className="text-emerald-400" /> 2. Select Time
+                <label className="mono text-xs uppercase tracking-wider text-zinc-800 font-bold flex items-center gap-2">
+                  <Clock size={16} className="text-emerald-600" /> 2. Select Time
                 </label>
                 <div className="w-44">
                   <Select value={userTimezone} onValueChange={setUserTimezone}>
-                    <SelectTrigger className="bg-black border-white/20 mono text-[11px] text-white uppercase h-8">
+                    <SelectTrigger className="bg-white border-zinc-300 mono text-[11px] text-zinc-950 uppercase h-8">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-[#111] border-white/20 text-white">
+                    <SelectContent className="bg-white border-zinc-200 text-zinc-950">
                       {timezones.map((tz) => (
-                        <SelectItem key={tz} value={tz} className="mono text-xs uppercase hover:bg-emerald-600/20">{tz}</SelectItem>
+                        <SelectItem key={tz} value={tz} className="mono text-xs uppercase hover:bg-emerald-50">{tz}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -160,7 +160,7 @@ const BookingSystem = () => {
                     onClick={() => setSelectedTime(time)}
                     className={cn(
                       "p-2.5 border mono text-xs font-bold transition-all",
-                      selectedTime === time ? "border-emerald-400 bg-emerald-500 text-black" : "border-white/15 text-zinc-300 hover:border-emerald-400 hover:text-white bg-white/[0.02]"
+                      selectedTime === time ? "border-emerald-600 bg-emerald-600 text-white shadow-sm" : "border-zinc-200 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950 bg-zinc-50"
                     )}
                   >
                     {convertToUserTime(time)}
@@ -174,7 +174,7 @@ const BookingSystem = () => {
             type="button"
             disabled={!selectedTime}
             onClick={() => setStep(2)}
-            className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-6 rounded-none font-black text-base md:text-lg uppercase tracking-tight btn-hover"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 rounded-none font-black text-base md:text-lg uppercase tracking-tight btn-hover"
           >
             Confirm Time Slot <ArrowRight className="ml-2" size={18} />
           </Button>
@@ -184,24 +184,24 @@ const BookingSystem = () => {
       {step === 2 && (
         <form onSubmit={handleBooking} className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
           <div className="text-center space-y-1">
-            <h3 className="text-2xl md:text-3xl font-black uppercase text-white">Finalize Booking Details</h3>
-            <p className="text-xs md:text-sm text-zinc-300">Enter your details to generate your Google Meet video link</p>
+            <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950">Finalize Booking Details</h3>
+            <p className="text-xs md:text-sm text-zinc-600">Enter your details to generate your Google Meet video link</p>
           </div>
 
           <div className="space-y-4">
             <div className="space-y-1.5">
-              <label className="mono text-xs uppercase text-zinc-300 font-bold block">Your Name *</label>
+              <label className="mono text-xs uppercase text-zinc-700 font-bold block">Your Name *</label>
               <Input 
                 required
                 placeholder="Alex Smith" 
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-black text-white border-white/20 rounded-none h-12 mono text-sm focus:border-emerald-400"
+                className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
               />
             </div>
             
             <div className="space-y-1.5">
-              <label className="mono text-xs uppercase text-zinc-300 font-bold block">Your Work Email *</label>
+              <label className="mono text-xs uppercase text-zinc-700 font-bold block">Your Work Email *</label>
               <Input 
                 required
                 name="email"
@@ -209,47 +209,47 @@ const BookingSystem = () => {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-black text-white border-white/20 rounded-none h-12 mono text-sm focus:border-emerald-400"
+                className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="mono text-xs uppercase text-zinc-300 font-bold block">What are you looking to build or solve? (Optional)</label>
+              <label className="mono text-xs uppercase text-zinc-700 font-bold block">What are you looking to build or solve? (Optional)</label>
               <Textarea 
                 placeholder="E.g. launching a SaaS, need CRM + AI agents for support, website redesign..."
                 value={formData.businessNotes}
                 onChange={(e) => setFormData({ ...formData, businessNotes: e.target.value })}
-                className="bg-black text-white border-white/20 rounded-none mono text-sm focus:border-emerald-400 resize-none"
+                className="bg-white text-zinc-950 border-zinc-300 rounded-none mono text-sm focus:border-emerald-600 resize-none"
                 rows={3}
               />
             </div>
           </div>
 
-          <div className="bg-black border border-white/10 p-5 space-y-3">
-            <div className="flex justify-between items-center border-b border-white/10 pb-2.5">
-              <span className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold">Date</span>
-              <span className="font-bold uppercase text-white">{format(selectedDate, 'MMMM dd, yyyy')}</span>
+          <div className="bg-zinc-50 border border-zinc-200 p-5 space-y-3">
+            <div className="flex justify-between items-center border-b border-zinc-200 pb-2.5">
+              <span className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Date</span>
+              <span className="font-bold uppercase text-zinc-950">{format(selectedDate, 'MMMM dd, yyyy')}</span>
             </div>
-            <div className="flex justify-between items-center border-b border-white/10 pb-2.5">
-              <span className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold">Time</span>
-              <span className="font-bold uppercase text-white">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
+            <div className="flex justify-between items-center border-b border-zinc-200 pb-2.5">
+              <span className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Time</span>
+              <span className="font-bold uppercase text-zinc-950">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="mono text-xs uppercase tracking-wider text-zinc-400 font-bold">Platform</span>
-              <span className="font-bold uppercase text-emerald-400">Google Meet Invitation</span>
+              <span className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Platform</span>
+              <span className="font-bold uppercase text-emerald-700">Google Meet Invitation</span>
             </div>
           </div>
 
           <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
 
           <div className="grid grid-cols-2 gap-4">
-            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-white/20 text-white py-6 rounded-none font-bold uppercase text-xs">
+            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 py-6 rounded-none font-bold uppercase text-xs">
               Back
             </Button>
             <Button 
               type="submit"
               disabled={!formData.name || !formData.email || isSending}
-              className="bg-emerald-500 hover:bg-emerald-400 text-black py-6 rounded-none font-black uppercase text-xs flex items-center justify-center gap-2"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white py-6 rounded-none font-black uppercase text-xs flex items-center justify-center gap-2 btn-hover"
             >
               {isSending ? <Loader2 className="animate-spin" /> : "Confirm Session"}
             </Button>
@@ -259,14 +259,14 @@ const BookingSystem = () => {
 
       {step === 3 && (
         <div className="text-center py-12 space-y-5 animate-in zoom-in-95">
-          <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto text-black">
+          <div className="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle2 size={36} />
           </div>
-          <h3 className="text-3xl font-black uppercase text-white">Booking Confirmed</h3>
-          <p className="text-zinc-300 text-sm max-w-md mx-auto leading-relaxed">
-            Your strategy session with Maria is locked in for <span className="text-white font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. A Google Meet invite has been dispatched to <span className="text-emerald-400 font-bold">{formData.email}</span>.
+          <h3 className="text-3xl font-black uppercase text-zinc-950">Booking Confirmed</h3>
+          <p className="text-zinc-600 text-sm max-w-md mx-auto leading-relaxed">
+            Your strategy session with Maria is locked in for <span className="text-zinc-950 font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. A Google Meet invite has been dispatched to <span className="text-emerald-700 font-bold">{formData.email}</span>.
           </p>
-          <Button asChild variant="outline" className="border-white/20 text-white py-5 px-8 rounded-none font-bold uppercase hover:bg-white hover:text-black text-xs">
+          <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 py-5 px-8 rounded-none font-bold uppercase hover:bg-zinc-100 text-xs">
             <a href="/">Return Home</a>
           </Button>
         </div>

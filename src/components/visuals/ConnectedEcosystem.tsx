@@ -58,12 +58,12 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               y1={centerY}
               x2={x}
               y2={y}
-              stroke={isHighlighted ? "#10b981" : "#064e3b"}
+              stroke={isHighlighted ? "#059669" : "#a7f3d0"}
               strokeWidth={isHighlighted ? "2.5" : "1.5"}
               initial={{ pathLength: 0, opacity: 0.2 }}
               animate={{ 
                 pathLength: 1, 
-                opacity: isHighlighted ? 1 : 0.35,
+                opacity: isHighlighted ? 1 : 0.8,
                 strokeWidth: isHighlighted ? 2.5 : 1.5
               }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -90,7 +90,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             }
           }}
           alt="Calpir Logo" 
-          className="w-full h-full object-contain drop-shadow-[0_0_14px_rgba(16,185,129,0.6)]"
+          className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(5,150,105,0.3)]"
           animate={{ scale: [1, 1.06, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -106,10 +106,10 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
           <div
             key={node.id}
             className={cn(
-              "absolute flex items-center justify-center transition-all duration-300 border",
+              "absolute flex items-center justify-center transition-all duration-300 border shadow-sm",
               isActive 
-                ? "bg-emerald-500 text-black border-emerald-300 scale-110 shadow-[0_0_20px_rgba(16,185,129,0.6)] z-30" 
-                : "bg-[#0f0f12] text-emerald-400 border-white/15 hover:border-emerald-500/50 hover:bg-emerald-950/30 hover:scale-105 z-10"
+                ? "bg-emerald-600 text-white border-emerald-700 scale-110 shadow-lg z-30" 
+                : "bg-white text-emerald-700 border-zinc-200 hover:border-emerald-500 hover:bg-emerald-50 hover:scale-105 z-10"
             )}
             style={{ 
               width: `${nodeBoxSize}px`,

@@ -88,15 +88,15 @@ const CaseStudies = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#080808]">
+    <div className="min-h-screen bg-white">
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-white/15">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>Proof of Concept</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-white">
-              Case <br /> <span className="text-emerald-400">Studies.</span>
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">
+              Case <br /> <span className="text-emerald-700">Studies.</span>
             </h1>
           </motion.div>
         </div>
@@ -108,23 +108,23 @@ const CaseStudies = () => {
             {cases.map((c, i) => (
               <motion.div key={c.id} {...reveal} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div className={i % 2 !== 0 ? 'lg:order-2' : ''}>
-                  <div className="mono text-emerald-400 text-xs font-bold mb-4 tracking-widest">
+                  <div className="mono text-emerald-800 text-xs font-bold mb-4 tracking-widest">
                     [{c.id}] // {c.industry}
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tight mb-8">{c.title}</h2>
+                  <h2 className="text-3xl md:text-5xl font-black text-zinc-950 uppercase tracking-tight mb-8">{c.title}</h2>
                   
                   <div className="space-y-8 mb-8">
                     <div>
-                      <div className="mono text-xs uppercase tracking-widest text-zinc-400 font-bold mb-2">Challenge</div>
-                      <p className="text-zinc-200 text-base leading-relaxed">{c.challenge}</p>
+                      <div className="mono text-xs uppercase tracking-widest text-zinc-500 font-bold mb-2">Challenge</div>
+                      <p className="text-zinc-700 text-base leading-relaxed">{c.challenge}</p>
                     </div>
                     
                     <div>
-                      <div className="mono text-xs uppercase tracking-widest text-zinc-400 font-bold mb-3">What We Built</div>
+                      <div className="mono text-xs uppercase tracking-widest text-zinc-500 font-bold mb-3">What We Built</div>
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {c.built.map((item) => (
-                          <li key={item} className="flex items-center gap-2.5 mono text-xs text-zinc-200 uppercase tracking-wider font-semibold">
-                            <CheckCircle2 size={16} className="text-emerald-400 shrink-0" /> {item}
+                          <li key={item} className="flex items-center gap-2.5 mono text-xs text-zinc-800 uppercase tracking-wider font-semibold">
+                            <CheckCircle2 size={16} className="text-emerald-600 shrink-0" /> {item}
                           </li>
                         ))}
                       </ul>
@@ -132,25 +132,25 @@ const CaseStudies = () => {
 
                     <div className="grid grid-cols-2 gap-6">
                       {c.results.map((res, idx) => (
-                        <div key={idx} className="border border-white/15 p-6 bg-white/[0.03]">
-                          <div className="text-4xl font-black text-emerald-400 mb-1">{res.value}</div>
-                          <div className="mono text-xs uppercase tracking-wider font-bold text-zinc-300">{res.label}</div>
+                        <div key={idx} className="border border-zinc-200 p-6 bg-zinc-50 shadow-sm">
+                          <div className="text-4xl font-black text-emerald-700 mb-1">{res.value}</div>
+                          <div className="mono text-xs uppercase tracking-wider font-bold text-zinc-700">{res.label}</div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="border-l-4 border-emerald-400 pl-6 py-4 bg-emerald-950/20 border-white/10">
-                      <p className="text-lg italic text-zinc-200 mb-3">"{c.quote}"</p>
-                      <div className="font-black uppercase text-xs tracking-wider text-emerald-400">{c.author}</div>
+                    <div className="border-l-4 border-emerald-600 pl-6 py-4 bg-emerald-50 border-emerald-200">
+                      <p className="text-lg italic text-zinc-800 mb-3">"{c.quote}"</p>
+                      <div className="font-black uppercase text-xs tracking-wider text-emerald-800">{c.author}</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className={`aspect-video bg-white/5 border border-white/15 overflow-hidden relative group ${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
-                  <img src={c.image} alt={c.client} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className={`aspect-video bg-zinc-100 border border-zinc-200 overflow-hidden relative group shadow-sm ${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <img src={c.image} alt={c.client} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
                   <div className="absolute bottom-6 left-6">
-                    <div className="mono text-xs uppercase tracking-widest text-zinc-400 font-bold mb-1">Client</div>
+                    <div className="mono text-xs uppercase tracking-widest text-zinc-300 font-bold mb-1">Client</div>
                     <div className="text-2xl font-black uppercase text-white">{c.client}</div>
                     <div className="mono text-xs uppercase tracking-wider font-bold text-emerald-400 mt-1">Timeline: {c.timeline}</div>
                   </div>
@@ -161,10 +161,10 @@ const CaseStudies = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-emerald-500 text-black text-center">
+      <section className="section-padding bg-emerald-700 text-white text-center shadow-inner">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-7xl mb-8 font-black uppercase tracking-tight text-black">Ready for Your Own <br /> Success Story?</h2>
-          <Button asChild className="bg-black text-white hover:bg-zinc-900 px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all">
+          <h2 className="text-4xl md:text-7xl mb-8 font-black uppercase tracking-tight text-white">Ready for Your Own <br /> Success Story?</h2>
+          <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover">
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>
