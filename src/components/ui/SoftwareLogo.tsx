@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SoftwareItem } from '@/data/softwareCatalog';
 import { cn } from '@/lib/utils';
 
@@ -9,18 +9,16 @@ interface SoftwareLogoProps {
   className?: string;
 }
 
-// Emerald green filter that tints any icon or image into #059669
-const EMERALD_FILTER = "invert(42%) sepia(85%) saturate(720%) hue-rotate(128deg) brightness(92%) contrast(97%)";
-
 const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   const [stage, setStage] = useState<number>(0);
+  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
 
-  // Stage 0: SimpleIcons official CDN with #059669 emerald color
-  // Stage 1: Unavatar domain icon with emerald filter
-  // Stage 2: Google S2 high-res favicon with emerald filter
-  // Stage 3: Branded emerald monogram badge
-
-  const primaryUrl = `https://cdn.simpleicons.org/${tool.slug}/059669`;
+  // Stage 0: SimpleIcons pure SVG silhouette
+  // Stage 1: Unavatar domain icon
+  // Stage 2: Google S2 domain icon
+  // Stage 3: Monogram brand fallback
+  const primaryUrl = `https://cdn.simpleicons.org/${tool.slug}/047857`;
   const unavatarUrl = tool.domain ? `https://unavatar.io/${tool.domain}` : `https://unavatar.io/${tool.slug}`;
   const googleFaviconUrl = tool.domain ? `https://www.google.com/s2/favicons?domain=${tool.domain}&sz=128` : '';
 
@@ -33,12 +31,26 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
 
   const currentSource = getSource();
 
-  const handleImageError = () => {
-    setStage((prev) => prev + 1);
-  };
+  useEffect(() => {
+    if (!currentSource || stage >= 3) {
+      setHasError(true);
+      return;
+    }
 
-  if (!currentSource || stage >= 3) {
-    // Generate initials (e.g. "GH" for GoHighLevel, "AP" for Activepieces)
+    const img = new Image();
+    img.src = currentSource;
+    img.onload = () => {
+      setImageLoaded(true);
+      setHasError(false);
+    };
+    img.onerror = () => {
+      setImageLoaded(false);
+      setStage((prev) => prev + 1);
+    };
+  }, [stage, currentSource]);
+
+  // Fallback monogram if image cannot be loaded
+  if (hasError || stage >= 3 || !currentSource) {
     const initials = tool.name
       .split(' ')
       .map((w) => w[0])
@@ -49,7 +61,7 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
     return (
       <div 
         className={cn(
-          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-700 font-black text-xs flex items-center justify-center mono shrink-0 shadow-sm transition-transform group-hover:scale-105",
+          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-800 font-black text-xs flex items-center justify-center mono shrink-0 shadow-sm transition-transform group-hover:scale-105",
           className
         )}
         title={tool.name}
@@ -62,18 +74,38 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   return (
     <div 
       className={cn(
-        "w-10 h-10 bg-emerald-50/50 border border-emerald-100 group-hover:border-emerald-500 flex items-center justify-center p-2 transition-all shrink-0 shadow-sm", 
+        "w-10 h-10 bg-emerald-50/60 border border-emerald-200 group-hover:border-emerald-600 flex items-center justify-center p-2 transition-all shrink-0 shadow-sm", 
         className
       )}
+      title={tool.name}
     >
-      <img
-        src={currentSource}
-        alt={`${tool.name} Logo`}
-        style={stage > 0 ? { filter: EMERALD_FILTER } : undefined}
-        className="w-full h-full object-contain group-hover:scale-110 transition-transform"
-        onError={handleImageError}
-        loading="lazy"
-      />
+      {stage === 0 ? (
+        /* CSS mask guarantees 100% exact identical emerald green fill (#047857) matching the Anthropic/Claude logo */
+        <div
+          className="w-6 h-6 bg-emerald-700 group-hover:bg-emerald-600 transition-all duration-200 group-hover:scale-110"
+          style={{
+            WebkitMaskImage: `url("${currentSource}")`,
+            maskImage: `url("${currentSource}")`,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+          }}
+        />
+      ) : (
+        /* Fallback source with exact emerald hue tint */
+        <img
+          src={currentSource}
+          alt={`${tool.name} Logo`}
+          style={{
+            filter: "invert(35%) sepia(85%) saturate(800%) hue-rotate(130deg) brightness(85%) contrast(100%)"
+          }}
+          className="w-full h-full object-contain group-hover:scale-110 transition-transform"
+          loading="lazy"
+        />
+      )}
     </div>
   );
 };
