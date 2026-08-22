@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -10,7 +10,8 @@ const Navbar = () => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const services = [
-    { name: 'Website & Branding', href: '/services/website-development' },
+    { name: 'All Solo Services (À La Carte)', href: '/solo-services' },
+    { name: 'Website, Domain & Branding', href: '/services/website-development' },
     { name: 'CRM & Sales Systems', href: '/services/crm-sales' },
     { name: 'Marketing & Social', href: '/services/marketing-branding' },
     { name: 'Operations & HR', href: '/services/operations-hr' },
@@ -22,9 +23,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Packages', href: '/packages' },
+    { name: 'Solo Services', href: '/solo-services' },
+    { name: 'Software Stack', href: '/software-stack' },
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'Assessment', href: '/assessment' },
-    { name: 'Blog', href: '/blog' },
     { name: 'About', href: '/about' },
   ];
 
@@ -43,13 +45,18 @@ const Navbar = () => {
             alt="Calpir Logo" 
             className="h-10 md:h-12 w-auto object-contain shrink-0 bg-transparent"
           />
-          <span className="text-2xl font-black tracking-tight uppercase text-white group-hover:text-emerald-400 transition-colors">
-            Calpir
-          </span>
+          <div className="flex flex-col">
+            <span className="text-2xl font-black tracking-tight uppercase text-white group-hover:text-emerald-400 transition-colors">
+              Calpir
+            </span>
+            <span className="mono text-[9px] uppercase tracking-widest text-emerald-400 font-bold -mt-1 hidden sm:block">
+              Your Systems Squad
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden xl:flex items-center gap-7">
           <div 
             className="relative group"
             onMouseEnter={() => setIsServicesOpen(true)}
@@ -65,7 +72,12 @@ const Navbar = () => {
                   <Link 
                     key={s.name} 
                     to={s.href} 
-                    className="block px-4 py-3 text-xs uppercase font-bold tracking-wider text-zinc-300 hover:text-white hover:bg-emerald-600/20 border-l-2 border-transparent hover:border-emerald-400 transition-all"
+                    className={cn(
+                      "block px-4 py-3 text-xs uppercase font-bold tracking-wider transition-all border-l-2",
+                      s.href === '/solo-services'
+                        ? "text-emerald-400 bg-emerald-950/40 border-emerald-400 font-black mb-1"
+                        : "text-zinc-300 hover:text-white hover:bg-emerald-600/20 border-transparent hover:border-emerald-400"
+                    )}
                   >
                     {s.name}
                   </Link>
@@ -84,37 +96,40 @@ const Navbar = () => {
             </Link>
           ))}
           
-          <Link to="/contact" className="bg-emerald-500 hover:bg-emerald-600 text-black font-black px-6 py-3 rounded-none mono text-xs uppercase tracking-wider btn-hover">
-            Free Consultation
+          <Link to="/contact" className="bg-emerald-500 hover:bg-emerald-400 text-black font-black px-6 py-3 rounded-none mono text-xs uppercase tracking-wider btn-hover flex items-center gap-2">
+            <Sparkles size={14} /> Free Consultation
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
+        <button className="xl:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Menu">
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div className={cn(
-        "lg:hidden absolute top-full left-0 right-0 bg-[#0f0f0f] border-b border-white/20 transition-all duration-300 overflow-hidden shadow-2xl",
-        isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        "xl:hidden absolute top-full left-0 right-0 bg-[#0f0f0f] border-b border-white/20 transition-all duration-300 overflow-hidden shadow-2xl",
+        isOpen ? "max-h-screen opacity-100 py-6" : "max-h-0 opacity-0"
       )}>
-        <div className="flex flex-col p-8 gap-4">
-          <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold">Services</div>
-          {services.map((s) => (
-            <Link key={s.name} to={s.href} onClick={() => setIsOpen(false)} className="text-lg font-bold uppercase text-zinc-200 hover:text-emerald-400 transition-colors">
+        <div className="flex flex-col p-6 gap-3">
+          <div className="mono text-xs uppercase tracking-widest text-emerald-400 font-bold mb-1">Services & Solo Offerings</div>
+          <Link to="/solo-services" onClick={() => setIsOpen(false)} className="text-base font-bold uppercase text-emerald-300 bg-emerald-950/40 p-3 border border-emerald-500/30">
+            ⚡ Browse All Solo Services (À La Carte)
+          </Link>
+          {services.slice(1).map((s) => (
+            <Link key={s.name} to={s.href} onClick={() => setIsOpen(false)} className="text-sm font-bold uppercase text-zinc-300 hover:text-emerald-400 transition-colors py-1">
               {s.name}
             </Link>
           ))}
           <div className="h-px bg-white/15 my-2" />
           {navLinks.map((link) => (
-            <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="text-lg font-bold uppercase text-zinc-200 hover:text-emerald-400 transition-colors">
+            <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="text-base font-bold uppercase text-zinc-200 hover:text-emerald-400 transition-colors py-1">
               {link.name}
             </Link>
           ))}
-          <Link to="/contact" onClick={() => setIsOpen(false)} className="bg-emerald-500 hover:bg-emerald-600 text-black text-center py-4 font-black uppercase tracking-wider mt-4">
-            Free Consultation
+          <Link to="/contact" onClick={() => setIsOpen(false)} className="bg-emerald-500 hover:bg-emerald-400 text-black text-center py-4 font-black uppercase tracking-wider mt-4">
+            Book Free Consultation
           </Link>
         </div>
       </div>
