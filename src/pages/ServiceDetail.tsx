@@ -65,7 +65,7 @@ const ServiceDetail = () => {
       title: "Marketing & Social Systems",
       tagline: "Omnichannel presence and automated lead generation engines",
       icon: <Megaphone size={48} className="text-emerald-400" />,
-      overview: "In 2026, consistent brand messaging across all touchpoints is mandatory. We set up your complete digital marketing infrastructure, from content distribution pipelines to automated email marketing flows that nurture prospects into buyers.",
+      overview: "Consistent brand messaging across all touchpoints is mandatory. We set up your complete digital marketing infrastructure, from content distribution pipelines to automated email marketing flows that nurture prospects into buyers.",
       included: [
         "Omnichannel social media profile creation & verification",
         "Brand messaging playbook & tone of voice guidelines",
@@ -199,14 +199,14 @@ const ServiceDetail = () => {
       {/* Hero */}
       <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-white/15">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row items-center gap-12">
-            <div className="w-28 h-28 bg-white/5 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div className="w-24 h-24 md:w-28 md:h-28 bg-white/5 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
               {data.icon}
             </div>
             <div>
               <SectionLabel>Service Module Specification</SectionLabel>
-              <h1 className="text-4xl md:text-7xl font-black uppercase tracking-tight mb-4 text-white">{data.title}</h1>
-              <p className="text-xl md:text-2xl mono text-zinc-300">{data.tagline}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-tight mb-4 text-white">{data.title}</h1>
+              <p className="text-lg md:text-2xl mono text-zinc-300">{data.tagline}</p>
             </div>
           </div>
         </div>
@@ -215,19 +215,19 @@ const ServiceDetail = () => {
       {/* Overview & Deliverables */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            <div className="lg:col-span-2 space-y-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-2 space-y-12 md:space-y-16">
               {/* Executive Summary */}
               <div>
-                <h2 className="text-3xl font-black uppercase mb-6 text-white">System Overview</h2>
-                <p className="mono text-lg text-zinc-200 leading-relaxed bg-white/[0.03] p-8 border border-white/15">
+                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 text-white">System Overview</h2>
+                <p className="mono text-base md:text-lg text-zinc-200 leading-relaxed bg-white/[0.03] p-6 md:p-8 border border-white/15">
                   {data.overview}
                 </p>
               </div>
 
               {/* What's Included */}
               <div>
-                <h2 className="text-3xl font-black uppercase mb-8 text-white">Module Specifications & Features</h2>
+                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 md:mb-8 text-white">Module Specifications & Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {data.included.map((item: string, i: number) => (
                     <div key={i} className="flex gap-4 p-4 border border-white/10 bg-white/[0.02] items-start">
@@ -240,29 +240,40 @@ const ServiceDetail = () => {
 
               {/* Who & What You Get */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="border border-white/15 p-8 bg-white/[0.03]">
+                <div className="border border-white/15 p-6 md:p-8 bg-white/[0.03]">
                   <div className="mono text-xs uppercase tracking-widest text-emerald-400 mb-3 font-bold">Ideal Deployment Candidate</div>
-                  <h3 className="text-xl font-black uppercase mb-4 text-white">Who This Is For</h3>
+                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-white">Who This Is For</h3>
                   <p className="mono text-sm text-zinc-300 leading-relaxed">{data.who}</p>
                 </div>
-                <div className="border border-white/15 p-8 bg-white/[0.03]">
+                <div className="border border-white/15 p-6 md:p-8 bg-white/[0.03]">
                   <div className="mono text-xs uppercase tracking-widest text-emerald-400 mb-3 font-bold">Final Assets Handover</div>
-                  <h3 className="text-xl font-black uppercase mb-4 text-white">What You Receive</h3>
+                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-white">What You Receive</h3>
                   <p className="mono text-sm text-zinc-300 leading-relaxed">{data.get}</p>
                 </div>
               </div>
             </div>
 
             {/* Sidebar Sticky */}
-            <div className="space-y-8">
-              <div className="border border-white/15 p-8 bg-[#0c0c0c] sticky top-28">
-                <h3 className="text-2xl font-black uppercase mb-6 text-white">Ecosystem Placement</h3>
-                <ConnectedEcosystem className="w-full h-[280px] mb-8" highlightedNode={data.id} />
-                <p className="mono text-xs text-zinc-400 mb-8 leading-relaxed">
+            <div className="lg:sticky lg:top-28">
+              <div className="border border-white/15 p-6 md:p-8 bg-[#0c0c0e] shadow-2xl flex flex-col items-center text-center">
+                <h3 className="text-xl md:text-2xl font-black uppercase mb-2 text-white tracking-tight">Ecosystem Placement</h3>
+                <p className="mono text-xs text-zinc-400 mb-4">
+                  Visual relationship inside your unified Calpir nervous system
+                </p>
+
+                {/* Compact Ecosystem Node Widget */}
+                <div className="w-full flex justify-center py-2 overflow-hidden">
+                  <ConnectedEcosystem compact={true} highlightedNode={data.id} />
+                </div>
+
+                <p className="mono text-xs text-zinc-400 my-4 leading-relaxed max-w-xs">
                   This module connects directly with your broader business infrastructure to eliminate data silos.
                 </p>
-                <Button asChild className="w-full bg-emerald-500 hover:bg-emerald-600 text-black py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover">
-                  <Link to="/contact">Book Deployment Call <ArrowRight className="ml-2" size={18} /></Link>
+
+                <Button asChild className="w-full bg-emerald-500 hover:bg-emerald-400 text-black py-7 rounded-none font-black text-base uppercase tracking-tight btn-hover">
+                  <Link to="/contact" className="flex items-center justify-center gap-2">
+                    Book Deployment Call <ArrowRight size={18} />
+                  </Link>
                 </Button>
               </div>
             </div>
