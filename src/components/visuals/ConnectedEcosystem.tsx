@@ -32,13 +32,13 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
   const size = compact ? 260 : 340;
   const centerX = size / 2;
   const centerY = size / 2;
-  const radius = compact ? 95 : 125;
+  const radius = compact ? 92 : 122;
   const nodeBoxSize = compact ? 38 : 46;
   const logoSize = compact ? 52 : 64;
 
   return (
     <div 
-      className={cn("relative mx-auto select-none my-2 flex items-center justify-center", className)}
+      className={cn("relative select-none my-2 flex items-center justify-center shrink-0", className)}
       style={{ width: `${size}px`, height: `${size}px` }}
     >
       <svg 
@@ -63,7 +63,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               initial={{ pathLength: 0, opacity: 0.2 }}
               animate={{ 
                 pathLength: 1, 
-                opacity: isHighlighted ? 1 : 0.4,
+                opacity: isHighlighted ? 1 : 0.35,
                 strokeWidth: isHighlighted ? 2.5 : 1.5
               }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
@@ -72,20 +72,17 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         })}
       </svg>
 
-      {/* Center Logo - No circle, perfectly dead-center */}
-      <motion.div 
-        className="absolute flex items-center justify-center z-20 pointer-events-none"
+      {/* Center Logo - Exact pixel center without transform conflict */}
+      <div 
+        className="absolute z-20 pointer-events-none flex items-center justify-center"
         style={{
-          left: `${centerX}px`,
-          top: `${centerY}px`,
+          left: `${centerX - logoSize / 2}px`,
+          top: `${centerY - logoSize / 2}px`,
           width: `${logoSize}px`,
           height: `${logoSize}px`,
-          transform: 'translate(-50%, -50%)'
         }}
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
-        <img 
+        <motion.img 
           src="/logo-with-transparent-background.png" 
           onError={(e) => {
             if (e.currentTarget.src !== '/logo.png') {
@@ -93,18 +90,20 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             }
           }}
           alt="Calpir Logo" 
-          className="w-full h-full object-contain drop-shadow-[0_0_16px_rgba(16,185,129,0.5)]"
+          className="w-full h-full object-contain drop-shadow-[0_0_14px_rgba(16,185,129,0.6)]"
+          animate={{ scale: [1, 1.06, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
-      </motion.div>
+      </div>
 
       {/* Outer Orbit Nodes */}
       {nodes.map((node) => {
-        const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180);
-        const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180);
+        const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
+        const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
         const isActive = highlightedNode === node.id;
 
         return (
-          <motion.div
+          <div
             key={node.id}
             className={cn(
               "absolute flex items-center justify-center transition-all duration-300 border",
@@ -117,12 +116,11 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               height: `${nodeBoxSize}px`,
               left: `${x}px`, 
               top: `${y}px`, 
-              transform: 'translate(-50%, -50%)' 
             }}
             title={node.label}
           >
             {node.icon}
-          </motion.div>
+          </div>
         );
       })}
     </div>
