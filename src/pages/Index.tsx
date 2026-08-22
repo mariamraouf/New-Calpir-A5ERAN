@@ -116,24 +116,33 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ecosystem Visual */}
-      <section id="ecosystem" className="section-padding border-b border-zinc-200 bg-zinc-50/70">
+      {/* Ecosystem Visual - Large & Dynamic */}
+      <section id="ecosystem" className="section-padding border-b border-zinc-200 bg-gradient-to-b from-zinc-50 via-emerald-50/20 to-zinc-50 overflow-hidden">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            <div className="lg:col-span-5 space-y-6">
               <SectionLabel>The Calpir Unified Stack</SectionLabel>
-              <h2 className="text-3xl sm:text-5xl md:text-6xl mb-6 text-zinc-950 font-black leading-tight">
-                Everything Connected <br /> Everything Working Together
+              <h2 className="text-3xl sm:text-5xl md:text-6xl text-zinc-950 font-black leading-tight tracking-tight">
+                Everything Connected. <br />
+                <span className="text-emerald-700">Everything Moving Together.</span>
               </h2>
-              <p className="text-base sm:text-lg text-zinc-600 leading-relaxed mb-6">
+              <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
                 Most businesses struggle with 6 to 8 disconnected tools. We build one integrated ecosystem where your website feeds your CRM, your CRM triggers automations, and your AI agents handle client communication 24/7.
               </p>
-              <div className="mono text-xs sm:text-sm text-emerald-800 font-bold uppercase tracking-wider border-l-2 border-emerald-600 pl-4 py-1">
-                One unified nervous system. Zero gaps. Every tool talks to every other tool.
+              
+              <div className="space-y-3 pt-2">
+                <div className="flex items-center gap-3 mono text-xs uppercase tracking-wider font-bold text-zinc-800">
+                  <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-ping" />
+                  Continuous Real-Time Data Flow Between Modules
+                </div>
+                <div className="mono text-xs text-emerald-800 font-bold uppercase tracking-wider border-l-2 border-emerald-600 pl-4 py-1.5 bg-emerald-50/60">
+                  One unified nervous system. Zero gaps. Every tool talks to every other tool.
+                </div>
               </div>
             </div>
-            <div className="relative flex justify-center items-center">
-              <ConnectedEcosystem className="relative z-10" />
+
+            <div className="lg:col-span-7 flex justify-center items-center py-6">
+              <ConnectedEcosystem className="scale-95 sm:scale-105 md:scale-110" />
             </div>
           </div>
         </div>
