@@ -12,9 +12,9 @@ export const featureDetailsMap: Record<string, FeatureDetail> = {
     badge: "FOUNDATION // SECURITY",
     summary: "We help you select and purchase the ideal domain name, configure high-speed DNS routing, and lock it down with encrypted 256-bit SSL HTTPS certificates.",
     whatWeDo: [
-      "Help brainstorm and purchase the highest authority .com, .co.uk, or .io domain for your brand",
+      "Help brainstorm and purchase the highest authority domain for your brand",
       "Configure fast DNS records (A, CNAME, TXT, MX) with global CDN routing",
-      "Issue 256-bit SSL security certificates with automatic renewals (no 'Not Secure' browser warnings)",
+      "Issue 256-bit SSL security certificates with automatic renewals with zero browser warnings",
       "Set up SPF, DKIM, and DMARC records so your business emails never land in spam"
     ],
     whyItMatters: "Visitors bounce in seconds if they see browser security warnings. A verified domain and SSL gives your brand instant trust and authority."
@@ -22,11 +22,11 @@ export const featureDetailsMap: Record<string, FeatureDetail> = {
   gbp_seo: {
     title: "Google Business Profile & Search Console Indexing",
     badge: "DISCOVERABILITY // SEARCH",
-    summary: "We don't wait months for Google to notice your new business. We manually verify Google Search Console, submit your sitemaps, and optimize your Google Business Profile.",
+    summary: "We do not wait months for Google to notice your new business. We manually verify Google Search Console, submit your sitemaps, and optimize your Google Business Profile.",
     whatWeDo: [
-      "Claim and verify your official Google Business Profile (GBP) with categories, operating hours, and photos",
+      "Claim and verify your official Google Business Profile with categories, operating hours, and photos",
       "Set up Google Search Console and force-index your URLs and XML sitemaps directly with Google",
-      "Install Google Analytics 4 (GA4) with custom conversion goals to track every lead",
+      "Install Google Analytics 4 with custom conversion goals to track every lead",
       "Embed Schema.org structured data markup so Google displays your rich business snippets"
     ],
     whyItMatters: "Your potential customers are searching Google every single day. Instant indexing gets your company ranking in organic search and Google Maps from day one."
@@ -46,12 +46,12 @@ export const featureDetailsMap: Record<string, FeatureDetail> = {
   social_niche: {
     title: "Expert Niche-Targeted Social Channel Setup",
     badge: "DISTRIBUTION // SOCIAL",
-    summary: "Instead of spreading you thin across 10 dead profiles, our expert identifies the #1 highest-converting channel for your niche (e.g. LinkedIn for B2B, Instagram/TikTok for D2C) and builds it out flawlessly.",
+    summary: "Instead of spreading you thin across 10 dead profiles, our expert identifies the number one highest converting channel for your niche and builds it out flawlessly.",
     whatWeDo: [
-      "Audit your niche to select your single most profitable channel (LinkedIn, Instagram, X, or YouTube)",
+      "Audit your niche to select your single most profitable channel (LinkedIn, Instagram, Facebook, or YouTube)",
       "Design crisp 4K branded header banners, profile avatars, and keyword-optimized bio copy",
       "Link your direct booking funnel and website lead capture magnets",
-      "Starter tier includes your primary powerhouse channel; Growth & Ultimate expand across multi-platform fleets"
+      "Starter tier includes your primary powerhouse channel, while Growth and Ultimate expand across multi-platform fleets"
     ],
     whyItMatters: "One active, well-optimized social channel generating real qualified conversations beats five ghost-town accounts every single time."
   },
@@ -84,8 +84,8 @@ export const featureDetailsMap: Record<string, FeatureDetail> = {
     badge: "EFFICIENCY // MAKE & ZAPIER",
     summary: "We connect your website, CRM, invoicing, Slack, and Google Drive so customer data flows effortlessly with zero manual copy-pasting.",
     whatWeDo: [
-      "Auto-generate invoices and contracts when deals move to 'Closed-Won'",
-      "Post real-time sale and lead alerts to your team's Slack or Discord channel",
+      "Auto-generate invoices and contracts when deals move to Closed-Won",
+      "Post real-time sale and lead alerts to your team Slack or Discord channel",
       "Sync customer contacts to email marketing lists with smart segmentation tags",
       "Build error-handling and retry logic so your data never gets dropped"
     ],
@@ -118,14 +118,14 @@ export const featureDetailsMap: Record<string, FeatureDetail> = {
   email_phone_setup: {
     title: "Business Email & VOIP Phone Routing",
     badge: "COMMUNICATIONS // SETUP",
-    summary: "Professional branded email accounts (you@yourdomain.com) configured via Google Workspace or Microsoft 365, plus smart call routing.",
+    summary: "Professional branded email accounts configured via Google Workspace or Microsoft 365, plus smart call routing.",
     whatWeDo: [
       "Create branded team mailboxes with enterprise spam filtering and calendar sync",
       "Configure cloud VOIP phone routing and custom interactive voice menus",
       "Synchronize mailboxes directly with your CRM so all client emails are logged automatically",
       "Set up mobile app access for on-the-go communications"
     ],
-    whyItMatters: "Sending business quotes from a generic @gmail.com address hurts credibility. Branded communication elevates your brand immediately."
+    whyItMatters: "Sending business quotes from a generic email address hurts credibility. Branded communication elevates your brand immediately."
   },
   accounting_ops: {
     title: "Accounting & Invoicing Automation",
@@ -142,12 +142,12 @@ export const featureDetailsMap: Record<string, FeatureDetail> = {
   support_squad: {
     title: "Dedicated Post-Launch Squad Support",
     badge: "TEAM // LONG-TERM PARTNERSHIP",
-    summary: "We don't build your systems and disappear. Our technical squad stays by your side post-launch to monitor performance, tweak workflows, and train your team.",
+    summary: "We do not build your systems and disappear. Our technical squad stays by your side post-launch to monitor performance, tweak workflows, and train your team.",
     whatWeDo: [
       "Monitor system uptime, webhook pipelines, and email deliverability daily",
       "Make live text, design, and workflow adjustments based on early user feedback",
       "Provide live video screen-share training sessions for you and your staff",
-      "Direct Slack/WhatsApp access to Calpir technical directors"
+      "Direct Slack and WhatsApp access to Calpir technical directors"
     ],
     whyItMatters: "Launching is just day one. Having an expert technical team in your corner gives you the confidence to scale fearlessly."
   }

@@ -35,11 +35,11 @@ const Index = () => {
             </div>
 
             <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.95] mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-6xl mx-auto">
-              Launch Your <br /> Business. <br /> <span className="text-emerald-700">In 7 Days.</span>
+              Launch Your <br /> Business <br /> <span className="text-emerald-700">In 7 Days</span>
             </h1>
 
             <p className="text-base sm:text-xl md:text-2xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-10">
-              We genuinely love building businesses and watching founders succeed. We set up your entire digital nervous system: Website, Domain & SSL, CRM, Google Indexing, and Autonomous AI Agents deployed in days.
+              We genuinely love building businesses and watching founders succeed. We set up your entire digital nervous system: Website, Domain and SSL, CRM, Google Indexing, and Autonomous AI Agents deployed in days.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -47,14 +47,14 @@ const Index = () => {
                 <Link to="/contact">Book Free Consultation Call</Link>
               </Button>
               <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-8 sm:px-10 py-7 rounded-none font-black text-base sm:text-lg uppercase tracking-tight btn-hover">
-                <Link to="/packages">Explore All Packages (7-28d)</Link>
+                <Link to="/packages">Explore All Packages (7 to 28 Days)</Link>
               </Button>
             </div>
 
             {/* Reassurance points */}
             <div className="flex flex-wrap justify-center items-center gap-6 mt-12 pt-8 border-t border-zinc-200 mono text-xs uppercase tracking-wider text-zinc-600">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-emerald-600" /> 100% Code & Asset Ownership
+                <CheckCircle2 size={15} className="text-emerald-600" /> 100% Code and Asset Ownership
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={15} className="text-emerald-600" /> Sub 1.5s Global Load Speed
@@ -76,7 +76,7 @@ const Index = () => {
           <SectionLabel>The Core Modules</SectionLabel>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase text-zinc-950 tracking-tight">
-              Systems Built <br /> <span className="text-emerald-700">To Generate Revenue.</span>
+              Systems Built <br /> <span className="text-emerald-700">To Generate Revenue</span>
             </h2>
             <p className="text-zinc-600 text-sm md:text-base max-w-md">
               Every module is designed to eliminate manual bottlenecks and help your business scale effortlessly from day one.
@@ -85,12 +85,12 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Website, Domain & SSL", icon: <Globe />, desc: "Sub-second digital storefront with custom domain acquisition, SSL encryption, and Google Search indexing.", link: "/services/website-development" },
-              { title: "CRM & Sales Systems", icon: <BarChart3 />, desc: "Automated lead capture, instant SMS routing, and 60-second response pipelines.", link: "/services/crm-sales" },
+              { title: "Website, Domain and SSL", icon: <Globe />, desc: "Sub-second digital storefront with custom domain acquisition, SSL encryption, and Google Search indexing.", link: "/services/website-development" },
+              { title: "CRM and Sales Systems", icon: <BarChart3 />, desc: "Automated lead capture, instant SMS routing, and 60-second response pipelines.", link: "/services/crm-sales" },
               { title: "AI Agent Development", icon: <Bot />, desc: "Autonomous intelligent agents that answer inquiries, qualify leads, and book calls 24/7.", link: "/services/ai-agents" },
-              { title: "Workflow Automation", icon: <Zap />, desc: "Eliminate repetitive manual tasks with Make.com & Zapier pipelines that run automatically.", link: "/services/ai-automation" },
-              { title: "Custom Apps & Fleets", icon: <Code />, desc: "Turn complex business logic into high-performance web software and AI agent fleets.", link: "/services/custom-apps" },
-              { title: "Operations & HR", icon: <Settings />, desc: "Documented SOP wikis, payroll setups, and bulletproof team onboarding systems.", link: "/services/operations-hr" }
+              { title: "Workflow Automation", icon: <Zap />, desc: "Eliminate repetitive manual tasks with Make.com and Zapier pipelines that run automatically.", link: "/services/ai-automation" },
+              { title: "Custom Apps and Fleets", icon: <Code />, desc: "Turn complex business logic into high-performance web software and AI agent fleets.", link: "/services/custom-apps" },
+              { title: "Operations and HR", icon: <Settings />, desc: "Documented SOP wikis, payroll setups, and bulletproof team onboarding systems.", link: "/services/operations-hr" }
             ].map((s, i) => (
               <Link key={i} to={s.link} className="border border-zinc-200 p-8 bg-zinc-50/50 hover:bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block">
                 <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform">
@@ -123,7 +123,7 @@ const Index = () => {
             <div>
               <SectionLabel>The Calpir Unified Stack</SectionLabel>
               <h2 className="text-3xl sm:text-5xl md:text-6xl mb-6 text-zinc-950 font-black leading-tight">
-                Everything Connected. <br /> Everything Working Together.
+                Everything Connected <br /> Everything Working Together
               </h2>
               <p className="text-base sm:text-lg text-zinc-600 leading-relaxed mb-6">
                 Most businesses struggle with 6 to 8 disconnected tools. We build one integrated ecosystem where your website feeds your CRM, your CRM triggers automations, and your AI agents handle client communication 24/7.

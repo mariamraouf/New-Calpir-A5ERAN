@@ -30,10 +30,10 @@ const questions: Question[] = [
     id: 'stage',
     title: "What stage is your business at right now?",
     options: [
-      { label: "Pre launch — I have a clear idea and want to launch properly", value: "pre-launch" },
-      { label: "Just launched — Under 6 months, getting initial customers", value: "just-launched" },
-      { label: "Growing — 6 months to 2 years, ready to automate and scale", value: "growing" },
-      { label: "Established — 2+ years, modernising infrastructure with AI", value: "established" }
+      { label: "Pre launch: I have a clear idea and want to launch properly", value: "pre-launch" },
+      { label: "Just launched: Under 6 months, getting initial customers", value: "just-launched" },
+      { label: "Growing: 6 months to 2 years, ready to automate and scale", value: "growing" },
+      { label: "Established: 2+ years, modernising infrastructure with AI", value: "established" }
     ]
   },
   {
@@ -119,15 +119,15 @@ const Assessment = () => {
 
     const recommendations = [
       {
-        title: "Domain Setup, SSL Certificate & Instant Google Search Indexing",
-        desc: "We secure your custom domain, activate 256-bit SSL encryption, and submit XML sitemaps to Google Search Console for day-one indexing."
+        title: "Domain Setup, SSL Certificate and Instant Google Search Indexing",
+        desc: "We secure your custom domain, activate 256-bit SSL encryption, and submit XML sitemaps to Google Search Console for day one indexing."
       },
       {
         title: "Sub-1.5s High-Conversion Web Architecture",
         desc: "Upgrade to modern React and Next.js edge architecture designed for high conversion, mobile responsiveness, and 100/100 Core Web Vitals."
       },
       {
-        title: "Automated CRM & 60-Second Lead Routing",
+        title: "Automated CRM and 60-Second Lead Routing",
         desc: "Deploy HubSpot or GoHighLevel with instant SMS alerts so every new inquiry is contacted within 60 seconds."
       },
       {
@@ -242,14 +242,14 @@ const Assessment = () => {
               <div className="text-center">
                 <SectionLabel>Analysis Complete</SectionLabel>
                 <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-zinc-950 mb-4">
-                  Your Systems <br /> <span className="text-emerald-700">Blueprint.</span>
+                  Your Systems <br /> <span className="text-emerald-700">Blueprint</span>
                 </h1>
                 <p className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto">
                   We have mapped out your exact operational bottlenecks and projected ROI improvements.
                 </p>
               </div>
 
-              {/* Preliminary Metrics - Red used for Financial Drag Attention */}
+              {/* Preliminary Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="border border-rose-200 p-8 bg-rose-50/60 shadow-sm">
                   <div className="mono text-xs uppercase tracking-widest text-rose-700 font-bold mb-3">
@@ -347,7 +347,7 @@ const Assessment = () => {
                         <Loader2 className="animate-spin" />
                       ) : (
                         <>
-                          <Sparkles size={18} /> Unlock & Send Full Report
+                          <Sparkles size={18} /> Unlock and Send Full Report
                         </>
                       )}
                     </Button>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Linkedin, MapPin, Mail, Phone, Heart } from 'lucide-react';
+import { Linkedin, Facebook, Instagram, MapPin, Mail, Phone, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -24,7 +24,7 @@ const Footer = () => {
             <span className="text-2xl font-black tracking-tight uppercase text-zinc-950">Calpir</span>
           </Link>
           <p className="text-sm leading-relaxed text-zinc-600 max-w-[380px]">
-            We genuinely love building businesses and watching founders succeed. We’re your technical squad—setting up your entire digital engine so you can focus on building something meaningful.
+            We genuinely love building businesses and watching founders succeed. We are your technical squad setting up your entire digital engine so you can focus on building something meaningful.
           </p>
           <div className="space-y-2 pt-2">
             <div className="flex items-center gap-2.5 text-xs mono text-zinc-700">
@@ -49,7 +49,7 @@ const Footer = () => {
         <div className="space-y-4">
           <h4 className="text-zinc-950 font-black uppercase text-xs tracking-widest mono border-b border-zinc-200 pb-2">Solutions</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><Link to="/packages" className="text-emerald-700 hover:text-emerald-800 font-bold transition-colors">Launch Packages (7-28d)</Link></li>
+            <li><Link to="/packages" className="text-emerald-700 hover:text-emerald-800 font-bold transition-colors">Launch Packages (7 to 28 Days)</Link></li>
             <li><Link to="/solo-services" className="text-zinc-600 hover:text-emerald-700 transition-colors">All Solo Services</Link></li>
             <li><Link to="/software-stack" className="text-zinc-600 hover:text-emerald-700 transition-colors">Our Software Stack</Link></li>
             <li><Link to="/assessment" className="text-zinc-600 hover:text-emerald-700 transition-colors">Free Growth Assessment</Link></li>
@@ -77,9 +77,32 @@ const Footer = () => {
             <li><Link to="/about" className="text-zinc-600 hover:text-emerald-700 transition-colors">Our Story & Mission</Link></li>
             <li><Link to="/blog" className="text-zinc-600 hover:text-emerald-700 transition-colors">Intelligence Hub / Blog</Link></li>
             <li><Link to="/contact" className="text-zinc-600 hover:text-emerald-700 transition-colors">Book Strategy Call</Link></li>
-            <li className="pt-2">
-              <a href="https://linkedin.com/company/calpir" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-zinc-700 hover:text-emerald-700 transition-colors text-sm font-bold">
-                <Linkedin size={16} className="text-emerald-600" /> <span>LinkedIn Profile</span>
+            
+            {/* Social Links */}
+            <li className="pt-2 flex flex-col gap-2">
+              <a 
+                href="https://www.instagram.com/calpir_/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2 text-zinc-700 hover:text-emerald-700 transition-colors text-sm font-bold"
+              >
+                <Instagram size={16} className="text-emerald-600" /> <span>Instagram</span>
+              </a>
+              <a 
+                href="https://www.facebook.com/people/Calpir/61593821930684/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2 text-zinc-700 hover:text-emerald-700 transition-colors text-sm font-bold"
+              >
+                <Facebook size={16} className="text-emerald-600" /> <span>Facebook</span>
+              </a>
+              <a 
+                href="https://linkedin.com/company/calpir" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2 text-zinc-700 hover:text-emerald-700 transition-colors text-sm font-bold"
+              >
+                <Linkedin size={16} className="text-emerald-600" /> <span>LinkedIn</span>
               </a>
             </li>
           </ul>

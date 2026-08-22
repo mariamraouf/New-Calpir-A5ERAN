@@ -49,7 +49,7 @@ const Navbar = () => {
             <span className="text-2xl font-black tracking-tight uppercase text-zinc-950 group-hover:text-emerald-700 transition-colors">
               Calpir
             </span>
-            <span className="mono text-[9px] uppercase tracking-widest text-emerald-700 font-bold -mt-1 hidden sm:block">
+            <span className="mono text-[9px] uppercase tracking-widest text-emerald-700 font-bold hidden sm:block">
               Your Systems Squad
             </span>
           </div>
@@ -115,7 +115,7 @@ const Navbar = () => {
         <div className="flex flex-col p-6 gap-3">
           <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-1">Services & Solo Offerings</div>
           <Link to="/solo-services" onClick={() => setIsOpen(false)} className="text-base font-bold uppercase text-emerald-900 bg-emerald-50 p-3 border border-emerald-200">
-            ⚡ Browse All Solo Services (À La Carte)
+            Browse All Solo Services (À La Carte)
           </Link>
           {services.slice(1).map((s) => (
             <Link key={s.name} to={s.href} onClick={() => setIsOpen(false)} className="text-sm font-bold uppercase text-zinc-800 hover:text-emerald-700 transition-colors py-1">
