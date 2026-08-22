@@ -9,13 +9,16 @@ interface SoftwareLogoProps {
   className?: string;
 }
 
+// Emerald green filter that tints any icon or image into #059669
+const EMERALD_FILTER = "invert(42%) sepia(85%) saturate(720%) hue-rotate(128deg) brightness(92%) contrast(97%)";
+
 const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   const [stage, setStage] = useState<number>(0);
 
-  // Stage 0: SimpleIcons official CDN with classic emerald tint
-  // Stage 1: Unavatar domain icon
-  // Stage 2: Google S2 high-res favicon
-  // Stage 3: Monogram brand badge fallback
+  // Stage 0: SimpleIcons official CDN with #059669 emerald color
+  // Stage 1: Unavatar domain icon with emerald filter
+  // Stage 2: Google S2 high-res favicon with emerald filter
+  // Stage 3: Branded emerald monogram badge
 
   const primaryUrl = `https://cdn.simpleicons.org/${tool.slug}/059669`;
   const unavatarUrl = tool.domain ? `https://unavatar.io/${tool.domain}` : `https://unavatar.io/${tool.slug}`;
@@ -35,7 +38,7 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   };
 
   if (!currentSource || stage >= 3) {
-    // Generate initials (e.g., "GH" for GoHighLevel, "AP" for Activepieces)
+    // Generate initials (e.g. "GH" for GoHighLevel, "AP" for Activepieces)
     const initials = tool.name
       .split(' ')
       .map((w) => w[0])
@@ -46,7 +49,7 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
     return (
       <div 
         className={cn(
-          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-800 font-black text-xs flex items-center justify-center mono shrink-0 shadow-sm",
+          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-700 font-black text-xs flex items-center justify-center mono shrink-0 shadow-sm transition-transform group-hover:scale-105",
           className
         )}
         title={tool.name}
@@ -57,10 +60,16 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   }
 
   return (
-    <div className={cn("w-10 h-10 bg-zinc-50 border border-zinc-200 flex items-center justify-center p-2 group-hover:border-emerald-600 transition-colors shrink-0", className)}>
+    <div 
+      className={cn(
+        "w-10 h-10 bg-emerald-50/50 border border-emerald-100 group-hover:border-emerald-500 flex items-center justify-center p-2 transition-all shrink-0 shadow-sm", 
+        className
+      )}
+    >
       <img
         src={currentSource}
         alt={`${tool.name} Logo`}
+        style={stage > 0 ? { filter: EMERALD_FILTER } : undefined}
         className="w-full h-full object-contain group-hover:scale-110 transition-transform"
         onError={handleImageError}
         loading="lazy"
