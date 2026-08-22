@@ -26,35 +26,6 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    <dyad-write path="src/pages/Contact.tsx" description="Complete the Contact page with white background, black headings and inputs, classic green buttons, and red validation alerts">
-"use client";
-
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Sparkles, Loader2, CheckCircle2, Send } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import SectionLabel from '@/components/ui/SectionLabel';
-import BookingSystem from '@/components/booking/BookingSystem';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
-import { showSuccess, showError } from '@/utils/toast';
-
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    package: 'Starter Launch Package ($1,499)',
-    message: ''
-  });
-  const [isHuman, setIsHuman] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
     if (!isHuman) {
       showError("Please check the human verification box before submitting.");
       return;
@@ -117,7 +88,7 @@ const Contact = () => {
                 Let's Build Something Meaningful Together.
               </h2>
               <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
-                Whether you need a full 7-day launch package, custom AI agents, or specific à la carte setup, we respond fast with zero corporate fluff.
+                Whether you need a full 7 day launch package, custom AI agents, or specific à la carte setup, we respond fast with zero corporate fluff.
               </p>
               
               <div className="space-y-4 pt-2">

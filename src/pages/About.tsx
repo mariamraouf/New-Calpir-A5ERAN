@@ -29,38 +29,6 @@ const About = () => {
           <motion.div {...reveal}>
             <SectionLabel>The Mission</SectionLabel>
             <h1 className="text-5xl md:text-8xl leading-[0.9] mb-12 font-black uppercase tracking-tight text-zinc-950">
-              Built by <br /> <span className="text-emerald-700">Founders</span> <br /> for<dyad-write path="src/pages/About.tsx" description="Complete the About page with white background, black headings, classic green accents, and red alert highlights">
-"use client";
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
-import { Zap, Users, Target, Shield } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import SystemStatus from '@/components/visuals/SystemStatus';
-
-const About = () => {
-  const reveal = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.5, ease: "easeOut" }
-  } as const;
-
-  return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      
-      {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom">
-          <motion.div {...reveal}>
-            <SectionLabel>The Mission</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-12 font-black uppercase tracking-tight text-zinc-950">
               Built by <br /> <span className="text-emerald-700">Founders</span> <br /> for Founders.
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
