@@ -1,58 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, ShieldCheck, HeartHandshake, Zap } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
-import { Button } from '@/<dyad-write path="src/pages/SoftwareStack.tsx" description="Brand new page detailing all platforms and software we master, with reassuring guidance">
-"use client";
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, ShieldCheck, HeartHandshake, Zap, Layers, Sparkles } from 'lucide-react';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-
-interface ToolCategory {
-  category: string;
-  badge: string;
-  desc: string;
-  tools: {
-    name: string;
-    useCase: string;
-    level: string;
-  }[];
-}
-
-const softwareCategories: ToolCategory[] = [
-  {
-    category: "CRM & Sales Engines",
-    badge: "REVENUE // PIPELINES",
-    desc: "We configure, clean up, and automate your entire customer lifecycle.",
-    tools: [
-      { name: "HubSpot", useCase: "B2B sales pipelines, deal stages & marketing automation", level: "Certified Pro" },
-      { name: "GoHighLevel (GHL)", useCase: "All-in-one SMS, call tracking, funnels & client booking", level: "Mastery" },
-      { name: "Salesforce Sales Cloud", useCase: "Enterprise data models & custom object pipelines", level: "Advanced" },
-      { name: "Zoho CRM & Bigin", useCase: "Lean startup contact management & email sync", level: "Proficient" },
-      { name: "Pipedrive", useCase: "Visual activity-based sales routing & deal scoring", level: "Expert" }
-    ]
-  },
-  {
-    category: "Web & Frontend Architecture",
-    badge: "PERFORMANCE // SPEED",
-    desc: "Blazing sub-second websites engineered for high conversion and<dyad-write path="src/pages/SoftwareStack.tsx" description="Brand new page detailing all platforms and software we master, with reassuring guidance">
-"use client";
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, ShieldCheck, HeartHandshake, Zap, Layers, Sparkles } from 'lucide-react';
+import { CheckCircle2, ArrowRight, HeartHandshake } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
