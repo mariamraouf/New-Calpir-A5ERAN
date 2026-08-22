@@ -9,13 +9,13 @@ import {
 import { cn } from '@/lib/utils';
 
 const nodes = [
-  { id: 'website', icon: <Globe className="w-5 h-5 md:w-6 md:h-6" />, label: 'Website & SEO', angle: 0 },
-  { id: 'crm', icon: <BarChart3 className="w-5 h-5 md:w-6 md:h-6" />, label: 'CRM & Sales', angle: 51.4 },
-  { id: 'marketing', icon: <Megaphone className="w-5 h-5 md:w-6 md:h-6" />, label: 'Marketing & Social', angle: 102.8 },
-  { id: 'ops', icon: <Settings className="w-5 h-5 md:w-6 md:h-6" />, label: 'Operations & HR', angle: 154.2 },
-  { id: 'ai-agents', icon: <Bot className="w-5 h-5 md:w-6 md:h-6" />, label: 'AI Agents', angle: 205.6 },
-  { id: 'automation', icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />, label: 'Automation', angle: 257 },
-  { id: 'strategy', icon: <Brain className="w-5 h-5 md:w-6 md:h-6" />, label: 'AI Strategy', angle: 308.4 },
+  { id: 'website', icon: <Globe className="w-7 h-7 md:w-8 md:h-8" />, label: 'WEBSITE', angle: 0 },
+  { id: 'crm', icon: <BarChart3 className="w-7 h-7 md:w-8 md:h-8" />, label: 'CRM', angle: 51.4 },
+  { id: 'marketing', icon: <Megaphone className="w-7 h-7 md:w-8 md:h-8" />, label: 'MARKETING', angle: 102.8 },
+  { id: 'ops', icon: <Settings className="w-7 h-7 md:w-8 md:h-8" />, label: 'OPERATIONS', angle: 154.2 },
+  { id: 'ai-agents', icon: <Bot className="w-7 h-7 md:w-8 md:h-8" />, label: 'AI AGENTS', angle: 205.6 },
+  { id: 'automation', icon: <Zap className="w-7 h-7 md:w-8 md:h-8" />, label: 'AUTOMATION', angle: 257 },
+  { id: 'strategy', icon: <Brain className="w-7 h-7 md:w-8 md:h-8" />, label: 'AI STRATEGY', angle: 308.4 },
 ];
 
 interface ConnectedEcosystemProps {
@@ -29,20 +29,19 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
   highlightedNode, 
   compact = false 
 }) => {
-  // Much larger default size (480px on desktop)
-  const size = compact ? 280 : 500;
+  const size = compact ? 300 : 520;
   const centerX = size / 2;
   const centerY = size / 2;
-  const radius = compact ? 100 : 185;
-  const nodeBoxSize = compact ? 42 : 64;
-  const logoSize = compact ? 60 : 96;
+  const radius = compact ? 105 : 190;
+  const nodeBoxSize = compact ? 50 : 80;
+  const logoSize = compact ? 65 : 105;
 
   return (
     <div 
       className={cn("relative select-none flex items-center justify-center shrink-0 max-w-full", className)}
       style={{ width: `${size}px`, height: `${size}px` }}
     >
-      {/* Background Soft Pulsing Glow Aura */}
+      {/* Background Soft Pulsing Glow */}
       <motion.div 
         className="absolute rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"
         style={{
@@ -51,7 +50,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         }}
         animate={{
           scale: [0.9, 1.15, 0.9],
-          opacity: [0.4, 0.7, 0.4],
+          opacity: [0.35, 0.65, 0.35],
         }}
         transition={{
           duration: 4,
@@ -70,12 +69,12 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
           cy={centerY} 
           r={radius} 
           fill="none" 
-          stroke="#d1fae5" 
+          stroke="#a7f3d0" 
           strokeWidth="1.5" 
           strokeDasharray="4 6" 
         />
 
-        {/* Connecting Lines & Animated Flowing Data Packets */}
+        {/* Connecting Lines & Animated Flowing Data Pulses */}
         {nodes.map((node, i) => {
           const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180);
           const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180);
@@ -90,8 +89,16 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
                 x2={x}
                 y2={y}
                 stroke={isHighlighted ? "#059669" : "#6ee7b7"}
-                strokeWidth={isHighlighted ? "2.5" : "1.8"}
-                strokeOpacity={isHighlighted ? 1 : 0.65}
+                strokeWidth={isHighlighted ? "2.5" : "1.75"}
+                strokeOpacity={isHighlighted ? 1 : 0.7}
+              />
+
+              {/* Little static node dot on the orbit line */}
+              <circle
+                cx={x}
+                cy={y}
+                r={3}
+                fill={isHighlighted ? "#047857" : "#059669"}
               />
 
               {/* Animated Moving Data Pulse Circle along the line */}
@@ -117,9 +124,9 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         })}
       </svg>
 
-      {/* Center Calpir Logo with smooth breathing aura & pulse */}
+      {/* Center Calpir Logo (No circle enclosing it, pure floating logo) */}
       <motion.div 
-        className="absolute z-20 flex items-center justify-center rounded-full bg-white shadow-[0_0_25px_rgba(5,150,105,0.22)] border-2 border-emerald-500/40 p-2 cursor-pointer"
+        className="absolute z-20 flex items-center justify-center cursor-pointer pointer-events-auto"
         style={{
           left: `${centerX - logoSize / 2}px`,
           top: `${centerY - logoSize / 2}px`,
@@ -127,12 +134,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
           height: `${logoSize}px`,
         }}
         animate={{ 
-          scale: [1, 1.07, 1],
-          boxShadow: [
-            "0 0 20px rgba(5,150,105,0.18)",
-            "0 0 35px rgba(5,150,105,0.38)",
-            "0 0 20px rgba(5,150,105,0.18)"
-          ]
+          scale: [1, 1.08, 1],
         }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -144,11 +146,11 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             }
           }}
           alt="Calpir Core" 
-          className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(5,150,105,0.3)]"
+          className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(5,150,105,0.35)]"
         />
       </motion.div>
 
-      {/* Outer Orbit Nodes with Floating Motion */}
+      {/* Outer Orbit Nodes (Pure floating icons and text, NO boxes) */}
       {nodes.map((node, index) => {
         const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
         const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
@@ -177,12 +179,10 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               },
               opacity: { duration: 0.6 },
             }}
-            whileHover={{ scale: 1.18, zIndex: 40 }}
+            whileHover={{ scale: 1.25, zIndex: 40 }}
             className={cn(
-              "absolute flex flex-col items-center justify-center transition-colors border shadow-md cursor-pointer group/node bg-white",
-              isActive 
-                ? "bg-emerald-700 text-white border-emerald-800 ring-4 ring-emerald-500/30 z-30" 
-                : "text-emerald-800 border-zinc-200 hover:border-emerald-600 hover:bg-emerald-50 hover:text-emerald-900 z-10"
+              "absolute flex flex-col items-center justify-center cursor-pointer group/node select-none transition-transform",
+              isActive ? "z-30 scale-110" : "z-10"
             )}
             style={{ 
               width: `${nodeBoxSize}px`,
@@ -191,15 +191,26 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               top: `${y}px`, 
             }}
           >
-            <div className="text-emerald-700 group-hover/node:text-emerald-900 transition-colors">
+            {/* Clean Floating Icon */}
+            <div className={cn(
+              "transition-all duration-200 p-1.5 rounded-full",
+              isActive 
+                ? "text-emerald-950 scale-115 drop-shadow-[0_0_12px_rgba(5,150,105,0.6)]" 
+                : "text-emerald-700 group-hover/node:text-emerald-900 group-hover/node:scale-115 group-hover/node:drop-shadow-[0_0_10px_rgba(5,150,105,0.4)]"
+            )}>
               {node.icon}
             </div>
 
-            {!compact && (
-              <span className="mono text-[8px] uppercase tracking-wider font-extrabold text-zinc-600 group-hover/node:text-emerald-800 mt-1 hidden md:block text-center leading-none px-1">
-                {node.label.split(' ')[0]}
-              </span>
-            )}
+            {/* Floating Label Below Icon */}
+            <span className={cn(
+              "mono uppercase tracking-wider font-black mt-1 text-center leading-none px-1 transition-colors",
+              compact ? "text-[8px]" : "text-[10px] md:text-[11px]",
+              isActive 
+                ? "text-emerald-950 font-extrabold" 
+                : "text-zinc-800 group-hover/node:text-emerald-800 font-bold"
+            )}>
+              {node.label}
+            </span>
           </motion.div>
         );
       })}
