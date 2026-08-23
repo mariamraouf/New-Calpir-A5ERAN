@@ -11,6 +11,7 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const Services = () => {
   const reveal = {
@@ -89,6 +90,11 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-white relative">
+      <MetaSEO 
+        title="Services | Calpir"
+        description="Everything Calpir builds: websites, CRM and sales systems, marketing, operations, AI agents and custom apps."
+        path="/services"
+      />
       <Navbar />
       
       {/* Hero */}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.calpir.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.calpir.com/packages</loc><priority>0.9</priority></url>
+  <url><loc>https://www.calpir.com/services</loc><priority>0.9</priority></url>
+  <url><loc>https://www.calpir.com/solo-services</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/case-studies</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/assessment</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/website-development</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/crm-sales</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/marketing-branding</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/operations-hr</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/ai-agents</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/ai-automation</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/ai-consulting</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/services/custom-apps</loc><priority>0.8</priority></url>
+  <url><loc>https://www.calpir.com/software-stack</loc><priority>0.7</priority></url>
+  <url><loc>https://www.calpir.com/about</loc><priority>0.7</priority></url>
+  <url><loc>https://www.calpir.com/contact</loc><priority>0.7</priority></url>
+  <url><loc>https://www.calpir.com/blog</loc><priority>0.7</priority></url>
+</urlset>

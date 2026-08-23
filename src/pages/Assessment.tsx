@@ -14,6 +14,7 @@ import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import PhoneInput from '@/components/ui/PhoneInput';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 interface QuestionOption {
   label: string;
@@ -189,6 +190,11 @@ const Assessment = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title="Free Business Assessment | Calpir"
+        description="Answer a few questions and get a clear picture of which parts of your business are ready to automate."
+        path="/assessment"
+      />
       <Navbar />
 
       <main className="pt-36 md:pt-44 pb-24 px-4 md:px-6">

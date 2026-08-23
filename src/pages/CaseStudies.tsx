@@ -9,6 +9,7 @@ import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const CaseStudies = () => {
   const reveal = {
@@ -89,6 +90,11 @@ const CaseStudies = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title="Case Studies | Calpir"
+        description="Real builds and real timelines: what we shipped for each client and what it changed for them."
+        path="/case-studies"
+      />
       <Navbar />
       
       <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">

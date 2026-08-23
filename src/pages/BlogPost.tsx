@@ -13,6 +13,7 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -21,6 +22,8 @@ const BlogPost = () => {
     'how-to-setup-new-business-2026': {
       tag: "FOUNDER_GUIDE",
       title: "How to Set Up a New Business in 2026: The Ultimate Founder's Blueprint",
+      seoTitle: "How to Set Up a New Business in 2026 | Calpir",
+      seoDesc: "A comprehensive step-by-step roadmap covering incorporation, legal structures, tech stack setup, and revenue engines.",
       author: "Calpir Experts",
       date: "March 28, 2026",
       readTime: "22 min read",
@@ -151,6 +154,11 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title={post.seoTitle || `${post.title} | Calpir`}
+        description={post.seoDesc || "Notes on AI automation, CRM design and launching a business faster."}
+        path={`/blog/${slug}`}
+      />
       <Navbar />
       
       {/* Hero */}

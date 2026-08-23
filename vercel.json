@@ -1,9 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "pnpm install --no-frozen-lockfile",
+  "redirects": [
+    {
+      "source": "/favicon.ico",
+      "destination": "/logo-with-transparent-background.png",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!.*\\.(?:ico|png|svg|jpg|jpeg|gif|webp|webmanifest|xml|txt|json|js|css)$).*)",
       "destination": "/index.html"
     }
   ]

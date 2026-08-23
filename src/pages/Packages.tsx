@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { Link } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const Packages = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -116,6 +117,11 @@ const Packages = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title="Packages & Pricing | Calpir"
+        description="Fixed-scope launch packages that take a business from idea to running infrastructure in 7-28 days."
+        path="/packages"
+      />
       <Navbar />
       
       <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
@@ -199,7 +205,7 @@ const Packages = () => {
                   <span className="w-3 h-3 bg-emerald-600 rounded-full inline-block" />
                   <span className="text-emerald-800 font-bold">Included</span>
                 </div>
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-4 mono text-xs">
                   <span className="w-3 h-3 bg-rose-600 rounded-full inline-block" />
                   <span className="text-rose-700 font-bold">Not Included</span>
                 </div>

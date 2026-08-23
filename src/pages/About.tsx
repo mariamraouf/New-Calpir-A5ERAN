@@ -10,6 +10,7 @@ import { Zap, Users, Target, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SystemStatus from '@/components/visuals/SystemStatus';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const About = () => {
   const reveal = {
@@ -21,6 +22,11 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title="About Calpir | Calpir"
+        description="Who we are, how we work, and why we build entire business systems instead of standalone websites."
+        path="/about"
+      />
       <Navbar />
       
       {/* Hero */}

@@ -10,6 +10,7 @@ import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 interface SoloServiceItem {
   id: string;
@@ -128,6 +129,11 @@ const SoloServices = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title="Solo Services | Calpir"
+        description="Book individual services on their own — website, CRM, automation or AI agents — without a full package."
+        path="/solo-services"
+      />
       <Navbar />
 
       <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">

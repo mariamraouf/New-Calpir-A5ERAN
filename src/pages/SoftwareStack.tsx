@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Link } from 'react-router-dom';
 import { allSoftwareStack, softwareCategoriesList } from '@/data/softwareCatalog';
 import { cn } from '@/lib/utils';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const SoftwareStack = () => {
   const [search, setSearch] = useState('');
@@ -31,6 +32,11 @@ const SoftwareStack = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <MetaSEO 
+        title="Software Stack | Calpir"
+        description="The tools Calpir builds on and why: CRM, automation, hosting and AI infrastructure chosen to stay cheap to run."
+        path="/software-stack"
+      />
       <Navbar />
 
       {/* Hero */}

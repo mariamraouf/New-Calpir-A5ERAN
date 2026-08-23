@@ -13,6 +13,7 @@ import ConnectedEcosystem from '@/components/visuals/ConnectedEcosystem';
 import ROICalculator from '@/components/home/ROICalculator';
 import FAQ from '@/components/home/FAQ';
 import SectorsSection from '@/components/home/SectorsSection';
+import MetaSEO from '@/components/seo/MetaSEO';
 
 const Index = () => {
   const reveal = {
@@ -24,6 +25,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
+      <MetaSEO 
+        title="Calpir | All-in-One Business Launch & AI Automation"
+        description="Calpir deploys your entire business infrastructure — website, CRM, operations and AI agents — in 7-28 days."
+        path="/"
+      />
       <Navbar />
       
       {/* Hero Section */}
