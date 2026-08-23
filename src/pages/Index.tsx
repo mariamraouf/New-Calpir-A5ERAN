@@ -33,40 +33,41 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-36 sm:pt-44 md:pt-48 pb-20 md:pb-28 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
+      <section className="pt-32 sm:pt-40 md:pt-44 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
         <div className="container-custom text-center">
           <motion.div {...reveal}>
-            <div className="inline-flex items-center gap-2 border border-emerald-300 bg-emerald-50 px-4 py-2 mb-8 mono text-xs uppercase tracking-widest text-emerald-800 font-bold shadow-sm">
-              <Sparkles size={14} className="text-emerald-600" /> Bristol Based Business Infrastructure & AI Squad
+            <div className="inline-flex items-center gap-2 border border-emerald-300 bg-emerald-50 px-3.5 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8 mono text-[11px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold shadow-sm rounded-none">
+              <Sparkles size={14} className="text-emerald-600 shrink-0" /> Bristol Based Business Infrastructure & AI Squad
             </div>
 
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7.5rem] leading-[0.95] mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-6xl mx-auto">
-              Launch Your <br /> Business <br /> <span className="text-emerald-700">In 7 Days</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.8rem] leading-[1.02] sm:leading-[0.96] mb-6 sm:mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-5xl mx-auto">
+              Launch Your Business <br className="hidden sm:inline" />
+              <span className="text-emerald-700">In 7 Days</span>
             </h1>
 
-            <p className="text-base sm:text-xl md:text-2xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-10">
+            <p className="text-base sm:text-lg md:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-8 sm:mb-10">
               We genuinely love building businesses and watching founders succeed. We set up your entire digital nervous system: Website, Domain and SSL, CRM, Google Indexing, and Autonomous AI Agents deployed in days.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 sm:px-10 py-7 rounded-none font-black text-base sm:text-lg uppercase tracking-tight btn-hover">
+            <div className="flex flex-col sm:flex-row gap-3.5 sm:gap-4 justify-center items-center max-w-xl mx-auto">
+              <Button asChild className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-7 sm:px-9 py-6 sm:py-7 rounded-none font-black text-sm sm:text-base uppercase tracking-tight btn-hover shadow-md">
                 <Link to="/contact">Book Free Consultation Call</Link>
               </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-8 sm:px-10 py-7 rounded-none font-black text-base sm:text-lg uppercase tracking-tight btn-hover">
+              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-7 sm:px-9 py-6 sm:py-7 rounded-none font-black text-sm sm:text-base uppercase tracking-tight btn-hover">
                 <Link to="/packages">Explore All Packages (7 to 28 Days)</Link>
               </Button>
             </div>
 
             {/* Reassurance points */}
-            <div className="flex flex-wrap justify-center items-center gap-6 mt-12 pt-8 border-t border-zinc-200 mono text-xs uppercase tracking-wider text-zinc-600">
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-zinc-200 mono text-xs uppercase tracking-wider text-zinc-700 font-bold">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-emerald-600" /> 100% Code and Asset Ownership
+                <CheckCircle2 size={15} className="text-emerald-600 shrink-0" /> 100% Code & Asset Ownership
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-emerald-600" /> Sub 1.5s Global Load Speed
+                <CheckCircle2 size={15} className="text-emerald-600 shrink-0" /> Sub 1.5s Global Load Speed
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={15} className="text-emerald-600" /> Dedicated Post Launch Squad
+                <CheckCircle2 size={15} className="text-emerald-600 shrink-0" /> Dedicated Post-Launch Squad
               </div>
             </div>
           </motion.div>
@@ -122,10 +123,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ecosystem Visual - Large & Dynamic */}
+      {/* Ecosystem Visual */}
       <section id="ecosystem" className="section-padding border-b border-zinc-200 bg-gradient-to-b from-zinc-50 via-emerald-50/20 to-zinc-50 overflow-hidden">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             <div className="lg:col-span-5 space-y-6">
               <SectionLabel>The Calpir Unified Stack</SectionLabel>
               <h2 className="text-3xl sm:text-5xl md:text-6xl text-zinc-950 font-black leading-tight tracking-tight">
@@ -147,8 +148,8 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-7 flex justify-center items-center py-6">
-              <ConnectedEcosystem className="scale-95 sm:scale-105 md:scale-110" />
+            <div className="lg:col-span-7 flex justify-center items-center py-4 px-2">
+              <ConnectedEcosystem />
             </div>
           </div>
         </div>

@@ -9,13 +9,13 @@ import {
 import { cn } from '@/lib/utils';
 
 const nodes = [
-  { id: 'website', icon: <Globe className="w-6 h-6 md:w-7 md:h-7" />, label: 'WEBSITE', angle: 0, tag: '0.8s EDGE' },
-  { id: 'crm', icon: <BarChart3 className="w-6 h-6 md:w-7 md:h-7" />, label: 'CRM', angle: 51.4, tag: 'LIVE SYNC' },
-  { id: 'marketing', icon: <Megaphone className="w-6 h-6 md:w-7 md:h-7" />, label: 'MARKETING', angle: 102.8, tag: 'MULTI-CH' },
-  { id: 'ops', icon: <Settings className="w-6 h-6 md:w-7 md:h-7" />, label: 'OPERATIONS', angle: 154.2, tag: 'AUTO-SOP' },
-  { id: 'ai-agents', icon: <Bot className="w-6 h-6 md:w-7 md:h-7" />, label: 'AI AGENTS', angle: 205.6, tag: '24/7 FLEET' },
-  { id: 'automation', icon: <Zap className="w-6 h-6 md:w-7 md:h-7" />, label: 'AUTOMATION', angle: 257, tag: 'WEBHOOKS' },
-  { id: 'strategy', icon: <Brain className="w-6 h-6 md:w-7 md:h-7" />, label: 'AI STRATEGY', angle: 308.4, tag: 'ROADMAP' },
+  { id: 'website', icon: Globe, label: 'WEBSITE', angle: 0, tag: '0.8s EDGE' },
+  { id: 'crm', icon: BarChart3, label: 'CRM', angle: 51.4, tag: 'LIVE SYNC' },
+  { id: 'marketing', icon: Megaphone, label: 'MARKETING', angle: 102.8, tag: 'MULTI-CH' },
+  { id: 'ops', icon: Settings, label: 'OPERATIONS', angle: 154.2, tag: 'AUTO-SOP' },
+  { id: 'ai-agents', icon: Bot, label: 'AI AGENTS', angle: 205.6, tag: '24/7 FLEET' },
+  { id: 'automation', icon: Zap, label: 'AUTOMATION', angle: 257, tag: 'WEBHOOKS' },
+  { id: 'strategy', icon: Brain, label: 'AI STRATEGY', angle: 308.4, tag: 'ROADMAP' },
 ];
 
 interface ConnectedEcosystemProps {
@@ -31,62 +31,63 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
 }) => {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
-  const size = compact ? 310 : 540;
-  const centerX = size / 2;
-  const centerY = size / 2;
-  const radius = compact ? 110 : 205;
-  const nodeBoxSize = compact ? 56 : 84;
-  const logoSize = compact ? 70 : 110;
+  // SVG coordinate space
+  const viewBoxSize = 500;
+  const center = viewBoxSize / 2;
+  const radius = compact ? 140 : 175;
 
   const currentActive = hoveredNode || highlightedNode;
 
   return (
     <div 
-      className={cn("relative select-none flex items-center justify-center shrink-0 max-w-full my-auto", className)}
-      style={{ width: `${size}px`, height: `${size}px` }}
+      className={cn(
+        "relative select-none flex items-center justify-center mx-auto aspect-square w-full",
+        compact ? "max-w-[290px] sm:max-w-[320px]" : "max-w-[440px] sm:max-w-[500px] md:max-w-[520px]",
+        className
+      )}
     >
       {/* Background Multi-Layer Ambient Glow */}
       <motion.div 
-        className="absolute rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"
+        className="absolute rounded-full bg-emerald-500/10 blur-2xl md:blur-3xl pointer-events-none"
         style={{
-          width: `${size * 0.7}px`,
-          height: `${size * 0.7}px`,
+          width: '65%',
+          height: '65%',
         }}
         animate={{
-          scale: [0.92, 1.12, 0.92],
-          opacity: [0.35, 0.65, 0.35],
+          scale: [0.92, 1.1, 0.92],
+          opacity: [0.3, 0.6, 0.3],
         }}
         transition={{
-          duration: 4.5,
+          duration: 4,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
-      {/* SVG Vector Connection Rays & Smart Flowing Data Streams */}
+      {/* SVG Vector Connection Rays */}
       <svg 
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox={`0 0 ${size} ${size}`}
+        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+        viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       >
         <defs>
-          {/* Radial Gradient for central core aura */}
           <radialGradient id="coreAura" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0.25" />
+            <stop offset="0%" stopColor="#10b981" stopOpacity="0.22" />
             <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
           </radialGradient>
         </defs>
 
         {/* Central Core Ambient Ring */}
         <circle 
-          cx={centerX} 
-          cy={centerY} 
-          r={logoSize * 0.75} 
+          cx={center} 
+          cy={center} 
+          r={compact ? 50 : 70} 
           fill="url(#coreAura)"
         />
 
         {nodes.map((node, index) => {
-          const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180);
-          const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180);
+          const rad = (node.angle * Math.PI) / 180;
+          const x = center + radius * Math.cos(rad);
+          const y = center + radius * Math.sin(rad);
           const isSelected = currentActive === node.id;
           const isAnyHovered = currentActive !== null;
 
@@ -94,43 +95,41 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             <g key={`ray-group-${node.id}`}>
               {/* Base Connection Ray Line */}
               <line
-                x1={centerX}
-                y1={centerY}
+                x1={center}
+                y1={center}
                 x2={x}
                 y2={y}
                 stroke={isSelected ? "#059669" : "#a7f3d0"}
                 strokeWidth={isSelected ? 2.5 : 1.5}
-                strokeOpacity={isSelected ? 0.95 : isAnyHovered ? 0.3 : 0.6}
-                strokeDasharray={isSelected ? "none" : "none"}
+                strokeOpacity={isSelected ? 0.95 : isAnyHovered ? 0.25 : 0.6}
                 className="transition-all duration-300"
               />
 
-              {/* Smart Flowing Data Stream / Beam */}
+              {/* Animated Data Stream */}
               <line
-                x1={centerX}
-                y1={centerY}
+                x1={center}
+                y1={center}
                 x2={x}
                 y2={y}
                 stroke={isSelected ? "#10b981" : "#059669"}
-                strokeWidth={isSelected ? 3 : 2}
-                strokeDasharray={compact ? "6, 28" : "8, 38"}
-                strokeOpacity={isSelected ? 1 : 0.8}
-                className="transition-opacity"
+                strokeWidth={isSelected ? 2.8 : 1.8}
+                strokeDasharray="6, 26"
+                strokeOpacity={isSelected ? 1 : 0.75}
               >
                 <animate
                   attributeName="stroke-dashoffset"
-                  from={index % 2 === 0 ? "46" : "-46"}
+                  from={index % 2 === 0 ? "32" : "-32"}
                   to="0"
-                  dur={isSelected ? "1.1s" : `${2 + (index * 0.25)}s`}
+                  dur={isSelected ? "1s" : `${2 + (index * 0.2)}s`}
                   repeatCount="indefinite"
                 />
               </line>
 
-              {/* Glowing Pulse Head for Active Node */}
+              {/* Pulse head */}
               {isSelected && (
                 <circle r="3.5" fill="#047857">
                   <animateMotion
-                    path={`M ${centerX} ${centerY} L ${x} ${y}`}
+                    path={`M ${center} ${center} L ${x} ${y}`}
                     dur="1.2s"
                     repeatCount="indefinite"
                   />
@@ -141,20 +140,19 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         })}
       </svg>
 
-      {/* Center Calpir Logo Core */}
+      {/* Center Calpir Core Logo */}
       <motion.div 
-        className="absolute z-20 flex items-center justify-center cursor-pointer pointer-events-auto group/core"
+        className="absolute z-20 flex items-center justify-center cursor-pointer pointer-events-auto"
         style={{
-          left: `${centerX - logoSize / 2}px`,
-          top: `${centerY - logoSize / 2}px`,
-          width: `${logoSize}px`,
-          height: `${logoSize}px`,
+          width: compact ? '22%' : '20%',
+          height: compact ? '22%' : '20%',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
         }}
         whileHover={{ scale: 1.08 }}
-        animate={{ 
-          scale: [1, 1.05, 1],
-        }}
-        transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ scale: [1, 1.04, 1] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       >
         <img 
           src="/logo-with-transparent-background.png" 
@@ -164,16 +162,21 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             }
           }}
           alt="Calpir Core" 
-          className="w-full h-full object-contain drop-shadow-[0_6px_20px_rgba(5,150,105,0.3)] transition-transform duration-300"
+          className="w-full h-full object-contain drop-shadow-[0_4px_16px_rgba(5,150,105,0.35)] transition-transform duration-300"
         />
       </motion.div>
 
       {/* Orbiting Interactive System Nodes */}
       {nodes.map((node, index) => {
-        const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
-        const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
+        const rad = (node.angle * Math.PI) / 180;
+        // Calculate percentage position from center (50% + radiusRatio * cos/sin)
+        const radiusRatio = compact ? 29 : 35; // percentage distance
+        const leftPercent = 50 + radiusRatio * Math.cos(rad);
+        const topPercent = 50 + radiusRatio * Math.sin(rad);
+
         const isSelected = currentActive === node.id;
         const isDimmed = currentActive !== null && !isSelected;
+        const IconComponent = node.icon;
 
         return (
           <motion.div
@@ -183,66 +186,45 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ 
               opacity: isDimmed ? 0.45 : 1, 
-              scale: isSelected ? 1.18 : 1,
-              y: isSelected 
-                ? 0 
-                : [0, index % 2 === 0 ? -7 : 7, 0],
-              x: isSelected 
-                ? 0 
-                : [0, index % 2 === 0 ? 5 : -5, 0],
+              scale: isSelected ? 1.15 : 1,
             }}
-            transition={{
-              y: {
-                duration: 3.2 + (index * 0.35),
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              x: {
-                duration: 3.8 + (index * 0.35),
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              opacity: { duration: 0.2 },
-              scale: { duration: 0.25 }
-            }}
+            transition={{ duration: 0.2 }}
             className={cn(
-              "absolute flex flex-col items-center justify-center cursor-pointer group/node select-none transition-all",
+              "absolute flex flex-col items-center justify-center cursor-pointer group/node select-none -translate-x-1/2 -translate-y-1/2 transition-all",
               isSelected ? "z-40" : "z-10"
             )}
             style={{ 
-              width: `${nodeBoxSize}px`,
-              height: `${nodeBoxSize}px`,
-              left: `${x}px`, 
-              top: `${y}px`, 
+              left: `${leftPercent}%`, 
+              top: `${topPercent}%`, 
             }}
           >
-            {/* Floating Icon with Active Glow */}
+            {/* Floating Icon */}
             <div className={cn(
-              "transition-all duration-300 p-2 rounded-full",
+              "transition-all duration-300 p-2 md:p-2.5 rounded-full border shadow-sm flex items-center justify-center",
               isSelected 
-                ? "text-emerald-950 bg-emerald-100/90 scale-125 shadow-[0_0_18px_rgba(5,150,105,0.45)] ring-2 ring-emerald-600/40" 
-                : "text-emerald-700 group-hover/node:text-emerald-900 group-hover/node:scale-120 group-hover/node:drop-shadow-[0_0_12px_rgba(5,150,105,0.4)]"
+                ? "text-emerald-950 bg-emerald-100 border-emerald-400 scale-115 shadow-[0_0_16px_rgba(5,150,105,0.4)]" 
+                : "text-emerald-700 bg-white border-zinc-200 group-hover/node:border-emerald-500 group-hover/node:bg-emerald-50"
             )}>
-              {node.icon}
+              <IconComponent className={cn(compact ? "w-4 h-4" : "w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6")} />
             </div>
 
-            {/* Main Label */}
+            {/* Label */}
             <span className={cn(
-              "mono uppercase tracking-wider font-black mt-1 text-center leading-none px-1 transition-colors",
-              compact ? "text-[8px]" : "text-[10px] md:text-[11px]",
+              "mono uppercase tracking-wider font-black mt-1 text-center leading-none px-1 whitespace-nowrap transition-colors",
+              compact ? "text-[8px]" : "text-[9px] sm:text-[10px] md:text-[11px]",
               isSelected 
                 ? "text-emerald-950 font-extrabold" 
-                : "text-zinc-800 group-hover/node:text-emerald-800 font-bold"
+                : "text-zinc-800 group-hover/node:text-emerald-800"
             )}>
               {node.label}
             </span>
 
-            {/* Smart Micro-Badge on Hover (Non-compact only) */}
+            {/* Smart Micro-Badge */}
             {!compact && isSelected && (
               <motion.span 
-                initial={{ opacity: 0, y: -3 }}
+                initial={{ opacity: 0, y: -2 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-1 mono text-[8px] uppercase tracking-widest font-black text-emerald-800 bg-emerald-50 px-1.5 py-0.5 border border-emerald-300 shadow-sm whitespace-nowrap"
+                className="mt-1 mono text-[8px] uppercase tracking-wider font-black text-emerald-800 bg-emerald-50 px-1.5 py-0.5 border border-emerald-300 shadow-sm whitespace-nowrap"
               >
                 {node.tag}
               </motion.span>

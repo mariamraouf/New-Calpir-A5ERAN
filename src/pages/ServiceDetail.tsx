@@ -219,16 +219,16 @@ const ServiceDetail = () => {
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-36 md:pt-44 pb-20 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div className="w-24 h-24 md:w-28 md:h-28 bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm">
+            <div className="w-20 h-20 md:w-24 md:h-24 bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm">
               {data.icon}
             </div>
             <div>
               <SectionLabel>Service Module Specification</SectionLabel>
-              <h1 className="text-3xl sm:text-4xl md:text-7xl font-black uppercase tracking-tight mb-4 text-zinc-950">{data.title}</h1>
-              <p className="text-lg md:text-2xl mono text-zinc-600">{data.tagline}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight mb-3 text-zinc-950">{data.title}</h1>
+              <p className="text-base md:text-xl mono text-zinc-600">{data.tagline}</p>
             </div>
           </div>
         </div>
@@ -254,7 +254,7 @@ const ServiceDetail = () => {
                   {data.included.map((item: string, i: number) => (
                     <div key={i} className="flex gap-4 p-4 border border-zinc-200 bg-zinc-50 items-start shadow-sm">
                       <CheckCircle2 className="text-emerald-600 shrink-0 mt-1" size={18} />
-                      <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-relaxed">{item}</span>
+                      <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-relaxed font-semibold">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -284,11 +284,11 @@ const ServiceDetail = () => {
                 </p>
 
                 {/* Compact Ecosystem Node Widget */}
-                <div className="w-full flex justify-center py-2 overflow-hidden">
+                <div className="w-full flex justify-center py-4">
                   <ConnectedEcosystem compact={true} highlightedNode={data.id} />
                 </div>
 
-                <p className="mono text-xs text-zinc-600 my-4 leading-relaxed max-w-xs">
+                <p className="mono text-xs text-zinc-600 my-4 leading-relaxed max-w-xs font-semibold">
                   This module connects directly with your broader business infrastructure to eliminate data silos.
                 </p>
 
