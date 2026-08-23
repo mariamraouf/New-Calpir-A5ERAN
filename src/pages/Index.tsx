@@ -40,49 +40,6 @@ const Index = () => {
               <Sparkles size={13} className="text-emerald-600 shrink-0" /> Bristol Based Business Infrastructure & AI Squad
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6.5rem] leading-[1.05]<dyad-write path="src/pages/Index.tsx" description="Complete Index.tsx with full responsive typography, CTA buttons, and mobile optimizations">
-"use client";
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Code, Layers, Sparkles, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
-import { Button } from '@/components/ui/button';
-import ConnectedEcosystem from '@/components/visuals/ConnectedEcosystem';
-import ROICalculator from '@/components/home/ROICalculator';
-import FAQ from '@/components/home/FAQ';
-import SectorsSection from '@/components/home/SectorsSection';
-import MetaSEO from '@/components/seo/MetaSEO';
-
-const Index = () => {
-  const reveal = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.5, ease: "easeOut" }
-  } as const;
-
-  return (
-    <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      <MetaSEO 
-        title="Calpir | All-in-One Business Launch & AI Automation"
-        description="Calpir deploys your entire business infrastructure — website, CRM, operations and AI agents — in 7-28 days."
-        path="/"
-      />
-      <Navbar />
-      
-      {/* Hero Section */}
-      <section className="pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
-        <div className="container-custom text-center">
-          <motion.div {...reveal}>
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 sm:px-4 py-1.5 mb-5 sm:mb-7 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold shadow-sm rounded-none">
-              <Sparkles size={13} className="text-emerald-600 shrink-0" /> Bristol Based Business Infrastructure & AI Squad
-            </div>
-
             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6.5rem] leading-[1.05] sm:leading-[0.96] mb-5 sm:mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-5xl mx-auto">
               Launch Your Business <br className="hidden sm:inline" />
               <span className="text-emerald-700">In 7 Days</span>
