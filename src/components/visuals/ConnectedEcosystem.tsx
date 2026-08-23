@@ -59,72 +59,34 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         }}
       />
 
-      {/* Orbit Track Dotted Ring */}
+      {/* Clean Connecting Lines Only (No outer dotted circle, No line dots) */}
       <svg 
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox={`0 0 ${size} ${size}`}
       >
-        <circle 
-          cx={centerX} 
-          cy={centerY} 
-          r={radius} 
-          fill="none" 
-          stroke="#a7f3d0" 
-          strokeWidth="1.5" 
-          strokeDasharray="4 6" 
-        />
-
-        {/* Connecting Lines & Animated Flowing Data Pulses */}
-        {nodes.map((node, i) => {
+        {nodes.map((node) => {
           const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180);
           const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180);
           const isHighlighted = highlightedNode === node.id;
 
           return (
             <g key={`line-group-${node.id}`}>
-              {/* Base Line */}
+              {/* Clean Ray Line */}
               <line
                 x1={centerX}
                 y1={centerY}
                 x2={x}
                 y2={y}
-                stroke={isHighlighted ? "#059669" : "#6ee7b7"}
-                strokeWidth={isHighlighted ? "2.5" : "1.75"}
-                strokeOpacity={isHighlighted ? 1 : 0.7}
-              />
-
-              {/* Little static node dot on the orbit line */}
-              <circle
-                cx={x}
-                cy={y}
-                r={3}
-                fill={isHighlighted ? "#047857" : "#059669"}
-              />
-
-              {/* Animated Moving Data Pulse Circle along the line */}
-              <motion.circle
-                r={compact ? 2.5 : 3.5}
-                fill="#047857"
-                initial={{ cx: centerX, cy: centerY, opacity: 0 }}
-                animate={{
-                  cx: [centerX, x, centerX],
-                  cy: [centerY, y, centerY],
-                  opacity: [0, 1, 0.8, 0],
-                  scale: [0.8, 1.4, 0.8],
-                }}
-                transition={{
-                  duration: 2.8 + (i * 0.3),
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.4,
-                }}
+                stroke={isHighlighted ? "#059669" : "#a7f3d0"}
+                strokeWidth={isHighlighted ? "2.5" : "1.5"}
+                strokeOpacity={isHighlighted ? 0.95 : 0.65}
               />
             </g>
           );
         })}
       </svg>
 
-      {/* Center Calpir Logo (No circle enclosing it, pure floating logo) */}
+      {/* Center Calpir Logo */}
       <motion.div 
         className="absolute z-20 flex items-center justify-center cursor-pointer pointer-events-auto"
         style={{
@@ -150,7 +112,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
         />
       </motion.div>
 
-      {/* Outer Orbit Nodes (Pure floating icons and text, NO boxes) */}
+      {/* Outer Orbit Nodes */}
       {nodes.map((node, index) => {
         const x = centerX + radius * Math.cos((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
         const y = centerY + radius * Math.sin((node.angle * Math.PI) / 180) - (nodeBoxSize / 2);
@@ -191,7 +153,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               top: `${y}px`, 
             }}
           >
-            {/* Clean Floating Icon */}
+            {/* Floating Icon */}
             <div className={cn(
               "transition-all duration-200 p-1.5 rounded-full",
               isActive 
@@ -201,7 +163,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
               {node.icon}
             </div>
 
-            {/* Floating Label Below Icon */}
+            {/* Label */}
             <span className={cn(
               "mono uppercase tracking-wider font-black mt-1 text-center leading-none px-1 transition-colors",
               compact ? "text-[8px]" : "text-[10px] md:text-[11px]",

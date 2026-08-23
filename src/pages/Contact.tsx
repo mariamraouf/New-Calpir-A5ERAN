@@ -164,13 +164,13 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                       <label className="mono text-xs uppercase text-zinc-700 font-bold block">
-                        Work Email *
+                        Email *
                       </label>
                       <Input
                         required
                         type="email"
                         name="email"
-                        placeholder="alex@company.com"
+                        placeholder="alex@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
@@ -178,10 +178,11 @@ const Contact = () => {
                     </div>
                     <div className="space-y-1.5">
                       <label className="mono text-xs uppercase text-zinc-700 font-bold block">
-                        Phone / WhatsApp
+                        Phone / WhatsApp (with country code)
                       </label>
                       <Input
-                        placeholder="+44 7000 000000"
+                        type="tel"
+                        placeholder="+1 555 0199 or +44 7..."
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"

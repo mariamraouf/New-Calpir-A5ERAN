@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { format, addDays, startOfDay, isBefore, addMinutes, parse, setHours, setMinutes } from 'date-fns';
 import { formatInTimeZone } from 'date-fns-tz';
-import { Calendar as CalendarIcon, Clock, User, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, User, CheckCircle2, ArrowRight, Loader2, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -13,13 +13,14 @@ import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 
 const timezones = [
-  "Europe/London",
-  "America/New_York",
-  "America/Los_Angeles",
-  "Europe/Paris",
-  "Asia/Dubai",
-  "Asia/Singapore",
-  "Australia/Sydney"
+  { value: "Europe/London", label: "London (GMT / BST)" },
+  { value: "America/New_York", label: "New York (EST / EDT)" },
+  { value: "America/Chicago", label: "Chicago (CST / CDT)" },
+  { value: "America/Los_Angeles", label: "Los Angeles (PST / PDT)" },
+  { value: "Europe/Paris", label: "Paris / Berlin (CET / CEST)" },
+  { value: "Asia/Dubai", label: "Dubai (GST)" },
+  { value: "Asia/Singapore", label: "Singapore / HK (SGT)" },
+  { value: "Australia/Sydney", label: "Sydney (AEST / AEDT)" }
 ];
 
 const BookingSystem = () => {
@@ -46,10 +47,14 @@ const BookingSystem = () => {
   const timeSlots = generateTimeSlots();
 
   const convertToUserTime = (ukTime: string) => {
-    const today = format(selectedDate, 'yyyy-MM-dd');
-    const ukDateTime = `${today} ${ukTime}`;
-    const date = parse(ukDateTime, 'yyyy-MM-dd HH:mm', new Date());
-    return formatInTimeZone(date, userTimezone, 'HH:mm');
+    try {
+      const today = format(selectedDate, 'yyyy-MM-dd');
+      const ukDateTime = `${today} ${ukTime}`;
+      const date = parse(ukDateTime, 'yyyy-MM-dd HH:mm', new Date());
+      return formatInTimeZone(date, userTimezone, 'HH:mm');
+    } catch {
+      return ukTime;
+    }
   };
 
   const handleBooking = async (e: React.FormEvent) => {
@@ -135,18 +140,21 @@ const BookingSystem = () => {
             </div>
 
             <div className="space-y-3">
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <label className="mono text-xs uppercase tracking-wider text-zinc-800 font-bold flex items-center gap-2">
                   <Clock size={16} className="text-emerald-600" /> 2. Select Time
                 </label>
-                <div className="w-44">
+                <div className="w-full sm:w-56">
                   <Select value={userTimezone} onValueChange={setUserTimezone}>
-                    <SelectTrigger className="bg-white border-zinc-300 mono text-[11px] text-zinc-950 uppercase h-8">
+                    <SelectTrigger className="bg-white border-zinc-300 mono text-[11px] text-zinc-950 uppercase h-9 rounded-none flex items-center gap-1.5 focus:ring-emerald-600">
+                      <Globe size={13} className="text-emerald-600 shrink-0" />
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-zinc-200 text-zinc-950">
+                    <SelectContent className="bg-white border-zinc-200 text-zinc-950 max-h-64 shadow-xl z-50">
                       {timezones.map((tz) => (
-                        <SelectItem key={tz} value={tz} className="mono text-xs uppercase hover:bg-emerald-50">{tz}</SelectItem>
+                        <SelectItem key={tz.value} value={tz.value} className="mono text-xs uppercase hover:bg-emerald-50 cursor-pointer">
+                          {tz.label}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -201,11 +209,11 @@ const BookingSystem = () => {
             </div>
             
             <div className="space-y-1.5">
-              <label className="mono text-xs uppercase text-zinc-700 font-bold block">Your Work Email *</label>
+              <label className="mono text-xs uppercase text-zinc-700 font-bold block">Email *</label>
               <Input 
                 required
                 name="email"
-                placeholder="alex@company.com" 
+                placeholder="alex@example.com" 
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}

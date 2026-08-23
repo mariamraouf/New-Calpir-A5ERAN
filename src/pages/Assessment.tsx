@@ -308,13 +308,13 @@ const Assessment = () => {
 
                     <div>
                       <label className="mono text-[11px] uppercase text-zinc-700 font-bold block mb-1.5">
-                        Work Email Address *
+                        Email Address *
                       </label>
                       <Input
                         required
                         type="email"
                         name="email"
-                        placeholder="alex@company.com"
+                        placeholder="alex@example.com"
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
                         className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
@@ -326,7 +326,8 @@ const Assessment = () => {
                         Phone / WhatsApp (Optional)
                       </label>
                       <Input
-                        placeholder="+44 7000 000000"
+                        type="tel"
+                        placeholder="+1 555 0199 or +44 7..."
                         value={userPhone}
                         onChange={(e) => setUserPhone(e.target.value)}
                         className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
