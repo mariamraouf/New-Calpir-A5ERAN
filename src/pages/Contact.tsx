@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
+import PhoneInput from '@/components/ui/PhoneInput';
 import { showSuccess, showError } from '@/utils/toast';
 
 const Contact = () => {
@@ -43,7 +44,7 @@ const Contact = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: formData.phone || 'Not provided',
           interestedPackage: formData.package,
           message: formData.message
         })
@@ -178,14 +179,12 @@ const Contact = () => {
                     </div>
                     <div className="space-y-1.5">
                       <label className="mono text-xs uppercase text-zinc-700 font-bold block">
-                        Phone / WhatsApp (with country code)
+                        Phone / WhatsApp
                       </label>
-                      <Input
-                        type="tel"
-                        placeholder="+1 555 0199 or +44 7..."
+                      <PhoneInput
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
+                        onChange={(val) => setFormData({ ...formData, phone: val })}
+                        placeholder="7346 875731"
                       />
                     </div>
                   </div>
@@ -197,7 +196,7 @@ const Contact = () => {
                     <select
                       value={formData.package}
                       onChange={(e) => setFormData({ ...formData, package: e.target.value })}
-                      className="w-full bg-white text-zinc-950 border border-zinc-300 rounded-none h-12 px-3 mono text-xs uppercase focus:border-emerald-600"
+                      className="w-full bg-white text-zinc-950 border border-zinc-300 rounded-none h-12 px-3 mono text-xs uppercase focus:border-emerald-600 cursor-pointer"
                     >
                       <option value="Starter Launch Package ($1,499)">Starter Launch Package ($1,499)</option>
                       <option value="Growth Launch Package ($3,499)">Growth Launch Package ($3,499)</option>

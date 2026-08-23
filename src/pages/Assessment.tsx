@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
+import PhoneInput from '@/components/ui/PhoneInput';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 
@@ -160,7 +161,7 @@ const Assessment = () => {
         body: JSON.stringify({
           recipientName: userName,
           email: userEmail,
-          phone: userPhone,
+          phone: userPhone || 'Not provided',
           stage: answers.stage,
           budgetTier: answers.burn,
           websiteState: answers.website,
@@ -308,7 +309,7 @@ const Assessment = () => {
 
                     <div>
                       <label className="mono text-[11px] uppercase text-zinc-700 font-bold block mb-1.5">
-                        Email Address *
+                        Email *
                       </label>
                       <Input
                         required
@@ -325,12 +326,10 @@ const Assessment = () => {
                       <label className="mono text-[11px] uppercase text-zinc-700 font-bold block mb-1.5">
                         Phone / WhatsApp (Optional)
                       </label>
-                      <Input
-                        type="tel"
-                        placeholder="+1 555 0199 or +44 7..."
+                      <PhoneInput
                         value={userPhone}
-                        onChange={(e) => setUserPhone(e.target.value)}
-                        className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
+                        onChange={(val) => setUserPhone(val)}
+                        placeholder="7346 875731"
                       />
                     </div>
 
