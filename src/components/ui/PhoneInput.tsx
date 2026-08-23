@@ -1,54 +1,48 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
 
-const countryCodes = [
-  { code: "+44", country: "UK", flag: "🇬🇧" },
-  { code: "+1", country: "US/CA", flag: "🇺🇸" },
-  { code: "+966", country: "SA", flag: "🇸🇦" },
-  { code: "+971", country: "UAE", flag: "🇦🇪" },
-  { code: "+49", country: "DE", flag: "🇩🇪" },
-  { code: "+33", country: "FR", flag: "🇫🇷" },
-  { code: "+34", country: "ES", flag: "🇪🇸" },
-  { code: "+39", country: "IT", flag: "🇮🇹" },
-  { code: "+31", country: "NL", flag: "🇳🇱" },
-  { code: "+61", country: "AU", flag: "🇦🇺" },
-  { code: "+65", country: "SG", flag: "🇸🇬" },
-  { code: "+91", country: "IN", flag: "🇮🇳" },
-  { code: "+20", country: "EG", flag: "🇪🇬" },
-  { code: "+965", country: "KW", flag: "🇰🇼" },
-  { code: "+974", country: "QA", flag: "🇶🇦" },
-  { code: "+968", country: "OM", flag: "🇴🇲" },
-  { code: "+973", country: "BH", flag: "🇧🇭" },
-  { code: "+27", country: "ZA", flag: "🇿🇦" },
-  { code: "+55", country: "BR", flag: "🇧🇷" },
-  { code: "+52", country: "MX", flag: "🇲🇽" },
-  { code: "+81", country: "JP", flag: "🇯🇵" },
-  { code: "+82", country: "KR", flag: "🇰🇷" },
-  { code: "+86", country: "CN", flag: "🇨🇳" },
-  { code: "+64", country: "NZ", flag: "🇳🇿" },
-  { code: "+353", country: "IE", flag: "🇮🇪" },
-  { code: "+41", country: "CH", flag: "🇨🇭" },
-  { code: "+43", country: "AT", flag: "🇦🇹" },
-  { code: "+46", country: "SE", flag: "🇸🇪" },
-  { code: "+47", country: "NO", flag: "🇳🇴" },
-  { code: "+45", country: "DK", flag: "🇩🇰" },
-  { code: "+358", country: "FI", flag: "🇫🇮" },
-  { code: "+351", country: "PT", flag: "🇵🇹" },
-  { code: "+48", country: "PL", flag: "🇵🇱" },
-  { code: "+90", country: "TR", flag: "🇹🇷" },
-  { code: "+92", country: "PK", flag: "🇵🇰" },
-  { code: "+880", country: "BD", flag: "🇧🇩" },
-  { code: "+234", country: "NG", flag: "🇳🇬" },
-  { code: "+254", country: "KE", flag: "🇰🇪" },
-  { code: "+233", country: "GH", flag: "🇬🇭" },
-  { code: "+62", country: "ID", flag: "🇮🇩" },
-  { code: "+60", country: "MY", flag: "🇲🇾" },
-  { code: "+63", country: "PH", flag: "🇵🇭" },
-  { code: "+84", country: "VN", flag: "🇻🇳" },
-  { code: "+66", country: "TH", flag: "🇹🇭" },
+const countries = [
+  { code: "+44", country: "UK", name: "United Kingdom", flag: "🇬🇧" },
+  { code: "+1", country: "US", name: "United States", flag: "🇺🇸" },
+  { code: "+1", country: "CA", name: "Canada", flag: "🇨🇦" },
+  { code: "+966", country: "SA", name: "Saudi Arabia", flag: "🇸🇦" },
+  { code: "+971", country: "AE", name: "United Arab Emirates", flag: "🇦🇪" },
+  { code: "+49", country: "DE", name: "Germany", flag: "🇩🇪" },
+  { code: "+33", country: "FR", name: "France", flag: "🇫🇷" },
+  { code: "+34", country: "ES", name: "Spain", flag: "🇪🇸" },
+  { code: "+39", country: "IT", name: "Italy", flag: "🇮🇹" },
+  { code: "+31", country: "NL", name: "Netherlands", flag: "🇳🇱" },
+  { code: "+353", country: "IE", name: "Ireland", flag: "🇮🇪" },
+  { code: "+41", country: "CH", name: "Switzerland", flag: "🇨🇭" },
+  { code: "+43", country: "AT", name: "Austria", flag: "🇦🇹" },
+  { code: "+46", country: "SE", name: "Sweden", flag: "🇸🇪" },
+  { code: "+47", country: "NO", name: "Norway", flag: "🇳🇴" },
+  { code: "+45", country: "DK", name: "Denmark", flag: "🇩🇰" },
+  { code: "+61", country: "AU", name: "Australia", flag: "🇦🇺" },
+  { code: "+64", country: "NZ", name: "New Zealand", flag: "🇳🇿" },
+  { code: "+65", country: "SG", name: "Singapore", flag: "🇸🇬" },
+  { code: "+91", country: "IN", name: "India", flag: "🇮🇳" },
+  { code: "+965", country: "KW", name: "Kuwait", flag: "🇰🇼" },
+  { code: "+974", country: "QA", name: "Qatar", flag: "🇶🇦" },
+  { code: "+968", country: "OM", name: "Oman", flag: "🇴🇲" },
+  { code: "+973", country: "BH", name: "Bahrain", flag: "🇧🇭" },
+  { code: "+20", country: "EG", name: "Egypt", flag: "🇪🇬" },
+  { code: "+27", country: "ZA", name: "South Africa", flag: "🇿🇦" },
+  { code: "+234", country: "NG", name: "Nigeria", flag: "🇳🇬" },
+  { code: "+254", country: "KE", name: "Kenya", flag: "🇰🇪" },
+  { code: "+55", country: "BR", name: "Brazil", flag: "🇧🇷" },
+  { code: "+52", country: "MX", name: "Mexico", flag: "🇲🇽" },
+  { code: "+81", country: "JP", name: "Japan", flag: "🇯🇵" },
+  { code: "+82", country: "KR", name: "South Korea", flag: "🇰🇷" },
+  { code: "+86", country: "CN", name: "China", flag: "🇨🇳" },
+  { code: "+852", country: "HK", name: "Hong Kong", flag: "🇭🇰" },
+  { code: "+60", country: "MY", name: "Malaysia", flag: "🇲🇾" },
+  { code: "+63", country: "PH", name: "Philippines", flag: "🇵🇭" },
+  { code: "+62", country: "ID", name: "Indonesia", flag: "🇮🇩" },
+  { code: "+90", country: "TR", name: "Turkey", flag: "🇹🇷" },
+  { code: "+92", country: "PK", name: "Pakistan", flag: "🇵🇰" },
 ];
 
 interface PhoneInputProps {
@@ -64,47 +58,68 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   placeholder = "7346 875731",
   className = ""
 }) => {
-  const [selectedCode, setSelectedCode] = useState("+44");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [selectedCountryIndex, setSelectedCountryIndex] = useState(0);
+  const [rawNumber, setRawNumber] = useState("");
 
-  const handleCodeChange = (code: string) => {
-    setSelectedCode(code);
-    onChange(`${code} ${phoneNumber}`.trim());
+  // Keep internal state updated if initial value is passed
+  useEffect(() => {
+    if (!value) return;
+    const match = countries.find(c => value.startsWith(c.code));
+    if (match) {
+      const idx = countries.indexOf(match);
+      setSelectedCountryIndex(idx);
+      setRawNumber(value.replace(match.code, "").trim());
+    }
+  }, []);
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const idx = parseInt(e.target.value, 10);
+    setSelectedCountryIndex(idx);
+    const country = countries[idx];
+    onChange(`${country.code} ${rawNumber}`.trim());
   };
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/[^\d\s-]/g, "");
-    setPhoneNumber(raw);
-    onChange(`${selectedCode} ${raw}`.trim());
+    const cleanNumber = e.target.value.replace(/[^\d\s\-()]/g, "");
+    setRawNumber(cleanNumber);
+    const country = countries[selectedCountryIndex];
+    onChange(`${country.code} ${cleanNumber}`.trim());
   };
 
+  const currentCountry = countries[selectedCountryIndex] || countries[0];
+
   return (
-    <div className={`flex items-stretch border border-zinc-300 bg-white focus-within:border-emerald-600 ${className}`}>
-      {/* Country Code Dropdown */}
-      <div className="w-[110px] shrink-0 border-r border-zinc-200 bg-zinc-50">
-        <Select value={selectedCode} onValueChange={handleCodeChange}>
-          <SelectTrigger className="w-full h-12 border-0 bg-transparent px-2.5 mono text-xs font-bold text-zinc-900 rounded-none focus:ring-0 focus:ring-offset-0">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent className="bg-white border-zinc-200 text-zinc-950 max-h-60 shadow-xl z-50">
-            {countryCodes.map((c) => (
-              <SelectItem key={`${c.country}-${c.code}`} value={c.code} className="mono text-xs cursor-pointer py-2">
-                <span className="mr-1.5">{c.flag}</span>
-                <span className="font-bold">{c.code}</span>
-                <span className="text-zinc-500 text-[10px] ml-1">({c.country})</span>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+    <div className={`relative flex items-center w-full h-12 bg-white border border-zinc-300 transition-colors focus-within:border-emerald-600 focus-within:ring-1 focus-within:ring-emerald-600 shadow-sm ${className}`}>
+      {/* Country Code Picker Box */}
+      <div className="relative h-full flex items-center bg-zinc-50 border-r border-zinc-200 px-3 cursor-pointer shrink-0 hover:bg-zinc-100 transition-colors">
+        <div className="flex items-center gap-1.5 pointer-events-none select-none">
+          <span className="text-base leading-none">{currentCountry.flag}</span>
+          <span className="mono text-xs font-black text-zinc-900">{currentCountry.code}</span>
+          <ChevronDown size={13} className="text-zinc-500 shrink-0" />
+        </div>
+
+        {/* Full Native Select overlay for seamless cross-platform picker */}
+        <select
+          value={selectedCountryIndex}
+          onChange={handleCountryChange}
+          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer text-sm font-sans"
+          aria-label="Select Country Code"
+        >
+          {countries.map((c, i) => (
+            <option key={`${c.country}-${c.code}-${i}`} value={i} className="text-zinc-900 bg-white py-1">
+              {c.flag} {c.code} ({c.name})
+            </option>
+          ))}
+        </select>
       </div>
 
-      {/* Number Input */}
-      <Input
+      {/* Phone Number Input */}
+      <input
         type="tel"
-        value={phoneNumber}
+        value={rawNumber}
         onChange={handleNumberChange}
         placeholder={placeholder}
-        className="flex-1 border-0 h-12 mono text-sm focus-visible:ring-0 focus-visible:ring-offset-0 rounded-none px-3 text-zinc-950 placeholder:text-zinc-400"
+        className="w-full h-full px-3.5 bg-transparent mono text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none"
       />
     </div>
   );
