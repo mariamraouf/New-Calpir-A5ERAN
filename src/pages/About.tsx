@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import SystemStatus from '@/components/visuals/SystemStatus';
 import MetaSEO from '@/components/seo/MetaSEO';
+import AnimatedStat from '@/components/ui/AnimatedStat';
 
 const About = () => {
   const reveal = {
@@ -49,21 +50,14 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
+      {/* Animated Stats Bar */}
       <section className="py-16 bg-emerald-700 text-white shadow-inner">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { label: "Businesses Launched", val: "1,000+" },
-              { label: "Fastest Launch", val: "7 Days" },
-              { label: "Avg. Savings", val: "40% to 60%" },
-              { label: "AI Systems Running", val: "24/7" }
-            ].map((s, i) => (
-              <div key={i}>
-                <div className="text-4xl md:text-6xl font-black mb-1 text-white">{s.val}</div>
-                <div className="mono text-xs uppercase tracking-widest font-bold text-emerald-100">{s.label}</div>
-              </div>
-            ))}
+            <AnimatedStat value={1000} suffix="+" label="Businesses Launched" />
+            <AnimatedStat value={7} suffix=" Days" label="Fastest Launch" />
+            <AnimatedStat value={60} suffix="%" label="Avg. Savings" />
+            <AnimatedStat value={24} suffix="/7" label="AI Systems Running" />
           </div>
         </div>
       </section>

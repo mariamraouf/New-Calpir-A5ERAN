@@ -14,6 +14,8 @@ import ROICalculator from '@/components/home/ROICalculator';
 import FAQ from '@/components/home/FAQ';
 import SectorsSection from '@/components/home/SectorsSection';
 import MetaSEO from '@/components/seo/MetaSEO';
+import LogoTicker from '@/components/home/LogoTicker';
+import LaunchTimeline from '@/components/home/LaunchTimeline';
 
 const Index = () => {
   const reveal = {
@@ -61,7 +63,7 @@ const Index = () => {
             {/* Reassurance points */}
             <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-8 mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-zinc-200 mono text-[11px] sm:text-xs uppercase tracking-wider text-zinc-700 font-bold">
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> 100% Code & Asset Ownership
+                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> 100% Code and Asset Ownership
               </div>
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Sub 1.5s Global Load Speed
@@ -74,8 +76,14 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Scrolling Logo Ticker */}
+      <LogoTicker />
+
       {/* Sectors We Launch */}
       <SectorsSection />
+
+      {/* Launch Timeline */}
+      <LaunchTimeline />
 
       {/* Services Grid */}
       <section className="section-padding border-b border-zinc-200 bg-white">

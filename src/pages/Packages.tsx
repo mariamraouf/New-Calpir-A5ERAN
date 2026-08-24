@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
-import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Sparkles } from 'lucide-react';
+import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Sparkles, Rocket, BarChart3, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -20,6 +20,8 @@ const Packages = () => {
       name: "Starter",
       price: "$1,499",
       badge: "Launch in 7 days",
+      icon: Rocket,
+      bestFor: "Pre-launch founders & solo entrepreneurs.",
       desc: "Perfect for pre-launch founders who need high-converting infrastructure to go live, rank on Google, and start collecting cash immediately.",
       features: [
         { label: "High-speed website (up to 3 pages)", key: "website_architecture" },
@@ -39,6 +41,8 @@ const Packages = () => {
       name: "Growth",
       price: "$3,499",
       badge: "Most Popular // Launch in 14 days",
+      icon: BarChart3,
+      bestFor: "Scaling businesses & ambitious startups.",
       featured: true,
       desc: "The all-in-one powerhouse package for ambitious startups and businesses scaling fast with automation and multi-channel reach.",
       features: [
@@ -58,6 +62,8 @@ const Packages = () => {
       name: "Ultimate",
       price: "$6,999",
       badge: "Launch in 28 days",
+      icon: Cpu,
+      bestFor: "Enterprises & high-volume operations.",
       desc: "Complete enterprise-grade infrastructure with autonomous AI fleets, bespoke web software, and unlimited scaling pipelines.",
       features: [
         { label: "Everything in Growth, plus:", key: undefined },
@@ -143,49 +149,58 @@ const Packages = () => {
         <div className="container-custom">
           {/* Packages Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24 items-stretch">
-            {packages.map((p, i) => (
-              <div key={i} className={cn(
-                "bg-white p-8 md:p-10 border flex flex-col relative transition-all duration-300 shadow-sm",
-                p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-zinc-200 hover:border-emerald-600 hover:shadow-md"
-              )}>
-                {p.featured && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5 shadow-md">
-                    <Sparkles size={13} /> Most Popular Choice
-                  </div>
-                )}
-                <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-3">{p.badge}</div>
-                <h3 className="text-3xl font-black text-zinc-950 mb-2">{p.name}</h3>
-                <div className="text-5xl font-black text-zinc-950 mb-6">{p.price}</div>
-                <p className="text-zinc-600 text-sm leading-relaxed mb-8">{p.desc}</p>
-                
-                <div className="space-y-3 mb-10 flex-grow border-t border-zinc-200 pt-6">
-                  {p.features.map((f, j) => (
-                    <div key={j} className="flex gap-3 items-start group/item">
-                      <CheckCircle2 className="text-emerald-600 shrink-0 mt-0.5" size={16} />
-                      {f.key ? (
-                        <button
-                          type="button"
-                          onClick={() => setActiveModal(f.key || null)}
-                          className="mono text-xs uppercase tracking-wider text-zinc-800 text-left font-semibold hover:text-emerald-700 transition-colors flex items-center gap-1.5"
-                        >
-                          <span className="underline decoration-dotted decoration-emerald-600/60 underline-offset-4">{f.label}</span>
-                          <HelpCircle size={13} className="text-emerald-600 shrink-0 opacity-70 group-item:opacity-100" />
-                        </button>
-                      ) : (
-                        <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-snug font-semibold">{f.label}</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-
-                <Button asChild className={cn(
-                  "w-full py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover",
-                  p.featured ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "bg-zinc-900 text-white hover:bg-emerald-600 hover:text-white"
+            {packages.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <div key={i} className={cn(
+                  "bg-white p-8 md:p-10 border flex flex-col relative transition-all duration-300 shadow-sm",
+                  p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-zinc-200 hover:border-emerald-600 hover:shadow-md"
                 )}>
-                  <Link to="/contact">Get Started With {p.name}</Link>
-                </Button>
-              </div>
-            ))}
+                  {p.featured && (
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5 shadow-md">
+                      <Sparkles size={13} /> Most Popular Choice
+                    </div>
+                  )}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold">{p.badge}</div>
+                    <div className="p-2.5 bg-emerald-100/70 border border-emerald-200 text-emerald-700">
+                      <Icon size={20} />
+                    </div>
+                  </div>
+                  <h3 className="text-3xl font-black text-zinc-950 mb-2">{p.name}</h3>
+                  <div className="text-5xl font-black text-zinc-950 mb-3">{p.price}</div>
+                  <div className="mono text-xs uppercase font-bold text-zinc-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
+                  <p className="text-zinc-600 text-sm leading-relaxed mb-8">{p.desc}</p>
+                  
+                  <div className="space-y-3 mb-10 flex-grow border-t border-zinc-200 pt-6">
+                    {p.features.map((f, j) => (
+                      <div key={j} className="flex gap-3 items-start group/item">
+                        <CheckCircle2 className="text-emerald-600 shrink-0 mt-0.5" size={16} />
+                        {f.key ? (
+                          <button
+                            type="button"
+                            onClick={() => setActiveModal(f.key || null)}
+                            className="mono text-xs uppercase tracking-wider text-zinc-800 text-left font-semibold hover:text-emerald-700 transition-colors flex items-center gap-1.5"
+                          >
+                            <span className="underline decoration-dotted decoration-emerald-600/60 underline-offset-4">{f.label}</span>
+                            <HelpCircle size={13} className="text-emerald-600 shrink-0 opacity-70 group-item:opacity-100" />
+                          </button>
+                        ) : (
+                          <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-snug font-semibold">{f.label}</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button asChild className={cn(
+                    "w-full py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover",
+                    p.featured ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "bg-zinc-900 text-white hover:bg-emerald-600 hover:text-white"
+                  )}>
+                    <Link to="/contact">Get Started With {p.name}</Link>
+                  </Button>
+                </div>
+              );
+            })}
           </div>
 
           {/* Detailed Color-Coded Comparison Table */}
