@@ -194,7 +194,7 @@ const Packages = () => {
 
                   <Button asChild className={cn(
                     "w-full py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover",
-                    p.featured ? "btn-attention shadow-lg" : "bg-zinc-900 text-white hover:bg-emerald-600 hover:text-white"
+                    p.featured ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "bg-zinc-900 text-white hover:bg-emerald-600 hover:text-white"
                   )}>
                     <Link to="/contact">Get Started With {p.name}</Link>
                   </Button>

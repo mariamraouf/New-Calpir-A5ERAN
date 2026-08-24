@@ -6,12 +6,11 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 9%;
-    --primary: 158 64% 40%; /* Classic Emerald */
+    --primary: 158 64% 40%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 96%;
     --muted: 0 0% 94%;
     --border: 0 0% 88%;
-    --attention: 0 84% 60%; /* Catchy Red for CTAs */
     --radius: 8px;
   }
 }
@@ -44,11 +43,7 @@
 }
 
 .btn-hover {
-  @apply transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md;
-}
-
-.btn-attention {
-  @apply bg-red-600 hover:bg-red-700 text-white shadow-red-600/25;
+  @apply transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md hover:shadow-emerald-600/25;
 }
 
 /* Custom scrollbars */

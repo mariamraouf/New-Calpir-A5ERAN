@@ -16,7 +16,6 @@ import SectorsSection from '@/components/home/SectorsSection';
 import MetaSEO from '@/components/seo/MetaSEO';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
-import VideoBackground from '@/components/ui/VideoBackground';
 
 const Index = () => {
   const reveal = {
@@ -36,55 +35,57 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <VideoBackground 
-        src="https://videos.pexels.com/video-files/4782135/4782135-hd_1920_1080_25fps.mp4"
-        overlayClassName="bg-white/80 backdrop-blur-sm"
-      >
-        <section className="pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative">
-          <div className="container-custom text-center">
-            <motion.div {...reveal}>
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 sm:px-4 py-1.5 mb-5 sm:mb-7 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold shadow-sm rounded-none">
-                <Sparkles size={13} className="text-emerald-600 shrink-0" /> Bristol Based Business Infrastructure & AI Squad
+      <section className="pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
+        <div className="container-custom text-center">
+          <motion.div {...reveal}>
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 sm:px-4 py-1.5 mb-5 sm:mb-7 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold shadow-sm rounded-none">
+              <Sparkles size={13} className="text-emerald-600 shrink-0" /> Bristol Based Business Infrastructure & AI Squad
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6.5rem] leading-[1.05] sm:leading-[0.96] mb-5 sm:mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-5xl mx-auto">
+              Launch Your Business <br className="hidden sm:inline" />
+              <span className="text-emerald-700">In 7 Days</span>
+            </h1>
+
+            <p className="text-sm sm:text-lg md:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-10 px-2">
+              We genuinely love building businesses and watching founders succeed. We set up your entire digital nervous system: Website, Domain and SSL, CRM, Google Indexing, and Autonomous AI Agents deployed in days.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xl mx-auto px-2">
+              <Button asChild className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover shadow-md">
+                <Link to="/contact">Book Free Consultation Call</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover">
+                <Link to="/packages">Explore All Packages (7 to 28 Days)</Link>
+              </Button>
+            </div>
+
+            {/* Reassurance points */}
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-8 mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-zinc-200 mono text-[11px] sm:text-xs uppercase tracking-wider text-zinc-700 font-bold">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> 100% Code and Asset Ownership
               </div>
-
-              <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6.5rem] leading-[1.05] sm:leading-[0.96] mb-5 sm:mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-5xl mx-auto">
-                Launch Your Business <br className="hidden sm:inline" />
-                <span className="text-emerald-700">In 7 Days</span>
-              </h1>
-
-              <p className="text-sm sm:text-lg md:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-10 px-2">
-                We genuinely love building businesses and watching founders succeed. We set up your entire digital nervous system: Website, Domain and SSL, CRM, Google Indexing, and Autonomous AI Agents deployed in days.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xl mx-auto px-2">
-                <Button asChild className="w-full sm:w-auto btn-attention px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover shadow-lg">
-                  <Link to="/contact">Book Free Consultation Call</Link>
-                </Button>
-                <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover">
-                  <Link to="/packages">Explore All Packages (7 to 28 Days)</Link>
-                </Button>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Sub 1.5s Global Load Speed
               </div>
-
-              <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-8 mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-zinc-200 mono text-[11px] sm:text-xs uppercase tracking-wider text-zinc-700 font-bold">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> 100% Code and Asset Ownership
-                </div>
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Sub 1.5s Global Load Speed
-                </div>
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Dedicated Post-Launch Squad
-                </div>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Dedicated Post-Launch Squad
               </div>
-            </motion.div>
-          </div>
-        </section>
-      </VideoBackground>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
+      {/* Scrolling Logo Ticker */}
       <LogoTicker />
+
+      {/* Sectors We Launch */}
       <SectorsSection />
+
+      {/* Launch Timeline */}
       <LaunchTimeline />
 
+      {/* Services Grid */}
       <section className="section-padding border-b border-zinc-200 bg-white">
         <div className="container-custom">
           <SectionLabel>The Core Modules</SectionLabel>
@@ -130,6 +131,7 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Ecosystem Visual */}
       <section id="ecosystem" className="section-padding border-b border-zinc-200 bg-gradient-to-b from-zinc-50 via-emerald-50/20 to-zinc-50 overflow-hidden">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
@@ -162,18 +164,20 @@ const Index = () => {
       </section>
 
       <ROICalculator />
+
       <FAQ />
 
-      <section id="contact" className="section-padding border-t border-zinc-200 bg-red-50/60">
+      {/* Contact CTA */}
+      <section id="contact" className="section-padding border-t border-zinc-200 bg-emerald-50/60">
         <div className="container-custom text-center px-4">
           <h2 className="text-3xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 font-black uppercase tracking-tight text-zinc-950">
-            Ready to <br /> <span className="text-red-600">Launch Smarter?</span>
+            Ready to <br /> Launch Smarter?
           </h2>
           <p className="text-xs sm:text-base md:text-lg text-zinc-600 mb-6 sm:mb-10 max-w-xl mx-auto leading-relaxed">
             Book a free 30 minute consultation with Maria. We will map out exactly what your business needs to launch and scale.
           </p>
           <div className="max-w-md mx-auto">
-            <Button asChild className="w-full btn-attention px-6 sm:px-10 py-5 sm:py-7 rounded-none font-black text-xs sm:text-lg uppercase tracking-tight transition-all btn-hover shadow-lg">
+            <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-10 py-5 sm:py-7 rounded-none font-black text-xs sm:text-lg uppercase tracking-tight transition-all btn-hover shadow-md text-center whitespace-normal leading-tight">
               <Link to="/contact">Book Your Free Call with Maria</Link>
             </Button>
           </div>

@@ -12,8 +12,6 @@ import { Link } from 'react-router-dom';
 import SystemStatus from '@/components/visuals/SystemStatus';
 import MetaSEO from '@/components/seo/MetaSEO';
 import AnimatedStat from '@/components/ui/AnimatedStat';
-import MeetTheSquad from '@/components/about/MeetTheSquad';
-import VideoBackground from '@/components/ui/VideoBackground';
 
 const About = () => {
   const reveal = {
@@ -32,30 +30,27 @@ const About = () => {
       />
       <Navbar />
       
-      <VideoBackground 
-        src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4"
-        overlayClassName="bg-white/80 backdrop-blur-sm"
-      >
-        <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200">
-          <div className="container-custom">
-            <motion.div {...reveal}>
-              <SectionLabel>The Mission</SectionLabel>
-              <h1 className="text-5xl md:text-8xl leading-[0.9] mb-12 font-black uppercase tracking-tight text-zinc-950">
-                Built by <br /> <span className="text-emerald-700">Founders</span> <br /> for Founders.
-              </h1>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
-                <p className="text-xl md:text-3xl text-zinc-700 leading-snug">
-                  We have been in your shoes. That is why we built the system we wished existed when we were starting out.
-                </p>
-                <div className="max-w-[420px] w-full ml-auto">
-                  <SystemStatus />
-                </div>
+      {/* Hero */}
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+        <div className="container-custom">
+          <motion.div {...reveal}>
+            <SectionLabel>The Mission</SectionLabel>
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-12 font-black uppercase tracking-tight text-zinc-950">
+              Built by <br /> <span className="text-emerald-700">Founders</span> <br /> for Founders.
+            </h1>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
+              <p className="text-xl md:text-3xl text-zinc-700 leading-snug">
+                We have been in your shoes. That is why we built the system we wished existed when we were starting out.
+              </p>
+              <div className="max-w-[420px] w-full ml-auto">
+                <SystemStatus />
               </div>
-            </motion.div>
-          </div>
-        </section>
-      </VideoBackground>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
+      {/* Animated Stats Bar */}
       <section className="py-16 bg-emerald-700 text-white shadow-inner">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -67,6 +62,7 @@ const About = () => {
         </div>
       </section>
 
+      {/* Story Section */}
       <section className="section-padding border-b border-zinc-200 bg-white">
         <div className="container-custom max-w-[900px]">
           <div className="space-y-16">
@@ -100,8 +96,7 @@ const About = () => {
         </div>
       </section>
 
-      <MeetTheSquad />
-
+      {/* Values */}
       <section className="section-padding border-b border-zinc-200 bg-zinc-50/70">
         <div className="container-custom">
           <SectionLabel>Our Values</SectionLabel>
@@ -124,10 +119,11 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding text-center bg-red-50/60">
+      {/* CTA */}
+      <section className="section-padding text-center bg-emerald-50/50">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-7xl mb-8 font-black uppercase tracking-tight text-zinc-950">Let's Build <br /> <span className="text-red-600">Something Together.</span></h2>
-          <Button asChild className="btn-attention px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover shadow-lg">
+          <h2 className="text-4xl md:text-7xl mb-8 font-black uppercase tracking-tight text-zinc-950">Let's Build <br /> Something Together.</h2>
+          <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover">
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>
