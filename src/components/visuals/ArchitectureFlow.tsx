@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Globe, Database, Bot, Zap, ArrowRight, CheckCircle2, 
-  ShieldCheck, Server, Sparkles, RefreshCw, Send, Mail
+  ShieldCheck, Server, Sparkles, RefreshCw
 } from 'lucide-react';
 
 interface Stage {
