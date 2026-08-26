@@ -15,7 +15,7 @@ export default function ScrollToTopOnRoute() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Allow react-helmet-async to update document.title before dispatching GA4 page_view
+    // Wait 150ms for react-helmet-async to update document.title
     const timer = setTimeout(() => {
       if (typeof window.gtag === "function") {
         window.gtag("event", "page_view", {
