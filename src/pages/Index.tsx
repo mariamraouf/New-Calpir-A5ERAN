@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Code, Layers, Sparkles, CheckCircle2, Building2, CreditCard, ShieldCheck, Mail } from 'lucide-react';
+import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Layers, Sparkles, CheckCircle2, CreditCard, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -24,6 +24,37 @@ const Index = () => {
     viewport: { once: true },
     transition: { duration: 0.5, ease: "easeOut" }
   } as const;
+
+  const pillars = [
+    {
+      pillar: "01",
+      tag: "Foundation & Brand",
+      icon: ShieldCheck,
+      title: "Foundation & Brand",
+      desc: "Entity guidance, domain, SSL, vector logo kit, typography, and curated color systems."
+    },
+    {
+      pillar: "02",
+      tag: "Storefront",
+      icon: Globe,
+      title: "Digital Storefront",
+      desc: "High-conversion React/Next.js architecture with sub-second speed and day-one Google indexing."
+    },
+    {
+      pillar: "03",
+      tag: "Revenue Engine",
+      icon: BarChart3,
+      title: "Sales & Finance",
+      desc: "CRM pipelines, 60-second lead routing, Google Workspace, VOIP, Stripe, and automated invoicing."
+    },
+    {
+      pillar: "04",
+      tag: "Autonomous Ops",
+      icon: Bot,
+      title: "Ops & AI Fleet",
+      desc: "SOP knowledge bases, contractor payroll, task boards, Zapier workflows, and 24/7 AI agents."
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
@@ -79,30 +110,43 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Full Setup Pillars Banner */}
-      <section className="py-10 bg-zinc-900 text-white border-b border-zinc-800">
+      {/* Full Setup Pillars Section */}
+      <section className="py-8 sm:py-12 bg-zinc-50/70 border-b border-zinc-200">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-            <div className="p-4 border-l-2 border-emerald-500">
-              <div className="mono text-[10px] uppercase text-emerald-400 font-bold">Pillar 1</div>
-              <div className="text-base font-black uppercase text-white mt-1">Foundation and Brand</div>
-              <p className="text-xs text-zinc-400 mt-1">Entity guidance, domain, SSL, logo kit, typography, and color systems.</p>
-            </div>
-            <div className="p-4 border-l-2 border-emerald-500">
-              <div className="mono text-[10px] uppercase text-emerald-400 font-bold">Pillar 2</div>
-              <div className="text-base font-black uppercase text-white mt-1">Digital Storefront</div>
-              <p className="text-xs text-zinc-400 mt-1">High conversion React web architecture and day one Google verification.</p>
-            </div>
-            <div className="p-4 border-l-2 border-emerald-500">
-              <div className="mono text-[10px] uppercase text-emerald-400 font-bold">Pillar 3</div>
-              <div className="text-base font-black uppercase text-white mt-1">Sales and Finance</div>
-              <p className="text-xs text-zinc-400 mt-1">CRM pipelines, 60 second lead alerts, email, VOIP, Stripe, and invoicing.</p>
-            </div>
-            <div className="p-4 border-l-2 border-emerald-500">
-              <div className="mono text-[10px] uppercase text-emerald-400 font-bold">Pillar 4</div>
-              <div className="text-base font-black uppercase text-white mt-1">Ops and AI Fleet</div>
-              <p className="text-xs text-zinc-400 mt-1">SOP wikis, payroll, task boards, Zapier workflows, and 24/7 AI agents.</p>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            {pillars.map((item, idx) => {
+              const IconComponent = item.icon;
+              return (
+                <div 
+                  key={idx}
+                  className="bg-white border border-zinc-200 p-5 md:p-6 border-l-4 border-l-emerald-600 shadow-sm hover:shadow-md hover:border-zinc-300 transition-all group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="mono text-[10px] uppercase tracking-widest font-black text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                        Pillar {item.pillar}
+                      </span>
+                      <div className="p-1.5 bg-zinc-50 border border-zinc-200 text-emerald-700 group-hover:bg-emerald-50 transition-colors">
+                        <IconComponent size={16} />
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-base sm:text-lg font-black uppercase text-zinc-950 tracking-tight mb-2 group-hover:text-emerald-800 transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    <p className="text-xs text-zinc-600 leading-relaxed mono">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-[10px] text-zinc-400 mono uppercase tracking-wider font-bold">
+                    <CheckCircle2 size={12} className="text-emerald-600 shrink-0" />
+                    <span>Included in Launch</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
