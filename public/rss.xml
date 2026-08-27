@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Calpir Blog</title>
+    <link>https://www.calpir.com/blog</link>
+    <description>Practical guides on launching a business, CRM and sales systems, AI agents and automation, from the Calpir team.</description>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Mar 2026 09:00:00 GMT</lastBuildDate>
+    <atom:link href="https://www.calpir.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Set Up a New Business in 2026: The Ultimate Founder Blueprint</title>
+      <link>https://www.calpir.com/blog/how-to-setup-new-business-2026</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/how-to-setup-new-business-2026</guid>
+      <description>A comprehensive step by step roadmap covering legal incorporation, banking, digital storefronts, CRM, and automation.</description>
+      <pubDate>Sat, 28 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>Where to Begin? The Essential First 30 Days of Launching Your Business</title>
+      <link>https://www.calpir.com/blog/what-to-start-with-launch-guide</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/what-to-start-with-launch-guide</guid>
+      <description>What to prioritize and what to ignore in your first month. Learn how to launch fast without burning capital.</description>
+      <pubDate>Thu, 26 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Definitive 2026 CRM Comparison: HubSpot vs GoHighLevel vs Salesforce vs Zoho</title>
+      <link>https://www.calpir.com/blog/best-crm-tools-comparison</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/best-crm-tools-comparison</guid>
+      <description>An in depth technical analysis of top CRM platforms to help you pick the exact sales system for your stage.</description>
+      <pubDate>Wed, 25 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>How Autonomous AI Agents Are Replacing Traditional SaaS Tools</title>
+      <link>https://www.calpir.com/blog/ai-agents-replacing-saas</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/ai-agents-replacing-saas</guid>
+      <description>Why paying per seat for legacy SaaS is declining and how custom AI agents cut software operational costs by 70 percent.</description>
+      <pubDate>Tue, 24 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>The Golden Tech Stack: Essential Automations Every Modern Business Needs</title>
+      <link>https://www.calpir.com/blog/essential-tech-stack-automations</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/essential-tech-stack-automations</guid>
+      <description>Detailed architectural guide to connecting your website, CRM, invoicing, and support into a self running system.</description>
+      <pubDate>Mon, 23 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>Setting Up a UK Limited Company: The Complete Founder Guide</title>
+      <link>https://www.calpir.com/blog/setup-uk-limited-company</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/setup-uk-limited-company</guid>
+      <description>Everything you need to know about Companies House, Corporation Tax, VAT, virtual offices, and legalizing your UK startup.</description>
+      <pubDate>Sun, 22 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>Launching a US LLC as a Foreign Founder: Step by Step Guide</title>
+      <link>https://www.calpir.com/blog/setup-us-llc-foreign-founder</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/setup-us-llc-foreign-founder</guid>
+      <description>How to set up your US entity, get an EIN without an SSN, and open US bank accounts remotely from anywhere.</description>
+      <pubDate>Fri, 20 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+    <item>
+      <title>How to Deploy AI Agents for 24/7 Customer Support and Sales</title>
+      <link>https://www.calpir.com/blog/deploy-ai-agents-support</link>
+      <guid isPermaLink="true">https://www.calpir.com/blog/deploy-ai-agents-support</guid>
+      <description>Stop losing leads overnight. Build RAG powered agents that access your CRM and schedule qualified meetings automatically.</description>
+      <pubDate>Wed, 18 Mar 2026 09:00:00 GMT</pubDate>
+      <author>noreply@calpir.com (Calpir Experts)</author>
+      <enclosure url="https://www.calpir.com/logo-with-transparent-background.png" type="image/png" />
+    </item>
+  </channel>
+</rss>
