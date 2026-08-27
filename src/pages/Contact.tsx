@@ -76,7 +76,138 @@ const Contact = () => {
       <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>Direct Transmission</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb<dyad-write path="src/pages/Contact.tsx" description="Complete and fully formatted Contact page">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-black uppercase tracking-tight text-zinc-950">
+            Get in <br /> <span className="text-emerald-700">Touch.</span>
+          </h1>
+          <p className="text-lg md:text-2xl text-zinc-600 max-w-3xl leading-relaxed">
+            We genuinely love setting up businesses and seeing you succeed. Tell us what you want to build or book a live strategy session with Maria below.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20 px-4 md:px-6 border-b border-zinc-200">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Squad Contact Details */}
+            <div className="space-y-8">
+              <SectionLabel>Direct Channels</SectionLabel>
+              <h2 className="text-3xl md:text-4xl font-black uppercase text-zinc-950 tracking-tight">
+                Let's Build Something Meaningful Together.
+              </h2>
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
+                Whether you need a full 7 day launch package, custom AI agents, or specific à la carte setup, we respond fast with zero corporate fluff.
+              </p>
+              
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center gap-4 p-4 border border-zinc-200 bg-zinc-50 shadow-sm">
+                  <div className="text-emerald-700 p-3 bg-emerald-100/70 border border-emerald-300">
+                    <Mail size={22} />
+                  </div>
+                  <div>
+                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Email Our Team</div>
+                    <a href="mailto:info@calpir.com" className="text-base md:text-lg font-black text-zinc-950 hover:text-emerald-700 transition-colors">
+                      info@calpir.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 p-4 border border-zinc-200 bg-zinc-50 shadow-sm">
+                  <div className="text-emerald-700 p-3 bg-emerald-100/70 border border-emerald-300">
+                    <Phone size={22} />
+                  </div>
+                  <div>
+                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Direct Phone / WhatsApp</div>
+                    <a href="tel:+447346875731" className="text-base md:text-lg font-black text-zinc-950 hover:text-emerald-700 transition-colors">
+                      +44 7346 875731
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 p-4 border border-zinc-200 bg-zinc-50 shadow-sm">
+                  <div className="text-emerald-700 p-3 bg-emerald-100/70 border border-emerald-300">
+                    <MapPin size={22} />
+                  </div>
+                  <div>
+                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">HQ Location</div>
+                    <div className="text-base md:text-lg font-black uppercase text-zinc-950">Bristol, United Kingdom</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-5 border border-emerald-200 bg-emerald-50 space-y-1.5 shadow-sm">
+                <div className="flex items-center gap-2 text-emerald-800 mono text-xs uppercase font-bold">
+                  <Sparkles size={14} className="text-emerald-600" /> Squad Response Guarantee
+                </div>
+                <p className="text-xs text-zinc-700 leading-relaxed mono">
+                  We reply within 4 business hours. You talk directly with senior technical leads who build systems every day.
+                </p>
+              </div>
+            </div>
+
+            {/* Formspree Contact Form */}
+            <div className="border border-zinc-200 bg-white p-6 md:p-10 shadow-lg">
+              {!isSubmitted ? (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
+                    Project Request Form
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight">
+                    Send Us Your Requirements
+                  </h3>
+
+                  <div className="space-y-1.5">
+                    <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                      Your Full Name *
+                    </label>
+                    <Input
+                      required
+                      placeholder="Alex Smith"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                        Email *
+                      </label>
+                      <Input
+                        required
+                        type="email"
+                        name="email"
+                        placeholder="alex@example.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                        Phone / WhatsApp
+                      </label>
+                      <PhoneInput
+                        value={formData.phone}
+                        onChange={(val) => setFormData({ ...formData, phone: val })}
+                        placeholder="7346 875731"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                      Interested Package or Solo Service
+                    </label>
+                    <select
+                      value={formData.package}
+                      onChange={(e) => setFormData({ ...formData, package: e.target.value })}
+                      className="w-full bg-white text-zinc-950 border border-zinc-300 rounded-none h-12 px-3 mono text-xs uppercase focus:border-emerald-600 cursor-pointer"
+                    >
+                      <option value="Starter Launch Package ($1,499)">Starter Launch Package ($1,499)</option>
+                      <option value="Growth Launch Package ($3,499)">Growth Launch Package ($3,499)</option>
+                      <option value="Ultimate Launch Package ($6,999)">Ultimate Launch Package ($6,999)</option>
+                      <option value="Solo: Domain & SSL Setup ($1<dyad-write path="src/pages/Contact.tsx" description="Complete and error-free Contact page">
 "use client";
 
 import React, { useState } from 'react';
