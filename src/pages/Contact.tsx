@@ -75,7 +75,8 @@ const Contact = () => {
       
       <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
-          <dyad-write path="src/pages/Contact.tsx" description="Complete and fully formatted Contact page">
+          <SectionLabel>Direct Transmission</SectionLabel>
+          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb<dyad-write path="src/pages/Contact.tsx" description="Complete and fully formatted Contact page">
 "use client";
 
 import React, { useState } from 'react';

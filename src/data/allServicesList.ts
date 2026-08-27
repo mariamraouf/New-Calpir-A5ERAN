@@ -7,6 +7,7 @@ export interface ServiceDefinition {
   longDesc: string;
   tagline: string;
   badge: string;
+  iconName: string;
   packagesIncluded: ("Starter" | "Growth" | "Ultimate" | "Solo")[];
   features: string[];
   deliverables: string[];
@@ -24,6 +25,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "Custom web development built with React and Next.js, loading globally in under 1.5 seconds with mobile-first responsiveness and conversion optimization.",
     longDesc: "We don't build generic template sites. We engineer blazing-fast digital storefronts with modern JavaScript frameworks, edge caching, structured JSON-LD SEO, and interactive calculators designed to turn casual visitors into paying customers.",
     badge: "CORE ENGINE",
+    iconName: "Globe",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "Custom React & Next.js Application Architecture",
@@ -51,6 +53,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "We assist with acquiring the ideal domain, configure high-speed DNS records, and issue 256-bit auto-renewing SSL certificates with email security.",
     longDesc: "A secure domain with properly configured DNS and email authentication records (SPF, DKIM, DMARC) ensures high brand trust and guarantees your transactional emails never land in customer spam folders.",
     badge: "SECURITY",
+    iconName: "ShieldCheck",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "Domain Name Acquisition & Strategy Consulting",
@@ -78,6 +81,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "We don't wait months for Google to notice your site. We manually verify Google Search Console, submit your sitemaps, and optimize your Google Business Profile for immediate ranking.",
     longDesc: "Turn organic local and international Google searchers into inbound inquiries. We claim and configure your official Google Business Profile, implement structured Rich Snippet schema, and submit force-indexing requests directly to Google.",
     badge: "DISCOVERABILITY",
+    iconName: "Search",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "Official Google Business Profile Verification & Setup",
@@ -105,6 +109,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "Full visual identity suite: custom typography pairings, aesthetic 5-color palettes, vector logo packages, and complete brand guidelines.",
     longDesc: "First impressions take 0.05 seconds. We craft clean, memorable visual identities that make your company look like an established market leader from day one, complete with vector SVG logos, social presets, and font hierarchy.",
     badge: "DESIGN",
+    iconName: "Palette",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "Custom 5-Color Aesthetic Palette Tailored to Your Industry",
@@ -132,6 +137,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "Deploy HubSpot or GoHighLevel with custom deal stages, automated contact scoring, two-way calendar sync, and instant SMS/email lead alerts.",
     longDesc: "Managing leads in spreadsheets guarantees lost revenue. We deploy and customize high-performing CRM systems that automatically route leads, score buyer intent, trigger instant follow-ups, and visualize revenue in flight.",
     badge: "REVENUE ENGINE",
+    iconName: "Database",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "HubSpot / GoHighLevel Complete Account Architecture",
@@ -159,6 +165,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "Our strategists identify the #1 most profitable social channel for your niche and build out branded 4K banners, keyword-optimized bios, and direct booking links.",
     longDesc: "Instead of spreading you thin across dead accounts, we focus energy on the single highest converting social channel for your market—designing crisp branded creative, high-converting bio copy, and booking funnels.",
     badge: "DISTRIBUTION",
+    iconName: "Share2",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "Niche Channel Profitability Audit",
@@ -186,6 +193,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "High-retention video editing with animated kinetic subtitles, sound design, zooms, and custom color grading for viral social reach.",
     longDesc: "Visual motion stops the scroll. We turn raw smartphone footage or screen recordings into high-production vertical reels and horizontal explainers equipped with kinetic subtitles, sound effects, and motion graphics.",
     badge: "CREATIVE SUITE",
+    iconName: "Video",
     packagesIncluded: ["Ultimate", "Solo"],
     features: [
       "Short-Form Video Editing (TikTok, Reels, Shorts)",
@@ -213,6 +221,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "Custom intelligent agents trained on your business documentation that answer inquiries, qualify leads, and book calls 24 hours a day without hallucinations.",
     longDesc: "Traditional chatbots frustrate users. We build custom AI Agents powered by Retrieval-Augmented Generation (RAG) that connect directly to your knowledge base, access your CRM, and execute complex business actions.",
     badge: "AI FLEET",
+    iconName: "Bot",
     packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
     features: [
       "Custom LLM Fine-Tuning on Your Business Documentation",
@@ -240,6 +249,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "We build custom automation pipelines using Make.com, Zapier, and Python scripts to unite your website, CRM, accounting, and communication tools into a single sync engine.",
     longDesc: "Your team shouldn't be copying and pasting data between apps. We build custom automation pipelines using Make.com, Zapier, and Python scripts to unite your website, CRM, accounting, and communication tools into a single sync engine.",
     badge: "ZERO MANUAL WORK",
+    iconName: "Zap",
     packagesIncluded: ["Growth", "Ultimate", "Solo"],
     features: [
       "Complete Tech Stack Audit & Workflow Mapping",
@@ -267,6 +277,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "We work directly with leadership teams to identify high-ROI opportunities, audit operations, and implement realistic AI transformation roadmaps.",
     longDesc: "With thousands of AI tools flooding the market, deciding where to invest can feel overwhelming. We work directly with leadership teams to identify high-ROI opportunities, audit operations, and implement realistic AI transformation roadmaps.",
     badge: "STRATEGY",
+    iconName: "Brain",
     packagesIncluded: ["Ultimate", "Solo"],
     features: [
       "Comprehensive Operational Audit & AI Readiness Assessment",
@@ -294,6 +305,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "We build standard operating procedures (SOPs), payroll structures, contract management, and project tracking boards so your business operates like a well-oiled machine.",
     longDesc: "Scaling a team without documented processes leads to bottlenecks and burnout. We build standard operating procedures (SOPs), payroll structures, contract management, and project tracking boards so your business operates like a well-oiled machine.",
     badge: "SCALABILITY",
+    iconName: "Settings",
     packagesIncluded: ["Starter", "Growth", "Ultimate"],
     features: [
       "Centralized Project Management Workspace (ClickUp / Notion)",
@@ -321,6 +333,7 @@ export const allServicesCatalog: ServiceDefinition[] = [
     shortDesc: "We build custom web applications, SaaS platforms, internal tools, and specialized AI agent fleets from scratch using modern, scalable full-stack technology.",
     longDesc: "When off-the-shelf software doesn't fit your business model, we build custom web applications, SaaS platforms, internal tools, and specialized AI agent fleets from scratch using modern, scalable full-stack technology.",
     badge: "BESPOKE",
+    iconName: "Code",
     packagesIncluded: ["Ultimate", "Solo"],
     features: [
       "Full-Stack React / TypeScript Application Development",
