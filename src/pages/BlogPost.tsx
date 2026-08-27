@@ -256,16 +256,9 @@ const BlogPost = () => {
         <meta name="description" content={post.description} />
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${post.title} | Calpir`} />
-        <meta property="og:description" content={post.description} />
-        <meta property="og:image" content={imageUrl} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="article:published_time" content={post.datePublished} />
         <meta property="article:modified_time" content={post.dateModified} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${post.title} | Calpir`} />
-        <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={imageUrl} />
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
         </script>
