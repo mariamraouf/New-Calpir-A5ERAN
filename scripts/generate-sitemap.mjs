@@ -1,10 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { loadServices } from './loadServices.mjs';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const baseUrl = 'https://www.calpir.com';
 
 const staticRoutes = [
@@ -18,21 +17,18 @@ const staticRoutes = [
   { url: '/about', priority: '0.7' },
   { url: '/contact', priority: '0.7' },
   { url: '/blog', priority: '0.7' },
-  { url: '/services/website-development', priority: '0.8' },
-  { url: '/services/crm-sales', priority: '0.8' },
-  { url: '/services/marketing-branding', priority: '0.8' },
-  { url: '/services/operations-hr', priority: '0.8' },
-  { url: '/services/ai-agents', priority: '0.8' },
-  { url: '/services/ai-automation', priority: '0.8' },
-  { url: '/services/ai-consulting', priority: '0.8' },
-  { url: '/services/custom-apps', priority: '0.8' }
 ];
+
+// Service routes are derived from the catalog rather than hand listed, so the
+// sitemap can never contain a slug the router does not serve. A stale
+// /services/marketing-branding entry used to sit here and returned the 404 page.
+const services = await loadServices();
+const serviceRoutes = services.map((s) => ({ url: `/services/${s.slug}`, priority: '0.8' }));
 
 const postsFilePath = path.join(__dirname, '../src/content/posts.json');
 let posts = [];
 try {
-  const postsRaw = fs.readFileSync(postsFilePath, 'utf8');
-  posts = JSON.parse(postsRaw);
+  posts = JSON.parse(fs.readFileSync(postsFilePath, 'utf8'));
 } catch (err) {
   console.error('Error reading posts.json for sitemap generation:', err);
 }
@@ -40,20 +36,19 @@ try {
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
-staticRoutes.forEach((route) => {
+[...staticRoutes, ...serviceRoutes].forEach((route) => {
   xml += `  <url>\n    <loc>${baseUrl}${route.url}</loc>\n    <priority>${route.priority}</priority>\n  </url>\n`;
 });
 
 posts.forEach((post) => {
   xml += `  <url>\n    <loc>${baseUrl}/blog/${post.slug}</loc>\n`;
-  if (post.dateModified) {
-    xml += `    <lastmod>${post.dateModified}</lastmod>\n`;
-  }
+  if (post.dateModified) xml += `    <lastmod>${post.dateModified}</lastmod>\n`;
   xml += `    <priority>0.8</priority>\n  </url>\n`;
 });
 
 xml += '</urlset>\n';
 
-const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
-fs.writeFileSync(sitemapPath, xml, 'utf8');
-console.log(`Generated public/sitemap.xml with ${staticRoutes.length} static routes and ${posts.length} blog posts.`);
+fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), xml, 'utf8');
+console.log(
+  `Generated public/sitemap.xml: ${staticRoutes.length} static, ${serviceRoutes.length} services, ${posts.length} posts.`
+);

@@ -3,8 +3,24 @@
   "installCommand": "pnpm install --no-frozen-lockfile",
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "calpir.com"
+        }
+      ],
+      "destination": "https://www.calpir.com/$1",
+      "permanent": true
+    },
+    {
       "source": "/favicon.ico",
       "destination": "/logo-with-transparent-background.png",
+      "permanent": true
+    },
+    {
+      "source": "/services/marketing-branding",
+      "destination": "/services",
       "permanent": true
     }
   ],
