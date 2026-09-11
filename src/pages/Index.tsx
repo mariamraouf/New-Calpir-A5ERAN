@@ -15,10 +15,12 @@ import FAQ from '@/components/home/FAQ';
 import SectorsSection from '@/components/home/SectorsSection';
 import MetaSEO from '@/components/seo/MetaSEO';
 import EmailCaptureCTA from '@/components/home/EmailCaptureCTA';
+import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
 
 const Index = () => {
+  const { openBooking } = useBookingModal();
   const reveal = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
@@ -67,31 +69,41 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
+      {/* Kept short on purpose. The email field has to be reachable without
+          scrolling on a phone, so the headline block is tight and the full list
+          of what we build moved into the sections below. */}
+      <section className="pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
         <div className="container-custom text-center">
           <motion.div {...reveal}>
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 sm:px-4 py-1.5 mb-5 sm:mb-7 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold shadow-sm rounded-none">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 py-1 mb-4 sm:mb-5 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold rounded-none">
               <Sparkles size={13} className="text-emerald-600 shrink-0" /> Complete Turnkey Business Setup Squad
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[6.2rem] leading-[1.05] sm:leading-[0.96] mb-5 sm:mb-8 font-black uppercase tracking-tight text-zinc-950 max-w-5xl mx-auto">
-              Your Entire Business <br className="hidden sm:inline" />
+            <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl sm:leading-[0.98] mb-4 sm:mb-5 font-black uppercase tracking-tight text-zinc-950 max-w-4xl mx-auto">
+              Your Entire Business <br />
               <span className="text-emerald-700">Set Up In 7 Days</span>
             </h1>
 
-            <p className="text-sm sm:text-lg md:text-xl text-zinc-600 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-10 px-2">
-              We do not just build websites or configure chatbots. We launch your entire company from scratch: brand identity, legal entity foundations, domain, high speed web store, Google indexing, business email, VOIP phone, CRM sales pipelines, Stripe invoicing, HR contracts, team workspaces, and autonomous AI systems.
+            <p className="text-sm sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-5 sm:mb-7 px-2">
+              Entity, brand, website, CRM, payments, operations and AI systems. Built as one
+              connected setup, priced up front, and handed over in your name.
             </p>
 
-            {/* Email first. One field is a far smaller ask than the full form,
-                and the address carries through to /contact so nobody types it
-                twice. The old "Book Free Consultation Call" button did the same
-                job with more friction, so this replaces it. */}
+            {/* One field is a far smaller ask than the full form, and the address
+                carries into the booking popup so nobody types it twice. */}
             <EmailCaptureCTA className="px-2" />
 
-            <div className="flex justify-center items-center max-w-xl mx-auto px-2 mt-6">
-              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover">
-                <Link to="/packages">Explore Full Launch Packages (7 to 28 Days)</Link>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 max-w-xl mx-auto px-2 mt-5">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => openBooking()}
+                className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 px-6 py-5 rounded-none font-black text-xs sm:text-sm uppercase tracking-tight btn-hover"
+              >
+                Pick a time instead
+              </Button>
+              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 py-5 rounded-none font-black text-xs sm:text-sm uppercase tracking-tight btn-hover">
+                <Link to="/packages">See packages and prices</Link>
               </Button>
             </div>
 

@@ -17,6 +17,7 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollToTopOnRoute from "./components/ui/ScrollToTopOnRoute";
+import BookingModalProvider from "./components/booking/BookingModalProvider";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTopOnRoute />
+        <BookingModalProvider>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
@@ -42,6 +44,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </BookingModalProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

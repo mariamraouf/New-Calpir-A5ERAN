@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -27,14 +27,14 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
 }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const { openBooking } = useBookingModal();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const value = email.trim();
 
     if (!value) {
-      setError('Pop your email in and we will take you to the booking form.');
+      setError('Pop your email in and we will open the booking form.');
       return;
     }
     if (!EMAIL_PATTERN.test(value)) {
@@ -43,7 +43,7 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
     }
 
     setError(null);
-    navigate(`/contact?email=${encodeURIComponent(value)}#book`);
+    openBooking(value);
   };
 
   return (
