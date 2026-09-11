@@ -2,6 +2,7 @@ export interface ServiceDefinition {
   id: string;
   slug: string;
   category:
+    | "Formation & Compliance"
     | "Web & Foundation"
     | "Sales & Marketing"
     | "AI & Automation"
@@ -586,9 +587,9 @@ export const allServicesCatalog: ServiceDefinition[] = [
     id: "hr-systems",
     slug: "hr-systems",
     category: "People & Talent",
-    title: "HR Systems, Contracts and Employee Onboarding",
-    tagline: "The paperwork and the first week, handled properly",
-    shortDesc: "We build your onboarding process, contract and policy templates, employee records system and offboarding checklist, so bringing someone on is a process rather than a scramble.",
+    title: "HR Records and Employee Information System",
+    tagline: "One place holding every person record, current and complete",
+    shortDesc: "A single system holding employment records, documents, right to work checks and renewal dates, so people information stops living across a folder, a spreadsheet and somebody's memory.",
     longDesc: "The first week sets whether a new person becomes productive or spends a month guessing. We build the onboarding sequence, the accounts and access checklist, the contract and policy templates appropriate to how you engage people, and the record keeping system that holds it together. We also build the offboarding checklist, which is the one everybody skips until the day they urgently need it.",
     badge: "PEOPLE OPS",
     iconName: "Users",
@@ -1309,5 +1310,537 @@ export const allServicesCatalog: ServiceDefinition[] = [
     ],
     who: "Teams past their first few hires where nobody has told anyone how they are doing.",
     get: "A cycle that surfaces problems while they are still small."
+  },
+  {
+    id: "company-formation",
+    slug: "company-formation",
+    category: "Formation & Compliance",
+    title: "Company Formation and Registration",
+    tagline: "The entity filed correctly, in the right state, the first time",
+    shortDesc: "We handle your US LLC or UK limited company formation end to end: state or Companies House filing, registered agent, founding documents and the obligations that follow.",
+    longDesc: "Forming a company takes twenty minutes and going wrong takes a year to discover. We handle the filing itself, help you choose a jurisdiction based on where you actually operate rather than a blog post about Wyoming, appoint the registered agent, produce the founding documents, and hand you a written list of what is due and when. We are not lawyers or accountants, and we will tell you plainly when a question needs one.",
+    badge: "DAY ZERO",
+    iconName: "Building2",
+    packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
+    features: [
+      "US LLC or corporation filing, or UK limited company incorporation",
+      "Jurisdiction guidance based on where you actually do business",
+      "Registered agent appointment and registered office setup",
+      "Operating agreement, articles and founding document pack",
+      "Post formation obligations mapped with dates",
+      "Support for non resident founders, including the parts that usually stall"
+    ],
+    deliverables: [
+      "A registered company with its certificate",
+      "Founding document pack",
+      "Registered agent or registered office in place",
+      "A written calendar of what is due and when"
+    ],
+    who: "Founders starting a new company, and anyone who formed one quickly and is not sure what they now owe.",
+    get: "A properly registered company and a clear view of the obligations attached to it."
+  },
+  {
+    id: "ein-registered-agent",
+    slug: "ein-registered-agent",
+    category: "Formation & Compliance",
+    title: "EIN, Tax Registration and Registered Agent",
+    tagline: "Including the route that works when you have no social security number",
+    shortDesc: "We obtain your EIN, handle tax registrations and appoint a registered agent, including the phone and fax route that non resident founders need because the online tool will not serve them.",
+    longDesc: "An EIN is free and the IRS says so plainly, yet people routinely pay for one and wait months on advice that is simply wrong. Non resident founders are told to get an ITIN first; they do not need one, because the application form accepts a foreign responsible party. We handle the application by whichever route applies to you, complete the tax registrations your structure requires, and put a compliant registered agent in place.",
+    badge: "REGISTRATION",
+    iconName: "BadgeCheck",
+    packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
+    features: [
+      "EIN application by the route that fits your situation",
+      "Support for founders with no US social security number",
+      "State and local tax registrations where your structure requires them",
+      "UK Corporation Tax registration within the notification window",
+      "Registered agent appointment with a compliant street address",
+      "Documentation of every reference number in one place"
+    ],
+    deliverables: [
+      "Your EIN confirmation letter",
+      "Completed tax registrations",
+      "An appointed registered agent",
+      "A single record of every number and login"
+    ],
+    who: "New companies, and non resident founders stuck at the stage everyone gets stuck at.",
+    get: "Your tax identity established and the paperwork in one place."
+  },
+  {
+    id: "business-banking-setup",
+    slug: "business-banking-setup",
+    category: "Formation & Compliance",
+    title: "Business Banking and Financial Account Setup",
+    tagline: "Preparation that survives the application form",
+    shortDesc: "We prepare your banking application properly, assemble the documentation providers actually ask for, and set up the accounts your business needs to receive and move money.",
+    longDesc: "Bank applications fail on preparation far more often than on eligibility. We assemble the documentation set providers ask for, help you describe the business in the terms underwriting teams expect, and work through the options appropriate to your structure. For non resident owners we are honest about the constraint: the identification regulation is broader than most people think, but individual bank policy is frequently stricter, and approval is never guaranteed anywhere.",
+    badge: "BANKING",
+    iconName: "Landmark",
+    packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
+    features: [
+      "Documentation pack assembled to what providers actually request",
+      "Business description written the way underwriting teams read it",
+      "Options mapped for resident and non resident owners",
+      "Multi currency and international transfer setup where you need it",
+      "Connection to your accounting platform for reconciliation",
+      "An honest assessment of your chances before you apply"
+    ],
+    deliverables: [
+      "A complete application pack",
+      "Accounts connected to your accounting system",
+      "Payment rails configured",
+      "A written fallback plan if the first application is declined"
+    ],
+    who: "New companies opening their first account, and non resident owners who have already been declined once.",
+    get: "A prepared application and accounts wired into your finance stack."
+  },
+  {
+    id: "compliance-calendar",
+    slug: "compliance-calendar",
+    category: "Formation & Compliance",
+    title: "Annual Compliance and Filing Calendar",
+    tagline: "The filings that carry flat penalties regardless of whether you traded",
+    shortDesc: "A written calendar of every filing, renewal and registration your company owes, with owners and reminders, so nothing lapses quietly while you are busy.",
+    longDesc: "Company obligations do not scale with revenue. Several carry flat penalties whether or not the business earned anything, and some of the most expensive ones are the least known. We map everything your structure owes, put dates and owners against each item, set reminders that fire early enough to act on, and flag which ones need a professional rather than you. Then it is a calendar rather than a memory.",
+    badge: "DEADLINES",
+    iconName: "CalendarClock",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Every filing, renewal and registration mapped for your structure",
+      "Annual reports, franchise tax and confirmation statements tracked",
+      "Registered agent and domain renewals included so nothing lapses",
+      "Reminders set far enough ahead to be useful",
+      "A named owner against every obligation",
+      "Clear flags on which items need an accountant or lawyer"
+    ],
+    deliverables: [
+      "A written compliance calendar",
+      "Reminders in your actual calendar and task system",
+      "An owner assigned to each item",
+      "A shortlist of what to take to a professional"
+    ],
+    who: "Any company past its first year, and foreign owned entities with filing obligations they may not know exist.",
+    get: "Deadlines that arrive as reminders instead of as penalties."
+  },
+  {
+    id: "accounts-access-security",
+    slug: "accounts-access-security",
+    category: "Web & Foundation",
+    title: "Accounts, Access and Security Setup",
+    tagline: "You own the logins, and leavers lose them the same day",
+    shortDesc: "A password manager, two factor authentication everywhere, a written access matrix, and recovery that does not depend on one person's phone.",
+    longDesc: "Most small businesses have a security problem that is really an ownership problem: accounts registered to personal addresses, shared passwords in a chat thread, and recovery codes on a device belonging to someone who left. We set up a password manager, enable two factor everywhere, move ownership to accounts the company controls, write down who has access to what, and make sure recovery works without a single point of failure.",
+    badge: "SECURITY",
+    iconName: "KeyRound",
+    packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
+    features: [
+      "Password manager rollout with shared vaults by team",
+      "Two factor authentication enabled across every critical account",
+      "Ownership moved from personal addresses to company controlled accounts",
+      "A written access matrix covering who can reach what",
+      "Recovery codes stored so no single device is a point of failure",
+      "Joiner and leaver checklists tied to your HR process"
+    ],
+    deliverables: [
+      "A configured password manager with vaults",
+      "Two factor enabled and recovery documented",
+      "A written access matrix",
+      "Joiner and leaver access checklists"
+    ],
+    who: "Teams sharing credentials informally, and any business where one person holds all the keys.",
+    get: "Control of your own accounts, and a clean way to grant and revoke access."
+  },
+  {
+    id: "cold-outreach",
+    slug: "cold-outreach",
+    category: "Sales & Marketing",
+    title: "Cold Email Outreach and Lead Generation",
+    tagline: "Sent from infrastructure built so the messages actually arrive",
+    shortDesc: "We build the outbound email system: separate sending domains, authentication and warmup, verified lists, sequences and reply handling, so campaigns land in inboxes rather than spam.",
+    longDesc: "Cold email fails for technical reasons far more often than for copy reasons. Sending volume from your main domain damages the deliverability of your ordinary business email, and unverified lists produce bounce rates that get a domain flagged. We build outbound on separate sending domains with authentication and a warmup period, verify every list before it is used, keep daily volume inside sane limits, and set up reply handling so interested people reach a human quickly.",
+    badge: "OUTBOUND",
+    iconName: "Inbox",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Separate sending domains so your main domain is never at risk",
+      "Authentication records and a proper mailbox warmup period",
+      "List verification before any campaign sends",
+      "Sequence design with follow ups that stop on reply",
+      "Reply routing into your CRM with a human handover",
+      "Deliverability monitoring and volume limits per mailbox"
+    ],
+    deliverables: [
+      "Configured sending infrastructure and warmed mailboxes",
+      "Verified target lists",
+      "Live sequences with copy and follow ups",
+      "Reporting on delivery, opens, replies and meetings booked"
+    ],
+    who: "Businesses selling to other businesses who want predictable pipeline rather than waiting on referrals.",
+    get: "An outbound system that reaches inboxes and routes replies to a person."
+  },
+  {
+    id: "cold-calling",
+    slug: "cold-calling",
+    category: "Sales & Marketing",
+    title: "Cold Calling and Outbound Sales Desk",
+    tagline: "Lists, scripts, dialer and logging, so calling is a process rather than a mood",
+    shortDesc: "We build the calling operation: target lists, call scripts and objection handling, dialer setup, call logging into your CRM, and the follow up sequence for everyone who did not pick up.",
+    longDesc: "Most cold calling fails because there is no system around it: the list is stale, the script is improvised, nothing is logged, and nobody follows up with the majority who did not answer. We build the whole desk. Lists built to a defined profile, a script with real objection handling, a dialer connected to your CRM so every call is logged against the right contact, disposition codes, and an automatic follow up path for no answers.",
+    badge: "PHONE",
+    iconName: "PhoneOutgoing",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Target call lists built and verified against your ideal profile",
+      "Call scripts with openers, qualification and objection handling",
+      "Dialer setup with local presence and call recording where permitted",
+      "Automatic logging of every call and outcome into the CRM",
+      "Disposition codes so the pipeline reflects what actually happened",
+      "Follow up sequences for no answers and callbacks"
+    ],
+    deliverables: [
+      "A configured dialer connected to your CRM",
+      "Built and verified call lists",
+      "A written call script and objection guide",
+      "Reporting on calls, conversations and meetings set"
+    ],
+    who: "Teams selling a considered purchase where a conversation converts better than an email.",
+    get: "A calling operation that runs the same way every day."
+  },
+  {
+    id: "lead-list-building",
+    slug: "lead-list-building",
+    category: "Sales & Marketing",
+    title: "Lead List Building and Data Enrichment",
+    tagline: "Fewer, better names beats a big list of the wrong people",
+    shortDesc: "We define your ideal customer profile, source matching companies and contacts, enrich and verify the data, and deliver clean lists that load straight into your CRM.",
+    longDesc: "Outbound performance is decided by the list long before it is decided by the message. We start with the profile, built from who actually buys from you rather than who you wish would, source companies and decision makers that match it, enrich with the fields your sequences need, verify every email and number, remove anyone already in your CRM, and hand over something that imports cleanly rather than creating six hundred duplicates.",
+    badge: "TARGETING",
+    iconName: "Filter",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Ideal customer profile defined from your actual closed business",
+      "Company and contact sourcing matched to that profile",
+      "Enrichment with the fields your sequences need for personalisation",
+      "Email and phone verification before delivery",
+      "Suppression against existing CRM records and previous campaigns",
+      "Clean import so nothing duplicates on load"
+    ],
+    deliverables: [
+      "A written ideal customer profile",
+      "Verified, enriched lists ready to use",
+      "Suppression list applied",
+      "Records imported into your CRM"
+    ],
+    who: "Any team running outbound, and anyone whose last list produced bounces and wasted calls.",
+    get: "Lists worth the time of the person working them."
+  },
+  {
+    id: "linkedin-outreach",
+    slug: "linkedin-outreach",
+    category: "Sales & Marketing",
+    title: "LinkedIn Outreach and Social Selling",
+    tagline: "A founder's profile that earns the reply before you send it",
+    shortDesc: "Profile positioning, connection and message sequences, and a light posting rhythm, so the people you approach have already seen who you are.",
+    longDesc: "Outreach from an empty profile converts badly, because the first thing a prospect does is look you up. We fix the profile first so it reads like someone worth replying to, then build the connection and message sequence, keep volume inside platform limits so the account is not restricted, and set a posting rhythm that is sustainable rather than ambitious. Replies route into your CRM like any other channel.",
+    badge: "SOCIAL SELLING",
+    iconName: "Network",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Profile rewrite and positioning for the founder and key sellers",
+      "Targeting built around real buying signals rather than job title alone",
+      "Connection and message sequences with follow ups that stop on reply",
+      "Volume kept inside platform limits to protect the account",
+      "A posting rhythm the person can actually sustain",
+      "Replies and conversations tracked in the CRM"
+    ],
+    deliverables: [
+      "Rewritten profiles",
+      "Live outreach sequences",
+      "A content rhythm with the first posts drafted",
+      "CRM tracking of conversations"
+    ],
+    who: "Founders and sales teams selling to business buyers who research before replying.",
+    get: "Outreach that lands on a profile that supports it."
+  },
+  {
+    id: "sales-playbook",
+    slug: "sales-playbook",
+    category: "Sales & Marketing",
+    title: "Sales Playbook, Scripts and Objection Handling",
+    tagline: "So your second salesperson sells like your best one",
+    shortDesc: "We document how selling actually works in your business: qualification criteria, discovery questions, objection responses, pricing conversations and the stage definitions behind your pipeline.",
+    longDesc: "In most small businesses the sales process lives in the founder's head, which is fine until somebody else has to sell. We write it down: who is worth talking to and who is not, the discovery questions that surface the real problem, the answers to the objections that come up every week, how to handle the pricing conversation, and what each pipeline stage actually means so forecasts stop being fiction.",
+    badge: "REPEATABLE",
+    iconName: "BookMarked",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Qualification criteria, including what to disqualify",
+      "Discovery question set that gets past the surface request",
+      "Objection responses drawn from the ones you actually hear",
+      "Pricing and negotiation guidance",
+      "Pipeline stage definitions with entry and exit criteria",
+      "Call and demo structure a new hire can follow"
+    ],
+    deliverables: [
+      "A written sales playbook",
+      "Scripts and question sets",
+      "Defined pipeline stages configured in your CRM",
+      "An onboarding path for new sellers"
+    ],
+    who: "Founders about to hire their first salesperson, and teams whose results depend entirely on one person.",
+    get: "A sales process that exists outside somebody's head."
+  },
+  {
+    id: "helpdesk-setup",
+    slug: "helpdesk-setup",
+    category: "Operations & Growth",
+    title: "Help Desk and Customer Support System Setup",
+    tagline: "Every request in one queue, with an owner and a clock on it",
+    shortDesc: "We set up Intercom, Zendesk or Crisp with shared inboxes, routing rules, response targets, saved replies and reporting, so support stops living in one person's email.",
+    longDesc: "Support handled from a personal inbox has no queue, no ownership and no record, so things get missed and nobody knows how often. We set up a proper help desk: every channel feeding one queue, rules that route requests to the right person, response targets you can actually meet, saved replies for the questions that repeat, and reporting that shows volume, response time and what customers keep asking about.",
+    badge: "SUPPORT",
+    iconName: "Headphones",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Help desk setup on Intercom, Zendesk or Crisp",
+      "Email, chat and form channels feeding a single queue",
+      "Routing rules, ownership and escalation paths",
+      "Response targets with alerts before they are breached",
+      "Saved replies and macros for repeat questions",
+      "Reporting on volume, response time and recurring themes"
+    ],
+    deliverables: [
+      "A configured help desk with live channels",
+      "Routing and escalation rules",
+      "A saved reply library",
+      "A support reporting view"
+    ],
+    who: "Any business where customer questions arrive in more than one place.",
+    get: "One queue, with nothing quietly falling out of it."
+  },
+  {
+    id: "help-center",
+    slug: "help-center",
+    category: "Operations & Growth",
+    title: "Customer Help Center and Self Service",
+    tagline: "Answer the repeat question once, publicly",
+    shortDesc: "A searchable help center covering the questions your support queue answers over and over, built so customers find answers themselves and your team stops retyping them.",
+    longDesc: "The fastest way to reduce support volume is to look at what people actually ask and publish the answers properly. We pull the recurring themes out of your support history, write clear articles, structure them so search works, surface them inside your chat widget at the moment someone is about to raise a ticket, and set a review rhythm so the content does not rot.",
+    badge: "SELF SERVICE",
+    iconName: "HelpCircle",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Topic list built from your real support history, not guesswork",
+      "Help articles written in plain language",
+      "Search and category structure that matches how people ask",
+      "Suggested articles surfaced inside the chat widget before a ticket is raised",
+      "Feedback capture on whether each article helped",
+      "A review schedule with owners so content stays current"
+    ],
+    deliverables: [
+      "A live help center",
+      "A written article set covering your top questions",
+      "Chat widget integration",
+      "A review calendar"
+    ],
+    who: "Teams answering the same handful of questions every week.",
+    get: "Customers finding answers without waiting for you."
+  },
+  {
+    id: "job-descriptions",
+    slug: "job-descriptions",
+    category: "People & Talent",
+    title: "Job Descriptions and Role Scorecards",
+    tagline: "Define the job before you start interviewing for it",
+    shortDesc: "We write role definitions built from the work rather than a generic template, with outcomes, competencies and a scorecard so candidates are measured against the same bar.",
+    longDesc: "Most bad hires trace back to a role nobody defined. The advert was copied from a similar company, the interviewers each had a private idea of what good looked like, and the decision came down to who was most likeable. We define the role from the work: the outcomes it owns, the competencies it needs, what the first ninety days should produce, and a scorecard every interviewer uses.",
+    badge: "CLARITY",
+    iconName: "FileText",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Role definition built from the actual work and its outcomes",
+      "Competency list separating what is required from what is trainable",
+      "A first ninety days expectation so success is defined up front",
+      "Scorecard used consistently by every interviewer",
+      "Job advert written for the channels that fit the role",
+      "Salary band structure so offers stay internally consistent"
+    ],
+    deliverables: [
+      "Written role definitions and scorecards",
+      "Job adverts ready to post",
+      "Interview evaluation forms",
+      "A salary band structure"
+    ],
+    who: "Anyone about to hire, and teams where interviewers disagree about what the job even is.",
+    get: "A role defined well enough to hire against."
+  },
+  {
+    id: "interview-process",
+    slug: "interview-process",
+    category: "People & Talent",
+    title: "Interview Process and Candidate Assessment Design",
+    tagline: "Structured, so you are comparing candidates rather than impressions",
+    shortDesc: "We design your interview stages, question sets, practical assessments and scoring, so hiring decisions rest on evidence instead of who interviewed most confidently.",
+    longDesc: "Unstructured interviews mostly measure how comfortable someone is being interviewed, which is rarely the job. We design the stages, write question sets tied to the competencies the role actually needs, build a practical assessment that resembles the work, set scoring so evaluations are comparable, and write the reference check questions that produce useful answers rather than confirmation of employment dates.",
+    badge: "EVIDENCE",
+    iconName: "MessagesSquare",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Interview stages designed around the role, with a clear purpose for each",
+      "Structured question sets mapped to required competencies",
+      "A practical assessment that resembles the actual work",
+      "Scoring rubric so candidates are comparable",
+      "Reference check questions that produce real answers",
+      "Interviewer guidance covering what not to ask"
+    ],
+    deliverables: [
+      "A documented interview process",
+      "Question sets and scoring rubrics",
+      "A practical assessment with a marking guide",
+      "Reference check templates"
+    ],
+    who: "Teams hiring without a consistent process, and founders who have been burned by a confident interviewer.",
+    get: "Hiring decisions based on comparable evidence."
+  },
+  {
+    id: "employment-contracts",
+    slug: "employment-contracts",
+    category: "People & Talent",
+    title: "Employment Contracts and Offer Letters",
+    tagline: "Written down before the first day, not after the first problem",
+    shortDesc: "Offer letters, employment and contractor agreements, confidentiality and IP assignment terms, built into a templated pack so every hire is documented consistently.",
+    longDesc: "Small companies routinely hire on a conversation and a start date, then discover the gap when someone leaves holding work nobody formally owns. We build the document pack: offer letters, employment and contractor agreements, confidentiality, intellectual property assignment and the sections covering notice and termination. We produce templates and flag what needs a qualified employment lawyer in your jurisdiction, because that line matters and we will not blur it.",
+    badge: "PAPERWORK",
+    iconName: "Handshake",
+    packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
+    features: [
+      "Offer letter templates with the terms that need stating",
+      "Employment and contractor agreement templates",
+      "Confidentiality and intellectual property assignment terms",
+      "Notice, probation and termination sections",
+      "Electronic signature and filing built into the flow",
+      "Clear flags on what requires review by a qualified lawyer"
+    ],
+    deliverables: [
+      "A contract and offer letter template pack",
+      "Signature and filing automation",
+      "A record of what each person has signed",
+      "A written list of items to take to a lawyer"
+    ],
+    who: "Businesses hiring their first people, and teams whose agreements were written years ago and never revisited.",
+    get: "Every hire documented the same way, with the risky parts flagged."
+  },
+  {
+    id: "hr-policies",
+    slug: "hr-policies",
+    category: "People & Talent",
+    title: "HR Policies and Employee Handbook",
+    tagline: "Short enough that people actually read it",
+    shortDesc: "A handbook and policy set covering conduct, leave, remote work, equipment, grievances and the everyday questions employees ask, written in plain language.",
+    longDesc: "A handbook exists to answer questions before they become conversations, and most fail because they are either forty pages of boilerplate or do not exist at all. We write the set that matters for your size: how people work, what leave they get and how to request it, remote and equipment rules, conduct and grievance paths, and what happens when something goes wrong. Plain language, and flagged where local law requires professional review.",
+    badge: "POLICY",
+    iconName: "BookText",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Employee handbook written for your size and structure",
+      "Leave, absence and time off policy with a clear request path",
+      "Remote and hybrid working policy including equipment and expenses",
+      "Conduct, grievance and disciplinary procedure",
+      "Data handling and acceptable use policy",
+      "An acknowledgement flow so you can evidence people received it"
+    ],
+    deliverables: [
+      "A written employee handbook",
+      "Individual policy documents",
+      "An acknowledgement and version history record",
+      "A review schedule with owners"
+    ],
+    who: "Teams past their first few hires, and anyone whose policies exist only as verbal precedent.",
+    get: "Written answers to the questions employees ask most."
+  },
+  {
+    id: "employee-onboarding",
+    slug: "employee-onboarding",
+    category: "People & Talent",
+    title: "Employee Onboarding Programme",
+    tagline: "Productive in week two, not month two",
+    shortDesc: "A structured first ninety days: paperwork before day one, accounts ready on morning one, a training path, a buddy, and check ins at the points where new hires quietly disengage.",
+    longDesc: "A new person decides how they feel about the job in the first fortnight, usually based on whether anyone had prepared for them. We build the programme: paperwork and equipment before day one, accounts and access ready on the first morning, a written training path with owners, someone assigned to answer the small questions, and structured check ins at thirty, sixty and ninety days while problems are still small.",
+    badge: "FIRST 90 DAYS",
+    iconName: "DoorOpen",
+    packagesIncluded: ["Starter", "Growth", "Ultimate", "Solo"],
+    features: [
+      "Pre start checklist covering paperwork, equipment and accounts",
+      "A first day and first week schedule that is actually planned",
+      "Role specific training path with named owners",
+      "A buddy or mentor assignment for the small questions",
+      "Structured check ins at thirty, sixty and ninety days",
+      "Automation so the checklist fires when the contract is signed"
+    ],
+    deliverables: [
+      "A documented onboarding programme",
+      "Automated checklists triggered on signature",
+      "Training paths per role",
+      "Check in templates and a schedule"
+    ],
+    who: "Any business hiring, especially where the last new joiner spent a week waiting for a laptop.",
+    get: "New people contributing sooner, and staying longer."
+  },
+  {
+    id: "offboarding-process",
+    slug: "offboarding-process",
+    category: "People & Talent",
+    title: "Offboarding and Exit Process",
+    tagline: "The checklist everyone skips until the day it is urgent",
+    shortDesc: "A structured exit covering handover, access revocation, equipment return, final pay and an exit conversation, so departures are orderly rather than improvised.",
+    longDesc: "Offboarding is the process nobody builds until a departure goes badly. We write the checklist: what gets handed over and to whom, access revoked the same day across every system, equipment returned, final pay and entitlements settled, records retained for the period required, and an exit conversation that produces something useful. It protects the business, and it treats the person leaving decently, which the people staying notice.",
+    badge: "EXITS",
+    iconName: "LogOut",
+    packagesIncluded: ["Growth", "Ultimate", "Solo"],
+    features: [
+      "Handover template covering work, accounts, clients and context",
+      "Same day access revocation across every system, tied to your access matrix",
+      "Equipment return and asset tracking",
+      "Final pay, notice and entitlement checklist",
+      "Exit conversation structure that surfaces real reasons",
+      "Record retention in line with the period you are required to keep"
+    ],
+    deliverables: [
+      "A documented offboarding checklist",
+      "An access revocation runbook",
+      "Handover and exit conversation templates",
+      "An asset return register"
+    ],
+    who: "Every business with employees, particularly any that has had a messy departure.",
+    get: "Departures that close cleanly instead of leaving loose ends."
+  },
+  {
+    id: "benefits-timeoff",
+    slug: "benefits-timeoff",
+    category: "People & Talent",
+    title: "Benefits and Time Off Administration",
+    tagline: "Leave tracked in a system rather than in a group chat",
+    shortDesc: "We set up leave policy and tracking, benefits enrolment and the approval flow, so time off is visible, balances are accurate, and nobody is reconstructing them at year end.",
+    longDesc: "Leave tracked informally produces the same argument every December about how many days somebody has left. We configure the policy in a real system, set accrual and carryover rules, build the request and approval flow, put a shared calendar in place so managers can see coverage before approving, and run benefits enrolment where you offer it. Balances become a number rather than a negotiation.",
+    badge: "ENTITLEMENTS",
+    iconName: "CalendarDays",
+    packagesIncluded: ["Ultimate", "Solo"],
+    features: [
+      "Leave policy configured with accrual and carryover rules",
+      "Request and approval workflow with automatic balance updates",
+      "A shared team calendar so coverage is visible before approval",
+      "Sick leave and public holiday handling by location",
+      "Benefits enrolment where you offer benefits",
+      "Reporting on balances, liability and usage patterns"
+    ],
+    deliverables: [
+      "A configured leave system with accurate balances",
+      "A live approval workflow",
+      "A shared availability calendar",
+      "Benefits enrolment records"
+    ],
+    who: "Teams tracking leave in a spreadsheet, and anyone who has had the year end balance argument.",
+    get: "Accurate balances and visible coverage, without the spreadsheet."
   },
 ];

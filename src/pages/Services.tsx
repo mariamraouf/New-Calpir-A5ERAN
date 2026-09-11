@@ -20,6 +20,12 @@ import { ArchitectureFlow } from '@/components/visuals/ArchitectureFlow';
  */
 const CATEGORIES: { name: string; id: string; blurb: string }[] = [
   {
+    name: 'Formation & Compliance',
+    id: 'formation-compliance',
+    blurb:
+      'Becoming a real company and staying one. Registration, tax identity, banking and the filing deadlines that carry penalties whether or not you traded.',
+  },
+  {
     name: 'Web & Foundation',
     id: 'web-foundation',
     blurb:
@@ -101,13 +107,13 @@ const Services = () => {
         <div className="container-custom px-6">
           <nav
             aria-label="Service categories"
-            className="flex gap-x-7 gap-y-2 overflow-x-auto py-4 no-scrollbar"
+            className="flex gap-x-4 lg:gap-x-5 overflow-x-auto py-4 no-scrollbar"
           >
             {CATEGORIES.map((c) => (
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="group flex items-baseline gap-2 whitespace-nowrap mono text-xs uppercase tracking-widest font-bold text-zinc-600 hover:text-emerald-700 transition-colors"
+                className="group flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] uppercase tracking-wider font-bold text-zinc-600 hover:text-emerald-700 transition-colors"
               >
                 {c.name}
                 <span className="text-[10px] text-zinc-400 group-hover:text-emerald-600">

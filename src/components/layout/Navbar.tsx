@@ -16,6 +16,7 @@ interface ServiceItem {
 }
 
 const CATEGORY_ORDER = [
+  'Formation & Compliance',
   'Web & Foundation',
   'Brand & Creative',
   'Sales & Marketing',

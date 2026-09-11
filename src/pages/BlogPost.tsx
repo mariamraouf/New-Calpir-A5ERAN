@@ -105,7 +105,7 @@ const BlogPost = () => {
               <SectionLabel>FOUNDER GUIDE</SectionLabel>
             </div>
 
-            <h1 className="text-3xl md:text-6xl font-black uppercase tracking-tight mb-8 leading-[0.95] text-zinc-950">
+            <h1 className="article-title text-3xl md:text-5xl font-bold mb-8 leading-[1.1] text-zinc-950 max-w-[20ch] md:max-w-[24ch]">
               {post.title}
             </h1>
 
@@ -158,7 +158,7 @@ const BlogPost = () => {
               </p>
               <Link
                 to={`/blog/${next.slug}`}
-                className="text-xl md:text-2xl font-black uppercase tracking-tight text-zinc-950 hover:text-emerald-700 transition-colors"
+                className="article-title text-xl md:text-2xl font-bold text-zinc-950 hover:text-emerald-700 transition-colors"
               >
                 {next.title}
               </Link>
@@ -173,7 +173,7 @@ const BlogPost = () => {
           <h2 className="text-4xl md:text-6xl mb-8 font-black uppercase tracking-tight text-zinc-950">
             Ready to Deploy Your <br /> Complete Business Engine?
           </h2>
-          <p className="text-xl mono text-zinc-700 mb-12 max-w-[600px] mx-auto">
+          <p className="text-lg text-zinc-700 mb-12 max-w-[600px] mx-auto leading-relaxed">
             Book a free 30 minute consultation with the Calpir team to map out your full company
             setup.
           </p>

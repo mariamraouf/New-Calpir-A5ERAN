@@ -57,14 +57,14 @@ const Inline: React.FC<{ x?: Tok[] }> = ({ x }) => (
 );
 
 const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
-  <div className="space-y-8 mono text-lg leading-relaxed text-zinc-800">
+  <div className="article-prose space-y-7">
     {blocks.map((b, i) => {
       switch (b.t) {
         case 'lead':
           return (
             <p
               key={i}
-              className="text-xl md:text-2xl text-zinc-950 font-black uppercase tracking-tight border-l-4 border-emerald-600 pl-6 py-3 bg-emerald-50"
+              className="text-lg md:text-xl text-zinc-900 font-semibold border-l-4 border-emerald-600 pl-6 py-4 bg-emerald-50/70 !max-w-none"
             >
               <Inline x={b.x} />
             </p>
@@ -74,7 +74,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
           return (
             <h2
               key={i}
-              className="text-2xl md:text-3xl font-black text-zinc-950 uppercase tracking-tight pt-8 border-t border-zinc-200"
+              className="text-2xl md:text-[1.75rem] font-bold text-zinc-950 pt-10 mt-2 border-t border-zinc-200 leading-snug"
             >
               <Inline x={b.x} />
             </h2>
@@ -82,7 +82,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
 
         case 'h3':
           return (
-            <h3 key={i} className="text-lg md:text-xl font-bold text-emerald-800 uppercase tracking-wider pt-2">
+            <h3 key={i} className="text-lg md:text-xl font-bold text-emerald-800 pt-4 leading-snug">
               <Inline x={b.x} />
             </h3>
           );
@@ -96,14 +96,14 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
 
         case 'note':
           return (
-            <p key={i} className="text-sm text-zinc-500 border-l-2 border-zinc-300 pl-4">
+            <p key={i} className="text-sm text-zinc-500 border-l-2 border-zinc-300 pl-4 !max-w-[64ch]">
               <Inline x={b.x} />
             </p>
           );
 
         case 'ul':
           return (
-            <ul key={i} className="list-disc pl-8 space-y-2 text-base text-zinc-700">
+            <ul key={i} className="list-disc pl-6 space-y-2.5 marker:text-emerald-600">
               {(b.items as Tok[][]).map((it, j) => (
                 <li key={j}><Inline x={it} /></li>
               ))}
@@ -112,7 +112,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
 
         case 'ol':
           return (
-            <ol key={i} className="list-decimal pl-8 space-y-2 text-base text-zinc-700">
+            <ol key={i} className="list-decimal pl-6 space-y-2.5 marker:text-emerald-600 marker:font-bold">
               {(b.items as Tok[][]).map((it, j) => (
                 <li key={j}><Inline x={it} /></li>
               ))}
@@ -122,7 +122,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
         case 'table':
           return (
             <div key={i} className="overflow-x-auto my-8 border border-zinc-200 shadow-sm">
-              <table className="w-full mono text-sm text-left">
+              <table className="w-full text-left">
                 <thead className="bg-zinc-950 text-white">
                   <tr>
                     {(b.head || []).map((h, j) => (
@@ -160,13 +160,13 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
         case 'faq':
           return (
             <div key={i} className="pt-8 border-t border-zinc-200">
-              <h2 className="text-2xl md:text-3xl font-black text-zinc-950 uppercase tracking-tight mb-8">
+              <h2 className="text-2xl md:text-[1.75rem] font-bold text-zinc-950 mb-8 leading-snug">
                 Frequently asked questions
               </h2>
               <div className="space-y-px bg-zinc-200 border border-zinc-200">
                 {(b.items as { q: string; a: string }[]).map((f, j) => (
                   <div key={j} className="bg-white p-6">
-                    <h3 className="text-base md:text-lg font-black text-zinc-950 mb-3">{f.q}</h3>
+                    <h3 className="text-base md:text-lg font-bold text-zinc-950 mb-3 leading-snug">{f.q}</h3>
                     <p className="text-base text-zinc-700 leading-relaxed">{f.a}</p>
                   </div>
                 ))}
