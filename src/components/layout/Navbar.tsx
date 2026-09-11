@@ -6,6 +6,7 @@ import { Menu, X, ChevronDown, Sparkles, Layers, ArrowRight } from 'lucide-react
 import { cn } from '@/lib/utils';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
+import { SERVICE_CATEGORIES } from '@/data/serviceCategories';
 
 interface ServiceItem {
   name: string;
@@ -15,20 +16,13 @@ interface ServiceItem {
   highlight?: boolean;
 }
 
-const CATEGORY_ORDER = [
-  'Formation & Compliance',
-  'Web & Foundation',
-  'Brand & Creative',
-  'Sales & Marketing',
-  'AI & Automation',
-  'Operations & Growth',
-  'People & Talent',
-] as const;
+const CATEGORY_ORDER = SERVICE_CATEGORIES.map((c) => c.name);
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ORDER[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -132,102 +126,104 @@ const Navbar = () => {
               />
             </button>
             
-            {/* Dropdown Menu Container */}
+            {/* Two panel menu. 65 services in a single scrolling list is not
+                navigable, so categories sit on the left and the chosen
+                category's services fill the right. */}
             {isServicesOpen && (
-              <div 
-                className="absolute top-full -left-4 w-[380px] bg-white border border-zinc-200 shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
-              >
-                <div className="px-3 py-2 border-b border-zinc-100 mb-1 flex items-center justify-between">
+              <div className="absolute top-full -left-4 w-[760px] bg-white border border-zinc-200 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="px-4 py-2.5 border-b border-zinc-200 flex items-center justify-between">
                   <span className="mono text-[10px] uppercase tracking-widest font-black text-emerald-800">
-                    Capabilities & Modules
+                    {allServicesCatalog.length} services across {serviceGroups.length} categories
                   </span>
-                  <Link 
-                    to="/services" 
+                  <Link
+                    to="/services"
                     onClick={() => setIsServicesOpen(false)}
                     className="mono text-[10px] text-zinc-500 hover:text-emerald-700 font-bold uppercase underline"
                   >
-                    View Overview →
+                    View all services →
                   </Link>
                 </div>
 
-                <div className="space-y-1 max-h-[70vh] overflow-y-auto custom-scrollbar pr-1">
-                  {[soloEntry].map((s) => {
-                    const Icon = s.icon;
-                    return (
-                      <Link 
-                        key={s.name} 
-                        to={s.href} 
-                        onClick={() => setIsServicesOpen(false)}
+                <div className="flex">
+                  {/* Categories */}
+                  <div className="w-[250px] shrink-0 border-r border-zinc-200 bg-zinc-50/70 p-2">
+                    <Link
+                      to={soloEntry.href}
+                      onClick={() => setIsServicesOpen(false)}
+                      className="flex items-center gap-2.5 p-2.5 mb-2 bg-emerald-50 border border-emerald-300 text-emerald-950"
+                    >
+                      <div className="p-1.5 bg-emerald-600 text-white shrink-0">
+                        <soloEntry.icon size={14} />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-[11px] font-black uppercase tracking-tight">
+                          {soloEntry.name}
+                        </div>
+                        <div className="mono text-[9px] text-emerald-800 truncate">
+                          {soloEntry.desc}
+                        </div>
+                      </div>
+                    </Link>
+
+                    {serviceGroups.map((group) => (
+                      <button
+                        key={group.category}
+                        type="button"
+                        onMouseEnter={() => setActiveCategory(group.category)}
+                        onFocus={() => setActiveCategory(group.category)}
+                        onClick={() => setActiveCategory(group.category)}
                         className={cn(
-                          "group flex items-start gap-3 p-2.5 transition-all rounded-none",
-                          s.highlight
-                            ? "bg-emerald-50 text-emerald-950 border border-emerald-300 font-black mb-2"
-                            : "hover:bg-zinc-50 text-zinc-800 border-l-2 border-transparent hover:border-emerald-600"
+                          'w-full text-left flex items-center justify-between gap-2 px-2.5 py-2 transition-colors border-l-2',
+                          activeCategory === group.category
+                            ? 'bg-white border-emerald-600 text-emerald-800'
+                            : 'border-transparent text-zinc-700 hover:bg-white hover:text-emerald-700'
                         )}
                       >
-                        <div className={cn(
-                          "p-2 shrink-0 transition-colors",
-                          s.highlight ? "bg-emerald-600 text-white" : "bg-zinc-100 text-emerald-700 group-hover:bg-emerald-100"
-                        )}>
-                          <Icon size={16} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-xs font-black uppercase tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors flex items-center justify-between">
-                            <span>{s.name}</span>
-                            {s.highlight && (
-                              <span className="mono text-[9px] bg-emerald-600 text-white px-1.5 py-0.2 uppercase font-bold">
-                                Popular
-                              </span>
-                            )}
-                          </div>
-                          {s.desc && (
-                            <div className="mono text-[10px] text-zinc-500 truncate mt-0.5">
-                              {s.desc}
-                            </div>
-                          )}
-                        </div>
-                      </Link>
-                    );
-                  })}
+                        <span className="text-[11px] font-black uppercase tracking-tight">
+                          {group.category}
+                        </span>
+                        <span className="mono text-[9px] text-zinc-400">
+                          {group.items.length}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
 
-                  {serviceGroups.map((group) => (
-                    <div key={group.category} className="pt-2">
-                      <div className="px-2.5 pb-1 mono text-[9px] uppercase tracking-widest font-black text-zinc-400">
-                        {group.category}
-                      </div>
-                      {group.items.map((s) => {
-                        const Icon = s.icon;
-                        return (
-                          <Link
-                            key={s.href}
-                            to={s.href}
-                            onClick={() => setIsServicesOpen(false)}
-                            className="group flex items-start gap-3 p-2.5 transition-all hover:bg-zinc-50 text-zinc-800 border-l-2 border-transparent hover:border-emerald-600"
-                          >
-                            <div className="p-2 shrink-0 bg-zinc-100 text-emerald-700 group-hover:bg-emerald-100 transition-colors">
-                              <Icon size={16} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="text-xs font-black uppercase tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors">
-                                {s.name}
+                  {/* Services in the active category */}
+                  <div className="flex-1 p-2 max-h-[62vh] overflow-y-auto custom-scrollbar">
+                    <div className="grid grid-cols-2 gap-0.5">
+                      {(serviceGroups.find((g) => g.category === activeCategory)?.items || []).map(
+                        (item) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link
+                              key={item.href}
+                              to={item.href}
+                              onClick={() => setIsServicesOpen(false)}
+                              className="group flex items-start gap-2.5 p-2.5 hover:bg-zinc-50 border-l-2 border-transparent hover:border-emerald-600 transition-all"
+                            >
+                              <div className="p-1.5 shrink-0 bg-zinc-100 text-emerald-700 group-hover:bg-emerald-100 transition-colors">
+                                <Icon size={14} />
                               </div>
-                              {s.desc && (
-                                <div className="mono text-[10px] text-zinc-500 truncate mt-0.5">
-                                  {s.desc}
+                              <div className="min-w-0">
+                                <div className="text-[11px] font-black uppercase tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors leading-snug">
+                                  {item.name}
                                 </div>
-                              )}
-                            </div>
-                          </Link>
-                        );
-                      })}
+                              </div>
+                            </Link>
+                          );
+                        }
+                      )}
                     </div>
-                  ))}
+                  </div>
                 </div>
 
-                <div className="pt-2 mt-1 border-t border-zinc-100 px-3 py-2 bg-zinc-50 flex items-center justify-between">
-                  <span className="mono text-[10px] text-zinc-600 font-bold">Need a complete turn-key build?</span>
-                  <Link 
-                    to="/packages" 
+                <div className="border-t border-zinc-200 px-4 py-2.5 bg-zinc-50 flex items-center justify-between">
+                  <span className="mono text-[10px] text-zinc-600 font-bold">
+                    Need a complete turn key build?
+                  </span>
+                  <Link
+                    to="/packages"
                     onClick={() => setIsServicesOpen(false)}
                     className="mono text-[10px] text-emerald-800 font-black uppercase hover:underline"
                   >

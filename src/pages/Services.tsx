@@ -12,56 +12,8 @@ import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { ArchitectureFlow } from '@/components/visuals/ArchitectureFlow';
+import { SERVICE_CATEGORIES as CATEGORIES } from '@/data/serviceCategories';
 
-/**
- * Category order and blurbs live here rather than being derived from the data,
- * so the page reads in a deliberate sequence: build it, brand it, sell with it,
- * automate it, run it, staff it.
- */
-const CATEGORIES: { name: string; id: string; blurb: string }[] = [
-  {
-    name: 'Formation & Compliance',
-    id: 'formation-compliance',
-    blurb:
-      'Becoming a real company and staying one. Registration, tax identity, banking and the filing deadlines that carry penalties whether or not you traded.',
-  },
-  {
-    name: 'Web & Foundation',
-    id: 'web-foundation',
-    blurb:
-      'The layer everything else sits on. Your site, your domain, your email and phone, and keeping all of it fast and online.',
-  },
-  {
-    name: 'Brand & Creative',
-    id: 'brand-creative',
-    blurb:
-      'How the business looks and sounds, and the templates that let your team produce material without a designer every time.',
-  },
-  {
-    name: 'Sales & Marketing',
-    id: 'sales-marketing',
-    blurb:
-      'Getting found, getting enquiries, and turning them into paid work. Pipeline, tracking, search, email, ads and proposals.',
-  },
-  {
-    name: 'AI & Automation',
-    id: 'ai-automation',
-    blurb:
-      'The work that should not need a person. Agents, workflows, document handling and reporting, built with guardrails rather than hype.',
-  },
-  {
-    name: 'Operations & Growth',
-    id: 'operations-growth',
-    blurb:
-      'The internal machinery. Money in and out, documented processes, the tools you run on, and support once it is live.',
-  },
-  {
-    name: 'People & Talent',
-    id: 'people-talent',
-    blurb:
-      'Hiring, onboarding, paying and developing the people you bring in, with the paperwork done properly the first time.',
-  },
-];
 
 const Services = () => {
   const reveal = {
