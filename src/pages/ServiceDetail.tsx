@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { 
-  Globe, Database, Bot, Zap, Code, Settings, ShieldCheck, Search, Palette, Share2, Video, PhoneCall, CreditCard, Users, Brain, Wrench, FileCheck, Sparkles, ArrowRight, CheckCircle2
-} from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
@@ -14,10 +12,8 @@ import NotFound from './NotFound';
 import SectionLabel from '@/components/ui/SectionLabel';
 import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
+import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 
-const iconMap: { [key: string]: React.ElementType } = {
-  Globe, Database, Bot, Zap, Code, Settings, ShieldCheck, Search, Palette, Share2, Video, PhoneCall, CreditCard, Users, Brain, Wrench, FileCheck, Sparkles
-};
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -25,7 +21,7 @@ const ServiceDetail = () => {
 
   if (!data) return <NotFound />;
 
-  const Icon = iconMap[data.iconName] || Sparkles;
+  const Icon = serviceIconMap[data.iconName] || FallbackIcon;
 
   return (
     <div className="min-h-screen bg-white">

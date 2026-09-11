@@ -3,44 +3,80 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Database, Bot, Zap, Code, Settings, ShieldCheck, Search, Palette, Share2, Video, PhoneCall, CreditCard, Users, Brain, Wrench, FileCheck, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
-import { Button } from '@/components/ui/button';
 import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
+import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { ArchitectureFlow } from '@/components/visuals/ArchitectureFlow';
 
-const iconMap: { [key: string]: React.ElementType } = {
-  Globe, Database, Bot, Zap, Code, Settings, ShieldCheck, Search, Palette, Share2, Video, PhoneCall, CreditCard, Users, Brain, Wrench, FileCheck, Sparkles
-};
+/**
+ * Category order and blurbs live here rather than being derived from the data,
+ * so the page reads in a deliberate sequence: build it, brand it, sell with it,
+ * automate it, run it, staff it.
+ */
+const CATEGORIES: { name: string; id: string; blurb: string }[] = [
+  {
+    name: 'Web & Foundation',
+    id: 'web-foundation',
+    blurb:
+      'The layer everything else sits on. Your site, your domain, your email and phone, and keeping all of it fast and online.',
+  },
+  {
+    name: 'Brand & Creative',
+    id: 'brand-creative',
+    blurb:
+      'How the business looks and sounds, and the templates that let your team produce material without a designer every time.',
+  },
+  {
+    name: 'Sales & Marketing',
+    id: 'sales-marketing',
+    blurb:
+      'Getting found, getting enquiries, and turning them into paid work. Pipeline, tracking, search, email, ads and proposals.',
+  },
+  {
+    name: 'AI & Automation',
+    id: 'ai-automation',
+    blurb:
+      'The work that should not need a person. Agents, workflows, document handling and reporting, built with guardrails rather than hype.',
+  },
+  {
+    name: 'Operations & Growth',
+    id: 'operations-growth',
+    blurb:
+      'The internal machinery. Money in and out, documented processes, the tools you run on, and support once it is live.',
+  },
+  {
+    name: 'People & Talent',
+    id: 'people-talent',
+    blurb:
+      'Hiring, onboarding, paying and developing the people you bring in, with the paperwork done properly the first time.',
+  },
+];
 
 const Services = () => {
   const reveal = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.5, ease: "easeOut" }
+    viewport: { once: true, margin: '-60px' },
+    transition: { duration: 0.45, ease: 'easeOut' },
   } as const;
 
-  const categories = [
-    "Web & Foundation",
-    "Sales & Marketing",
-    "AI & Automation",
-    "Operations & Growth"
-  ];
+  const byCategory = (name: string) =>
+    allServicesCatalog.filter((s) => s.category === name);
 
   return (
     <div className="min-h-screen bg-white relative">
-      <MetaSEO 
+      <MetaSEO
         title="Services | Calpir"
-        description="Everything Calpir builds: websites, CRM and sales systems, marketing, operations, AI agents and custom apps."
+        description="Every service Calpir offers, grouped by category: websites, branding, CRM and marketing, AI automation, operations, recruiting, HR and payroll."
         path="/services"
       />
       <Navbar />
-      
+
       {/* Hero */}
       <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
@@ -50,9 +86,36 @@ const Services = () => {
               Our <br /> <span className="text-emerald-700">Services.</span>
             </h1>
             <p className="text-lg md:text-2xl text-zinc-600 max-w-[800px] leading-relaxed">
-              We provide the technical foundation for modern businesses. From initial architecture to autonomous operations, we build the systems that drive real growth.
+              {allServicesCatalog.length} services across {CATEGORIES.length} categories. Take the
+              whole stack as a package, or any single piece on its own.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Category index. Anchors so a visitor can jump straight to what they came for. */}
+      {/* Sticks directly beneath the navbar, which is itself sticky at top-0 with
+          z-[100]. Matching the navbar's own top-16 sm:top-20 measurement keeps the
+          two bars from overlapping. */}
+      <section className="border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm">
+        <div className="container-custom px-6">
+          <nav
+            aria-label="Service categories"
+            className="flex gap-x-7 gap-y-2 overflow-x-auto py-4 no-scrollbar"
+          >
+            {CATEGORIES.map((c) => (
+              <a
+                key={c.id}
+                href={`#${c.id}`}
+                className="group flex items-baseline gap-2 whitespace-nowrap mono text-xs uppercase tracking-widest font-bold text-zinc-600 hover:text-emerald-700 transition-colors"
+              >
+                {c.name}
+                <span className="text-[10px] text-zinc-400 group-hover:text-emerald-600">
+                  {byCategory(c.name).length}
+                </span>
+              </a>
+            ))}
+          </nav>
         </div>
       </section>
 
@@ -63,37 +126,59 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Detailed Services List */}
+      {/* Services by category */}
       <section className="section-padding">
         <div className="container-custom">
-          {categories.map(category => (
-            <div key={category} className="mb-16">
-              <SectionLabel>{category}</SectionLabel>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {allServicesCatalog
-                  .filter(s => s.category === category)
-                  .map(service => {
-                    const Icon = iconMap[service.iconName] || Sparkles;
+          {CATEGORIES.map((category) => {
+            const services = byCategory(category.name);
+            if (services.length === 0) return null;
+
+            return (
+              <div
+                key={category.id}
+                id={category.id}
+                className="mb-20 scroll-mt-36 pt-8 border-t border-zinc-200 first:border-t-0 first:pt-0"
+              >
+                <motion.div {...reveal} className="mb-8 max-w-[760px]">
+                  <div className="flex flex-wrap items-center gap-4 mb-4">
+                    <SectionLabel>{category.name}</SectionLabel>
+                    <span className="mono text-xs uppercase tracking-widest text-zinc-500 font-bold">
+                      {services.length} services
+                    </span>
+                  </div>
+                  <p className="text-base md:text-lg text-zinc-600 leading-relaxed">
+                    {category.blurb}
+                  </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {services.map((service) => {
+                    const Icon = serviceIconMap[service.iconName] || FallbackIcon;
                     return (
-                      <Link 
-                        key={service.id} 
+                      <Link
+                        key={service.id}
                         to={`/services/${service.slug}`}
-                        className="border border-zinc-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block"
+                        className="border border-zinc-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block flex flex-col"
                       >
-                        <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform">
+                        <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform origin-left">
                           <Icon size={32} />
                         </div>
-                        <h3 className="text-2xl font-black text-zinc-950 mb-2.5">{service.title}</h3>
-                        <p className="text-zinc-600 text-sm leading-relaxed mb-6">{service.shortDesc}</p>
+                        <h3 className="text-xl md:text-2xl font-black text-zinc-950 mb-2.5 leading-tight">
+                          {service.title}
+                        </h3>
+                        <p className="text-zinc-600 text-sm leading-relaxed mb-6 flex-1">
+                          {service.shortDesc}
+                        </p>
                         <div className="flex items-center gap-2 text-emerald-700 mono text-xs uppercase tracking-wider font-bold">
                           Explore Module <ArrowRight size={14} />
                         </div>
                       </Link>
                     );
                   })}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

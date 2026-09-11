@@ -2,11 +2,10 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  Menu, X, ChevronDown, Sparkles, Layers, ArrowRight,
-  Globe, BarChart3, Megaphone, Settings, Bot, Zap, Brain, Code
-} from 'lucide-react';
+import { Menu, X, ChevronDown, Sparkles, Layers, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { allServicesCatalog } from '@/data/allServicesList';
+import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 
 interface ServiceItem {
   name: string;
@@ -16,6 +15,15 @@ interface ServiceItem {
   highlight?: boolean;
 }
 
+const CATEGORY_ORDER = [
+  'Web & Foundation',
+  'Brand & Creative',
+  'Sales & Marketing',
+  'AI & Automation',
+  'Operations & Growth',
+  'People & Talent',
+] as const;
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -23,63 +31,28 @@ const Navbar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const services: ServiceItem[] = [
-    { 
-      name: 'All Solo Services (À La Carte)', 
-      desc: 'Pick single fixed-price setups',
-      href: '/solo-services', 
-      icon: Layers,
-      highlight: true 
-    },
-    { 
-      name: 'Website, Domain & SSL', 
-      desc: 'Sub-second React & Next.js stores',
-      href: '/services/website-development',
-      icon: Globe
-    },
-    { 
-      name: 'CRM & Sales Systems', 
-      desc: 'Automated 60-second lead routing',
-      href: '/services/crm-sales',
-      icon: BarChart3
-    },
-    { 
-      name: 'Autonomous AI Agents', 
-      desc: '24/7 lead qualification & booking',
-      href: '/services/ai-agents',
-      icon: Bot
-    },
-    { 
-      name: 'Workflow Automation', 
-      desc: 'Make.com & Zapier integrations',
-      href: '/services/ai-automation',
-      icon: Zap
-    },
-    { 
-      name: 'Marketing & Social Systems', 
-      desc: 'Multi-channel acquisition funnels',
-      href: '/services/marketing-branding',
-      icon: Megaphone
-    },
-    { 
-      name: 'Operations & HR Infrastructure', 
-      desc: 'SOP wikis & payroll systems',
-      href: '/services/operations-hr',
-      icon: Settings
-    },
-    { 
-      name: 'AI Strategy Consulting', 
-      desc: '12-month executive AI roadmaps',
-      href: '/services/ai-consulting',
-      icon: Brain
-    },
-    { 
-      name: 'Custom Apps & Fleets', 
-      desc: 'Bespoke full-stack web software',
-      href: '/services/custom-apps',
-      icon: Code
-    },
-  ];
+  // Built from the catalog rather than hand listed, so the menu can never point
+  // at a service that no longer exists. A stale /services/marketing-branding
+  // entry used to live here and led to the 404 page.
+  const soloEntry: ServiceItem = {
+    name: 'All Solo Services',
+    desc: 'Pick single fixed price setups',
+    href: '/solo-services',
+    icon: Layers,
+    highlight: true,
+  };
+
+  const serviceGroups = CATEGORY_ORDER.map((category) => ({
+    category,
+    items: allServicesCatalog
+      .filter((s) => s.category === category)
+      .map<ServiceItem>((s) => ({
+        name: s.title,
+        desc: s.tagline,
+        href: `/services/${s.slug}`,
+        icon: serviceIconMap[s.iconName] || FallbackIcon,
+      })),
+  })).filter((g) => g.items.length > 0);
 
   const navLinks = [
     { name: 'Packages', href: '/packages' },
@@ -176,8 +149,8 @@ const Navbar = () => {
                   </Link>
                 </div>
 
-                <div className="space-y-1 max-h-[460px] overflow-y-auto custom-scrollbar pr-1">
-                  {services.map((s) => {
+                <div className="space-y-1 max-h-[70vh] overflow-y-auto custom-scrollbar pr-1">
+                  {[soloEntry].map((s) => {
                     const Icon = s.icon;
                     return (
                       <Link 
@@ -215,6 +188,39 @@ const Navbar = () => {
                       </Link>
                     );
                   })}
+
+                  {serviceGroups.map((group) => (
+                    <div key={group.category} className="pt-2">
+                      <div className="px-2.5 pb-1 mono text-[9px] uppercase tracking-widest font-black text-zinc-400">
+                        {group.category}
+                      </div>
+                      {group.items.map((s) => {
+                        const Icon = s.icon;
+                        return (
+                          <Link
+                            key={s.href}
+                            to={s.href}
+                            onClick={() => setIsServicesOpen(false)}
+                            className="group flex items-start gap-3 p-2.5 transition-all hover:bg-zinc-50 text-zinc-800 border-l-2 border-transparent hover:border-emerald-600"
+                          >
+                            <div className="p-2 shrink-0 bg-zinc-100 text-emerald-700 group-hover:bg-emerald-100 transition-colors">
+                              <Icon size={16} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs font-black uppercase tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors">
+                                {s.name}
+                              </div>
+                              {s.desc && (
+                                <div className="mono text-[10px] text-zinc-500 truncate mt-0.5">
+                                  {s.desc}
+                                </div>
+                              )}
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  ))}
                 </div>
 
                 <div className="pt-2 mt-1 border-t border-zinc-100 px-3 py-2 bg-zinc-50 flex items-center justify-between">
@@ -292,7 +298,7 @@ const Navbar = () => {
 
               {isMobileServicesOpen && (
                 <div className="p-2 space-y-1 bg-white border-t border-zinc-200">
-                  {services.map((s) => {
+                  {[soloEntry].map((s) => {
                     const Icon = s.icon;
                     return (
                       <Link
@@ -311,6 +317,28 @@ const Navbar = () => {
                       </Link>
                     );
                   })}
+
+                  {serviceGroups.map((group) => (
+                    <div key={group.category} className="pt-2">
+                      <div className="px-3 pb-1 mono text-[9px] uppercase tracking-widest font-black text-zinc-400">
+                        {group.category}
+                      </div>
+                      {group.items.map((s) => {
+                        const Icon = s.icon;
+                        return (
+                          <Link
+                            key={s.href}
+                            to={s.href}
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center gap-2.5 px-3 py-2.5 text-[11px] uppercase font-bold tracking-wider text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50 transition-colors"
+                          >
+                            <Icon size={14} className="text-emerald-700 shrink-0" />
+                            <span>{s.name}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

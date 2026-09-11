@@ -25,6 +25,13 @@ export async function loadServices() {
     const mod = await import(pathToFileURL(tmp).href);
     return mod.allServicesCatalog || [];
   } finally {
-    fs.rmSync(tmp, { force: true });
+    // Best effort cleanup. Some sandboxed and container filesystems refuse
+    // unlink inside a mounted volume, and a failure to tidy a scratch file is
+    // never a reason to fail the build.
+    try {
+      fs.rmSync(tmp, { force: true });
+    } catch {
+      /* ignore */
+    }
   }
 }
