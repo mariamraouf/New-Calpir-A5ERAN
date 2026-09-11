@@ -14,6 +14,7 @@ import ROICalculator from '@/components/home/ROICalculator';
 import FAQ from '@/components/home/FAQ';
 import SectorsSection from '@/components/home/SectorsSection';
 import MetaSEO from '@/components/seo/MetaSEO';
+import EmailCaptureCTA from '@/components/home/EmailCaptureCTA';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
 
@@ -82,10 +83,13 @@ const Index = () => {
               We do not just build websites or configure chatbots. We launch your entire company from scratch: brand identity, legal entity foundations, domain, high speed web store, Google indexing, business email, VOIP phone, CRM sales pipelines, Stripe invoicing, HR contracts, team workspaces, and autonomous AI systems.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-xl mx-auto px-2">
-              <Button asChild className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover shadow-md">
-                <Link to="/contact">Book Free Consultation Call</Link>
-              </Button>
+            {/* Email first. One field is a far smaller ask than the full form,
+                and the address carries through to /contact so nobody types it
+                twice. The old "Book Free Consultation Call" button did the same
+                job with more friction, so this replaces it. */}
+            <EmailCaptureCTA className="px-2" />
+
+            <div className="flex justify-center items-center max-w-xl mx-auto px-2 mt-6">
               <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 sm:px-9 py-5 sm:py-7 rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover">
                 <Link to="/packages">Explore Full Launch Packages (7 to 28 Days)</Link>
               </Button>
