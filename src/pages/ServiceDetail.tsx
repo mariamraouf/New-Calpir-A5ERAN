@@ -13,16 +13,11 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
-import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servicePricing';
-import { useBookingModal } from '@/components/booking/BookingModalProvider';
 
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const data = allServicesCatalog.find(s => s.slug === slug);
-  const [currency, setCurrency] = React.useState<Currency>('usd');
-  const { openBooking } = useBookingModal();
-  const pricing = data ? servicePricing[data.slug] : undefined;
 
   if (!data) return <NotFound />;
 
@@ -50,55 +45,6 @@ const ServiceDetail = () => {
               <p className="text-base md:text-xl mono text-zinc-600">{data.tagline}</p>
             </div>
           </div>
-
-          {/* Price, in the visitor's currency, next to the promise that it is
-              the whole number rather than an opening one. */}
-          {pricing && (
-            <div className="mt-10 border border-zinc-200 bg-white p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-6 justify-between shadow-sm">
-              <div>
-                <div className="flex items-center gap-3 flex-wrap">
-                  <span className="mono text-[11px] uppercase tracking-widest text-zinc-500 font-bold">From</span>
-                  <span className="text-4xl md:text-5xl font-black text-emerald-700">
-                    {formatPrice(data.slug, currency)}
-                  </span>
-                  <div className="flex border border-zinc-300">
-                    {CURRENCIES.map((c) => (
-                      <button
-                        key={c.code}
-                        type="button"
-                        onClick={() => setCurrency(c.code)}
-                        aria-pressed={currency === c.code}
-                        className={
-                          'px-2.5 py-1 mono text-[10px] font-bold uppercase transition-colors ' +
-                          (currency === c.code
-                            ? 'bg-emerald-600 text-white'
-                            : 'bg-white text-zinc-600 hover:text-emerald-700')
-                        }
-                      >
-                        {c.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <p className="mono text-xs text-zinc-600 mt-2">
-                  {pricing.turnaround} · You pay for what you see. Anything outside this scope is
-                  priced and agreed before it starts.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-                <Button
-                  type="button"
-                  onClick={() => openBooking()}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-black uppercase tracking-tight px-7 py-6 rounded-none"
-                >
-                  Book this service
-                </Button>
-                <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 hover:bg-zinc-100 font-black uppercase tracking-tight px-7 py-6 rounded-none">
-                  <Link to="/solo-services">All services and prices</Link>
-                </Button>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 

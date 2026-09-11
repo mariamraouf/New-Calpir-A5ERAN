@@ -23,21 +23,14 @@ const timezones = [
   { value: "Australia/Sydney", label: "Sydney (AEST / AEDT)" }
 ];
 
-interface BookingSystemProps {
-  /** Email the visitor already typed in the hero, so they do not type it twice. */
-  initialEmail?: string;
-  /** Drop the card chrome when rendered inside the popup, which supplies its own. */
-  bare?: boolean;
-}
-
-const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare = false }) => {
+const BookingSystem = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(addDays(startOfDay(new Date()), 1));
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [userTimezone, setUserTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/London");
   const [step, setStep] = useState(1);
   const [isHuman, setIsHuman] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: initialEmail, businessNotes: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', businessNotes: '' });
 
   const generateTimeSlots = () => {
     const slots: string[] = [];
@@ -105,7 +98,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
   };
 
   return (
-    <div className={bare ? "bg-white p-4 sm:p-6 md:p-8" : "border border-zinc-200 bg-white p-4 sm:p-6 md:p-10 shadow-lg"}>
+    <div className="border border-zinc-200 bg-white p-4 sm:p-6 md:p-10 shadow-lg">
       {step === 1 && (
         <div className="space-y-6 sm:space-y-8">
           <div className="flex items-center gap-3.5 sm:gap-5 pb-5 sm:pb-6 border-b border-zinc-200">

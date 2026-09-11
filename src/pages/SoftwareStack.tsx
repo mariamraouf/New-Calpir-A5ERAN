@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, HeartHandshake, ArrowRight, Workflow, CheckCircle2 } from 'lucide-react';
+import { Search, HeartHandshake, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -170,7 +170,7 @@ const SoftwareStack = () => {
           {/* Bottom Banner */}
           <div className="mt-16 border border-emerald-200 bg-emerald-50 p-8 md:p-12 text-center space-y-4 shadow-sm">
             <div className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
-              <Workflow size={14} /> Custom API & Webhook Integrations
+              <Sparkles size={14} /> Custom API & Webhook Integrations
             </div>
             <h3 className="text-2xl sm:text-4xl font-black uppercase text-zinc-950 tracking-tight">
               Using a tool not listed here?

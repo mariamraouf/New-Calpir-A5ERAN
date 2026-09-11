@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RefreshCcw, Zap, Lock, Send, Loader2 } from 'lucide-react';
+import { RefreshCcw, Zap, Lock, Sparkles, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -353,7 +353,7 @@ const Assessment = () => {
                         <Loader2 className="animate-spin" />
                       ) : (
                         <>
-                          <Send size={18} /> Unlock and Send Full Report
+                          <Sparkles size={18} /> Unlock and Send Full Report
                         </>
                       )}
                     </Button>

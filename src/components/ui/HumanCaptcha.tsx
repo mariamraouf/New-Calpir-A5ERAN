@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Check, ShieldCheck } from 'lucide-react';
+import { Check, ShieldCheck, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface HumanCaptchaProps {

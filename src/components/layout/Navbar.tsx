@@ -2,12 +2,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, CalendarCheck, Layers, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Sparkles, Layers, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { SERVICE_CATEGORIES } from '@/data/serviceCategories';
-import { useBookingModal } from '@/components/booking/BookingModalProvider';
 
 interface ServiceItem {
   name: string;
@@ -26,7 +25,6 @@ const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ORDER[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const { openBooking } = useBookingModal();
 
   // Built from the catalog rather than hand listed, so the menu can never point
   // at a service that no longer exists. A stale /services/marketing-branding
@@ -247,15 +245,13 @@ const Navbar = () => {
             </Link>
           ))}
           
-          {/* Opens the booking popup rather than sending people to another
-              page and asking them to scroll to the calendar. */}
-          <button
-            type="button"
-            onClick={() => openBooking()}
+          {/* Action Button */}
+          <Link 
+            to="/contact" 
             className="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-5 py-2.5 rounded-none mono text-xs uppercase tracking-wider btn-hover flex items-center gap-2 shadow-sm"
           >
-            <CalendarCheck size={14} /> Free Consultation
-          </button>
+            <Sparkles size={14} /> Free Consultation
+          </Link>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -273,13 +269,13 @@ const Navbar = () => {
         <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 bg-white z-[99] overflow-y-auto border-b border-zinc-200 shadow-2xl flex flex-col justify-between">
           <div className="p-5 sm:p-6 space-y-4">
             {/* Top Action Button on Mobile */}
-            <button
-              type="button"
-              onClick={() => { setIsOpen(false); openBooking(); }}
+            <Link 
+              to="/contact" 
+              onClick={() => setIsOpen(false)} 
               className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-3.5 px-4 font-black uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md"
             >
-              <CalendarCheck size={15} /> Book Free Consultation Call
-            </button>
+              <Sparkles size={15} /> Book Free Consultation Call
+            </Link>
 
             {/* Mobile Dropdown / Accordion */}
             <div className="border border-zinc-200 bg-zinc-50">

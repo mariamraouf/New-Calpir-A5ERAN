@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Mail, Phone, MapPin, Clock, Loader2, CheckCircle2, Send } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
+import { Mail, Phone, MapPin, Sparkles, Loader2, CheckCircle2, Send } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -15,19 +16,33 @@ import { showSuccess, showError } from '@/utils/toast';
 import MetaSEO from '@/components/seo/MetaSEO';
 
 const Contact = () => {
+  // The homepage hero collects an email and sends the visitor here as
+  // /contact?email=...#book, so the address is prefilled and the page lands on
+  // the form rather than the top of the page. Nobody types it twice.
+  const [searchParams] = useSearchParams();
+  const prefilledEmail = searchParams.get('email') || '';
   const formRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: prefilledEmail,
     phone: '',
-    package: '',
+    package: 'Starter Launch Package ($1,499)',
     message: ''
   });
   const [isHuman, setIsHuman] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (!prefilledEmail) return;
+    setFormData((prev) => ({ ...prev, email: prefilledEmail }));
+    // Wait a frame so the section has laid out before scrolling to it.
+    const id = window.requestAnimationFrame(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [prefilledEmail]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -139,7 +154,7 @@ const Contact = () => {
 
               <div className="p-5 border border-emerald-200 bg-emerald-50 space-y-1.5 shadow-sm">
                 <div className="flex items-center gap-2 text-emerald-800 mono text-xs uppercase font-bold">
-                  <Clock size={14} className="text-emerald-600" /> Squad Response Guarantee
+                  <Sparkles size={14} className="text-emerald-600" /> Squad Response Guarantee
                 </div>
                 <p className="text-xs text-zinc-700 leading-relaxed mono">
                   We reply within 4 business hours. You talk directly with senior technical leads who build systems every day.

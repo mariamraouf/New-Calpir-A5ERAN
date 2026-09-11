@@ -24,4 +24,4 @@ export const serviceIconMap: Record<string, ElementType> = {
   Gauge, ShoppingCart, CalendarCheck, Layers, PenTool, Send, TrendingUp, Target, FileSignature, Star, Mic, ScanText, BookOpen, Workflow, PieChart, PenLine, FolderTree, UserCheck, ListChecks, Scale, ClipboardCheck,
 };
 
-export const FallbackIcon = Settings;
+export const FallbackIcon = Sparkles;

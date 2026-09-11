@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useBookingModal } from '@/components/booking/BookingModalProvider';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -9,9 +9,10 @@ import { Button } from '@/components/ui/button';
  * Low friction first step on the homepage.
  *
  * Asking for an email is a much smaller ask than a five field form, so the hero
- * collects just that and opens the booking popup with it already entered. The
- * visitor never leaves the page, and nothing is sent from here: the popup owns
- * the submission, so there is one place that talks to Formspree.
+ * collects just that and hands it to the contact form, which reads it from the
+ * query string and prefills the email field. Nothing is sent from here: the
+ * actual submission still happens on /contact, so there is one place that talks
+ * to Formspree and one place that handles errors.
  */
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -26,14 +27,14 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
 }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const { openBooking } = useBookingModal();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const value = email.trim();
 
     if (!value) {
-      setError('Pop your email in and we will open the booking form.');
+      setError('Pop your email in and we will take you to the booking form.');
       return;
     }
     if (!EMAIL_PATTERN.test(value)) {
@@ -42,7 +43,7 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
     }
 
     setError(null);
-    openBooking(value);
+    navigate(`/contact?email=${encodeURIComponent(value)}#book`);
   };
 
   return (
