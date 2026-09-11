@@ -2,73 +2,102 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ArrowRight, HelpCircle, Clock } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Clock, ShieldCheck, PencilRuler } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import FeatureModal from '@/components/ui/FeatureModal';
 import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
-import { soloPricing } from '@/data/soloPricing';
+import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servicePricing';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { SERVICE_CATEGORIES } from '@/data/serviceCategories';
+import { useBookingModal } from '@/components/booking/BookingModalProvider';
 
 /**
- * Every service in the catalog can be bought on its own, so this page lists all
- * of them rather than a hand picked subset. Ten have a published fixed price in
- * src/data/soloPricing.ts. The rest are quoted per scope, and the card says so
- * instead of showing a made up number.
+ * Every service in the catalogue, priced, on one page.
+ *
+ * Prices are starting prices for a defined scope and are shown in the currency
+ * the visitor picks, because we sell into the US, the UK and the EU and making
+ * someone do the conversion in their head is a small tax on buying.
  */
 const SoloServices = () => {
-  const [activeModal, setActiveModal] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('All');
-
-  const pricedCount = useMemo(
-    () => allServicesCatalog.filter((s) => soloPricing[s.slug]).length,
-    []
-  );
+  const [currency, setCurrency] = useState<Currency>('usd');
+  const { openBooking } = useBookingModal();
 
   const visibleCategories = useMemo(
     () =>
-      SERVICE_CATEGORIES.filter(
-        (c) => filter === 'All' || c.name === filter
-      ).map((c) => ({
-        ...c,
-        items: allServicesCatalog.filter((s) => s.category === c.name),
-      })).filter((c) => c.items.length > 0),
+      SERVICE_CATEGORIES.filter((c) => filter === 'All' || c.name === filter)
+        .map((c) => ({ ...c, items: allServicesCatalog.filter((s) => s.category === c.name) }))
+        .filter((c) => c.items.length > 0),
     [filter]
   );
 
   return (
     <div className="min-h-screen bg-white">
       <MetaSEO
-        title="Solo Services | Calpir"
-        description="Every Calpir service available on its own, from domain setup and CRM to recruiting, payroll and AI agents. Fixed prices where we publish them."
+        title="Solo Services and Prices | Calpir"
+        description="Every Calpir service with its price in USD, GBP and EUR, from domain setup and CRM to recruiting, payroll and AI agents. You pay for what you see."
         path="/solo-services"
       />
       <Navbar />
 
-      <section className="pt-40 md:pt-48 pb-16 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-24 sm:pt-28 pb-12 px-4 sm:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
-          <SectionLabel>À La Carte Solutions</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">
-            Solo <br /> <span className="text-emerald-700">Services.</span>
+          <SectionLabel>Pick What You Need</SectionLabel>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl leading-[0.95] mb-5 font-black uppercase tracking-tight text-zinc-950">
+            Solo <span className="text-emerald-700">Services.</span>
           </h1>
-          <p className="text-lg md:text-2xl text-zinc-600 max-w-[850px] leading-relaxed">
-            Every one of our {allServicesCatalog.length} services can be booked on its own, without a
-            full package. {pricedCount} have a fixed published price. The rest are quoted against
-            your scope, because the honest answer depends on what you already have.
+          <p className="text-base sm:text-xl text-zinc-600 max-w-[800px] leading-relaxed">
+            All {allServicesCatalog.length} services, each with a price, each bookable on its own.
+            Priced in USD, GBP and EUR because we work across the US, the UK and Europe.
           </p>
         </div>
       </section>
 
-      {/* Category filter */}
+      {/* The promise, stated plainly rather than buried in terms. */}
+      <section className="border-b border-zinc-200 bg-zinc-950 text-white">
+        <div className="container-custom px-4 sm:px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="flex items-start gap-3">
+            <ShieldCheck size={20} className="text-emerald-400 shrink-0 mt-0.5" />
+            <div>
+              <div className="font-black uppercase text-sm tracking-tight">You pay for what you see</div>
+              <p className="text-zinc-400 text-xs leading-relaxed mt-1">
+                The price on the card is the price. No setup fees, no per seat surprises, nothing
+                added after the fact.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <Clock size={20} className="text-emerald-400 shrink-0 mt-0.5" />
+            <div>
+              <div className="font-black uppercase text-sm tracking-tight">Agreed before it starts</div>
+              <p className="text-zinc-400 text-xs leading-relaxed mt-1">
+                If your scope needs more than the listed one, we tell you the number before any
+                work begins, not on the invoice.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <PencilRuler size={20} className="text-emerald-400 shrink-0 mt-0.5" />
+            <div>
+              <div className="font-black uppercase text-sm tracking-tight">Custom scopes welcome</div>
+              <p className="text-zinc-400 text-xs leading-relaxed mt-1">
+                Nothing here quite right? We build custom packages and bespoke services. Tell us the
+                problem and we will price it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Filter and currency */}
       <section className="border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm">
-        <div className="container-custom px-6">
-          <div className="flex gap-x-4 lg:gap-x-5 overflow-x-auto py-4 no-scrollbar">
+        <div className="container-custom px-4 sm:px-6 py-3 space-y-2.5">
+          <div className="flex gap-x-4 overflow-x-auto no-scrollbar">
             {['All', ...SERVICE_CATEGORIES.map((c) => c.name)].map((name) => {
               const count =
                 name === 'All'
@@ -81,7 +110,7 @@ const SoloServices = () => {
                   type="button"
                   onClick={() => setFilter(name)}
                   className={
-                    'flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] uppercase tracking-wider font-bold transition-colors ' +
+                    'flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] uppercase tracking-wider font-bold transition-colors py-1 ' +
                     (active
                       ? 'text-emerald-700 underline underline-offset-8 decoration-2'
                       : 'text-zinc-600 hover:text-emerald-700')
@@ -93,6 +122,25 @@ const SoloServices = () => {
               );
             })}
           </div>
+
+          <div className="flex border border-zinc-300 w-fit">
+            {CURRENCIES.map((c) => (
+              <button
+                key={c.code}
+                type="button"
+                onClick={() => setCurrency(c.code)}
+                aria-pressed={currency === c.code}
+                className={
+                  'px-3 py-1.5 mono text-[11px] font-bold uppercase tracking-wider transition-colors ' +
+                  (currency === c.code
+                    ? 'bg-emerald-600 text-white'
+                    : 'bg-white text-zinc-600 hover:text-emerald-700')
+                }
+              >
+                {c.symbol} {c.label}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -102,7 +150,7 @@ const SoloServices = () => {
             <div
               key={category.id}
               id={category.id}
-              className="mb-16 scroll-mt-36 pt-8 border-t border-zinc-200 first:border-t-0 first:pt-0"
+              className="mb-16 scroll-mt-40 pt-8 border-t border-zinc-200 first:border-t-0 first:pt-0"
             >
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <SectionLabel>{category.name}</SectionLabel>
@@ -113,7 +161,7 @@ const SoloServices = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {category.items.map((service) => {
-                  const priced = soloPricing[service.slug];
+                  const priced = servicePricing[service.slug];
                   const Icon = serviceIconMap[service.iconName] || FallbackIcon;
 
                   return (
@@ -123,94 +171,62 @@ const SoloServices = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: '-40px' }}
                       transition={{ duration: 0.35 }}
-                      className="border border-zinc-200 p-7 bg-white flex flex-col hover:border-emerald-600 hover:shadow-lg transition-all"
+                      className="border border-zinc-200 p-6 sm:p-7 bg-white flex flex-col hover:border-emerald-600 hover:shadow-lg transition-all"
                     >
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="text-emerald-700">
-                          <Icon size={26} />
-                        </div>
-                        {priced ? (
-                          <span className="mono text-[10px] uppercase tracking-widest text-emerald-800 font-black bg-emerald-50 px-2 py-1 border border-emerald-200">
-                            Fixed price
-                          </span>
-                        ) : (
-                          <span className="mono text-[10px] uppercase tracking-widest text-zinc-500 font-bold bg-zinc-50 px-2 py-1 border border-zinc-200">
-                            Quoted
-                          </span>
-                        )}
+                      <div className="text-emerald-700 mb-4">
+                        <Icon size={26} />
                       </div>
 
-                      <h3 className="text-lg md:text-xl font-black uppercase text-zinc-950 mb-3 tracking-tight leading-tight">
+                      <h2 className="text-lg font-black uppercase text-zinc-950 mb-3 tracking-tight leading-tight">
                         {service.title}
-                      </h3>
+                      </h2>
 
-                      {priced ? (
+                      {priced && (
                         <>
-                          <div className="text-3xl font-black text-emerald-700 mb-1">
-                            {priced.price}
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="mono text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+                              From
+                            </span>
+                            <span className="text-3xl font-black text-emerald-700">
+                              {formatPrice(service.slug, currency)}
+                            </span>
                           </div>
-                          <div className="flex items-center gap-1.5 mono text-[11px] text-zinc-500 uppercase tracking-wider mb-4">
+                          <div className="flex items-center gap-1.5 mono text-[11px] text-zinc-500 uppercase tracking-wider mt-1 mb-4">
                             <Clock size={12} className="text-emerald-600" />
                             {priced.turnaround}
                           </div>
                         </>
-                      ) : (
-                        <div className="text-base font-bold text-zinc-500 mb-4">
-                          Priced against your scope
-                        </div>
                       )}
 
                       <p className="text-zinc-600 text-sm leading-relaxed mb-5 flex-1">
                         {service.shortDesc}
                       </p>
 
-                      {priced && (
-                        <div className="space-y-1.5 mb-6 pt-4 border-t border-zinc-100">
-                          <div className="mono text-[10px] uppercase tracking-wider text-zinc-500 font-bold mb-1.5">
-                            Included
-                          </div>
+                      {priced?.deliverables && (
+                        <div className="space-y-1.5 mb-5 pt-4 border-t border-zinc-100">
                           {priced.deliverables.map((item, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-start gap-2 text-[11px] text-zinc-700 mono"
-                            >
-                              <CheckCircle2
-                                size={12}
-                                className="text-emerald-600 shrink-0 mt-0.5"
-                              />
+                            <div key={idx} className="flex items-start gap-2 text-[11px] text-zinc-700 mono">
+                              <CheckCircle2 size={12} className="text-emerald-600 shrink-0 mt-0.5" />
                               <span>{item}</span>
                             </div>
                           ))}
                         </div>
                       )}
 
-                      <div className="flex flex-col gap-2 pt-4 border-t border-zinc-100 mt-auto">
+                      <div className="flex flex-col gap-2.5 pt-4 border-t border-zinc-100 mt-auto">
                         <Link
                           to={`/services/${service.slug}`}
                           className="mono text-[11px] uppercase tracking-wider font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1.5"
                         >
                           What this includes <ArrowRight size={12} />
                         </Link>
-                        <div className="flex gap-2">
-                          {priced?.modalKey && (
-                            <Button
-                              type="button"
-                              variant="outline"
-                              onClick={() => setActiveModal(priced.modalKey || null)}
-                              className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 font-bold uppercase text-[11px] py-5 px-3 rounded-none flex items-center gap-1.5"
-                            >
-                              <HelpCircle size={12} className="text-emerald-600" /> Details
-                            </Button>
-                          )}
-                          <Button
-                            asChild
-                            className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-black uppercase tracking-wider text-[11px] py-5 rounded-none btn-hover"
-                          >
-                            <Link to="/contact">
-                              {priced ? 'Order this' : 'Get a quote'}
-                            </Link>
-                          </Button>
-                        </div>
+                        <Button
+                          type="button"
+                          onClick={() => openBooking()}
+                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black uppercase tracking-wider text-[11px] py-5 rounded-none btn-hover"
+                        >
+                          Book this
+                        </Button>
                       </div>
                     </motion.div>
                   );
@@ -219,31 +235,47 @@ const SoloServices = () => {
             </div>
           ))}
 
-          {/* Bundle Banner */}
-          <div className="mt-8 border border-zinc-200 bg-zinc-50 p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-sm">
-            <div>
+          {/* Custom work and bundles */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="border border-zinc-200 bg-zinc-50 p-8 md:p-10">
               <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">
-                Want three or more solo services?
+                Three or more services?
               </div>
-              <h3 className="text-2xl md:text-4xl font-black uppercase text-zinc-950 tracking-tight mb-2">
-                Our Full Launch Packages Save You 40% to 60%
+              <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight mb-3">
+                Packages save 40% to 60%
               </h3>
-              <p className="text-zinc-600 text-sm max-w-[650px] leading-relaxed">
-                Instead of booking five individual services separately, the Starter, Growth and
-                Ultimate packages bundle everything together.
+              <p className="text-zinc-600 text-sm leading-relaxed mb-6">
+                Booking five services separately costs considerably more than the Starter, Growth or
+                Ultimate package that already contains them.
               </p>
+              <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700 font-black uppercase px-7 py-6 rounded-none text-sm">
+                <Link to="/packages">Compare packages</Link>
+              </Button>
             </div>
-            <Button
-              asChild
-              className="bg-emerald-600 text-white hover:bg-emerald-700 font-black uppercase px-8 py-6 rounded-none text-sm shrink-0"
-            >
-              <Link to="/packages">View All In One Packages</Link>
-            </Button>
+
+            <div className="border-2 border-emerald-600 bg-white p-8 md:p-10">
+              <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">
+                Not on the list?
+              </div>
+              <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight mb-3">
+                We build custom packages
+              </h3>
+              <p className="text-zinc-600 text-sm leading-relaxed mb-6">
+                Most businesses need a combination nobody has bothered to package. Tell us what is
+                actually breaking and we will scope it, price it, and say so if you do not need us.
+              </p>
+              <Button
+                type="button"
+                onClick={() => openBooking()}
+                className="bg-zinc-950 text-white hover:bg-zinc-800 font-black uppercase px-7 py-6 rounded-none text-sm"
+              >
+                Tell us what you need
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      <FeatureModal featureKey={activeModal} onClose={() => setActiveModal(null)} />
       <Footer />
       <ScrollToTop />
     </div>

@@ -19,6 +19,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { loadServices } from './loadServices.mjs';
+import { loadPricing } from './loadPricing.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -144,6 +145,7 @@ function page({ path: p, title, description, h1, body, image, jsonld = [], isPos
 
 async function buildRoutes() {
   const services = await loadServices();
+  const pricing = await loadPricing();
   const routes = [];
 
   routes.push(
@@ -219,6 +221,11 @@ async function buildRoutes() {
         description: s.shortDesc,
         h1: s.title,
         body: `<p>${esc(s.tagline)}</p>
+${
+  pricing[s.slug]
+    ? `<p><strong>From $${pricing[s.slug].usd.toLocaleString('en-US')} USD, \u00A3${pricing[s.slug].gbp.toLocaleString('en-US')} GBP or \u20AC${pricing[s.slug].eur.toLocaleString('en-US')} EUR.</strong> Typical turnaround ${esc(pricing[s.slug].turnaround)}. You pay for what you see: anything outside this scope is priced and agreed before it starts.</p>`
+    : ''
+}
 <p>${esc(s.shortDesc)}</p>
 <p>${esc(s.longDesc)}</p>
 <h2>What is included</h2>
@@ -238,7 +245,18 @@ async function buildRoutes() {
             serviceType: s.category,
             url: `${BASE}/services/${s.slug}`,
             provider: { '@id': `${BASE}/#organization` },
-            areaServed: 'US',
+            areaServed: ['US', 'GB', 'EU'],
+            ...(pricing[s.slug]
+              ? {
+                  offers: ['usd', 'gbp', 'eur'].map((code) => ({
+                    '@type': 'Offer',
+                    price: pricing[s.slug][code],
+                    priceCurrency: code.toUpperCase(),
+                    availability: 'https://schema.org/InStock',
+                    url: `${BASE}/services/${s.slug}`,
+                  })),
+                }
+              : {}),
           },
         ],
       })

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Globe, Database, Bot, Zap, ArrowRight, CheckCircle2, 
-  ShieldCheck, Server, Sparkles, RefreshCw
+  ShieldCheck, Server, Workflow, RefreshCw
 } from 'lucide-react';
 
 interface Stage {
@@ -76,7 +76,7 @@ export const ArchitectureFlow: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200">
         <div>
           <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold flex items-center gap-1.5">
-            <Sparkles size={14} className="text-emerald-600" /> Interactive Execution Pipeline
+            <Workflow size={14} className="text-emerald-600" /> Interactive Execution Pipeline
           </div>
           <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-zinc-950 mt-1">
             How Data Flows Through Your Calpir System

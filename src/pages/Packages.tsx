@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
-import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Sparkles, Rocket, BarChart3, Cpu } from 'lucide-react';
+import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Star, Rocket, BarChart3, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SectionLabel from '@/components/ui/SectionLabel';
@@ -158,7 +158,7 @@ const Packages = () => {
                 )}>
                   {p.featured && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5 shadow-md">
-                      <Sparkles size={13} /> Most Popular Choice
+                      <Star size={13} /> Most Popular Choice
                     </div>
                   )}
                   <div className="flex items-center justify-between mb-4">
