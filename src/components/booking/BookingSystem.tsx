@@ -37,6 +37,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
   const [userTimezone, setUserTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/London");
   const [step, setStep] = useState(1);
   const [isHuman, setIsHuman] = useState(false);
+  const [botField, setBotField] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: initialEmail, businessNotes: '' });
 
@@ -67,6 +68,8 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
 
   const handleBooking = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: only a bot fills this in.
+    if (botField.trim() !== '') return;
     if (!isHuman) {
       showError("Please check the human verification box before confirming.");
       return;
@@ -82,6 +85,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           'Accept': 'application/json'
         },
         body: JSON.stringify({
+          _gotcha: botField,
           name: formData.name,
           email: formData.email,
           selectedDate: format(selectedDate, 'yyyy-MM-dd'),
@@ -257,7 +261,20 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             </div>
           </div>
 
-          <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
+          {/* Honeypot. Positioned off screen so people never see it; bots fill it in.
+          Also sent to Formspree as _gotcha, which drops the submission server side. */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={botField}
+        onChange={(ev) => setBotField(ev.target.value)}
+        className="absolute left-[-9999px] w-px h-px opacity-0"
+      />
+
+      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 py-5 sm:py-6 rounded-none font-bold uppercase text-[11px] sm:text-xs">

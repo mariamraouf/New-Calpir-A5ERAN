@@ -26,12 +26,15 @@ const Contact = () => {
     message: ''
   });
   const [isHuman, setIsHuman] = useState(false);
+  const [botField, setBotField] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: only a bot fills this in.
+    if (botField.trim() !== '') return;
     if (!isHuman) {
       showError("Please check the human verification box before submitting.");
       return;
@@ -47,6 +50,7 @@ const Contact = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
+          _gotcha: botField,
           name: formData.name,
           email: formData.email,
           phone: formData.phone || 'Not provided',
@@ -241,7 +245,20 @@ const Contact = () => {
                     />
                   </div>
 
-                  <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
+                  {/* Honeypot. Positioned off screen so people never see it; bots fill it in.
+          Also sent to Formspree as _gotcha, which drops the submission server side. */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={botField}
+        onChange={(ev) => setBotField(ev.target.value)}
+        className="absolute left-[-9999px] w-px h-px opacity-0"
+      />
+
+      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
 
                   <Button
                     type="submit"

@@ -50,6 +50,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
   const [email, setEmail] = useState(initialEmail);
   const [message, setMessage] = useState('');
   const [isHuman, setIsHuman] = useState(false);
+  const [botField, setBotField] = useState('');
   const [sending, setSending] = useState(false);
 
   const field =
@@ -57,6 +58,8 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: only a bot fills this in.
+    if (botField.trim() !== '') return;
     if (!isHuman) {
       showError('Please confirm you are human before sending.');
       return;
@@ -66,7 +69,8 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
       const res = await fetch('https://formspree.io/f/xlgalgka', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ name, email, message, source: 'Popup message form' }),
+        body: JSON.stringify({
+          _gotcha: botField, name, email, message, source: 'Popup message form' }),
       });
       if (res.ok) {
         trackLeadGeneration("booking_modal");
@@ -125,6 +129,19 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
           className={cn(field, 'resize-y')}
         />
       </div>
+
+      {/* Honeypot. Positioned off screen so people never see it; bots fill it in.
+          Also sent to Formspree as _gotcha, which drops the submission server side. */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={botField}
+        onChange={(ev) => setBotField(ev.target.value)}
+        className="absolute left-[-9999px] w-px h-px opacity-0"
+      />
 
       <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
 
