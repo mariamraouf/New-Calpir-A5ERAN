@@ -22,6 +22,16 @@
       "source": "/services/marketing-branding",
       "destination": "/services",
       "permanent": true
+    },
+    {
+      "source": "/marketing-design",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
     }
   ],
   "rewrites": [
