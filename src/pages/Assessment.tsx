@@ -14,6 +14,7 @@ import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import PhoneInput from '@/components/ui/PhoneInput';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
+import { trackLeadGeneration } from '@/utils/analytics';
 import MetaSEO from '@/components/seo/MetaSEO';
 
 interface QuestionOption {
@@ -176,6 +177,7 @@ const Assessment = () => {
       });
 
       if (response.ok) {
+        trackLeadGeneration("assessment");
         setIsReportUnlocked(true);
         showSuccess("Full custom architecture report unlocked and sent to your email!");
       } else {
