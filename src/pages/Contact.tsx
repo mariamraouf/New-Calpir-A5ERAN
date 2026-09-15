@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import PhoneInput from '@/components/ui/PhoneInput';
 import { showSuccess, showError } from '@/utils/toast';
+import { trackLeadGeneration } from '@/utils/analytics';
 import MetaSEO from '@/components/seo/MetaSEO';
 
 const Contact = () => {
@@ -55,6 +56,7 @@ const Contact = () => {
       });
 
       if (response.ok) {
+        trackLeadGeneration("contact_page");
         setIsSubmitted(true);
         showSuccess("Message received! Our team will respond within 4 hours.");
       } else {

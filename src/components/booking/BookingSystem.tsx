@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
+import { trackLeadGeneration } from '@/utils/analytics';
 
 const timezones = [
   { value: "Europe/London", label: "London (GMT / BST)" },
@@ -92,6 +93,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
       });
 
       if (response.ok) {
+        trackLeadGeneration("booking_system");
         showSuccess(`Booking confirmed for ${formData.name}. Google Meet invitation sent to ${formData.email}.`);
         setStep(3);
       } else {

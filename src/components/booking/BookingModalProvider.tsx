@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import BookingSystem from '@/components/booking/BookingSystem';
 import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import { showSuccess, showError } from '@/utils/toast';
+import { trackLeadGeneration } from '@/utils/analytics';
 import { cn } from '@/lib/utils';
 
 /**
@@ -68,6 +69,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
         body: JSON.stringify({ name, email, message, source: 'Popup message form' }),
       });
       if (res.ok) {
+        trackLeadGeneration("booking_modal");
         showSuccess(`Thanks ${name || 'very much'}. We will reply to ${email} shortly.`);
         onSent();
       } else {

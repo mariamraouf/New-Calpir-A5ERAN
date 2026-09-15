@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackEvent } from '@/utils/analytics';
 
 /**
  * Low friction first step on the homepage.
@@ -43,6 +44,7 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
     }
 
     setError(null);
+    trackEvent("email_capture_submit");
     openBooking(value);
   };
 
