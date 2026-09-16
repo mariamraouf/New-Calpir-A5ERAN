@@ -207,7 +207,6 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
               <label className="mono text-[11px] sm:text-xs uppercase text-zinc-700 font-bold block">Your Name *</label>
               <Input 
                 required
-                placeholder="Alex Smith" 
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="bg-white text-zinc-950 border-zinc-300 rounded-none h-11 sm:h-12 mono text-xs sm:text-sm focus:border-emerald-600"
@@ -219,7 +218,6 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
               <Input 
                 required
                 name="email"
-                placeholder="alex@example.com" 
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -230,7 +228,6 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             <div className="space-y-1">
               <label className="mono text-[11px] sm:text-xs uppercase text-zinc-700 font-bold block">What are you looking to build or solve? (Optional)</label>
               <Textarea 
-                placeholder="E.g. launching a SaaS, need CRM + AI agents for support, website redesign..."
                 value={formData.businessNotes}
                 onChange={(e) => setFormData({ ...formData, businessNotes: e.target.value })}
                 className="bg-white text-zinc-950 border-zinc-300 rounded-none mono text-xs sm:text-sm focus:border-emerald-600 resize-none"

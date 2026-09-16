@@ -167,7 +167,6 @@ const Contact = () => {
                     </label>
                     <Input
                       required
-                      placeholder="Alex Smith"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
@@ -183,7 +182,6 @@ const Contact = () => {
                         required
                         type="email"
                         name="email"
-                        placeholder="alex@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
@@ -196,7 +194,6 @@ const Contact = () => {
                       <PhoneInput
                         value={formData.phone}
                         onChange={(val) => setFormData({ ...formData, phone: val })}
-                        placeholder="7346 875731"
                       />
                     </div>
                   </div>
@@ -231,7 +228,6 @@ const Contact = () => {
                       required
                       name="message"
                       rows={4}
-                      placeholder="Tell us about your business, current bottlenecks, and when you want to launch..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="bg-white text-zinc-950 border-zinc-300 rounded-none mono text-sm focus:border-emerald-600 resize-none"

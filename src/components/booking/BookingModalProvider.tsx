@@ -119,7 +119,6 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
           onChange={(e) => setMessage(e.target.value)}
           rows={4}
           required
-          placeholder="A sentence or two is plenty."
           className={cn(field, 'resize-y')}
         />
       </div>
