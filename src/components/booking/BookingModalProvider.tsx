@@ -5,7 +5,6 @@ import { CalendarCheck, Loader2, Mail, Send } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import BookingSystem from '@/components/booking/BookingSystem';
-import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import { showSuccess, showError } from '@/utils/toast';
 import { trackLeadGeneration } from '@/utils/analytics';
 import { cn } from '@/lib/utils';
@@ -49,7 +48,6 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
   const [name, setName] = useState('');
   const [email, setEmail] = useState(initialEmail);
   const [message, setMessage] = useState('');
-  const [isHuman, setIsHuman] = useState(false);
   const [botField, setBotField] = useState('');
   const [sending, setSending] = useState(false);
 
@@ -60,10 +58,6 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
     e.preventDefault();
     // Honeypot: only a bot fills this in.
     if (botField.trim() !== '') return;
-    if (!isHuman) {
-      showError('Please confirm you are human before sending.');
-      return;
-    }
     setSending(true);
     try {
       const res = await fetch('https://formspree.io/f/xlgalgka', {
@@ -142,8 +136,6 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
         onChange={(ev) => setBotField(ev.target.value)}
         className="absolute left-[-9999px] w-px h-px opacity-0"
       />
-
-      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
 
       <Button
         type="submit"

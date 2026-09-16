@@ -9,7 +9,6 @@ import BookingSystem from '@/components/booking/BookingSystem';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import PhoneInput from '@/components/ui/PhoneInput';
 import { showSuccess, showError } from '@/utils/toast';
 import { trackLeadGeneration } from '@/utils/analytics';
@@ -25,7 +24,6 @@ const Contact = () => {
     package: '',
     message: ''
   });
-  const [isHuman, setIsHuman] = useState(false);
   const [botField, setBotField] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -35,11 +33,6 @@ const Contact = () => {
     e.preventDefault();
     // Honeypot: only a bot fills this in.
     if (botField.trim() !== '') return;
-    if (!isHuman) {
-      showError("Please check the human verification box before submitting.");
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
@@ -258,8 +251,6 @@ const Contact = () => {
         className="absolute left-[-9999px] w-px h-px opacity-0"
       />
 
-      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
-
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -288,7 +279,6 @@ const Contact = () => {
                     variant="outline"
                     onClick={() => {
                       setIsSubmitted(false);
-                      setIsHuman(false);
                       setFormData({ name: '', email: '', phone: '', package: 'Starter Launch Package ($1,499)', message: '' });
                     }}
                     className="border-zinc-300 text-zinc-900 rounded-none mono text-xs uppercase font-bold hover:bg-zinc-100"

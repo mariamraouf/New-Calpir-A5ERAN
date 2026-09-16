@@ -10,7 +10,6 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
-import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import PhoneInput from '@/components/ui/PhoneInput';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
@@ -100,7 +99,6 @@ const Assessment = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
   const [userPhone, setUserPhone] = useState('');
-  const [isHuman, setIsHuman] = useState(false);
   const [botField, setBotField] = useState('');
   const [isSendingReport, setIsSendingReport] = useState(false);
   const [isReportUnlocked, setIsReportUnlocked] = useState(false);
@@ -149,11 +147,6 @@ const Assessment = () => {
     e.preventDefault();
     // Honeypot: only a bot fills this in.
     if (botField.trim() !== '') return;
-    if (!isHuman) {
-      showError("Please check the human verification box before unlocking.");
-      return;
-    }
-
     setIsSendingReport(true);
 
     try {
@@ -360,7 +353,7 @@ const Assessment = () => {
         className="absolute left-[-9999px] w-px h-px opacity-0"
       />
 
-      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
+      
                     </div>
 
                     <Button
@@ -426,7 +419,6 @@ const Assessment = () => {
                     setAnswers({});
                     setShowResults(false);
                     setIsReportUnlocked(false);
-                    setIsHuman(false);
                   }}
                 >
                   <RefreshCcw className="mr-2" size={16} /> Retake Assessment

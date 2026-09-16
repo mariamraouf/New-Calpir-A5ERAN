@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { HumanCaptcha } from '@/components/ui/HumanCaptcha';
 import { cn } from '@/lib/utils';
 import { showSuccess, showError } from '@/utils/toast';
 import { trackLeadGeneration } from '@/utils/analytics';
@@ -36,7 +35,6 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [userTimezone, setUserTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone || "Europe/London");
   const [step, setStep] = useState(1);
-  const [isHuman, setIsHuman] = useState(false);
   const [botField, setBotField] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: initialEmail, businessNotes: '' });
@@ -70,11 +68,6 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
     e.preventDefault();
     // Honeypot: only a bot fills this in.
     if (botField.trim() !== '') return;
-    if (!isHuman) {
-      showError("Please check the human verification box before confirming.");
-      return;
-    }
-
     setIsSending(true);
 
     try {
@@ -273,8 +266,6 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
         onChange={(ev) => setBotField(ev.target.value)}
         className="absolute left-[-9999px] w-px h-px opacity-0"
       />
-
-      <HumanCaptcha isVerified={isHuman} onVerified={setIsHuman} />
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 py-5 sm:py-6 rounded-none font-bold uppercase text-[11px] sm:text-xs">
