@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { format, addDays, startOfDay, isBefore, addMinutes, parse, setHours, setMinutes } from 'date-fns';
 import { formatInTimeZone } from 'date-fns-tz';
 import { Calendar as CalendarIcon, Clock, User, CheckCircle2, ArrowRight, Loader2, Globe } from 'lucide-react';
@@ -38,6 +38,9 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
   const [botField, setBotField] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: initialEmail, businessNotes: '' });
+  const [slots, setSlots] = useState<Array<{ time: string; available: boolean }> | null>(null);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+  const [meetLink, setMeetLink] = useState<string | null>(null);
 
   const generateTimeSlots = () => {
     const slots: string[] = [];
@@ -52,6 +55,31 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
   };
 
   const timeSlots = generateTimeSlots();
+
+  // Ask the server which slots are genuinely free on the calendar that day.
+  useEffect(() => {
+    let cancelled = false;
+    setLoadingSlots(true);
+    fetch(`/api/availability?date=${format(selectedDate, 'yyyy-MM-dd')}`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((data) => { if (!cancelled) setSlots(Array.isArray(data?.slots) ? data.slots : null); })
+      // If availability is unreachable, offer every slot rather than an empty
+      // calendar. A clash is recoverable; a page that looks broken is not.
+      .catch(() => { if (!cancelled) setSlots(null); })
+      .finally(() => { if (!cancelled) setLoadingSlots(false); });
+    return () => { cancelled = true; };
+  }, [selectedDate]);
+
+  const isSlotFree = (time: string) => {
+    if (!slots) return true;
+    const hit = slots.find((s) => s.time === time);
+    return hit ? hit.available : true;
+  };
+
+  // Drop a chosen time that stopped being free after the date changed.
+  useEffect(() => {
+    if (selectedTime && !isSlotFree(selectedTime)) setSelectedTime(null);
+  }, [slots]);
 
   const convertToUserTime = (ukTime: string) => {
     try {
@@ -71,30 +99,33 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
     setIsSending(true);
 
     try {
-      const response = await fetch('https://formspree.io/f/xwleyvaj', {
+      const response = await fetch('/api/book', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           _gotcha: botField,
           name: formData.name,
           email: formData.email,
-          selectedDate: format(selectedDate, 'yyyy-MM-dd'),
-          selectedTimeUK: selectedTime,
-          userLocalTime: `${convertToUserTime(selectedTime!)} (${userTimezone})`,
-          message: formData.businessNotes || 'No notes provided',
-          consultant: 'Maria'
-        })
+          date: format(selectedDate, 'yyyy-MM-dd'),
+          time: selectedTime,
+          timezone: userTimezone,
+          notes: formData.businessNotes,
+        }),
       });
+      const data = await response.json().catch(() => ({}));
 
-      if (response.ok) {
+      if (response.ok && data?.ok) {
         trackLeadGeneration("booking_system");
-        showSuccess(`Booking confirmed for ${formData.name}. Google Meet invitation sent to ${formData.email}.`);
+        setMeetLink(data.meetLink || null);
+        showSuccess(`Booked. The calendar invite is on its way to ${formData.email}.`);
         setStep(3);
       } else {
-        showError("Booking failed. Please email info@calpir.com to lock in your time.");
+        if (response.status === 409) {
+          // Someone took the slot while they were filling the form in.
+          setSelectedTime(null);
+          setStep(1);
+        }
+        showError(data?.error || "Booking failed. Please email info@calpir.com to lock in your time.");
       }
     } catch (err) {
       showError("Connection error. Please reach out to info@calpir.com or call +44 7346 875731.");
@@ -167,19 +198,29 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-1.5 sm:gap-2 max-h-[180px] sm:max-h-[220px] overflow-y-auto pr-1 custom-scrollbar">
-                {timeSlots.map((time) => (
-                  <button
-                    key={time}
-                    type="button"
-                    onClick={() => setSelectedTime(time)}
-                    className={cn(
-                      "p-2 sm:p-2.5 border mono text-[11px] sm:text-xs font-bold transition-all",
-                      selectedTime === time ? "border-emerald-600 bg-emerald-600 text-white shadow-sm" : "border-zinc-200 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950 bg-zinc-50"
-                    )}
-                  >
-                    {convertToUserTime(time)}
-                  </button>
-                ))}
+                {timeSlots.map((time) => {
+                  const free = isSlotFree(time);
+                  return (
+                    <button
+                      key={time}
+                      type="button"
+                      disabled={!free || loadingSlots}
+                      title={free ? undefined : 'Already booked'}
+                      onClick={() => setSelectedTime(time)}
+                      className={cn(
+                        "p-2 sm:p-2.5 border mono text-[11px] sm:text-xs font-bold transition-all",
+                        !free
+                          ? "border-zinc-100 text-zinc-300 bg-zinc-50 line-through cursor-not-allowed"
+                          : selectedTime === time
+                            ? "border-emerald-600 bg-emerald-600 text-white shadow-sm"
+                            : "border-zinc-200 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950 bg-zinc-50",
+                        loadingSlots && "opacity-60"
+                      )}
+                    >
+                      {convertToUserTime(time)}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -252,7 +293,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           </div>
 
           {/* Honeypot. Positioned off screen so people never see it; bots fill it in.
-          Also sent to Formspree as _gotcha, which drops the submission server side. */}
+          The booking endpoint drops any submission where it has a value. */}
       <input
         type="text"
         name="_gotcha"
@@ -286,8 +327,21 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           </div>
           <h3 className="text-2xl sm:text-3xl font-black uppercase text-zinc-950">Booking Confirmed</h3>
           <p className="text-zinc-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-            Your strategy session with Maria is locked in for <span className="text-zinc-950 font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. A Google Meet invite has been dispatched to <span className="text-emerald-700 font-bold">{formData.email}</span>.
+            Your strategy session with Maria is in the calendar for <span className="text-zinc-950 font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. The invite is on its way to <span className="text-emerald-700 font-bold">{formData.email}</span>.
           </p>
+          {meetLink && (
+            <div className="space-y-2">
+              <p className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Your Google Meet link</p>
+              <a
+                href={meetLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mono text-xs sm:text-sm text-emerald-700 font-bold underline break-all px-4"
+              >
+                {meetLink}
+              </a>
+            </div>
+          )}
           <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 py-4 sm:py-5 px-6 sm:px-8 rounded-none font-bold uppercase hover:bg-zinc-100 text-xs">
             <a href="/">Return Home</a>
           </Button>
