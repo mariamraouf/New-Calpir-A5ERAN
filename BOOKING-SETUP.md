@@ -21,9 +21,10 @@ should hold the bookings:
      You do not need Google verification for a calendar scope used only by you.
 4. **APIs and Services**, **Credentials**, **Create credentials**,
    **OAuth client ID**, application type **Web application**.
-5. Under **Authorised redirect URIs** add exactly:
+5. Under **Authorised redirect URIs** add **both** of these, exactly:
 
    ```
+   https://developers.google.com/oauthplayground
    http://localhost:5178/oauth2callback
    ```
 
@@ -31,7 +32,22 @@ should hold the bookings:
 
 ## 2. Mint the refresh token, about two minutes
 
-From the project folder:
+Two ways. The first needs no terminal.
+
+### Option A: OAuth Playground, browser only
+
+1. Go to <https://developers.google.com/oauthplayground>.
+2. Click the **gear icon**, top right.
+3. Tick **Use your own OAuth credentials** and paste the client ID and secret.
+4. In the left list, find **Calendar API v3** and select
+   `https://www.googleapis.com/auth/calendar`.
+5. **Authorize APIs**, sign in as the calendar account, allow.
+6. **Exchange authorization code for tokens**.
+7. Copy the **Refresh token**.
+
+### Option B: the script
+
+From the project folder, in a terminal on your own machine:
 
 ```
 node scripts/google-oauth-setup.mjs
@@ -39,6 +55,10 @@ node scripts/google-oauth-setup.mjs
 
 Paste the client ID and secret when asked, open the URL it prints, approve the
 calendar permission, and it prints the three values to copy.
+
+This one has to run on the machine whose browser you will approve in. The
+script starts a small server on `localhost:5178` and Google redirects the
+browser back to it, so both have to be the same computer.
 
 ## 3. Vercel
 
