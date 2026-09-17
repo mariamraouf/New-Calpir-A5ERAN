@@ -14,11 +14,14 @@ should hold the bookings:
 
 1. Create a project, or reuse one.
 2. **APIs and Services**, **Library**, search **Google Calendar API**, Enable.
-3. **APIs and Services**, **OAuth consent screen**. External. Fill in the app
-   name and support email. Under **Test users**, add your own Google address.
-   - A token issued while the app is in Testing expires after 7 days. Once the
-     flow works, click **Publish app** so the refresh token stops expiring.
-     You do not need Google verification for a calendar scope used only by you.
+3. **Google Auth Platform**, **Get started**. App name, support email, then
+   choose the audience:
+   - **Internal** if the account is on a Google Workspace domain, which
+     `mariam@calpir.com` is. This is the one to pick. No verification, no test
+     user list, and the refresh token does not expire.
+   - **External** only if you are using a personal Gmail. In that case the app
+     starts in Testing and tokens die after 7 days, so add yourself under
+     **Test users** and then **Publish app** to stop that happening.
 4. **APIs and Services**, **Credentials**, **Create credentials**,
    **OAuth client ID**, application type **Web application**.
 5. Under **Authorised redirect URIs** add **both** of these, exactly:
