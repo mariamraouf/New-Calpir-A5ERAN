@@ -11,9 +11,17 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import { Link } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
 import MetaSEO from '@/components/seo/MetaSEO';
+import MonthlyPlans from '@/components/plans/MonthlyPlans';
+import BuyButton from '@/components/plans/BuyButton';
+import { ONE_TIME_PACKAGES, formatPrice, type Currency } from '@/data/plans';
 
 const Packages = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [currency, setCurrency] = useState<Currency>('usd');
+
+  // The one-time cards carry their own copy; price, id and timeline come from
+  // src/data/plans.ts so the number on screen is the number Stripe charges.
+  const buildFor = (name: string) => ONE_TIME_PACKAGES.find((b) => b.name === name);
 
   const packages = [
     {
@@ -107,7 +115,7 @@ const Packages = () => {
     if (typeof val === 'boolean') {
       if (val) {
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-300 text-emerald-800 font-black mono text-xs uppercase tracking-wider rounded-sm shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold mono text-xs uppercase tracking-wider rounded-sm shadow-sm">
             <CheckCircle2 size={15} className="shrink-0 text-emerald-600" /> Included
           </span>
         );
@@ -124,30 +132,56 @@ const Packages = () => {
   return (
     <div className="min-h-screen bg-white">
       <MetaSEO 
-        title="Packages & Pricing | Calpir"
-        description="Fixed-scope launch packages that take a business from idea to running infrastructure in 7-28 days."
+        title="Packages & Monthly Plans | Calpir"
+        description="Monthly marketing, SEO, operations, sales and HR plans from $449 a month, plus one-time build packages from $1,499. Every price published, pay online."
         path="/packages"
       />
       <Navbar />
       
       <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom text-center">
-          <SectionLabel>Transparent Investment</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">
-            Launch <br /> <span className="text-emerald-700">Packages.</span>
+          <SectionLabel>Every price published</SectionLabel>
+          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">
+            Pay monthly, <br /> or <span className="text-emerald-700">pay once.</span>
           </h1>
           <p className="text-lg md:text-2xl text-zinc-600 max-w-[850px] mx-auto leading-relaxed">
-            We genuinely love building businesses from scratch and seeing you win. Complete turn-key setups saving you 40% to 60% compared to hiring 5 different agencies.
+            Monthly plans for the work that repeats: marketing and search, your systems, outbound, and the HR paperwork. One time packages for the work that finishes. Buy either on this page, in your own currency.
           </p>
-          <p className="mono text-xs text-emerald-800 font-bold mt-4 uppercase tracking-widest">
-            💡 Click any feature below to inspect exactly what our squad delivers!
+          <p className="mono text-xs text-emerald-800 font-bold mt-5 uppercase tracking-widest">
+            You pay for what you see. The number on the card is the number.
           </p>
+        </div>
+      </section>
+
+      <section className="section-padding border-b border-zinc-200">
+        <div className="container-custom">
+          <div className="text-center mb-4">
+            <SectionLabel>Monthly plans</SectionLabel>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-5">
+              The work that <span className="text-emerald-700">repeats.</span>
+            </h2>
+            <p className="text-lg text-zinc-600 max-w-[760px] mx-auto leading-relaxed">
+              Four plans. Buy one, buy two, or take all four together and pay less than the sum. Cancel any month, because a retainer you cannot leave is not a service, it is a trap.
+            </p>
+          </div>
+
+          <MonthlyPlans currency={currency} onCurrencyChange={setCurrency} />
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-custom">
-          {/* Packages Cards */}
+          {/* One time build packages */}
+          <div className="text-center mb-14">
+            <SectionLabel>One time packages</SectionLabel>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-5">
+              The work that <span className="text-emerald-700">finishes.</span>
+            </h2>
+            <p className="text-lg text-zinc-600 max-w-[760px] mx-auto leading-relaxed">
+              A single payment, a finished thing handed over. Click any feature to see exactly what is built. Add a monthly plan afterwards if you want it kept running, or do not.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24 items-stretch">
             {packages.map((p, i) => {
               const Icon = p.icon;
@@ -157,7 +191,7 @@ const Packages = () => {
                   p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-zinc-200 hover:border-emerald-600 hover:shadow-md"
                 )}>
                   {p.featured && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5 shadow-md">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-md">
                       <Sparkles size={13} /> Most Popular Choice
                     </div>
                   )}
@@ -167,8 +201,13 @@ const Packages = () => {
                       <Icon size={20} />
                     </div>
                   </div>
-                  <h3 className="text-3xl font-black text-zinc-950 mb-2">{p.name}</h3>
-                  <div className="text-5xl font-black text-zinc-950 mb-3">{p.price}</div>
+                  <h3 className="text-3xl font-bold text-zinc-950 mb-2">{p.name}</h3>
+                  <div className="price-figure text-5xl font-bold text-zinc-950 mb-1">
+                    {(() => { const b = buildFor(p.name); return b ? formatPrice(b.price, currency) : p.price; })()}
+                  </div>
+                  <div className="mono text-[11px] uppercase tracking-widest text-zinc-400 font-bold mb-3">
+                    One time payment. Nothing recurring.
+                  </div>
                   <div className="mono text-xs uppercase font-bold text-zinc-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
                   <p className="text-zinc-600 text-sm leading-relaxed mb-8">{p.desc}</p>
                   
@@ -192,12 +231,22 @@ const Packages = () => {
                     ))}
                   </div>
 
-                  <Button asChild className={cn(
-                    "w-full py-7 rounded-none font-black text-lg uppercase tracking-tight btn-hover",
-                    p.featured ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "bg-zinc-900 text-white hover:bg-emerald-600 hover:text-white"
-                  )}>
-                    <Link to="/contact">Get Started With {p.name}</Link>
-                  </Button>
+                  {(() => {
+                    const b = buildFor(p.name);
+                    return b ? (
+                      <BuyButton
+                        planId={b.id}
+                        currency={currency}
+                        label={`Buy ${p.name}`}
+                        variant={p.featured ? 'emerald' : 'dark'}
+                        footnote={b.timeline}
+                      />
+                    ) : (
+                      <Button asChild className="w-full py-7 rounded-none font-bold text-lg tracking-tight bg-zinc-900 text-white">
+                        <Link to="/contact">Get started with {p.name}</Link>
+                      </Button>
+                    );
+                  })()}
                 </div>
               );
             })}
@@ -208,7 +257,7 @@ const Packages = () => {
             <SectionLabel>In-Depth Breakdown</SectionLabel>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
               <div>
-                <h2 className="text-3xl md:text-5xl font-black uppercase text-zinc-950 tracking-tight">
+                <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight">
                   Detailed Feature <br /> <span className="text-emerald-700">Comparison.</span>
                 </h2>
                 <p className="text-zinc-600 text-sm mt-2 max-w-[500px]">
@@ -231,16 +280,16 @@ const Packages = () => {
               <table className="w-full text-left border-collapse min-w-[700px]">
                 <thead>
                   <tr className="border-b border-zinc-200 bg-zinc-50">
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-emerald-800 font-black w-2/5">
+                    <th className="p-5 mono text-xs uppercase tracking-wider text-emerald-800 font-bold w-2/5">
                       System Module & Capability
                     </th>
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-zinc-900 font-black w-1/5">
+                    <th className="p-5 mono text-xs uppercase tracking-wider text-zinc-900 font-bold w-1/5">
                       Starter ($1,499)
                     </th>
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-emerald-800 font-black w-1/5 bg-emerald-50/50">
+                    <th className="p-5 mono text-xs uppercase tracking-wider text-emerald-800 font-bold w-1/5 bg-emerald-50/50">
                       Growth ($3,499)
                     </th>
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-zinc-900 font-black w-1/5">
+                    <th className="p-5 mono text-xs uppercase tracking-wider text-zinc-900 font-bold w-1/5">
                       Ultimate ($6,999)
                     </th>
                   </tr>
@@ -276,7 +325,7 @@ const Packages = () => {
           <div>
             <SectionLabel>À La Carte Add-Ons</SectionLabel>
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-              <h2 className="text-3xl md:text-5xl font-black uppercase text-zinc-950">Need Something Specific?</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-zinc-950">Need something specific?</h2>
               <Button asChild variant="outline" className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-xs uppercase font-bold">
                 <Link to="/solo-services">View All Solo Services <ArrowRight size={14} className="ml-1" /></Link>
               </Button>
@@ -292,7 +341,7 @@ const Packages = () => {
                 <div key={i} className="border border-zinc-200 p-6 bg-zinc-50/50 flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all">
                   <div>
                     <div className="mono text-xs uppercase tracking-wider text-zinc-700 font-bold mb-2">{add.name}</div>
-                    <div className="text-3xl font-black text-emerald-700 mb-2">{add.price}</div>
+                    <div className="text-3xl font-bold text-emerald-700 mb-2">{add.price}</div>
                     <p className="text-xs text-zinc-600 leading-relaxed mb-4">{add.desc}</p>
                   </div>
                   <Button 

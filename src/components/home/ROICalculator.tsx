@@ -19,7 +19,7 @@ const ROICalculator = () => {
         <SectionLabel>Efficiency Logic</SectionLabel>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           <div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 text-zinc-950 font-black">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 text-zinc-950 font-bold">
               Calculate <br /> Your ROI.
             </h2>
             <p className="text-zinc-600 text-sm sm:text-lg leading-relaxed">
@@ -37,7 +37,7 @@ const ROICalculator = () => {
                   type="number" 
                   value={hours} 
                   onChange={(e) => setHours(Number(e.target.value))}
-                  className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 sm:h-14 text-xl sm:text-2xl font-black focus:border-emerald-600"
+                  className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 sm:h-14 text-xl sm:text-2xl font-bold focus:border-emerald-600"
                 />
               </div>
               
@@ -49,7 +49,7 @@ const ROICalculator = () => {
                   type="number" 
                   value={rate} 
                   onChange={(e) => setRate(Number(e.target.value))}
-                  className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 sm:h-14 text-xl sm:text-2xl font-black focus:border-emerald-600"
+                  className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 sm:h-14 text-xl sm:text-2xl font-bold focus:border-emerald-600"
                 />
               </div>
 
@@ -57,11 +57,11 @@ const ROICalculator = () => {
                 <div className="grid grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <div className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-600 font-bold mb-1 sm:mb-2">Monthly Savings</div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700">${monthlySavings.toLocaleString()}</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-700">${monthlySavings.toLocaleString()}</div>
                   </div>
                   <div>
                     <div className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-600 font-bold mb-1 sm:mb-2">Annual Savings</div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-black text-emerald-700">${annualSavings.toLocaleString()}</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-700">${annualSavings.toLocaleString()}</div>
                   </div>
                 </div>
               </div>

@@ -101,7 +101,7 @@ const CaseStudies = () => {
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>Proof of Concept</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">
               Case <br /> <span className="text-emerald-700">Studies.</span>
             </h1>
           </motion.div>
@@ -117,7 +117,7 @@ const CaseStudies = () => {
                   <div className="mono text-emerald-800 text-xs font-bold mb-4 tracking-widest">
                     [{c.id}] // {c.industry}
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-black text-zinc-950 uppercase tracking-tight mb-8">{c.title}</h2>
+                  <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight mb-8">{c.title}</h2>
                   
                   <div className="space-y-8 mb-8">
                     <div>
@@ -139,7 +139,7 @@ const CaseStudies = () => {
                     <div className="grid grid-cols-2 gap-6">
                       {c.results.map((res, idx) => (
                         <div key={idx} className="border border-zinc-200 p-6 bg-zinc-50 shadow-sm">
-                          <div className="text-4xl font-black text-emerald-700 mb-1">{res.value}</div>
+                          <div className="text-4xl font-bold text-emerald-700 mb-1">{res.value}</div>
                           <div className="mono text-xs uppercase tracking-wider font-bold text-zinc-700">{res.label}</div>
                         </div>
                       ))}
@@ -147,7 +147,7 @@ const CaseStudies = () => {
 
                     <div className="border-l-4 border-emerald-600 pl-6 py-4 bg-emerald-50 border-emerald-200">
                       <p className="text-lg italic text-zinc-800 mb-3">"{c.quote}"</p>
-                      <div className="font-black uppercase text-xs tracking-wider text-emerald-800">{c.author}</div>
+                      <div className="font-bold uppercase text-xs tracking-wider text-emerald-800">{c.author}</div>
                     </div>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ const CaseStudies = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
                   <div className="absolute bottom-6 left-6">
                     <div className="mono text-xs uppercase tracking-widest text-zinc-300 font-bold mb-1">Client</div>
-                    <div className="text-2xl font-black uppercase text-white">{c.client}</div>
+                    <div className="text-2xl font-bold text-white">{c.client}</div>
                     <div className="mono text-xs uppercase tracking-wider font-bold text-emerald-400 mt-1">Timeline: {c.timeline}</div>
                   </div>
                 </div>
@@ -169,8 +169,8 @@ const CaseStudies = () => {
 
       <section className="section-padding bg-emerald-700 text-white text-center shadow-inner">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-7xl mb-8 font-black uppercase tracking-tight text-white">Ready for Your Own <br /> Success Story?</h2>
-          <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover">
+          <h2 className="text-4xl md:text-7xl mb-8 font-bold tracking-tight text-white">Ready for Your Own <br /> Success Story?</h2>
+          <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-12 py-8 rounded-none font-bold text-xl tracking-tight transition-all btn-hover">
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>

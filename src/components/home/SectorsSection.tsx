@@ -52,7 +52,7 @@ const SectorsSection = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <SectionLabel>Tailored Industry Blueprints</SectionLabel>
-            <h2 className="text-4xl md:text-6xl font-black uppercase text-zinc-950 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold text-zinc-950 tracking-tight">
               Sectors We <br /> <span className="text-emerald-700">Launch & Scale.</span>
             </h2>
           </div>
@@ -73,7 +73,7 @@ const SectorsSection = () => {
                 <div className="mb-6 p-3 bg-emerald-50 border border-emerald-200 inline-block">
                   {sector.icon}
                 </div>
-                <h3 className="text-2xl font-black uppercase text-zinc-950 mb-3 tracking-tight">
+                <h3 className="text-2xl font-bold text-zinc-950 mb-3 tracking-tight">
                   {sector.title}
                 </h3>
                 <p className="text-zinc-600 text-sm leading-relaxed mb-6">
@@ -93,7 +93,7 @@ const SectorsSection = () => {
         <div className="mt-12 text-center">
           <Link 
             to="/contact" 
-            className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-zinc-800 hover:text-emerald-700 font-black border-b border-emerald-600/40 pb-1 hover:border-emerald-700 transition-colors"
+            className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-zinc-800 hover:text-emerald-700 font-bold border-b border-emerald-600/40 pb-1 hover:border-emerald-700 transition-colors"
           >
             Don't see your specific niche? We build custom setups too <ArrowRight size={14} />
           </Link>

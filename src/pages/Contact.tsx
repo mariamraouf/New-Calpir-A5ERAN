@@ -78,7 +78,7 @@ const Contact = () => {
       <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>Direct Transmission</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-black uppercase tracking-tight text-zinc-950">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-bold tracking-tight text-zinc-950">
             Get in <br /> <span className="text-emerald-700">Touch.</span>
           </h1>
           <p className="text-lg md:text-2xl text-zinc-600 max-w-3xl leading-relaxed">
@@ -93,8 +93,8 @@ const Contact = () => {
             {/* Squad Contact Details */}
             <div className="space-y-8">
               <SectionLabel>Direct Channels</SectionLabel>
-              <h2 className="text-3xl md:text-4xl font-black uppercase text-zinc-950 tracking-tight">
-                Let's Build Something Meaningful Together.
+              <h2 className="text-3xl md:text-4xl font-bold text-zinc-950 tracking-tight">
+                Let's build something meaningful together.
               </h2>
               <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
                 Whether you need a full 7 day launch package, custom AI agents, or specific à la carte setup, we respond fast with zero corporate fluff.
@@ -107,7 +107,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Email Our Team</div>
-                    <a href="mailto:info@calpir.com" className="text-base md:text-lg font-black text-zinc-950 hover:text-emerald-700 transition-colors">
+                    <a href="mailto:info@calpir.com" className="text-base md:text-lg font-bold text-zinc-950 hover:text-emerald-700 transition-colors">
                       info@calpir.com
                     </a>
                   </div>
@@ -119,7 +119,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Direct Phone / WhatsApp</div>
-                    <a href="tel:+447346875731" className="text-base md:text-lg font-black text-zinc-950 hover:text-emerald-700 transition-colors">
+                    <a href="tel:+447346875731" className="text-base md:text-lg font-bold text-zinc-950 hover:text-emerald-700 transition-colors">
                       +44 7346 875731
                     </a>
                   </div>
@@ -131,7 +131,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">HQ Location</div>
-                    <div className="text-base md:text-lg font-black uppercase text-zinc-950">Bristol, United Kingdom</div>
+                    <div className="text-base md:text-lg font-bold text-zinc-950">Bristol, United Kingdom</div>
                   </div>
                 </div>
               </div>
@@ -157,8 +157,8 @@ const Contact = () => {
                   <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
                     Project Request Form
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight">
-                    Send Us Your Requirements
+                  <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight">
+                    Send us your requirements
                   </h3>
 
                   <div className="space-y-1.5">
@@ -250,7 +250,7 @@ const Contact = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-black text-base md:text-lg uppercase tracking-tight btn-hover flex items-center justify-center gap-2"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-bold text-base md:text-lg tracking-tight btn-hover flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <Loader2 className="animate-spin" />
@@ -266,7 +266,7 @@ const Contact = () => {
                   <div className="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
                     <CheckCircle2 size={32} />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight">Transmission Received</h3>
+                  <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight">Transmission received</h3>
                   <p className="text-zinc-600 text-sm max-w-sm mx-auto leading-relaxed">
                     Thank you {formData.name}. We are reviewing your requirements and will reply to <span className="text-zinc-950 font-bold">{formData.email}</span> shortly.
                   </p>
@@ -294,8 +294,8 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
               <SectionLabel>Live Consultation</SectionLabel>
-              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-zinc-950 mb-3">
-                Book with Maria.
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-3">
+                Book with maria.
               </h2>
               <p className="text-base md:text-lg text-zinc-600 leading-relaxed max-w-xl mx-auto">
                 Select a time for your 30 minute strategy session. Times are automatically adjusted to your local timezone.

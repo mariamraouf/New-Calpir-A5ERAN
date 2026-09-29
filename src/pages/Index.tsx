@@ -18,6 +18,7 @@ import EmailCaptureCTA from '@/components/home/EmailCaptureCTA';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
+import GrowthAndPlans from '@/components/home/GrowthAndPlans';
 
 const Index = () => {
   const { openBooking } = useBookingModal();
@@ -62,8 +63,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       <MetaSEO 
-        title="Calpir | Complete Turnkey Business Setup and AI Systems"
-        description="Calpir builds and launches your entire company infrastructure: legal foundation, brand, website, domain, email, phone, CRM, payments, payroll, SOPs, and AI systems."
+        title="Calpir | Business Setup, Marketing & SEO, Run Monthly"
+        description="Calpir builds your entire company infrastructure, then runs the marketing, SEO, operations, sales and HR on a monthly plan. One time packages from $1,499, monthly plans from $449. Every price published."
         path="/"
       />
       <Navbar />
@@ -76,17 +77,18 @@ const Index = () => {
         <div className="container-custom text-center">
           <motion.div {...reveal}>
             <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 py-1 mb-4 sm:mb-5 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold rounded-none">
-              <Sparkles size={13} className="text-emerald-600 shrink-0" /> Complete Turnkey Business Setup Squad
+              <Sparkles size={13} className="text-emerald-600 shrink-0" /> Set it up, then get it found
             </div>
 
-            <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl sm:leading-[0.98] mb-4 sm:mb-5 font-black uppercase tracking-tight text-zinc-950 max-w-4xl mx-auto">
-              Your Entire Business <br />
-              <span className="text-emerald-700">Set Up In 7 Days</span>
+            <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl sm:leading-[0.98] mb-4 sm:mb-5 font-bold tracking-tight text-zinc-950 max-w-4xl mx-auto">
+              Set up in 7 days. <br />
+              <span className="text-emerald-700">Found every month after.</span>
             </h1>
 
             <p className="text-sm sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-5 sm:mb-7 px-2">
-              Entity, brand, website, CRM, payments, operations and AI systems. Built as one
-              connected setup, priced up front, and handed over in your name.
+              Entity, brand, website, CRM, payments and AI systems, built as one connected
+              setup. Then marketing, SEO, outbound and operations run monthly, so the
+              business you launched keeps getting found.
             </p>
 
             {/* One field is a far smaller ask than the full form, and the address
@@ -98,12 +100,12 @@ const Index = () => {
                 type="button"
                 variant="outline"
                 onClick={() => openBooking()}
-                className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 px-6 py-5 rounded-none font-black text-xs sm:text-sm uppercase tracking-tight btn-hover"
+                className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 px-6 py-5 rounded-none font-bold text-xs sm:text-sm tracking-tight btn-hover"
               >
                 Pick a time instead
               </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 py-5 rounded-none font-black text-xs sm:text-sm uppercase tracking-tight btn-hover">
-                <Link to="/packages">See packages and prices</Link>
+              <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-900 hover:bg-zinc-100 px-6 py-5 rounded-none font-bold text-xs sm:text-sm tracking-tight btn-hover">
+                <Link to="/packages">See plans and prices</Link>
               </Button>
             </div>
 
@@ -139,7 +141,7 @@ const Index = () => {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="mono text-[10px] uppercase tracking-widest font-black text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                      <span className="mono text-[10px] uppercase tracking-widest font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
                         Pillar {item.pillar}
                       </span>
                       <div className="p-1.5 bg-zinc-50 border border-zinc-200 text-emerald-700 group-hover:bg-emerald-50 transition-colors">
@@ -147,7 +149,7 @@ const Index = () => {
                       </div>
                     </div>
                     
-                    <h3 className="text-base sm:text-lg font-black uppercase text-zinc-950 tracking-tight mb-2 group-hover:text-emerald-800 transition-colors">
+                    <h3 className="text-base sm:text-lg font-bold text-zinc-950 tracking-tight mb-2 group-hover:text-emerald-800 transition-colors">
                       {item.title}
                     </h3>
                     
@@ -181,7 +183,7 @@ const Index = () => {
         <div className="container-custom">
           <SectionLabel>The Complete Business Modules</SectionLabel>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
-            <h2 className="text-2xl sm:text-5xl md:text-6xl font-black uppercase text-zinc-950 tracking-tight">
+            <h2 className="text-2xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-tight">
               Every Department <br /> <span className="text-emerald-700">Ready To Generate Cash</span>
             </h2>
             <p className="text-zinc-600 text-xs sm:text-base max-w-md">
@@ -202,7 +204,7 @@ const Index = () => {
                 <div className="text-emerald-700 mb-4 sm:mb-5 group-hover:scale-110 transition-transform">
                   {React.cloneElement(s.icon as React.ReactElement<any>, { size: 28 })}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-black text-zinc-950 mb-2">{s.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 mb-2">{s.title}</h3>
                 <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">{s.desc}</p>
                 <div className="flex items-center gap-1.5 text-emerald-700 mono text-xs uppercase tracking-wider font-bold">
                   Explore Full Module <ArrowRight size={13} />
@@ -228,8 +230,8 @@ const Index = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
             <div className="lg:col-span-5 space-y-4 sm:space-y-6">
               <SectionLabel>The Calpir Complete Business Engine</SectionLabel>
-              <h2 className="text-2xl sm:text-5xl md:text-6xl text-zinc-950 font-black leading-tight tracking-tight">
-                Everything Connected. <br />
+              <h2 className="text-2xl sm:text-5xl md:text-6xl text-zinc-950 font-bold leading-tight tracking-tight">
+                Everything connected. <br />
                 <span className="text-emerald-700">Everything Running Together.</span>
               </h2>
               <p className="text-xs sm:text-base md:text-lg text-zinc-600 leading-relaxed">
@@ -254,6 +256,8 @@ const Index = () => {
         </div>
       </section>
 
+      <GrowthAndPlans />
+
       <ROICalculator />
 
       <FAQ />
@@ -261,14 +265,14 @@ const Index = () => {
       {/* Contact CTA */}
       <section id="contact" className="section-padding border-t border-zinc-200 bg-emerald-50/60">
         <div className="container-custom text-center px-4">
-          <h2 className="text-3xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 font-black uppercase tracking-tight text-zinc-950">
+          <h2 className="text-3xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 font-bold tracking-tight text-zinc-950">
             Ready to <br /> Launch Your Full Business?
           </h2>
           <p className="text-xs sm:text-base md:text-lg text-zinc-600 mb-6 sm:mb-10 max-w-xl mx-auto leading-relaxed">
             Book a free 30 minute consultation with Maria. We will map out your complete company setup from legal and brand to website, CRM, and AI operations.
           </p>
           <div className="max-w-md mx-auto">
-            <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-10 py-5 sm:py-7 rounded-none font-black text-xs sm:text-lg uppercase tracking-tight transition-all btn-hover shadow-md text-center whitespace-normal leading-tight">
+            <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-10 py-5 sm:py-7 rounded-none font-bold text-xs sm:text-lg tracking-tight transition-all btn-hover shadow-md text-center whitespace-normal leading-tight">
               <Link to="/contact">Book Your Free Call with Maria</Link>
             </Button>
           </div>

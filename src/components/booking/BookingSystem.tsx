@@ -144,7 +144,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             </div>
             <div>
               <div className="mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold">Squad Lead</div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase text-zinc-950">Maria</h3>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950">Maria</h3>
               <p className="mono text-[10px] sm:text-xs text-zinc-600 font-bold">30 MINUTE FREE STRATEGY CONSULTATION</p>
             </div>
           </div>
@@ -169,7 +169,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
                       )}
                     >
                       <span className={isSelected ? "text-emerald-100" : "text-zinc-500"}>{format(date, 'EEE')}</span>
-                      <span className="text-base sm:text-lg font-black">{format(date, 'dd')}</span>
+                      <span className="text-base sm:text-lg font-bold">{format(date, 'dd')}</span>
                     </button>
                   );
                 })}
@@ -229,7 +229,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             type="button"
             disabled={!selectedTime}
             onClick={() => setStep(2)}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-none font-black text-sm sm:text-lg uppercase tracking-tight btn-hover"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-none font-bold text-sm sm:text-lg tracking-tight btn-hover"
           >
             Confirm Time Slot <ArrowRight className="ml-2" size={16} />
           </Button>
@@ -239,7 +239,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
       {step === 2 && (
         <form onSubmit={handleBooking} className="space-y-5 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4">
           <div className="text-center space-y-1">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase text-zinc-950">Finalize Booking Details</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950">Finalize booking details</h3>
             <p className="text-xs sm:text-sm text-zinc-600">Enter your details to generate your Google Meet video link</p>
           </div>
 
@@ -280,15 +280,15 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           <div className="bg-zinc-50 border border-zinc-200 p-3.5 sm:p-5 space-y-2 sm:space-y-3 text-xs sm:text-sm">
             <div className="flex justify-between items-center border-b border-zinc-200 pb-2">
               <span className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Date</span>
-              <span className="font-bold uppercase text-zinc-950">{format(selectedDate, 'MMMM dd, yyyy')}</span>
+              <span className="font-bold text-zinc-950">{format(selectedDate, 'MMMM dd, yyyy')}</span>
             </div>
             <div className="flex justify-between items-center border-b border-zinc-200 pb-2">
               <span className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Time</span>
-              <span className="font-bold uppercase text-zinc-950">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
+              <span className="font-bold text-zinc-950">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Platform</span>
-              <span className="font-bold uppercase text-emerald-700">Google Meet</span>
+              <span className="font-bold text-emerald-700">Google Meet</span>
             </div>
           </div>
 
@@ -306,13 +306,13 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
       />
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 py-5 sm:py-6 rounded-none font-bold uppercase text-[11px] sm:text-xs">
+            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 py-5 sm:py-6 rounded-none font-bold text-[11px] sm:text-xs">
               Back
             </Button>
             <Button 
               type="submit"
               disabled={!formData.name || !formData.email || isSending}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-none font-black uppercase text-[11px] sm:text-xs flex items-center justify-center gap-2 btn-hover"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-none font-bold text-[11px] sm:text-xs flex items-center justify-center gap-2 btn-hover"
             >
               {isSending ? <Loader2 className="animate-spin" size={16} /> : "Confirm Session"}
             </Button>
@@ -325,7 +325,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           <div className="w-14 h-14 sm:w-16 sm:h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle2 size={32} />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-black uppercase text-zinc-950">Booking Confirmed</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">Booking confirmed</h3>
           <p className="text-zinc-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
             Your strategy session with Maria is in the calendar for <span className="text-zinc-950 font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. The invite is on its way to <span className="text-emerald-700 font-bold">{formData.email}</span>.
           </p>
@@ -342,7 +342,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
               </a>
             </div>
           )}
-          <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 py-4 sm:py-5 px-6 sm:px-8 rounded-none font-bold uppercase hover:bg-zinc-100 text-xs">
+          <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 py-4 sm:py-5 px-6 sm:px-8 rounded-none font-bold hover:bg-zinc-100 text-xs">
             <a href="/">Return Home</a>
           </Button>
         </div>

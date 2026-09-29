@@ -78,8 +78,8 @@ export const ArchitectureFlow: React.FC = () => {
           <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold flex items-center gap-1.5">
             <Sparkles size={14} className="text-emerald-600" /> Interactive Execution Pipeline
           </div>
-          <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-zinc-950 mt-1">
-            How Data Flows Through Your Calpir System
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 mt-1">
+            How data flows through your Calpir system
           </h3>
         </div>
         
@@ -122,7 +122,7 @@ export const ArchitectureFlow: React.FC = () => {
                   {stage.badge}
                 </span>
               </div>
-              <div className="mono text-xs uppercase font-black tracking-tight text-zinc-950">
+              <div className="mono text-xs uppercase font-bold tracking-tight text-zinc-950">
                 {stage.name.split('.')[1]}
               </div>
             </button>
@@ -149,13 +149,13 @@ export const ArchitectureFlow: React.FC = () => {
                 <span className="mono text-[10px] uppercase tracking-widest text-emerald-800 font-bold">
                   Active Execution Layer // Phase {activeStage + 1}
                 </span>
-                <h4 className="text-lg md:text-xl font-black uppercase text-zinc-950 tracking-tight">
+                <h4 className="text-lg md:text-xl font-bold text-zinc-950 tracking-tight">
                   {current.name}
                 </h4>
               </div>
             </div>
             <div className="mono text-xs text-zinc-700 bg-white border border-emerald-300 px-3 py-1 self-start md:self-auto font-bold">
-              Latency: <span className="text-emerald-700 font-black">{current.time}</span>
+              Latency: <span className="text-emerald-700 font-bold">{current.time}</span>
             </div>
           </div>
 

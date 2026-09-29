@@ -30,7 +30,7 @@ const FeatureModal: React.FC<FeatureModalProps> = ({ featureKey, onClose }) => {
           <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold bg-emerald-50 px-2.5 py-1 border border-emerald-200 inline-block w-fit">
             {detail.badge}
           </div>
-          <DialogTitle className="text-2xl md:text-3xl font-black uppercase tracking-tight text-zinc-950">
+          <DialogTitle className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-950">
             {detail.title}
           </DialogTitle>
           <DialogDescription className="mono text-xs md:text-sm text-zinc-600 leading-relaxed pt-1">
@@ -72,7 +72,7 @@ const FeatureModal: React.FC<FeatureModalProps> = ({ featureKey, onClose }) => {
           >
             Close Window
           </Button>
-          <Button asChild className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-none mono text-xs uppercase font-black btn-hover">
+          <Button asChild className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-none mono text-xs uppercase font-bold btn-hover">
             <Link to="/contact" onClick={onClose}>
               Discuss This With Our Team <ArrowRight size={14} className="ml-1" />
             </Link>

@@ -151,9 +151,9 @@ async function buildRoutes() {
   routes.push(
     page({
       path: '/',
-      title: 'Calpir | Complete Turnkey Business Setup and AI Systems',
+      title: 'Calpir | Business Setup, Marketing & SEO, Run Monthly',
       description:
-        'Calpir builds and launches your entire company infrastructure: legal foundation, brand, website, domain, email, phone, CRM, payments, payroll, SOPs, and AI systems.',
+        'Calpir builds your entire company infrastructure, then runs the marketing, SEO, operations, sales and HR on a monthly plan. One time packages from $1,499, monthly plans from $449. Every price published.',
       h1: 'Complete turnkey business setup and AI systems',
       body: `<p>Calpir builds and launches your entire company infrastructure: legal foundation, brand, website, domain, email, phone, CRM, payments, payroll, SOPs and AI systems.</p>
 <h2>What we build</h2>
@@ -169,7 +169,7 @@ async function buildRoutes() {
   );
 
   const statics = [
-    ['/packages', 'Packages & Pricing | Calpir', 'Fixed scope launch packages that take a business from idea to running infrastructure in 7 to 28 days.', 'Packages and pricing'],
+    ['/packages', 'Packages & Monthly Plans | Calpir', 'Monthly marketing, SEO, operations, sales and HR plans from $449 a month, plus one time build packages from $1,499. Every price published, pay online.', 'Monthly plans and one time packages'],
     ['/services', 'Services | Calpir', 'Everything Calpir builds: websites, CRM and sales systems, marketing, operations, AI agents and custom apps.', 'Services'],
     ['/solo-services', 'Solo Services | Calpir', 'Book individual services on their own, website, CRM, automation or AI agents, without a full package.', 'Solo services'],
     ['/software-stack', 'Software Stack | Calpir', 'The tools Calpir builds on and why: CRM, automation, hosting and AI infrastructure chosen to stay cheap to run.', 'Software stack'],
@@ -192,6 +192,43 @@ async function buildRoutes() {
       })
     );
   }
+
+
+  // The marketing and SEO pillar gets its own body rather than the generic
+  // service list, because it is the page we want ranking for growth queries.
+  routes.push(
+    page({
+      path: '/marketing-seo',
+      title: 'Marketing & SEO Services for Small Businesses | Calpir',
+      description:
+        'SEO, content, Google Business Profile, paid ads, email and outbound, run monthly from $899. Every price published. Built for US, UK and EU small businesses.',
+      h1: 'Marketing and SEO',
+      body: `<p>Most small businesses lose to competitors who are worse at the job and better at being seen. Calpir runs the search work, the content, the ads and the outbound on a monthly plan, and reports on the enquiries rather than the impressions.</p>
+<h2>Get found</h2>
+<ul>
+<li><a href="/services/seo-content-strategy">SEO and content strategy</a></li>
+<li><a href="/services/gbp-seo">Google Business Profile and Search Console indexing</a></li>
+<li><a href="/services/content-production">Content production and publishing workflow</a></li>
+<li><a href="/services/analytics-tracking">Analytics and conversion tracking setup</a></li>
+</ul>
+<h2>Create demand</h2>
+<ul>
+<li><a href="/services/paid-ads-setup">Paid ads setup and conversion tracking</a></li>
+<li><a href="/services/email-marketing">Email marketing and newsletter setup</a></li>
+<li><a href="/services/social-niche">Niche targeted social channels</a></li>
+<li><a href="/services/reviews-reputation">Reviews and reputation system</a></li>
+</ul>
+<h2>Turn it into revenue</h2>
+<ul>
+<li><a href="/services/website-development">High conversion web architecture</a></li>
+<li><a href="/services/crm-sales">CRM and sales pipeline setup</a></li>
+<li><a href="/services/proposals-quotes">Proposal, quote and contract flow</a></li>
+<li><a href="/services/site-speed-optimization">Site speed and Core Web Vitals optimization</a></li>
+</ul>
+<h2>The monthly plan</h2>
+<p>The Marketing and SEO plan is $899 a month and covers technical SEO upkeep, four published pieces of content, Google Business Profile management, keyword tracking, social posting, an email campaign, paid ads management and a monthly report. Cancel any month. <a href="/packages">All four monthly plans and the bundle are on the packages page</a>.</p>`,
+    })
+  );
 
   // Blog index
   routes.push(

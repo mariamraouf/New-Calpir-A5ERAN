@@ -18,15 +18,32 @@
 @layer base {
   body {
     @apply bg-white text-zinc-900 antialiased selection:bg-emerald-600 selection:text-white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
+  /* Headings are sentence case and bold, not black and shouting. The old rule
+     set every heading in heavy uppercase, which made a page of many services
+     read as a wall rather than a list of things you can choose between. */
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-black uppercase text-zinc-950;
+    @apply tracking-tight font-bold text-zinc-950;
+    letter-spacing: -0.021em;
   }
 
+  h1 { @apply font-extrabold; letter-spacing: -0.032em; }
+  h2 { @apply font-extrabold; letter-spacing: -0.028em; }
+
+  /* Monospace is for labels, prices and figures only: the small uppercase
+     eyebrows, and any number a reader might want to compare to another. */
   .mono {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-feature-settings: 'zero';
+  }
+
+  .price-figure {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    font-feature-settings: 'zero';
+    letter-spacing: -0.04em;
   }
 }
 
@@ -75,7 +92,7 @@
 /* ------------------------------------------------------------------ */
 
 .article-prose {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.75;
   color: #3f3f46;
@@ -102,7 +119,7 @@
 
 /* Tables stay monospace: aligned figures are easier to compare that way. */
 .article-prose table {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
   font-size: 0.875rem;
   line-height: 1.5;
 }

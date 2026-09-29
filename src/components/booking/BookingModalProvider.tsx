@@ -139,7 +139,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
       <Button
         type="submit"
         disabled={sending}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 rounded-none font-black uppercase tracking-tight"
+        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 rounded-none font-bold tracking-tight"
       >
         {sending ? (
           <>

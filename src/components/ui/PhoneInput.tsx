@@ -94,7 +94,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
       <div className="relative h-full flex items-center bg-zinc-50 border-r border-zinc-200 px-3 cursor-pointer shrink-0 hover:bg-zinc-100 transition-colors">
         <div className="flex items-center gap-1.5 pointer-events-none select-none">
           <span className="text-base leading-none">{currentCountry.flag}</span>
-          <span className="mono text-xs font-black text-zinc-900">{currentCountry.code}</span>
+          <span className="mono text-xs font-bold text-zinc-900">{currentCountry.code}</span>
           <ChevronDown size={13} className="text-zinc-500 shrink-0" />
         </div>
 

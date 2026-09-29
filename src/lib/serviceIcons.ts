@@ -4,6 +4,7 @@ import {
   Sparkles, Mail, BarChart3, Receipt, KanbanSquare, UserPlus, Banknote,
   GraduationCap, LifeBuoy,
   Inbox, PhoneOutgoing, Filter, Network, BookMarked, FileText, MessagesSquare, Handshake, BookText, DoorOpen, LogOut, CalendarDays, Building2, BadgeCheck, Landmark, CalendarClock, Headphones, HelpCircle, KeyRound,
+  Rocket, Cpu,
   Gauge, ShoppingCart, CalendarCheck, Layers, PenTool, Send, TrendingUp, Target, FileSignature, Star, Mic, ScanText, BookOpen, Workflow, PieChart, PenLine, FolderTree, UserCheck, ListChecks, Scale, ClipboardCheck,
 } from 'lucide-react';
 import type { ElementType } from 'react';
@@ -21,6 +22,7 @@ export const serviceIconMap: Record<string, ElementType> = {
   Sparkles, Mail, BarChart3, Receipt, KanbanSquare, UserPlus, Banknote,
   GraduationCap, LifeBuoy,
   Inbox, PhoneOutgoing, Filter, Network, BookMarked, FileText, MessagesSquare, Handshake, BookText, DoorOpen, LogOut, CalendarDays, Building2, BadgeCheck, Landmark, CalendarClock, Headphones, HelpCircle, KeyRound,
+  Rocket, Cpu,
   Gauge, ShoppingCart, CalendarCheck, Layers, PenTool, Send, TrendingUp, Target, FileSignature, Star, Mic, ScanText, BookOpen, Workflow, PieChart, PenLine, FolderTree, UserCheck, ListChecks, Scale, ClipboardCheck,
 };
 

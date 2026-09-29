@@ -23,7 +23,7 @@ const AnimatedStat: React.FC<AnimatedStatProps> = ({ value, suffix = "", label }
 
   return (
     <div ref={ref}>
-      <div className="text-4xl md:text-6xl font-black mb-1 text-white">
+      <div className="text-4xl md:text-6xl font-bold mb-1 text-white">
         <motion.span>{rounded}</motion.span>
         {suffix}
       </div>

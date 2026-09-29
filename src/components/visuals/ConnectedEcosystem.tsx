@@ -212,7 +212,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
 
               {/* Label */}
               <span className={cn(
-                "mono uppercase tracking-wider font-black mt-1 text-center leading-none px-0.5 whitespace-nowrap transition-colors",
+                "mono uppercase tracking-wider font-bold mt-1 text-center leading-none px-0.5 whitespace-nowrap transition-colors",
                 compact ? "text-[7.5px]" : "text-[8px] sm:text-[9px] md:text-[10px]",
                 isSelected 
                   ? "text-emerald-950 font-extrabold" 
@@ -226,7 +226,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
                 <motion.span 
                   initial={{ opacity: 0, y: -2 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-0.5 mono text-[7px] sm:text-[8px] uppercase tracking-wider font-black text-emerald-800 bg-emerald-50 px-1 py-0.5 border border-emerald-300 shadow-sm whitespace-nowrap hidden sm:inline-block"
+                  className="mt-0.5 mono text-[7px] sm:text-[8px] uppercase tracking-wider font-bold text-emerald-800 bg-emerald-50 px-1 py-0.5 border border-emerald-300 shadow-sm whitespace-nowrap hidden sm:inline-block"
                 >
                   {node.tag}
                 </motion.span>

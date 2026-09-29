@@ -53,6 +53,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Packages', href: '/packages' },
+    { name: 'Marketing & SEO', href: '/marketing-seo' },
     { name: 'Solo Services', href: '/solo-services' },
     { name: 'Software Stack', href: '/software-stack' },
     { name: 'Case Studies', href: '/case-studies' },
@@ -93,7 +94,7 @@ const Navbar = () => {
             className="h-8 sm:h-10 md:h-11 w-auto object-contain shrink-0 bg-transparent"
           />
           <div className="flex flex-col">
-            <span className="text-xl sm:text-2xl font-black tracking-tight uppercase text-zinc-950 group-hover:text-emerald-700 transition-colors">
+            <span className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors">
               Calpir
             </span>
             <span className="mono text-[8px] sm:text-[9px] uppercase tracking-widest text-emerald-700 font-bold hidden sm:block">
@@ -134,7 +135,7 @@ const Navbar = () => {
             {isServicesOpen && (
               <div className="absolute top-full -left-4 w-[760px] bg-white border border-zinc-200 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 <div className="px-4 py-2.5 border-b border-zinc-200 flex items-center justify-between">
-                  <span className="mono text-[10px] uppercase tracking-widest font-black text-emerald-800">
+                  <span className="mono text-[10px] uppercase tracking-widest font-bold text-emerald-800">
                     {allServicesCatalog.length} services across {serviceGroups.length} categories
                   </span>
                   <Link
@@ -158,7 +159,7 @@ const Navbar = () => {
                         <soloEntry.icon size={14} />
                       </div>
                       <div className="min-w-0">
-                        <div className="text-[11px] font-black uppercase tracking-tight">
+                        <div className="text-[11px] font-bold tracking-tight">
                           {soloEntry.name}
                         </div>
                         <div className="mono text-[9px] text-emerald-800 truncate">
@@ -181,7 +182,7 @@ const Navbar = () => {
                             : 'border-transparent text-zinc-700 hover:bg-white hover:text-emerald-700'
                         )}
                       >
-                        <span className="text-[11px] font-black uppercase tracking-tight">
+                        <span className="text-[11px] font-bold tracking-tight">
                           {group.category}
                         </span>
                         <span className="mono text-[9px] text-zinc-400">
@@ -208,7 +209,7 @@ const Navbar = () => {
                                 <Icon size={14} />
                               </div>
                               <div className="min-w-0">
-                                <div className="text-[11px] font-black uppercase tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors leading-snug">
+                                <div className="text-[11px] font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors leading-snug">
                                   {item.name}
                                 </div>
                               </div>
@@ -227,7 +228,7 @@ const Navbar = () => {
                   <Link
                     to="/packages"
                     onClick={() => setIsServicesOpen(false)}
-                    className="mono text-[10px] text-emerald-800 font-black uppercase hover:underline"
+                    className="mono text-[10px] text-emerald-800 font-bold uppercase hover:underline"
                   >
                     View Packages →
                   </Link>
@@ -251,7 +252,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => openBooking()}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-5 py-2.5 rounded-none mono text-xs uppercase tracking-wider btn-hover flex items-center gap-2 shadow-sm"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-none mono text-xs uppercase tracking-wider btn-hover flex items-center gap-2 shadow-sm"
           >
             <Sparkles size={14} /> Free Consultation
           </button>
@@ -275,7 +276,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => { setIsOpen(false); openBooking(); }}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-3.5 px-4 font-black uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md"
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-3.5 px-4 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md"
             >
               <Sparkles size={15} /> Book Free Consultation Call
             </button>
@@ -285,7 +286,7 @@ const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="w-full flex items-center justify-between p-3.5 mono text-xs uppercase font-black tracking-wider text-zinc-950 hover:bg-zinc-100 transition-colors"
+                className="w-full flex items-center justify-between p-3.5 mono text-xs uppercase font-bold tracking-wider text-zinc-950 hover:bg-zinc-100 transition-colors"
               >
                 <span className="flex items-center gap-2 text-emerald-800">
                   <Layers size={15} /> Services & Capabilities Dropdown
@@ -308,7 +309,7 @@ const Navbar = () => {
                         className={cn(
                           "flex items-center gap-2.5 px-3 py-2.5 text-[11px] uppercase font-bold tracking-wider transition-colors",
                           s.highlight 
-                            ? "bg-emerald-50 text-emerald-900 border-l-2 border-emerald-600 font-black" 
+                            ? "bg-emerald-50 text-emerald-900 border-l-2 border-emerald-600 font-bold" 
                             : "text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50"
                         )}
                       >
@@ -320,7 +321,7 @@ const Navbar = () => {
 
                   {serviceGroups.map((group) => (
                     <div key={group.category} className="pt-2">
-                      <div className="px-3 pb-1 mono text-[9px] uppercase tracking-widest font-black text-zinc-400">
+                      <div className="px-3 pb-1 mono text-[9px] uppercase tracking-widest font-bold text-zinc-400">
                         {group.category}
                       </div>
                       {group.items.map((s) => {
@@ -353,7 +354,7 @@ const Navbar = () => {
                   key={link.name}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between p-3 text-sm font-black uppercase text-zinc-900 hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors border-b border-zinc-100"
+                  className="flex items-center justify-between p-3 text-sm font-bold text-zinc-900 hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors border-b border-zinc-100"
                 >
                   <span>{link.name}</span>
                   <ArrowRight size={14} className="text-zinc-400" />

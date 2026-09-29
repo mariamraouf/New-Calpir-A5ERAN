@@ -61,7 +61,7 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
     return (
       <div 
         className={cn(
-          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-800 font-black text-xs flex items-center justify-center mono shrink-0 shadow-sm transition-transform group-hover:scale-105",
+          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold text-xs flex items-center justify-center mono shrink-0 shadow-sm transition-transform group-hover:scale-105",
           className
         )}
         title={tool.name}

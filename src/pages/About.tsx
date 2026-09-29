@@ -35,7 +35,7 @@ const About = () => {
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>The Mission</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-12 font-black uppercase tracking-tight text-zinc-950">
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-12 font-bold tracking-tight text-zinc-950">
               Built by <br /> <span className="text-emerald-700">Founders</span> <br /> for Founders.
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end">
@@ -67,7 +67,7 @@ const About = () => {
         <div className="container-custom max-w-[900px]">
           <div className="space-y-16">
             <div>
-              <h2 className="text-3xl md:text-5xl font-black text-zinc-950 uppercase tracking-tight mb-6">The Problem We Solve</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight mb-6">The problem we solve</h2>
               <p className="text-lg text-zinc-600 leading-relaxed">
                 Starting a business should be exciting. Instead, most founders spend their first months drowning in decisions: which website builder, which CRM, which payment processor, which HR tool. By the time everything is set up, they have burned through months and thousands of dollars, and half their tools do not even talk to each other.
               </p>
@@ -77,7 +77,7 @@ const About = () => {
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-black text-zinc-950 uppercase tracking-tight mb-6">Why AI Changes Everything</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight mb-6">Why AI changes everything</h2>
               <p className="text-lg text-zinc-600 leading-relaxed">
                 In 2026, launching a business without AI is like launching one without a website in 2010: technically possible, but a massive disadvantage. AI agents can handle your customer support at 2 AM. Workflow automation can eliminate 20+ hours of manual work per week. AI powered lead qualification can double your sales team efficiency.
               </p>
@@ -87,7 +87,7 @@ const About = () => {
             </div>
 
             <div>
-              <h2 className="text-3xl md:text-5xl font-black text-zinc-950 uppercase tracking-tight mb-6">How We Work</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight mb-6">How we work</h2>
               <p className="text-lg text-zinc-600 leading-relaxed">
                 We speak plainly, set honest expectations, and deliver exactly what we promise. No inflated timelines, no surprise fees, no excuses. Every engagement starts with a free 30 minute consultation where we listen, ask the right questions, and map out what your business actually needs.
               </p>
@@ -111,7 +111,7 @@ const About = () => {
                 <div className="text-emerald-700 mb-6">
                   {React.cloneElement(v.icon as React.ReactElement<any>, { size: 32 })}
                 </div>
-                <h3 className="text-xl font-black uppercase text-zinc-950 mb-3">{v.title}</h3>
+                <h3 className="text-xl font-bold text-zinc-950 mb-3">{v.title}</h3>
                 <p className="text-zinc-600 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
@@ -122,8 +122,8 @@ const About = () => {
       {/* CTA */}
       <section className="section-padding text-center bg-emerald-50/50">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-7xl mb-8 font-black uppercase tracking-tight text-zinc-950">Let's Build <br /> Something Together.</h2>
-          <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight transition-all btn-hover">
+          <h2 className="text-4xl md:text-7xl mb-8 font-bold tracking-tight text-zinc-950">Let's Build <br /> Something Together.</h2>
+          <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-none font-bold text-xl tracking-tight transition-all btn-hover">
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>

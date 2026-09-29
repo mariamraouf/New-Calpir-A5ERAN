@@ -48,7 +48,7 @@ const SoloServices = () => {
       <section className="pt-24 sm:pt-28 pb-12 px-4 sm:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>Pick What You Need</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl leading-[0.95] mb-5 font-black uppercase tracking-tight text-zinc-950">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl leading-[0.95] mb-5 font-bold tracking-tight text-zinc-950">
             Solo <span className="text-emerald-700">Services.</span>
           </h1>
           <p className="text-base sm:text-xl text-zinc-600 max-w-[800px] leading-relaxed">
@@ -64,7 +64,7 @@ const SoloServices = () => {
           <div className="flex items-start gap-3">
             <ShieldCheck size={20} className="text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-black uppercase text-sm tracking-tight">You pay for what you see</div>
+              <div className="font-bold text-sm tracking-tight">You pay for what you see</div>
               <p className="text-zinc-400 text-xs leading-relaxed mt-1">
                 The price on the card is the price. No setup fees, no per seat surprises, nothing
                 added after the fact.
@@ -74,7 +74,7 @@ const SoloServices = () => {
           <div className="flex items-start gap-3">
             <Clock size={20} className="text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-black uppercase text-sm tracking-tight">Agreed before it starts</div>
+              <div className="font-bold text-sm tracking-tight">Agreed before it starts</div>
               <p className="text-zinc-400 text-xs leading-relaxed mt-1">
                 If your scope needs more than the listed one, you get the number before any work
                 begins, not on the invoice.
@@ -84,7 +84,7 @@ const SoloServices = () => {
           <div className="flex items-start gap-3">
             <PencilRuler size={20} className="text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-black uppercase text-sm tracking-tight">Custom packages too</div>
+              <div className="font-bold text-sm tracking-tight">Custom packages too</div>
               <p className="text-zinc-400 text-xs leading-relaxed mt-1">
                 Nothing here quite right? We build custom packages and bespoke services. Tell us the
                 problem and we will price it.
@@ -177,7 +177,7 @@ const SoloServices = () => {
                         <Icon size={26} />
                       </div>
 
-                      <h2 className="text-lg font-black uppercase text-zinc-950 mb-3 tracking-tight leading-tight">
+                      <h2 className="text-lg font-bold text-zinc-950 mb-3 tracking-tight leading-tight">
                         {service.title}
                       </h2>
 
@@ -187,7 +187,7 @@ const SoloServices = () => {
                             <span className="mono text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
                               From
                             </span>
-                            <span className="text-3xl font-black text-emerald-700">
+                            <span className="text-3xl font-bold text-emerald-700">
                               {formatPrice(service.slug, currency)}
                             </span>
                           </div>
@@ -223,7 +223,7 @@ const SoloServices = () => {
                         <Button
                           type="button"
                           onClick={() => openBooking()}
-                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black uppercase tracking-wider text-[11px] py-5 rounded-none btn-hover"
+                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold uppercase tracking-wider text-[11px] py-5 rounded-none btn-hover"
                         >
                           Book this
                         </Button>
@@ -241,14 +241,14 @@ const SoloServices = () => {
               <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">
                 Three or more services?
               </div>
-              <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight mb-3">
+              <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight mb-3">
                 Packages save 40% to 60%
               </h3>
               <p className="text-zinc-600 text-sm leading-relaxed mb-6">
                 Booking five services separately costs considerably more than the Starter, Growth or
                 Ultimate package that already contains them.
               </p>
-              <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700 font-black uppercase px-7 py-6 rounded-none text-sm">
+              <Button asChild className="bg-emerald-600 text-white hover:bg-emerald-700 font-bold px-7 py-6 rounded-none text-sm">
                 <Link to="/packages">Compare packages</Link>
               </Button>
             </div>
@@ -257,7 +257,7 @@ const SoloServices = () => {
               <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">
                 Not on the list?
               </div>
-              <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 tracking-tight mb-3">
+              <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight mb-3">
                 We build custom packages
               </h3>
               <p className="text-zinc-600 text-sm leading-relaxed mb-6">
@@ -267,7 +267,7 @@ const SoloServices = () => {
               <Button
                 type="button"
                 onClick={() => openBooking()}
-                className="bg-zinc-950 text-white hover:bg-zinc-800 font-black uppercase px-7 py-6 rounded-none text-sm"
+                className="bg-zinc-950 text-white hover:bg-zinc-800 font-bold px-7 py-6 rounded-none text-sm"
               >
                 Tell us what you need
               </Button>

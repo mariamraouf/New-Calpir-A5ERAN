@@ -43,7 +43,7 @@ const SoftwareStack = () => {
       <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>100+ Supported Tools & Platforms</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-black uppercase tracking-tight text-zinc-950">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-bold tracking-tight text-zinc-950">
             Our Software <br /> <span className="text-emerald-700">Stack.</span>
           </h1>
           <p className="text-lg md:text-2xl text-zinc-600 max-w-3xl leading-relaxed">
@@ -56,8 +56,8 @@ const SoftwareStack = () => {
               <HeartHandshake size={28} />
             </div>
             <div className="space-y-1.5">
-              <h2 className="text-xl md:text-2xl font-black uppercase text-zinc-950 tracking-tight">
-                Don't Stress: You Don't Need to Pick or Learn Any of This
+              <h2 className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight">
+                Don't stress: You don't need to pick or learn any of this
               </h2>
               <p className="text-sm md:text-base text-zinc-700 leading-relaxed">
                 You never have to waste 100 hours running trials or comparing 50 apps yourself. That is why we are here as your dedicated squad. We listen to what you want to achieve, handpick the exact right tools for your business, configure everything, and hand you a simple, self-running engine.
@@ -133,7 +133,7 @@ const SoftwareStack = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-black uppercase text-zinc-950 tracking-tight mb-1 group-hover:text-emerald-700 transition-colors">
+                    <h3 className="text-lg font-bold text-zinc-950 tracking-tight mb-1 group-hover:text-emerald-700 transition-colors">
                       {tool.name}
                     </h3>
                     <div className="mono text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-2">
@@ -157,7 +157,7 @@ const SoftwareStack = () => {
           {filteredTools.length === 0 && (
             <div className="text-center py-20 border border-zinc-200 p-12 bg-zinc-50">
               <div className="text-4xl mb-3">🔍</div>
-              <h3 className="text-2xl font-black uppercase text-zinc-950 mb-2">No tools found matching "{search}"</h3>
+              <h3 className="text-2xl font-bold text-zinc-950 mb-2">No tools found matching "{search}"</h3>
               <p className="text-zinc-600 text-sm mono mb-6">
                 Have a niche or proprietary platform? If it has an API, webhook or database, we can wire it up for you.
               </p>
@@ -172,14 +172,14 @@ const SoftwareStack = () => {
             <div className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
               <Sparkles size={14} /> Custom API & Webhook Integrations
             </div>
-            <h3 className="text-2xl sm:text-4xl font-black uppercase text-zinc-950 tracking-tight">
+            <h3 className="text-2xl sm:text-4xl font-bold text-zinc-950 tracking-tight">
               Using a tool not listed here?
             </h3>
             <p className="text-zinc-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               We connect custom internal databases, niche software, and bespoke webhooks every day. Tell us what you are currently using and we will connect it into your new ecosystem.
             </p>
             <div className="pt-2">
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-none font-black text-sm uppercase tracking-wider btn-hover">
+              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-none font-bold text-sm uppercase tracking-wider btn-hover">
                 <Link to="/contact">Book Free Consultation Call <ArrowRight size={16} className="ml-2" /></Link>
               </Button>
             </div>

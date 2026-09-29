@@ -17,6 +17,8 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollToTopOnRoute from "./components/ui/ScrollToTopOnRoute";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
+import MarketingSeo from "./pages/MarketingSeo";
 import BookingModalProvider from "./components/booking/BookingModalProvider";
 
 const queryClient = new QueryClient();
@@ -34,6 +36,8 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/packages" element={<Packages />} />
+          <Route path="/marketing-seo" element={<MarketingSeo />} />
+          <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/solo-services" element={<SoloServices />} />
           <Route path="/software-stack" element={<SoftwareStack />} />
           <Route path="/about" element={<About />} />

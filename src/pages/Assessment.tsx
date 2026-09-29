@@ -220,7 +220,7 @@ const Assessment = () => {
                   exit={{ opacity: 0, x: -20 }}
                   className="space-y-8"
                 >
-                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-zinc-950 leading-tight">
+                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-950 leading-tight">
                     {questions[step].title}
                   </h1>
                   <div className="grid grid-cols-1 gap-3.5">
@@ -230,7 +230,7 @@ const Assessment = () => {
                         type="button"
                         onClick={() => handleAnswer(opt.value)}
                         className={cn(
-                          "p-6 md:p-7 text-left border transition-all font-bold text-base md:text-lg uppercase tracking-tight",
+                          "p-6 md:p-7 text-left border transition-all font-bold text-base md:text-lg tracking-tight",
                           answers[questions[step].id] === opt.value
                             ? "border-emerald-600 bg-emerald-50 text-emerald-950 shadow-sm"
                             : "border-zinc-200 bg-zinc-50 text-zinc-900 hover:border-emerald-600 hover:bg-white"
@@ -247,7 +247,7 @@ const Assessment = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
               <div className="text-center">
                 <SectionLabel>Analysis Complete</SectionLabel>
-                <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-zinc-950 mb-4">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-4">
                   Your Systems <br /> <span className="text-emerald-700">Blueprint</span>
                 </h1>
                 <p className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto">
@@ -261,7 +261,7 @@ const Assessment = () => {
                   <div className="mono text-xs uppercase tracking-widest text-rose-700 font-bold mb-3">
                     Estimated Monthly Financial Drag (Action Required)
                   </div>
-                  <div className="text-5xl md:text-6xl font-black text-rose-600 mb-3">
+                  <div className="text-5xl md:text-6xl font-bold text-rose-600 mb-3">
                     ${results.wastedMoney.toLocaleString()}
                   </div>
                   <p className="mono text-xs md:text-sm text-zinc-700 leading-relaxed">
@@ -273,8 +273,8 @@ const Assessment = () => {
                   <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-3">
                     Primary Strategic Objective
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black uppercase text-zinc-950 mb-3">
-                    System Synchronization
+                  <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 mb-3">
+                    System synchronization
                   </h3>
                   <p className="mono text-xs md:text-sm text-zinc-700 leading-relaxed">
                     Eliminate your operational bottleneck by connecting your website, CRM, and AI workflows into one smooth self-running engine.
@@ -285,13 +285,13 @@ const Assessment = () => {
               {/* Gate with Formspree */}
               {!isReportUnlocked ? (
                 <div className="border-2 border-emerald-600 bg-white p-6 md:p-10 shadow-xl relative">
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-black flex items-center gap-1.5 shadow-sm">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-sm">
                     <Lock size={13} /> Full Report Ready To Dispatch
                   </div>
 
                   <div className="text-center max-w-xl mx-auto space-y-3 mb-8 pt-2">
-                    <h3 className="text-2xl sm:text-3xl font-black uppercase text-zinc-950 tracking-tight">
-                      Unlock Your Complete 8-Page Infrastructure Blueprint
+                    <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                      Unlock your complete 8-Page infrastructure blueprint
                     </h3>
                     <p className="text-zinc-600 text-xs md:text-sm leading-relaxed mono">
                       Enter your details below to instantly view your tailored module roadmap and receive the PDF copy in your inbox.
@@ -359,7 +359,7 @@ const Assessment = () => {
                     <Button
                       type="submit"
                       disabled={isSendingReport || !userEmail || !userName}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-black text-base md:text-lg uppercase tracking-tight btn-hover flex items-center justify-center gap-2"
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-bold text-base md:text-lg tracking-tight btn-hover flex items-center justify-center gap-2"
                     >
                       {isSendingReport ? (
                         <Loader2 className="animate-spin" />
@@ -374,7 +374,7 @@ const Assessment = () => {
               ) : (
                 <div className="space-y-10 animate-in fade-in duration-500">
                   <div className="p-5 bg-emerald-50 border border-emerald-300 text-center mono text-xs md:text-sm text-emerald-900 font-bold">
-                    ✓ Full Architecture Report Dispatched to <span className="text-zinc-950 font-black">{userEmail}</span>
+                    ✓ Full Architecture Report Dispatched to <span className="text-zinc-950 font-bold">{userEmail}</span>
                   </div>
 
                   <div className="space-y-4">
@@ -386,7 +386,7 @@ const Assessment = () => {
                             <Zap size={24} />
                           </div>
                           <div>
-                            <h4 className="text-xl md:text-2xl font-black uppercase text-zinc-950 mb-1.5">{s.title}</h4>
+                            <h4 className="text-xl md:text-2xl font-bold text-zinc-950 mb-1.5">{s.title}</h4>
                             <p className="mono text-xs md:text-sm text-zinc-600 leading-relaxed">{s.desc}</p>
                           </div>
                         </div>
@@ -395,14 +395,14 @@ const Assessment = () => {
                   </div>
 
                   <div className="bg-emerald-600 text-white p-8 md:p-12 text-center space-y-4 shadow-lg">
-                    <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tight">
-                      Ready to Deploy This Infrastructure?
+                    <h3 className="text-2xl sm:text-4xl font-bold tracking-tight">
+                      Ready to deploy this infrastructure?
                     </h3>
                     <p className="text-emerald-100 font-bold max-w-lg mx-auto text-sm md:text-base">
                       Book a free 30 minute strategy session with Maria to review your custom blueprint together.
                     </p>
                     <div className="pt-2">
-                      <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-10 py-6 rounded-none font-black text-base uppercase tracking-tight transition-all">
+                      <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-10 py-6 rounded-none font-bold text-base tracking-tight transition-all">
                         <Link to="/contact">Book Free Strategy Session with Maria</Link>
                       </Button>
                     </div>

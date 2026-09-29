@@ -23,7 +23,7 @@ const Blog = () => {
       <section className="pt-40 md:pt-48 pb-24 px-6 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>The Intelligence Hub</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">Insights.</h1>
+          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">Insights.</h1>
           <p className="text-lg md:text-2xl text-zinc-600 max-w-[800px] mb-16 leading-relaxed">
             In depth playbooks, technical blueprints, and operational guides published by the engineering and launch team at Calpir.
           </p>
@@ -43,7 +43,7 @@ const Blog = () => {
                     <span>•</span>
                     <span className="flex items-center gap-1"><Calendar size={13} className="text-emerald-700" /> {post.datePublished}</span>
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors mb-3">
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors mb-3">
                     {post.title}
                   </h2>
                   <p className="text-zinc-600 text-sm leading-relaxed">{post.description}</p>

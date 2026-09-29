@@ -46,7 +46,7 @@ const ServiceDetail = () => {
             </div>
             <div>
               <SectionLabel>{data.category}</SectionLabel>
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight mb-3 text-zinc-950">{data.title}</h1>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-3 text-zinc-950">{data.title}</h1>
               <p className="text-base md:text-xl mono text-zinc-600">{data.tagline}</p>
             </div>
           </div>
@@ -56,7 +56,7 @@ const ServiceDetail = () => {
               <div>
                 <div className="flex items-center gap-3 flex-wrap">
                   <span className="mono text-[11px] uppercase tracking-widest text-zinc-500 font-bold">From</span>
-                  <span className="text-4xl md:text-5xl font-black text-emerald-700">
+                  <span className="text-4xl md:text-5xl font-bold text-emerald-700">
                     {formatPrice(data.slug, currency)}
                   </span>
                   <div className="flex border border-zinc-300">
@@ -87,11 +87,11 @@ const ServiceDetail = () => {
                 <Button
                   type="button"
                   onClick={() => openBooking()}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-black uppercase tracking-tight px-7 py-6 rounded-none"
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold tracking-tight px-7 py-6 rounded-none"
                 >
                   Book this service
                 </Button>
-                <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 hover:bg-zinc-100 font-black uppercase tracking-tight px-7 py-6 rounded-none">
+                <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 hover:bg-zinc-100 font-bold tracking-tight px-7 py-6 rounded-none">
                   <Link to="/solo-services">All services and prices</Link>
                 </Button>
               </div>
@@ -107,7 +107,7 @@ const ServiceDetail = () => {
             <div className="lg:col-span-2 space-y-12 md:space-y-16">
               {/* Executive Summary */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 text-zinc-950">System Overview</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-zinc-950">System overview</h2>
                 <p className="mono text-base md:text-lg text-zinc-800 leading-relaxed bg-zinc-50 p-6 md:p-8 border border-zinc-200 shadow-sm">
                   {data.longDesc}
                 </p>
@@ -115,7 +115,7 @@ const ServiceDetail = () => {
 
               {/* What's Included */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-black uppercase mb-6 md:mb-8 text-zinc-950">Module Specifications & Features</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-zinc-950">Module specifications & features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {data.features.map((item: string, i: number) => (
                     <div key={i} className="flex gap-4 p-4 border border-zinc-200 bg-zinc-50 items-start shadow-sm">
@@ -130,12 +130,12 @@ const ServiceDetail = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 shadow-sm">
                   <div className="mono text-xs uppercase tracking-widest text-emerald-800 mb-3 font-bold">Ideal Deployment Candidate</div>
-                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-zinc-950">Who This Is For</h3>
+                  <h3 className="text-lg md:text-xl font-bold mb-4 text-zinc-950">Who this is for</h3>
                   <p className="mono text-sm text-zinc-600 leading-relaxed">{data.who}</p>
                 </div>
                 <div className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 shadow-sm">
                   <div className="mono text-xs uppercase tracking-widest text-emerald-800 mb-3 font-bold">Final Assets Handover</div>
-                  <h3 className="text-lg md:text-xl font-black uppercase mb-4 text-zinc-950">What You Receive</h3>
+                  <h3 className="text-lg md:text-xl font-bold mb-4 text-zinc-950">What you receive</h3>
                   <p className="mono text-sm text-zinc-600 leading-relaxed">{data.get}</p>
                 </div>
               </div>
@@ -144,7 +144,7 @@ const ServiceDetail = () => {
             {/* Sidebar Sticky */}
             <div className="lg:sticky lg:top-28">
               <div className="border border-zinc-200 p-6 md:p-8 bg-white shadow-xl flex flex-col items-center text-center">
-                <h3 className="text-xl md:text-2xl font-black uppercase mb-2 text-zinc-950 tracking-tight">Ecosystem Placement</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-2 text-zinc-950 tracking-tight">Ecosystem placement</h3>
                 <p className="mono text-xs text-zinc-500 mb-4">
                   Visual relationship inside your unified Calpir nervous system
                 </p>
@@ -158,7 +158,7 @@ const ServiceDetail = () => {
                   This module connects directly with your broader business infrastructure to eliminate data silos.
                 </p>
 
-                <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-black text-base uppercase tracking-tight btn-hover">
+                <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-bold text-base tracking-tight btn-hover">
                   <Link to="/contact" className="flex items-center justify-center gap-2">
                     Book Deployment Call <ArrowRight size={18} />
                   </Link>

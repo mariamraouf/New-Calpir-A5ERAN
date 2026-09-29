@@ -40,7 +40,7 @@ const Services = () => {
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>The Capabilities</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-black uppercase tracking-tight text-zinc-950">
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">
               Our <br /> <span className="text-emerald-700">Services.</span>
             </h1>
             <p className="text-lg md:text-2xl text-zinc-600 max-w-[800px] leading-relaxed">
@@ -121,7 +121,7 @@ const Services = () => {
                         <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform origin-left">
                           <Icon size={32} />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-black text-zinc-950 mb-2.5 leading-tight">
+                        <h3 className="text-xl md:text-2xl font-bold text-zinc-950 mb-2.5 leading-tight">
                           {service.title}
                         </h3>
                         <p className="text-zinc-600 text-sm leading-relaxed mb-6 flex-1">

@@ -153,7 +153,7 @@ const BlogPost = () => {
 
           {next && next.slug !== post.slug ? (
             <div className="mt-16 pt-8 border-t border-zinc-200">
-              <p className="mono text-xs uppercase tracking-widest text-emerald-700 font-black mb-3">
+              <p className="mono text-xs uppercase tracking-widest text-emerald-700 font-bold mb-3">
                 Read next
               </p>
               <Link
@@ -170,7 +170,7 @@ const BlogPost = () => {
       {/* CTA */}
       <section className="section-padding border-t border-zinc-200 bg-emerald-50/60">
         <div className="container-custom text-center">
-          <h2 className="text-4xl md:text-6xl mb-8 font-black uppercase tracking-tight text-zinc-950">
+          <h2 className="text-4xl md:text-6xl mb-8 font-bold tracking-tight text-zinc-950">
             Ready to Deploy Your <br /> Complete Business Engine?
           </h2>
           <p className="text-lg text-zinc-700 mb-12 max-w-[600px] mx-auto leading-relaxed">
@@ -179,7 +179,7 @@ const BlogPost = () => {
           </p>
           <Button
             asChild
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-none font-black text-xl uppercase tracking-tight btn-hover"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-none font-bold text-xl tracking-tight btn-hover"
           >
             <Link to="/contact">
               Book Free Consultation <ArrowRight className="ml-2" size={18} />

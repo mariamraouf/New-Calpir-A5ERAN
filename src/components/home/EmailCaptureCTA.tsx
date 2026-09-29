@@ -75,7 +75,7 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
         />
         <Button
           type="submit"
-          className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 min-h-[56px] sm:min-h-[64px] h-auto rounded-none font-black text-xs sm:text-base uppercase tracking-tight btn-hover shadow-md shrink-0"
+          className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 min-h-[56px] sm:min-h-[64px] h-auto rounded-none font-bold text-xs sm:text-base tracking-tight btn-hover shadow-md shrink-0"
         >
           {label} <ArrowRight size={16} className="ml-1.5" />
         </Button>

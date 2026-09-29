@@ -39,7 +39,7 @@ const FAQ = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
           <div>
             <SectionLabel>Inquiry</SectionLabel>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 text-zinc-950 font-black">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 text-zinc-950 font-bold">
               Common <br /> Questions.
             </h2>
             <p className="text-zinc-600 text-sm sm:text-lg leading-relaxed">
@@ -52,7 +52,7 @@ const FAQ = () => {
               {faqs.map((faq, i) => (
                 <AccordionItem key={i} value={`item-${i}`} className="border border-zinc-200 px-4 sm:px-6 md:px-8 bg-white shadow-sm">
                   <AccordionTrigger className="hover:no-underline py-4 sm:py-6 text-left text-zinc-950 hover:text-emerald-700 transition-colors">
-                    <span className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-tight">{faq.question}</span>
+                    <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight">{faq.question}</span>
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 sm:pb-6">
                     <p className="text-zinc-600 text-xs sm:text-sm md:text-base leading-relaxed">
