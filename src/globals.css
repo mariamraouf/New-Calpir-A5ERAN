@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 40% 99%;
     --foreground: 0 0% 9%;
     --primary: 158 64% 40%;
     --primary-foreground: 0 0% 100%;
@@ -64,7 +64,14 @@
 }
 
 .section-padding {
-  @apply py-20 md:py-28;
+  @apply py-14 md:py-20;
+}
+
+/* Alternating surfaces are what give the reference its rhythm: white, then a
+   barely-there warm grey, then white. Without it every section runs into the
+   next and the page reads as one long scroll. */
+.section-alt {
+  @apply bg-slate-50;
 }
 
 .card-light {
@@ -166,3 +173,35 @@
   font-size: 1.125rem;
   line-height: 1.65;
 }
+
+
+/* ------------------------------------------------------------------ */
+/* Card furniture                                                       */
+/* The reference gets its density from small repeated parts, not from    */
+/* photographs: a gold number, a circled icon, a labelled outcome list.  */
+/* ------------------------------------------------------------------ */
+
+.num-badge {
+  @apply text-gold font-extrabold tracking-tight;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.icon-circle {
+  @apply inline-flex items-center justify-center rounded-full border border-slate-200 bg-white text-navy;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.outcome-label {
+  @apply text-slate-400 font-semibold;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.card-cta {
+  @apply w-full inline-flex items-center justify-center gap-2 border border-slate-200 rounded-xl py-3 px-4 font-semibold text-navy transition-colors;
+  font-size: 0.9375rem;
+}
+.card-cta:hover { @apply border-emerald-500 text-emerald-700 bg-emerald-50/40; }

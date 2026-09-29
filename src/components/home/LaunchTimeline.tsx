@@ -46,14 +46,14 @@ const LaunchTimeline = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container-custom">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <SectionLabel>The 7-Day Launch Blueprint</SectionLabel>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-navy tracking-tight">
             From Idea to Fully <br /> Automated Business <br /> <span className="text-emerald-700">In One Week.</span>
           </h2>
         </div>
 
-        <div className="relative max-w-2xl mx-auto">
+        <div className="relative max-w-3xl mx-auto">
           <motion.div
             className="absolute left-4 sm:left-1/2 top-0 w-0.5 bg-emerald-200"
             initial="hidden"
@@ -62,7 +62,7 @@ const LaunchTimeline = () => {
             variants={lineVariants}
           />
 
-          <div className="space-y-12">
+          <div className="space-y-7">
             {timelineEvents.map((event, index) => {
               const Icon = event.icon;
               return (

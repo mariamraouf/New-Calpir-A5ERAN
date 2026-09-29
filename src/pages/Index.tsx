@@ -18,6 +18,7 @@ import EmailCaptureCTA from '@/components/home/EmailCaptureCTA';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
+import HeroPanel from '@/components/home/HeroPanel';
 import GrowthAndPlans from '@/components/home/GrowthAndPlans';
 
 const Index = () => {
@@ -70,66 +71,69 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      {/* Kept short on purpose. The email field has to be reachable without
-          scrolling on a phone, so the headline block is tight and the full list
-          of what we build moved into the sections below. */}
-      <section className="pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 border-b border-slate-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
-        <div className="container-custom text-center">
-          <motion.div {...reveal}>
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 py-1 mb-4 sm:mb-5 mono text-[10px] sm:text-xs tracking-wide text-emerald-800 font-bold rounded-xl">
-              <Sparkles size={13} className="text-emerald-600 shrink-0" /> Set it up, then get it found
+      {/* Two columns, because a centred block of text on white left a screen
+          and a half of empty space above the fold. The panel on the right is
+          drawn rather than photographed: it shows what Calpir actually builds. */}
+      <section className="pt-10 sm:pt-14 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200 bg-gradient-to-b from-emerald-50/50 via-white to-white">
+        <div className="container-custom">
+          <motion.div {...reveal} className="grid lg:grid-cols-[1.05fr,1fr] gap-10 lg:gap-14 items-center">
+
+            <div>
+              <div className="inline-flex items-center gap-2 border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 mb-5 text-[13px] text-emerald-800 font-semibold rounded-full">
+                <Sparkles size={13} className="text-emerald-600 shrink-0" /> Set it up, then get it found
+              </div>
+
+              <h1 className="text-[2.1rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem] lg:leading-[1.02] mb-5 text-navy">
+                Set up in 7 days. <br />
+                <span className="text-emerald-700">Found every month after.</span>
+              </h1>
+
+              <p className="lede mb-7 max-w-[560px]">
+                Entity, brand, website, CRM, payments and AI systems, built as one
+                connected setup. Then marketing, SEO, outbound and operations run
+                monthly, so the business you launched keeps getting found.
+              </p>
+
+              {/* Four things we do, in a grid, so the eye has something to land
+                  on other than a paragraph. */}
+              <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-8 max-w-[560px]">
+                {[
+                  'Complete business setup',
+                  'Marketing and SEO run monthly',
+                  'Every price published up front',
+                  '100% code and account ownership',
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5">
+                    <CheckCircle2 size={17} className="text-emerald-600 shrink-0" />
+                    <span className="text-[15px] text-slate-700 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <EmailCaptureCTA />
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => openBooking()}
+                  className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 px-6 py-5 rounded-xl font-semibold text-[15px]"
+                >
+                  Pick a time instead
+                </Button>
+                <Button asChild variant="outline" className="border-slate-300 text-navy hover:bg-slate-100 px-6 py-5 rounded-xl font-semibold text-[15px]">
+                  <Link to="/pricing">See plans and prices</Link>
+                </Button>
+              </div>
             </div>
 
-            <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl lg:text-7xl sm:leading-[0.98] mb-4 sm:mb-5 font-bold tracking-tight text-navy max-w-4xl mx-auto">
-              Set up in 7 days. <br />
-              <span className="text-emerald-700">Found every month after.</span>
-            </h1>
-
-            <p className="text-sm sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-5 sm:mb-7 px-2">
-              Entity, brand, website, CRM, payments and AI systems, built as one connected
-              setup. Then marketing, SEO, outbound and operations run monthly, so the
-              business you launched keeps getting found.
-            </p>
-
-            {/* One field is a far smaller ask than the full form, and the address
-                carries into the booking popup so nobody types it twice. */}
-            <EmailCaptureCTA className="px-2" />
-
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 max-w-xl mx-auto px-2 mt-5">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => openBooking()}
-                className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 px-6 py-5 rounded-xl font-bold text-xs sm:text-sm tracking-tight btn-hover"
-              >
-                Pick a time instead
-              </Button>
-              <Button asChild variant="outline" className="w-full sm:w-auto border-slate-300 text-navy hover:bg-slate-100 px-6 py-5 rounded-xl font-bold text-xs sm:text-sm tracking-tight btn-hover">
-                <Link to="/packages">See plans and prices</Link>
-              </Button>
-            </div>
-
-            {/* Reassurance points */}
-            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-8 mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-slate-200 mono text-[11px] sm:text-xs tracking-wider text-slate-600 font-bold">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Full Business Setup Included
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> 100% Code and Account Ownership
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Subsecond Global Speed
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Dedicated Post Launch Squad
-              </div>
-            </div>
+            <HeroPanel />
           </motion.div>
         </div>
       </section>
 
       {/* Full Setup Pillars Section */}
-      <section className="py-8 sm:py-12 bg-slate-50/70 border-b border-slate-200">
+      <section className="py-10 sm:py-12 bg-white border-b border-slate-200">
         <div className="container-custom">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
             {pillars.map((item, idx) => {
@@ -137,28 +141,26 @@ const Index = () => {
               return (
                 <div 
                   key={idx}
-                  className="bg-white border border-slate-200 p-5 md:p-6 border-l-4 border-l-emerald-600 shadow-sm hover:shadow-md hover:border-slate-300 transition-all group flex flex-col justify-between"
+                  className="surface surface-hover p-5 md:p-6 group flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="mono text-[10px] tracking-wide font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
-                        Pillar {item.pillar}
+                      <span className="num-badge">{item.pillar}</span>
+                      <span className="icon-circle group-hover:border-emerald-300 group-hover:text-emerald-700 transition-colors">
+                        <IconComponent size={17} />
                       </span>
-                      <div className="p-1.5 bg-slate-50 border border-slate-200 text-emerald-700 group-hover:bg-emerald-50 transition-colors">
-                        <IconComponent size={16} />
-                      </div>
                     </div>
                     
                     <h3 className="text-base sm:text-lg font-bold text-navy tracking-tight mb-2 group-hover:text-emerald-800 transition-colors">
                       {item.title}
                     </h3>
                     
-                    <p className="text-xs text-slate-600 leading-relaxed mono">
+                    <p className="text-[14px] text-slate-600 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="pt-3 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[10px] text-slate-400 mono tracking-wider font-bold">
+                  <div className="pt-3 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[12px] text-slate-400 font-semibold">
                     <CheckCircle2 size={12} className="text-emerald-600 shrink-0" />
                     <span>Included in Launch</span>
                   </div>
@@ -179,9 +181,9 @@ const Index = () => {
       <LaunchTimeline />
 
       {/* Services Grid */}
-      <section className="section-padding border-b border-slate-200 bg-white">
+      <section className="section-padding border-b border-slate-200 section-alt">
         <div className="container-custom">
-          <SectionLabel>The Complete Business Modules</SectionLabel>
+          <SectionLabel>The complete business modules</SectionLabel>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
             <h2 className="text-2xl sm:text-5xl md:text-6xl font-bold text-navy tracking-tight">
               Every Department <br /> <span className="text-emerald-700">Ready To Generate Cash</span>
@@ -193,22 +195,36 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {[
-              { title: "Brand, Domain, and SSL", icon: <ShieldCheck />, desc: "Complete visual identity, domain registration, SSL certificates, and Google Search Console indexing.", link: "/services/website-development" },
-              { title: "High Speed Digital Storefront", icon: <Globe />, desc: "React and Next.js digital architecture built for instant global loading and maximum visitor conversion.", link: "/services/website-development" },
-              { title: "CRM and 60 Second Sales Pipelines", icon: <BarChart3 />, desc: "Automated lead intake, deal stages, two way calendar sync, and instant SMS routing.", link: "/services/crm-sales" },
-              { title: "Finance, Billing, and Invoicing", icon: <CreditCard />, desc: "Stripe payment checkouts, recurring billing, automated quotes, and accounting sync.", link: "/services/operations-hr" },
-              { title: "Operations, SOPs, and Payroll", icon: <Settings />, desc: "Centralized ClickUp or Notion boards, contractor onboarding, contracts, and Deel or Gusto payroll.", link: "/services/operations-hr" },
-              { title: "Autonomous AI Agents and Automation", icon: <Bot />, desc: "Trained 24/7 AI agents for lead qualification, customer inquiries, and Make or Zapier workflows.", link: "/services/ai-agents" }
+              { title: "Brand, domain and SSL", icon: <ShieldCheck />, desc: "Visual identity, domain registration, certificates, and Google Search Console indexing.", link: "/services/website-development", outcomes: ["A brand you can hand to anyone", "Domain and certificate in your name", "Indexed by Google from day one"] },
+              { title: "High speed storefront", icon: <Globe />, desc: "React architecture built for instant global loading and for turning visitors into enquiries.", link: "/services/website-development", outcomes: ["Loads in under 1.5 seconds", "Built to convert, not just to look good", "Works properly on a phone"] },
+              { title: "CRM and sales pipelines", icon: <BarChart3 />, desc: "Automated lead intake, deal stages, two way calendar sync and instant routing.", link: "/services/crm-sales", outcomes: ["No lead sits untouched", "Deals visible at a glance", "Follow up happens without you"] },
+              { title: "Finance, billing and invoicing", icon: <CreditCard />, desc: "Stripe checkouts, recurring billing, automated quotes and accounting sync.", link: "/services/operations-hr", outcomes: ["Customers can pay you online", "Recurring billing that runs itself", "Your accounts stay in sync"] },
+              { title: "Operations, SOPs and payroll", icon: <Settings />, desc: "ClickUp or Notion boards, contractor onboarding, contracts, and Deel or Gusto payroll.", link: "/services/operations-hr", outcomes: ["Work lives in one place", "Processes written down, not remembered", "Contractors paid on time"] },
+              { title: "AI agents and automation", icon: <Bot />, desc: "Agents trained on your business for qualification and booking, plus Make or Zapier workflows.", link: "/services/ai-agents", outcomes: ["Answers at 2am without you", "Qualifies and books real calls", "Built with guardrails, not hype"] }
             ].map((s, i) => (
-              <Link key={i} to={s.link} className="border border-slate-200 p-6 sm:p-8 bg-slate-50/50 hover:bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block">
-                <div className="text-emerald-700 mb-4 sm:mb-5 group-hover:scale-110 transition-transform">
-                  {React.cloneElement(s.icon as React.ReactElement<any>, { size: 28 })}
+              <Link key={i} to={s.link} className="surface surface-hover p-6 sm:p-7 group flex flex-col">
+                <div className="flex items-start justify-between mb-5">
+                  <span className="num-badge">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="icon-circle group-hover:border-emerald-300 group-hover:text-emerald-700 transition-colors">
+                    {React.cloneElement(s.icon as React.ReactElement<any>, { size: 18 })}
+                  </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-navy mb-2">{s.title}</h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">{s.desc}</p>
-                <div className="flex items-center gap-1.5 text-emerald-700 mono text-xs tracking-wider font-bold">
-                  Explore Full Module <ArrowRight size={13} />
+                <h3 className="text-xl font-extrabold text-navy mb-2.5 leading-snug">{s.title}</h3>
+                <p className="text-slate-600 text-[15px] leading-relaxed mb-5">{s.desc}</p>
+                <div className="border-t border-slate-100 pt-4 mb-5 flex-grow">
+                  <p className="outcome-label mb-2.5">What you get</p>
+                  <ul className="space-y-1.5">
+                    {s.outcomes.map((o) => (
+                      <li key={o} className="flex items-start gap-2 text-[14px] text-slate-600">
+                        <CheckCircle2 size={15} className="text-emerald-500 shrink-0 mt-0.5" />
+                        <span>{o}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+                <span className="card-cta mt-auto">
+                  Explore this module <ArrowRight size={15} />
+                </span>
               </Link>
             ))}
           </div>
