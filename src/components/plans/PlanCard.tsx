@@ -1,11 +1,12 @@
 "use client";
 
 import React from 'react';
-import { Check } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
-import { formatPrice, type Currency, type PlanPrice } from '@/data/plans';
+import { formatPrice, type Currency, type PlanPrice, type PlanItem } from '@/data/plans';
 import BuyButton from './BuyButton';
+import IncludedList from './IncludedList';
 
 interface PlanCardProps {
   planId: string;
@@ -16,7 +17,7 @@ interface PlanCardProps {
   /** 'month' prints a /month suffix. 'once' prints one time payment. */
   billing: 'month' | 'once';
   who: string;
-  included: string[];
+  included: PlanItem[];
   iconName: string;
   featured?: boolean;
   /** Small line above the price, e.g. a launch timeline. */
@@ -77,14 +78,9 @@ const PlanCard: React.FC<PlanCardProps> = ({
         {billing === 'month' ? 'Cancel any month. No tie in.' : 'Single payment. Nothing recurring.'}
       </p>
 
-      <ul className="space-y-3 mb-8 flex-grow">
-        {included.map((item) => (
-          <li key={item} className="flex gap-3 text-slate-600 leading-relaxed">
-            <Check size={17} className="text-emerald-600 shrink-0 mt-1" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="mb-8 flex-grow">
+        <IncludedList items={included} />
+      </div>
 
       <p className="text-sm text-slate-500 border-t border-slate-100 pt-5 mb-6">
         <span className="font-bold text-slate-600">Best for:</span> {who}

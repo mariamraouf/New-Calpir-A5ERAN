@@ -24,6 +24,12 @@ export interface PlanPrice {
   eur: number;
 }
 
+/** One line in a plan, with the explanation shown when somebody taps it. */
+export interface PlanItem {
+  text: string;
+  brief: string;
+}
+
 export interface MonthlyPlan {
   id: string;
   name: string;
@@ -34,7 +40,7 @@ export interface MonthlyPlan {
   relatedServices: string[];
   who: string;
   /** What actually lands in the customer's inbox each month. */
-  included: string[];
+  included: PlanItem[];
   featured?: boolean;
   /** Set on the bundle so the page can show what it replaces. */
   bundles?: string[];
@@ -73,14 +79,14 @@ export const MONTHLY_PLANS: MonthlyPlan[] = [
       'social-niche',
     ],
     included: [
-      'Technical SEO maintained every month, not audited once and forgotten',
-      'Four published pieces of content, researched, written and indexed',
-      'Google Business Profile kept current, with posts and review responses',
-      'Keyword tracking against the searches that actually convert',
-      'Social posting across your chosen channels, three times a week',
-      'Email campaign or newsletter sent to your list each month',
-      'Paid ads managed and adjusted if you run them',
-      'One report a month that says what moved and what did not',
+      { text: "Technical SEO maintained every month", brief: "The plumbing Google reads before it reads your words: site speed, crawlability, structured data, broken links, index coverage. Most agencies audit it once at the start and never look again, so it quietly rots. We check it monthly and fix what has drifted." },
+      { text: "Four published pieces of content", brief: "Four articles a month, researched against primary sources rather than rewritten from whatever ranks first, written for a search somebody actually performs, and submitted for indexing so Google sees them in days rather than months." },
+      { text: "Google Business Profile kept current", brief: "Your Maps listing, with posts, photos, hours, categories and replies to every review. It is the cheapest local ranking factor there is and almost nobody maintains it past the week they claim it." },
+      { text: "Keyword tracking that matters", brief: "We track the searches that bring buyers, not the ones that bring traffic. A ranking for a term nobody buys from is a number that makes a report look good and changes nothing." },
+      { text: "Social posting, three times a week", brief: "Written and scheduled across the channels that suit your market, with the visuals made. Consistency beats brilliance here, and consistency is what stops when you get busy." },
+      { text: "An email campaign every month", brief: "One campaign or newsletter to your list, written, built and sent. Your list is the only audience you own outright, and it decays if you never speak to it." },
+      { text: "Paid ads managed, if you run them", brief: "Campaign structure, keywords, negatives, bids and creative, reviewed and adjusted. We do not take a cut of your ad spend, so there is no incentive for us to tell you to spend more." },
+      { text: "One honest report a month", brief: "What moved, what did not, and what we are changing because of it. If something is not working you will read that it is not working." },
     ],
   },
   {
@@ -101,13 +107,13 @@ export const MONTHLY_PLANS: MonthlyPlan[] = [
       'sop-documentation',
     ],
     included: [
-      'Website hosting, updates, backups and uptime monitoring',
-      'Existing automations watched, and fixed when a platform changes under them',
-      'Two new automated workflows built each month',
-      'Your integrations kept in sync as tools update their APIs',
-      'Dashboards and reporting kept accurate',
-      'Software subscription review, so you stop paying for what nobody opens',
-      'Same day response on anything broken, weekdays',
+      { text: "Hosting, updates, backups, monitoring", brief: "Your site stays up, stays patched and stays backed up, and somebody is told before you are if it goes down." },
+      { text: "Automations watched and repaired", brief: "Every platform changes its API eventually and silently breaks a workflow built against the old one. We notice and fix it, usually before you find out." },
+      { text: "Two new workflows built each month", brief: "Anything repetitive you describe to us, automated. Two a month compounds into a business that runs a lot of itself by the end of a year." },
+      { text: "Integrations kept in sync", brief: "Your CRM, your accounting, your forms and your calendar continuing to talk to each other as each of them updates independently." },
+      { text: "Dashboards kept accurate", brief: "Reporting that still reflects reality months later, rather than a dashboard nobody trusts because the numbers stopped matching." },
+      { text: "A software subscription review", brief: "We go through what you pay for and tell you what nobody opens. This regularly pays for a chunk of the plan by itself." },
+      { text: "Same day response on anything broken", brief: "Weekdays, on anything that has stopped working. Not a ticket number and a four day wait." },
     ],
   },
   {
@@ -127,13 +133,13 @@ export const MONTHLY_PLANS: MonthlyPlan[] = [
       'proposals-quotes',
     ],
     included: [
-      'A fresh, verified lead list built and enriched every month',
-      'Cold email sequences written, sent and replied to',
-      'Cold calling hours worked against that list',
-      'LinkedIn outreach and connection follow up',
-      'Your CRM pipeline kept current, so nothing sits untouched',
-      'Sales scripts and objection handling refined on what you hear back',
-      'Monthly numbers: sent, opened, replied, booked',
+      { text: "A fresh verified lead list monthly", brief: "Built to your actual criteria, then verified, so you are not paying to email addresses that bounce or people who left two years ago." },
+      { text: "Cold email sequences, sent and answered", brief: "Written, warmed, sent from properly authenticated domains, and the replies handled rather than left in an inbox." },
+      { text: "Cold calling hours worked", brief: "Real calls against that list by someone who has a script, handles the objection and books the meeting." },
+      { text: "LinkedIn outreach and follow up", brief: "Connection requests, messages and the follow up that most people skip, which is where nearly all the replies actually come from." },
+      { text: "Your CRM pipeline kept current", brief: "Every conversation logged and every deal moved to the right stage, so nothing sits untouched because somebody forgot." },
+      { text: "Scripts refined on what you hear back", brief: "The objections you actually get, written into the playbook, so the second month works better than the first." },
+      { text: "The numbers, monthly", brief: "Sent, opened, replied, booked. Four figures that tell you whether this is working, without interpretation." },
     ],
   },
   {
@@ -154,13 +160,13 @@ export const MONTHLY_PLANS: MonthlyPlan[] = [
       'performance-reviews',
     ],
     included: [
-      'Employee and contractor records kept current in one system',
-      'Contracts and offer letters drafted as you hire',
-      'Onboarding and offboarding run to a checklist, not from memory',
-      'Payroll and contractor payment admin handled each cycle',
-      'Policies and handbook updated when the rules change',
-      'A compliance calendar with owners, so filings do not get missed',
-      'Right to work and renewal dates tracked before they expire',
+      { text: "Employee and contractor records in one system", brief: "Names, contracts, start dates, right to work, renewals. One place instead of a folder, a spreadsheet and somebody's memory." },
+      { text: "Contracts and offer letters drafted", brief: "Written as you hire, to the country the person is actually in, rather than a template found online for a different jurisdiction." },
+      { text: "Onboarding and offboarding to a checklist", brief: "Accounts created and, more importantly, accounts closed. The leaver who still has access is the risk nobody tracks." },
+      { text: "Payroll and contractor admin each cycle", brief: "The monthly run handled, contractors paid, records kept. You approve, we do the rest." },
+      { text: "Policies updated when rules change", brief: "Employment rules move. A handbook written once and never revisited is worse than none, because people rely on it." },
+      { text: "A compliance calendar with owners", brief: "Every filing and renewal with a date and a name against it. Missed deadlines are almost always missed because nobody owned them." },
+      { text: "Renewal dates tracked before they expire", brief: "Right to work, visas, certifications and insurance, flagged in advance rather than on the day." },
     ],
   },
   {
@@ -178,13 +184,13 @@ export const MONTHLY_PLANS: MonthlyPlan[] = [
     ],
     relatedServices: [],
     included: [
-      'Everything in Marketing & SEO',
-      'Everything in Ops & Systems',
-      'Everything in Sales & Outreach',
-      'Everything in HR & Admin',
-      'One team across all of it, so the marketing knows what sales is sending',
-      'One monthly report covering the whole business, not four',
-      'Priority response ahead of single plan customers',
+      { text: "Everything in Marketing & SEO", brief: "The full search, content, social, email and ads function, run monthly." },
+      { text: "Everything in Ops & Systems", brief: "Your website, automations, integrations and reporting maintained and extended." },
+      { text: "Everything in Sales & Outreach", brief: "Lead lists, cold email, calling, LinkedIn and pipeline management." },
+      { text: "Everything in HR & Admin", brief: "Records, contracts, payroll admin, policies and the compliance calendar." },
+      { text: "One team across all of it", brief: "The people writing your marketing know what your sales team is sending. Four separate agencies never do." },
+      { text: "One report, not four", brief: "The whole business in a single monthly read, rather than four documents you have to reconcile yourself." },
+      { text: "Priority response", brief: "Ahead of single plan customers on anything urgent." },
     ],
   },
 ];

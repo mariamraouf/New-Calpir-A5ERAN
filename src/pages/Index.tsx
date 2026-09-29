@@ -18,8 +18,9 @@ import EmailCaptureCTA from '@/components/home/EmailCaptureCTA';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
-import HeroPanel from '@/components/home/HeroPanel';
+import HeroAssessment from '@/components/home/HeroAssessment';
 import GrowthAndPlans from '@/components/home/GrowthAndPlans';
+import PackagesPreview from '@/components/home/PackagesPreview';
 
 const Index = () => {
   const { openBooking } = useBookingModal();
@@ -127,7 +128,7 @@ const Index = () => {
               </div>
             </div>
 
-            <HeroPanel />
+            <HeroAssessment />
           </motion.div>
         </div>
       </section>
@@ -271,6 +272,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <PackagesPreview />
 
       <GrowthAndPlans />
 

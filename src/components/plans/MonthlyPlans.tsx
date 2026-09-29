@@ -85,12 +85,12 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 {bundle.name}
               </h3>
-              <p className="text-zinc-300 text-lg leading-relaxed mb-6">{bundle.tagline}</p>
-              <ul className="space-y-2 text-zinc-300">
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">{bundle.tagline}</p>
+              <ul className="space-y-2 text-slate-300">
                 {bundle.included.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="text-emerald-400 shrink-0">&bull;</span>
-                    <span>{item}</span>
+                  <li key={item.text} className="flex gap-3">
+                    <span className="text-gold-400 shrink-0">&rsaquo;</span>
+                    <span>{item.text}</span>
                   </li>
                 ))}
               </ul>
