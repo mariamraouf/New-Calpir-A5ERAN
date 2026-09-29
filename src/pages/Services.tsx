@@ -65,7 +65,7 @@ const Services = () => {
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="group flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] uppercase tracking-wider font-bold text-zinc-600 hover:text-emerald-700 transition-colors"
+                className="group flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] tracking-wider font-bold text-zinc-600 hover:text-emerald-700 transition-colors"
               >
                 {c.name}
                 <span className="text-[10px] text-zinc-400 group-hover:text-emerald-600">
@@ -100,7 +100,7 @@ const Services = () => {
                 <motion.div {...reveal} className="mb-8 max-w-[760px]">
                   <div className="flex flex-wrap items-center gap-4 mb-4">
                     <SectionLabel>{category.name}</SectionLabel>
-                    <span className="mono text-xs uppercase tracking-widest text-zinc-500 font-bold">
+                    <span className="mono text-xs tracking-wide text-zinc-500 font-bold">
                       {services.length} services
                     </span>
                   </div>
@@ -127,7 +127,7 @@ const Services = () => {
                         <p className="text-zinc-600 text-sm leading-relaxed mb-6 flex-1">
                           {service.shortDesc}
                         </p>
-                        <div className="flex items-center gap-2 text-emerald-700 mono text-xs uppercase tracking-wider font-bold">
+                        <div className="flex items-center gap-2 text-emerald-700 mono text-xs tracking-wider font-bold">
                           Explore Module <ArrowRight size={14} />
                         </div>
                       </Link>

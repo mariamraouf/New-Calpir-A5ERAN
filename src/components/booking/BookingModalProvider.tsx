@@ -83,7 +83,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
   return (
     <form onSubmit={submit} className="space-y-4">
       <div>
-        <label htmlFor="popup-name" className="mono text-[11px] uppercase tracking-wider text-zinc-700 font-bold block mb-1.5">
+        <label htmlFor="popup-name" className="mono text-[11px] tracking-wider text-zinc-700 font-bold block mb-1.5">
           Your name
         </label>
         <input
@@ -96,7 +96,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
         />
       </div>
       <div>
-        <label htmlFor="popup-email" className="mono text-[11px] uppercase tracking-wider text-zinc-700 font-bold block mb-1.5">
+        <label htmlFor="popup-email" className="mono text-[11px] tracking-wider text-zinc-700 font-bold block mb-1.5">
           Email
         </label>
         <input
@@ -110,7 +110,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
         />
       </div>
       <div>
-        <label htmlFor="popup-message" className="mono text-[11px] uppercase tracking-wider text-zinc-700 font-bold block mb-1.5">
+        <label htmlFor="popup-message" className="mono text-[11px] tracking-wider text-zinc-700 font-bold block mb-1.5">
           What are you trying to get done?
         </label>
         <textarea
@@ -151,7 +151,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
           </>
         )}
       </Button>
-      <p className="mono text-[10px] uppercase tracking-wider text-zinc-500 text-center">
+      <p className="mono text-[10px] tracking-wider text-zinc-500 text-center">
         We reply within 4 business hours. No sales sequence, no newsletter.
       </p>
     </form>
@@ -188,7 +188,7 @@ export const BookingModalProvider: React.FC<{ children: React.ReactNode }> = ({ 
       type="button"
       onClick={() => setTab(id)}
       className={cn(
-        'flex-1 flex items-center justify-center gap-2 py-3 mono text-[11px] sm:text-xs uppercase tracking-wider font-bold border-b-2 transition-colors',
+        'flex-1 flex items-center justify-center gap-2 py-3 mono text-[11px] sm:text-xs tracking-wider font-bold border-b-2 transition-colors',
         tab === id
           ? 'border-emerald-600 text-emerald-800 bg-emerald-50/60'
           : 'border-transparent text-zinc-500 hover:text-emerald-700'

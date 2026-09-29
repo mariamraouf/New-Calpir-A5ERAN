@@ -110,7 +110,7 @@ const SoloServices = () => {
                   type="button"
                   onClick={() => setFilter(name)}
                   className={
-                    'flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] uppercase tracking-wider font-bold transition-colors py-1 ' +
+                    'flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] tracking-wider font-bold transition-colors py-1' +
                     (active
                       ? 'text-emerald-700 underline underline-offset-8 decoration-2'
                       : 'text-zinc-600 hover:text-emerald-700')
@@ -131,7 +131,7 @@ const SoloServices = () => {
                 onClick={() => setCurrency(c.code)}
                 aria-pressed={currency === c.code}
                 className={
-                  'px-3 py-1.5 mono text-[11px] font-bold uppercase tracking-wider transition-colors ' +
+                  'px-3 py-1.5 mono text-[11px] font-bold tracking-wider transition-colors' +
                   (currency === c.code
                     ? 'bg-emerald-600 text-white'
                     : 'bg-white text-zinc-600 hover:text-emerald-700')
@@ -154,7 +154,7 @@ const SoloServices = () => {
             >
               <div className="flex flex-wrap items-center gap-4 mb-8">
                 <SectionLabel>{category.name}</SectionLabel>
-                <span className="mono text-xs uppercase tracking-widest text-zinc-500 font-bold">
+                <span className="mono text-xs tracking-wide text-zinc-500 font-bold">
                   {category.items.length} services
                 </span>
               </div>
@@ -184,14 +184,14 @@ const SoloServices = () => {
                       {priced && (
                         <>
                           <div className="flex items-baseline gap-1.5">
-                            <span className="mono text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
+                            <span className="mono text-[10px] tracking-wide text-zinc-500 font-bold">
                               From
                             </span>
                             <span className="text-3xl font-bold text-emerald-700">
                               {formatPrice(service.slug, currency)}
                             </span>
                           </div>
-                          <div className="flex items-center gap-1.5 mono text-[11px] text-zinc-500 uppercase tracking-wider mt-1 mb-4">
+                          <div className="flex items-center gap-1.5 mono text-[11px] text-zinc-500 tracking-wider mt-1 mb-4">
                             <Clock size={12} className="text-emerald-600" />
                             {priced.turnaround}
                           </div>
@@ -216,14 +216,14 @@ const SoloServices = () => {
                       <div className="flex flex-col gap-2.5 pt-4 border-t border-zinc-100 mt-auto">
                         <Link
                           to={`/services/${service.slug}`}
-                          className="mono text-[11px] uppercase tracking-wider font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1.5"
+                          className="mono text-[11px] tracking-wider font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1.5"
                         >
                           What this includes <ArrowRight size={12} />
                         </Link>
                         <Button
                           type="button"
                           onClick={() => openBooking()}
-                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold uppercase tracking-wider text-[11px] py-5 rounded-none btn-hover"
+                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold tracking-wider text-[11px] py-5 rounded-none btn-hover"
                         >
                           Book this
                         </Button>
@@ -238,7 +238,7 @@ const SoloServices = () => {
           {/* Bundles and custom work */}
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="border border-zinc-200 bg-zinc-50 p-8 md:p-10">
-              <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">
+              <div className="mono text-xs tracking-wide text-emerald-800 font-bold mb-2">
                 Three or more services?
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight mb-3">
@@ -254,7 +254,7 @@ const SoloServices = () => {
             </div>
 
             <div className="border-2 border-emerald-600 bg-white p-8 md:p-10">
-              <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-2">
+              <div className="mono text-xs tracking-wide text-emerald-800 font-bold mb-2">
                 Not on the list?
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight mb-3">

@@ -24,7 +24,7 @@ const SystemStatus = () => {
   ];
 
   return (
-    <div className="border border-zinc-200 bg-zinc-50 p-6 mono text-xs uppercase tracking-widest text-zinc-700 shadow-sm">
+    <div className="border border-zinc-200 bg-zinc-50 p-6 mono text-xs tracking-wide text-zinc-700 shadow-sm">
       <div className="flex justify-between items-center mb-6 border-b border-zinc-200 pb-4">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-pulse" />

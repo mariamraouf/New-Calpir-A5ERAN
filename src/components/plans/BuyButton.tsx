@@ -68,7 +68,7 @@ const BuyButton: React.FC<BuyButtonProps> = ({
       </Button>
 
       {footnote && !error && (
-        <p className="mono text-[11px] uppercase tracking-widest text-zinc-400 mt-3 text-center">
+        <p className="mono text-[11px] tracking-wide text-zinc-400 mt-3 text-center">
           {footnote}
         </p>
       )}

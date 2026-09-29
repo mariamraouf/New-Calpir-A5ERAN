@@ -78,12 +78,12 @@ const SoftwareStack = () => {
                 placeholder="Search by tool name, use case, or category..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-11 bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-xs uppercase tracking-wider focus:border-emerald-600 w-full"
+                className="pl-11 bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-xs tracking-wider focus:border-emerald-600 w-full"
               />
             </div>
 
             {/* Total Count badge */}
-            <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold hidden sm:block">
+            <div className="mono text-xs tracking-wide text-emerald-800 font-bold hidden sm:block">
               Showing {filteredTools.length} of {allSoftwareStack.length} Tools
             </div>
           </div>
@@ -95,7 +95,7 @@ const SoftwareStack = () => {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={cn(
-                  "px-4 py-2 mono text-xs uppercase tracking-wider font-bold whitespace-nowrap transition-all border",
+                  "px-4 py-2 mono text-xs tracking-wider font-bold whitespace-nowrap transition-all border",
                   activeCategory === cat
                     ? "border-emerald-600 bg-emerald-600 text-white shadow-sm"
                     : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950"
@@ -128,7 +128,7 @@ const SoftwareStack = () => {
                       {/* Robust Multi-Tier Software Logo */}
                       <SoftwareLogo tool={tool} />
 
-                      <span className="mono text-[9px] uppercase font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                      <span className="mono text-[9px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
                         {tool.tag}
                       </span>
                     </div>
@@ -136,7 +136,7 @@ const SoftwareStack = () => {
                     <h3 className="text-lg font-bold text-zinc-950 tracking-tight mb-1 group-hover:text-emerald-700 transition-colors">
                       {tool.name}
                     </h3>
-                    <div className="mono text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-2">
+                    <div className="mono text-[10px] text-zinc-500 tracking-wide font-bold mb-2">
                       {tool.category}
                     </div>
 
@@ -161,7 +161,7 @@ const SoftwareStack = () => {
               <p className="text-zinc-600 text-sm mono mb-6">
                 Have a niche or proprietary platform? If it has an API, webhook or database, we can wire it up for you.
               </p>
-              <Button onClick={() => { setSearch(''); setActiveCategory('All'); }} variant="outline" className="border-zinc-300 text-zinc-900 rounded-none mono text-xs uppercase">
+              <Button onClick={() => { setSearch(''); setActiveCategory('All'); }} variant="outline" className="border-zinc-300 text-zinc-900 rounded-none mono text-xs">
                 Reset Search Filters
               </Button>
             </div>
@@ -169,7 +169,7 @@ const SoftwareStack = () => {
 
           {/* Bottom Banner */}
           <div className="mt-16 border border-emerald-200 bg-emerald-50 p-8 md:p-12 text-center space-y-4 shadow-sm">
-            <div className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
+            <div className="inline-flex items-center gap-2 mono text-xs tracking-wide text-emerald-800 font-bold">
               <Sparkles size={14} /> Custom API & Webhook Integrations
             </div>
             <h3 className="text-2xl sm:text-4xl font-bold text-zinc-950 tracking-tight">
@@ -179,7 +179,7 @@ const SoftwareStack = () => {
               We connect custom internal databases, niche software, and bespoke webhooks every day. Tell us what you are currently using and we will connect it into your new ecosystem.
             </p>
             <div className="pt-2">
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-none font-bold text-sm uppercase tracking-wider btn-hover">
+              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-none font-bold text-sm tracking-wider btn-hover">
                 <Link to="/contact">Book Free Consultation Call <ArrowRight size={16} className="ml-2" /></Link>
               </Button>
             </div>

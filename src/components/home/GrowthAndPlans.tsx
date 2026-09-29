@@ -31,7 +31,7 @@ const GrowthAndPlans = () => {
       <section className="section-padding bg-zinc-950 text-white">
         <div className="container-custom grid lg:grid-cols-[1.05fr,1fr] gap-14 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] uppercase tracking-widest font-bold mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold mb-5">
               Marketing &amp; SEO
             </div>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mb-7">
@@ -136,7 +136,7 @@ const GrowthAndPlans = () => {
                 All plans, prices and one time packages <ArrowRight size={18} className="ml-2" />
               </Link>
             </Button>
-            <p className="mono text-[11px] uppercase tracking-widest text-zinc-400 mt-4">
+            <p className="mono text-[11px] tracking-wide text-zinc-400 mt-4">
               Prices shown in USD. Pounds and euros on the packages page.
             </p>
           </div>

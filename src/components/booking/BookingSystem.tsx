@@ -143,7 +143,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
               <User size={24} className="sm:w-7 sm:h-7" />
             </div>
             <div>
-              <div className="mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold">Squad Lead</div>
+              <div className="mono text-[10px] sm:text-xs tracking-wide text-emerald-800 font-bold">Squad Lead</div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950">Maria</h3>
               <p className="mono text-[10px] sm:text-xs text-zinc-600 font-bold">30 MINUTE FREE STRATEGY CONSULTATION</p>
             </div>
@@ -151,7 +151,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             <div className="space-y-2.5 sm:space-y-3">
-              <label className="mono text-[11px] sm:text-xs uppercase tracking-wider text-zinc-800 font-bold flex items-center gap-2">
+              <label className="mono text-[11px] sm:text-xs tracking-wider text-zinc-800 font-bold flex items-center gap-2">
                 <CalendarIcon size={15} className="text-emerald-600" /> 1. Select Date
               </label>
               <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
@@ -178,18 +178,18 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
 
             <div className="space-y-2.5 sm:space-y-3">
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                <label className="mono text-[11px] sm:text-xs uppercase tracking-wider text-zinc-800 font-bold flex items-center gap-2">
+                <label className="mono text-[11px] sm:text-xs tracking-wider text-zinc-800 font-bold flex items-center gap-2">
                   <Clock size={15} className="text-emerald-600" /> 2. Select Time
                 </label>
                 <div className="w-full sm:w-56">
                   <Select value={userTimezone} onValueChange={setUserTimezone}>
-                    <SelectTrigger className="bg-white border-zinc-300 mono text-[10px] sm:text-[11px] text-zinc-950 uppercase h-8 sm:h-9 rounded-none flex items-center gap-1.5 focus:ring-emerald-600">
+                    <SelectTrigger className="bg-white border-zinc-300 mono text-[10px] sm:text-[11px] text-zinc-950 h-8 sm:h-9 rounded-none flex items-center gap-1.5 focus:ring-emerald-600">
                       <Globe size={12} className="text-emerald-600 shrink-0" />
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-zinc-200 text-zinc-950 max-h-64 shadow-xl z-50">
                       {timezones.map((tz) => (
-                        <SelectItem key={tz.value} value={tz.value} className="mono text-xs uppercase hover:bg-emerald-50 cursor-pointer">
+                        <SelectItem key={tz.value} value={tz.value} className="mono text-xs hover:bg-emerald-50 cursor-pointer">
                           {tz.label}
                         </SelectItem>
                       ))}
@@ -245,7 +245,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
 
           <div className="space-y-3.5 sm:space-y-4">
             <div className="space-y-1">
-              <label className="mono text-[11px] sm:text-xs uppercase text-zinc-700 font-bold block">Your Name *</label>
+              <label className="mono text-[11px] sm:text-xs text-zinc-700 font-bold block">Your Name *</label>
               <Input 
                 required
                 value={formData.name}
@@ -255,7 +255,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             </div>
             
             <div className="space-y-1">
-              <label className="mono text-[11px] sm:text-xs uppercase text-zinc-700 font-bold block">Email *</label>
+              <label className="mono text-[11px] sm:text-xs text-zinc-700 font-bold block">Email *</label>
               <Input 
                 required
                 name="email"
@@ -267,7 +267,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             </div>
 
             <div className="space-y-1">
-              <label className="mono text-[11px] sm:text-xs uppercase text-zinc-700 font-bold block">What are you looking to build or solve? (Optional)</label>
+              <label className="mono text-[11px] sm:text-xs text-zinc-700 font-bold block">What are you looking to build or solve? (Optional)</label>
               <Textarea 
                 value={formData.businessNotes}
                 onChange={(e) => setFormData({ ...formData, businessNotes: e.target.value })}
@@ -279,15 +279,15 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
 
           <div className="bg-zinc-50 border border-zinc-200 p-3.5 sm:p-5 space-y-2 sm:space-y-3 text-xs sm:text-sm">
             <div className="flex justify-between items-center border-b border-zinc-200 pb-2">
-              <span className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Date</span>
+              <span className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Date</span>
               <span className="font-bold text-zinc-950">{format(selectedDate, 'MMMM dd, yyyy')}</span>
             </div>
             <div className="flex justify-between items-center border-b border-zinc-200 pb-2">
-              <span className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Time</span>
+              <span className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Time</span>
               <span className="font-bold text-zinc-950">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Platform</span>
+              <span className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Platform</span>
               <span className="font-bold text-emerald-700">Google Meet</span>
             </div>
           </div>
@@ -331,7 +331,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           </p>
           {meetLink && (
             <div className="space-y-2">
-              <p className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-500 font-bold">Your Google Meet link</p>
+              <p className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Your Google Meet link</p>
               <a
                 href={meetLink}
                 target="_blank"

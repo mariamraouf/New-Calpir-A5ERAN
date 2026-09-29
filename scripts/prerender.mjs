@@ -169,7 +169,8 @@ async function buildRoutes() {
   );
 
   const statics = [
-    ['/packages', 'Packages & Monthly Plans | Calpir', 'Monthly marketing, SEO, operations, sales and HR plans from $449 a month, plus one time build packages from $1,499. Every price published, pay online.', 'Monthly plans and one time packages'],
+    ['/pricing', 'Pricing | Monthly Plans from $449 | Calpir', 'Marketing and SEO, operations, sales and HR, each on a monthly plan from $449. Take one or take all four for less than the sum. Cancel any month.', 'Monthly plans and pricing'],
+    ['/packages', 'Packages | Complete Business Setup from $1,499 | Calpir', 'Three fixed scope packages that take a business from idea to running in 7 to 28 days. One payment, every price published, pay online.', 'One time packages'],
     ['/services', 'Services | Calpir', 'Everything Calpir builds: websites, CRM and sales systems, marketing, operations, AI agents and custom apps.', 'Services'],
     ['/solo-services', 'Solo Services | Calpir', 'Book individual services on their own, website, CRM, automation or AI agents, without a full package.', 'Solo services'],
     ['/software-stack', 'Software Stack | Calpir', 'The tools Calpir builds on and why: CRM, automation, hosting and AI infrastructure chosen to stay cheap to run.', 'Software stack'],

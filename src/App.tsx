@@ -18,6 +18,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollToTopOnRoute from "./components/ui/ScrollToTopOnRoute";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
+import Pricing from "./pages/Pricing";
 import MarketingSeo from "./pages/MarketingSeo";
 import BookingModalProvider from "./components/booking/BookingModalProvider";
 
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/marketing-seo" element={<MarketingSeo />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />

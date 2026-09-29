@@ -128,7 +128,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
                     {(b.head || []).map((h, j) => (
                       <th
                         key={j}
-                        className="px-4 py-3 font-bold uppercase tracking-wider text-xs whitespace-nowrap"
+                        className="px-4 py-3 font-bold tracking-wider text-xs whitespace-nowrap"
                       >
                         {h}
                       </th>
@@ -177,7 +177,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
         case 'sources':
           return (
             <div key={i} className="pt-8 border-t border-zinc-200">
-              <p className="mono text-xs uppercase tracking-widest text-emerald-700 font-bold mb-4">
+              <p className="mono text-xs tracking-wide text-emerald-700 font-bold mb-4">
                 Sources
               </p>
               <ul className="space-y-2 text-sm text-zinc-600">

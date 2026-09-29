@@ -45,7 +45,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               onClick={() => onCurrencyChange(c.code)}
               aria-pressed={currency === c.code}
               className={cn(
-                'px-5 py-2 mono text-xs uppercase tracking-widest font-bold transition-colors',
+                'px-5 py-2 mono text-xs tracking-wide font-bold transition-colors',
                 currency === c.code
                   ? 'bg-zinc-950 text-white'
                   : 'bg-white text-zinc-500 hover:text-zinc-900',
@@ -79,7 +79,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
         <div className="bg-zinc-950 text-white p-8 md:p-12">
           <div className="grid lg:grid-cols-[1.1fr,1fr] gap-10 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] uppercase tracking-widest font-bold mb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold mb-5">
                 Best value
               </div>
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
@@ -97,13 +97,13 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
             </div>
 
             <div className="bg-white text-zinc-950 p-8">
-              <p className="mono text-[11px] uppercase tracking-widest text-zinc-400 mb-2">
+              <p className="mono text-[11px] tracking-wide text-zinc-400 mb-2">
                 All four bought separately
               </p>
               <p className="price-figure text-2xl font-bold text-zinc-400 line-through mb-5">
                 {symbol}{separate.toLocaleString('en-US')} a month
               </p>
-              <p className="mono text-[11px] uppercase tracking-widest text-emerald-700 font-bold mb-2">
+              <p className="mono text-[11px] tracking-wide text-emerald-700 font-bold mb-2">
                 Together
               </p>
               <div className="flex items-baseline gap-2 mb-2">

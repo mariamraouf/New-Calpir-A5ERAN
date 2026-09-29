@@ -90,7 +90,7 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
           {error}
         </p>
       ) : (
-        <p className="mt-2.5 mono text-[11px] uppercase tracking-wider text-zinc-500 text-center max-w-xl mx-auto">
+        <p className="mt-2.5 mono text-[11px] tracking-wider text-zinc-500 text-center max-w-xl mx-auto">
           Free 30 minute call. No obligation, and we will tell you if you do not need us.
         </p>
       )}

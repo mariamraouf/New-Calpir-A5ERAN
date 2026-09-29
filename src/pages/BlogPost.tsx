@@ -109,7 +109,7 @@ const BlogPost = () => {
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap gap-6 py-6 border-y border-zinc-200 mono text-xs uppercase tracking-wider text-zinc-600 font-bold">
+            <div className="flex flex-wrap gap-6 py-6 border-y border-zinc-200 mono text-xs tracking-wider text-zinc-600 font-bold">
               <div className="flex items-center gap-2">
                 <User size={14} className="text-emerald-700" /> {post.author}
               </div>
@@ -153,7 +153,7 @@ const BlogPost = () => {
 
           {next && next.slug !== post.slug ? (
             <div className="mt-16 pt-8 border-t border-zinc-200">
-              <p className="mono text-xs uppercase tracking-widest text-emerald-700 font-bold mb-3">
+              <p className="mono text-xs tracking-wide text-emerald-700 font-bold mb-3">
                 Read next
               </p>
               <Link

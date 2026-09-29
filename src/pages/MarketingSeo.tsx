@@ -84,7 +84,7 @@ const MarketingSeo = () => {
                 {service.shortDesc}
               </p>
               {price && (
-                <div className="mono text-xs uppercase tracking-widest font-bold text-emerald-700">
+                <div className="mono text-xs tracking-wide font-bold text-emerald-700">
                   From {symbol}{price[currency].toLocaleString('en-US')}
                 </div>
               )}
@@ -244,7 +244,7 @@ const MarketingSeo = () => {
           <div className="text-center mt-10">
             <Link
               to="/packages"
-              className="mono text-xs uppercase tracking-widest font-bold text-emerald-700 hover:text-emerald-800 underline"
+              className="mono text-xs tracking-wide font-bold text-emerald-700 hover:text-emerald-800 underline"
             >
               See all four monthly plans and the bundle
             </Link>

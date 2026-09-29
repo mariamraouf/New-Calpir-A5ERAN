@@ -30,7 +30,7 @@ const ROICalculator = () => {
           <div className="border border-zinc-200 p-5 sm:p-8 md:p-12 bg-zinc-50 shadow-sm">
             <div className="space-y-6 sm:space-y-8">
               <div>
-                <label className="mono text-[11px] sm:text-xs uppercase tracking-wider font-bold text-zinc-700 block mb-2 sm:mb-3">
+                <label className="mono text-[11px] sm:text-xs tracking-wider font-bold text-zinc-700 block mb-2 sm:mb-3">
                   Weekly Manual Hours
                 </label>
                 <Input 
@@ -42,7 +42,7 @@ const ROICalculator = () => {
               </div>
               
               <div>
-                <label className="mono text-[11px] sm:text-xs uppercase tracking-wider font-bold text-zinc-700 block mb-2 sm:mb-3">
+                <label className="mono text-[11px] sm:text-xs tracking-wider font-bold text-zinc-700 block mb-2 sm:mb-3">
                   Hourly Rate ($)
                 </label>
                 <Input 
@@ -56,11 +56,11 @@ const ROICalculator = () => {
               <div className="pt-6 sm:pt-8 border-t border-zinc-200">
                 <div className="grid grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <div className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-600 font-bold mb-1 sm:mb-2">Monthly Savings</div>
+                    <div className="mono text-[10px] sm:text-xs tracking-wider text-zinc-600 font-bold mb-1 sm:mb-2">Monthly Savings</div>
                     <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-700">${monthlySavings.toLocaleString()}</div>
                   </div>
                   <div>
-                    <div className="mono text-[10px] sm:text-xs uppercase tracking-wider text-zinc-600 font-bold mb-1 sm:mb-2">Annual Savings</div>
+                    <div className="mono text-[10px] sm:text-xs tracking-wider text-zinc-600 font-bold mb-1 sm:mb-2">Annual Savings</div>
                     <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-700">${annualSavings.toLocaleString()}</div>
                   </div>
                 </div>

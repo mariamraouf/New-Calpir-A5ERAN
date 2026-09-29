@@ -8,6 +8,7 @@ const baseUrl = 'https://www.calpir.com';
 
 const staticRoutes = [
   { url: '/', priority: '1.0' },
+  { url: '/pricing', priority: '1.0' },
   { url: '/packages', priority: '0.9' },
   { url: '/marketing-seo', priority: '0.9' },
   { url: '/services', priority: '0.9' },

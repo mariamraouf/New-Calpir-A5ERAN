@@ -27,7 +27,7 @@ const AnimatedStat: React.FC<AnimatedStatProps> = ({ value, suffix = "", label }
         <motion.span>{rounded}</motion.span>
         {suffix}
       </div>
-      <div className="mono text-xs uppercase tracking-widest font-bold text-emerald-100">{label}</div>
+      <div className="mono text-xs tracking-wide font-bold text-emerald-100">{label}</div>
     </div>
   );
 };

@@ -11,7 +11,6 @@ import SectionLabel from '@/components/ui/SectionLabel';
 import { Link } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
 import MetaSEO from '@/components/seo/MetaSEO';
-import MonthlyPlans from '@/components/plans/MonthlyPlans';
 import BuyButton from '@/components/plans/BuyButton';
 import { ONE_TIME_PACKAGES, formatPrice, type Currency } from '@/data/plans';
 
@@ -115,71 +114,64 @@ const Packages = () => {
     if (typeof val === 'boolean') {
       if (val) {
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold mono text-xs uppercase tracking-wider rounded-sm shadow-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold mono text-xs tracking-wider rounded-sm shadow-sm">
             <CheckCircle2 size={15} className="shrink-0 text-emerald-600" /> Included
           </span>
         );
       }
       return (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-rose-50 border border-rose-300 text-rose-700 font-bold mono text-xs uppercase tracking-wider rounded-sm">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-rose-50 border border-rose-300 text-rose-700 font-bold mono text-xs tracking-wider rounded-sm">
           <XCircle size={15} className="shrink-0 text-rose-600" /> Not Included
         </span>
       );
     }
-    return <span className="mono text-xs font-bold text-zinc-900 uppercase">{val}</span>;
+    return <span className="mono text-xs font-bold text-zinc-900">{val}</span>;
   };
 
   return (
     <div className="min-h-screen bg-white">
       <MetaSEO 
-        title="Packages & Monthly Plans | Calpir"
-        description="Monthly marketing, SEO, operations, sales and HR plans from $449 a month, plus one-time build packages from $1,499. Every price published, pay online."
+        title="Packages | Complete Business Setup from $1,499 | Calpir"
+        description="Three fixed scope packages that take a business from idea to running in 7 to 28 days. One payment, every price published, pay online."
         path="/packages"
       />
       <Navbar />
       
       <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom text-center">
-          <SectionLabel>Every price published</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">
-            Pay monthly, <br /> or <span className="text-emerald-700">pay once.</span>
+          <p className="text-emerald-700 font-semibold mb-5 tracking-wide">Packages</p>
+          <h1 className="text-4xl md:text-6xl leading-[1.05] mb-6 font-extrabold tracking-tight text-zinc-950">
+            One payment. <br />
+            <span className="text-emerald-700">A business that runs.</span>
           </h1>
-          <p className="text-lg md:text-2xl text-zinc-600 max-w-[850px] mx-auto leading-relaxed">
-            Monthly plans for the work that repeats: marketing and search, your systems, outbound, and the HR paperwork. One time packages for the work that finishes. Buy either on this page, in your own currency.
+          <p className="text-lg md:text-xl text-zinc-600 max-w-[760px] mx-auto leading-relaxed">
+            Three fixed scope builds that take you from nothing to open, in 7 to
+            28 days. Click any feature to see exactly what gets built. A monthly
+            plan afterwards is optional.
           </p>
-          <p className="mono text-xs text-emerald-800 font-bold mt-5 uppercase tracking-widest">
-            You pay for what you see. The number on the card is the number.
-          </p>
-        </div>
-      </section>
-
-      <section className="section-padding border-b border-zinc-200">
-        <div className="container-custom">
-          <div className="text-center mb-4">
-            <SectionLabel>Monthly plans</SectionLabel>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-5">
-              The work that <span className="text-emerald-700">repeats.</span>
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-[760px] mx-auto leading-relaxed">
-              Four plans. Buy one, buy two, or take all four together and pay less than the sum. Cancel any month, because a retainer you cannot leave is not a service, it is a trap.
-            </p>
-          </div>
-
-          <MonthlyPlans currency={currency} onCurrencyChange={setCurrency} />
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-custom">
           {/* One time build packages */}
-          <div className="text-center mb-14">
-            <SectionLabel>One time packages</SectionLabel>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-5">
-              The work that <span className="text-emerald-700">finishes.</span>
-            </h2>
-            <p className="text-lg text-zinc-600 max-w-[760px] mx-auto leading-relaxed">
-              A single payment, a finished thing handed over. Click any feature to see exactly what is built. Add a monthly plan afterwards if you want it kept running, or do not.
-            </p>
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex border border-zinc-200">
+              {(['usd', 'gbp', 'eur'] as Currency[]).map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setCurrency(c)}
+                  aria-pressed={currency === c}
+                  className={cn(
+                    'px-5 py-2 text-sm font-semibold transition-colors',
+                    currency === c ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-500 hover:text-zinc-900',
+                  )}
+                >
+                  {c === 'usd' ? '$ USD' : c === 'gbp' ? '\u00A3 GBP' : '\u20AC EUR'}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24 items-stretch">
@@ -191,12 +183,12 @@ const Packages = () => {
                   p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-zinc-200 hover:border-emerald-600 hover:shadow-md"
                 )}>
                   {p.featured && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-md">
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs tracking-wide font-bold flex items-center gap-1.5 shadow-md">
                       <Sparkles size={13} /> Most Popular Choice
                     </div>
                   )}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold">{p.badge}</div>
+                    <div className="mono text-xs tracking-wide text-emerald-800 font-bold">{p.badge}</div>
                     <div className="p-2.5 bg-emerald-100/70 border border-emerald-200 text-emerald-700">
                       <Icon size={20} />
                     </div>
@@ -205,10 +197,10 @@ const Packages = () => {
                   <div className="price-figure text-5xl font-bold text-zinc-950 mb-1">
                     {(() => { const b = buildFor(p.name); return b ? formatPrice(b.price, currency) : p.price; })()}
                   </div>
-                  <div className="mono text-[11px] uppercase tracking-widest text-zinc-400 font-bold mb-3">
+                  <div className="mono text-[11px] tracking-wide text-zinc-400 font-bold mb-3">
                     One time payment. Nothing recurring.
                   </div>
-                  <div className="mono text-xs uppercase font-bold text-zinc-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
+                  <div className="mono text-xs font-bold text-zinc-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
                   <p className="text-zinc-600 text-sm leading-relaxed mb-8">{p.desc}</p>
                   
                   <div className="space-y-3 mb-10 flex-grow border-t border-zinc-200 pt-6">
@@ -219,13 +211,13 @@ const Packages = () => {
                           <button
                             type="button"
                             onClick={() => setActiveModal(f.key || null)}
-                            className="mono text-xs uppercase tracking-wider text-zinc-800 text-left font-semibold hover:text-emerald-700 transition-colors flex items-center gap-1.5"
+                            className="mono text-xs tracking-wider text-zinc-800 text-left font-semibold hover:text-emerald-700 transition-colors flex items-center gap-1.5"
                           >
                             <span className="underline decoration-dotted decoration-emerald-600/60 underline-offset-4">{f.label}</span>
                             <HelpCircle size={13} className="text-emerald-600 shrink-0 opacity-70 group-item:opacity-100" />
                           </button>
                         ) : (
-                          <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-snug font-semibold">{f.label}</span>
+                          <span className="mono text-xs tracking-wider text-zinc-800 leading-snug font-semibold">{f.label}</span>
                         )}
                       </div>
                     ))}
@@ -280,16 +272,16 @@ const Packages = () => {
               <table className="w-full text-left border-collapse min-w-[700px]">
                 <thead>
                   <tr className="border-b border-zinc-200 bg-zinc-50">
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-emerald-800 font-bold w-2/5">
+                    <th className="p-5 mono text-xs tracking-wider text-emerald-800 font-bold w-2/5">
                       System Module & Capability
                     </th>
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-zinc-900 font-bold w-1/5">
+                    <th className="p-5 mono text-xs tracking-wider text-zinc-900 font-bold w-1/5">
                       Starter ($1,499)
                     </th>
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-emerald-800 font-bold w-1/5 bg-emerald-50/50">
+                    <th className="p-5 mono text-xs tracking-wider text-emerald-800 font-bold w-1/5 bg-emerald-50/50">
                       Growth ($3,499)
                     </th>
-                    <th className="p-5 mono text-xs uppercase tracking-wider text-zinc-900 font-bold w-1/5">
+                    <th className="p-5 mono text-xs tracking-wider text-zinc-900 font-bold w-1/5">
                       Ultimate ($6,999)
                     </th>
                   </tr>
@@ -297,7 +289,7 @@ const Packages = () => {
                 <tbody className="divide-y divide-zinc-200">
                   {comparisonRows.map((row, i) => (
                     <tr key={i} className="hover:bg-zinc-50/80 transition-colors">
-                      <td className="p-5 font-bold uppercase text-zinc-950 text-xs mono">
+                      <td className="p-5 font-bold text-zinc-950 text-xs mono">
                         {row.modal ? (
                           <button
                             type="button"
@@ -326,7 +318,7 @@ const Packages = () => {
             <SectionLabel>À La Carte Add-Ons</SectionLabel>
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <h2 className="text-3xl md:text-5xl font-bold text-zinc-950">Need something specific?</h2>
-              <Button asChild variant="outline" className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-xs uppercase font-bold">
+              <Button asChild variant="outline" className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-xs font-bold">
                 <Link to="/solo-services">View All Solo Services <ArrowRight size={14} className="ml-1" /></Link>
               </Button>
             </div>
@@ -340,7 +332,7 @@ const Packages = () => {
               ].map((add, i) => (
                 <div key={i} className="border border-zinc-200 p-6 bg-zinc-50/50 flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all">
                   <div>
-                    <div className="mono text-xs uppercase tracking-wider text-zinc-700 font-bold mb-2">{add.name}</div>
+                    <div className="mono text-xs tracking-wider text-zinc-700 font-bold mb-2">{add.name}</div>
                     <div className="text-3xl font-bold text-emerald-700 mb-2">{add.price}</div>
                     <p className="text-xs text-zinc-600 leading-relaxed mb-4">{add.desc}</p>
                   </div>
@@ -348,7 +340,7 @@ const Packages = () => {
                     type="button" 
                     variant="outline" 
                     onClick={() => setActiveModal(add.key)}
-                    className="w-full border-zinc-300 text-zinc-800 hover:bg-white hover:border-emerald-600 mono text-[10px] uppercase font-bold py-3"
+                    className="w-full border-zinc-300 text-zinc-800 hover:bg-white hover:border-emerald-600 mono text-[10px] font-bold py-3"
                   >
                     Inspect Add-on
                   </Button>

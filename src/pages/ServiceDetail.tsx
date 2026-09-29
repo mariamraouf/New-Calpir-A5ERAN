@@ -55,7 +55,7 @@ const ServiceDetail = () => {
             <div className="mt-10 border border-zinc-200 bg-white p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-6 justify-between shadow-sm">
               <div>
                 <div className="flex items-center gap-3 flex-wrap">
-                  <span className="mono text-[11px] uppercase tracking-widest text-zinc-500 font-bold">From</span>
+                  <span className="mono text-[11px] tracking-wide text-zinc-500 font-bold">From</span>
                   <span className="text-4xl md:text-5xl font-bold text-emerald-700">
                     {formatPrice(data.slug, currency)}
                   </span>
@@ -67,7 +67,7 @@ const ServiceDetail = () => {
                         onClick={() => setCurrency(c.code)}
                         aria-pressed={currency === c.code}
                         className={
-                          'px-2.5 py-1 mono text-[10px] font-bold uppercase transition-colors ' +
+                          'px-2.5 py-1 mono text-[10px] font-bold transition-colors' +
                           (currency === c.code
                             ? 'bg-emerald-600 text-white'
                             : 'bg-white text-zinc-600 hover:text-emerald-700')
@@ -120,7 +120,7 @@ const ServiceDetail = () => {
                   {data.features.map((item: string, i: number) => (
                     <div key={i} className="flex gap-4 p-4 border border-zinc-200 bg-zinc-50 items-start shadow-sm">
                       <CheckCircle2 className="text-emerald-600 shrink-0 mt-1" size={18} />
-                      <span className="mono text-xs uppercase tracking-wider text-zinc-800 leading-relaxed font-semibold">{item}</span>
+                      <span className="mono text-xs tracking-wider text-zinc-800 leading-relaxed font-semibold">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -129,12 +129,12 @@ const ServiceDetail = () => {
               {/* Who & What You Get */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 shadow-sm">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 mb-3 font-bold">Ideal Deployment Candidate</div>
+                  <div className="mono text-xs tracking-wide text-emerald-800 mb-3 font-bold">Ideal Deployment Candidate</div>
                   <h3 className="text-lg md:text-xl font-bold mb-4 text-zinc-950">Who this is for</h3>
                   <p className="mono text-sm text-zinc-600 leading-relaxed">{data.who}</p>
                 </div>
                 <div className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 shadow-sm">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 mb-3 font-bold">Final Assets Handover</div>
+                  <div className="mono text-xs tracking-wide text-emerald-800 mb-3 font-bold">Final Assets Handover</div>
                   <h3 className="text-lg md:text-xl font-bold mb-4 text-zinc-950">What you receive</h3>
                   <p className="mono text-sm text-zinc-600 leading-relaxed">{data.get}</p>
                 </div>

@@ -33,17 +33,22 @@
   h1 { @apply font-extrabold; letter-spacing: -0.032em; }
   h2 { @apply font-extrabold; letter-spacing: -0.028em; }
 
-  /* Monospace is for labels, prices and figures only: the small uppercase
-     eyebrows, and any number a reader might want to compare to another. */
+  /* There is no monospace on this site. A terminal font on a business page
+     reads as unfinished, and it was making 65 services look like log output.
+     `.mono` is kept as a class name only because it is used in 35 files; it
+     now renders as a small, confident Inter label. */
   .mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-    font-feature-settings: 'zero';
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.06em;
   }
 
+  /* Figures line up in columns without pretending to be code. */
   .price-figure {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-    font-feature-settings: 'zero';
-    letter-spacing: -0.04em;
+    font-family: inherit;
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
   }
 }
 
@@ -119,8 +124,9 @@
 
 /* Tables stay monospace: aligned figures are easier to compare that way. */
 .article-prose table {
-  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
-  font-size: 0.875rem;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9375rem;
   line-height: 1.5;
 }
 

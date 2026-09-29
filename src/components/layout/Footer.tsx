@@ -39,7 +39,7 @@ const Footer = () => {
                 +44 7346 875731
               </a>
             </div>
-            <div className="flex items-center gap-2.5 text-[11px] mono text-emerald-800 font-bold uppercase tracking-wider">
+            <div className="flex items-center gap-2.5 text-[11px] mono text-emerald-800 font-bold tracking-wider">
               <MapPin size={14} className="shrink-0" /> BRISTOL, UNITED KINGDOM
             </div>
           </div>
@@ -47,7 +47,7 @@ const Footer = () => {
 
         {/* Column 2: Packages & Solo */}
         <div className="space-y-3 sm:space-y-4">
-          <h4 className="text-zinc-950 font-bold uppercase text-xs tracking-widest mono border-b border-zinc-200 pb-2">Solutions</h4>
+          <h4 className="text-zinc-950 font-bold text-xs tracking-wide mono border-b border-zinc-200 pb-2">Solutions</h4>
           <ul className="space-y-2 text-xs sm:text-sm">
             <li><Link to="/packages" className="text-emerald-700 hover:text-emerald-800 font-bold transition-colors">Monthly Plans &amp; Packages</Link></li>
             <li><Link to="/marketing-seo" className="text-zinc-600 hover:text-emerald-700 transition-colors">Marketing &amp; SEO</Link></li>
@@ -60,7 +60,7 @@ const Footer = () => {
 
         {/* Column 3: Services */}
         <div className="space-y-3 sm:space-y-4">
-          <h4 className="text-zinc-950 font-bold uppercase text-xs tracking-widest mono border-b border-zinc-200 pb-2">Modules</h4>
+          <h4 className="text-zinc-950 font-bold text-xs tracking-wide mono border-b border-zinc-200 pb-2">Modules</h4>
           <ul className="space-y-2 text-xs sm:text-sm">
             <li><Link to="/services/website-development" className="text-zinc-600 hover:text-emerald-700 transition-colors">Website, Domain & SSL</Link></li>
             <li><Link to="/services/crm-sales" className="text-zinc-600 hover:text-emerald-700 transition-colors">CRM & Sales Pipelines</Link></li>
@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* Column 4: Company & Social */}
         <div className="space-y-3 sm:space-y-4">
-          <h4 className="text-zinc-950 font-bold uppercase text-xs tracking-widest mono border-b border-zinc-200 pb-2">Connect</h4>
+          <h4 className="text-zinc-950 font-bold text-xs tracking-wide mono border-b border-zinc-200 pb-2">Connect</h4>
           <ul className="space-y-2 text-xs sm:text-sm">
             <li><Link to="/about" className="text-zinc-600 hover:text-emerald-700 transition-colors">Our Story & Mission</Link></li>
             <li><Link to="/blog" className="text-zinc-600 hover:text-emerald-700 transition-colors">Intelligence Hub / Blog</Link></li>

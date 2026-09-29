@@ -36,7 +36,7 @@ const Blog = () => {
                 className="group bg-white p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between hover:bg-emerald-50/60 transition-all block"
               >
                 <div className="max-w-[800px]">
-                  <div className="flex flex-wrap items-center gap-3 mono text-xs text-zinc-500 uppercase tracking-widest mb-3">
+                  <div className="flex flex-wrap items-center gap-3 mono text-xs text-zinc-500 tracking-wide mb-3">
                     <span className="text-emerald-800 font-bold">[{String(idx + 1).padStart(2, '0')}] // GUIDE</span>
                     <span>•</span>
                     <span className="flex items-center gap-1"><User size={13} className="text-emerald-700" /> {post.author}</span>

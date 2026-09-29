@@ -82,7 +82,7 @@ const SectorsSection = () => {
               </div>
 
               <div className="pt-4 border-t border-zinc-100">
-                <div className="mono text-[11px] uppercase tracking-wider text-emerald-800 font-bold">
+                <div className="mono text-[11px] tracking-wider text-emerald-800 font-bold">
                   {sector.tools}
                 </div>
               </div>
@@ -93,7 +93,7 @@ const SectorsSection = () => {
         <div className="mt-12 text-center">
           <Link 
             to="/contact" 
-            className="inline-flex items-center gap-2 mono text-xs uppercase tracking-widest text-zinc-800 hover:text-emerald-700 font-bold border-b border-emerald-600/40 pb-1 hover:border-emerald-700 transition-colors"
+            className="inline-flex items-center gap-2 mono text-xs tracking-wide text-zinc-800 hover:text-emerald-700 font-bold border-b border-emerald-600/40 pb-1 hover:border-emerald-700 transition-colors"
           >
             Don't see your specific niche? We build custom setups too <ArrowRight size={14} />
           </Link>

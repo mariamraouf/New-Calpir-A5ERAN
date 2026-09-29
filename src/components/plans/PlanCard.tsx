@@ -47,7 +47,7 @@ const PlanCard: React.FC<PlanCardProps> = ({
       )}
     >
       {featured && (
-        <div className="absolute -top-3 left-8 bg-emerald-600 text-white mono text-[10px] uppercase tracking-widest font-bold px-3 py-1">
+        <div className="absolute -top-3 left-8 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold px-3 py-1">
           Most popular
         </div>
       )}
@@ -59,10 +59,10 @@ const PlanCard: React.FC<PlanCardProps> = ({
         <h3 className="text-xl font-bold tracking-tight text-zinc-950">{name}</h3>
       </div>
 
-      <p className="text-zinc-600 mb-6 leading-relaxed">{tagline}</p>
+      <p className="text-zinc-600 mb-6 leading-relaxed md:min-h-[72px]">{tagline}</p>
 
       {note && (
-        <p className="mono text-[11px] uppercase tracking-widest text-emerald-700 font-bold mb-2">
+        <p className="mono text-[11px] tracking-wide text-emerald-700 font-bold mb-2">
           {note}
         </p>
       )}
@@ -73,7 +73,7 @@ const PlanCard: React.FC<PlanCardProps> = ({
           {billing === 'month' ? '/month' : 'one time'}
         </span>
       </div>
-      <p className="mono text-[11px] uppercase tracking-widest text-zinc-400 mb-7">
+      <p className="mono text-[11px] tracking-wide text-zinc-400 mb-7">
         {billing === 'month' ? 'Cancel any month. No tie in.' : 'Single payment. Nothing recurring.'}
       </p>
 

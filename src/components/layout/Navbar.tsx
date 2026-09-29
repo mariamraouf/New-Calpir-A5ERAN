@@ -51,13 +51,11 @@ const Navbar = () => {
       })),
   })).filter((g) => g.items.length > 0);
 
+  // Four items and one dropdown. Eight top level links meant a visitor had to
+  // read the whole bar before working out where anything was.
+  const navLinksBefore = [{ name: 'Pricing', href: '/pricing' }];
   const navLinks = [
     { name: 'Packages', href: '/packages' },
-    { name: 'Marketing & SEO', href: '/marketing-seo' },
-    { name: 'Solo Services', href: '/solo-services' },
-    { name: 'Software Stack', href: '/software-stack' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Assessment', href: '/assessment' },
     { name: 'About', href: '/about' },
   ];
 
@@ -97,7 +95,7 @@ const Navbar = () => {
             <span className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors">
               Calpir
             </span>
-            <span className="mono text-[8px] sm:text-[9px] uppercase tracking-widest text-emerald-700 font-bold hidden sm:block">
+            <span className="mono text-[8px] sm:text-[9px] tracking-wide text-emerald-700 font-bold hidden sm:block">
               Your Systems Squad
             </span>
           </div>
@@ -105,6 +103,16 @@ const Navbar = () => {
 
         {/* Desktop Nav (Visible on lg and above) */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+          {navLinksBefore.map((link) => (
+            <Link
+              key={link.name}
+              to={link.href}
+              className="text-[15px] font-semibold text-zinc-700 hover:text-emerald-700 transition-colors"
+            >
+              {link.name}
+            </Link>
+          ))}
+
           {/* Services Dropdown */}
           <div 
             ref={dropdownRef}
@@ -116,7 +124,7 @@ const Navbar = () => {
               type="button"
               onClick={() => setIsServicesOpen(!isServicesOpen)}
               className={cn(
-                "flex items-center gap-1.5 mono text-xs uppercase tracking-wider font-bold transition-colors py-6 focus:outline-none",
+                "flex items-center gap-1.5 text-[15px] font-semibold transition-colors py-6 focus:outline-none",
                 isServicesOpen ? "text-emerald-700" : "text-zinc-800 hover:text-emerald-700"
               )}
               aria-expanded={isServicesOpen}
@@ -135,13 +143,13 @@ const Navbar = () => {
             {isServicesOpen && (
               <div className="absolute top-full -left-4 w-[760px] bg-white border border-zinc-200 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 <div className="px-4 py-2.5 border-b border-zinc-200 flex items-center justify-between">
-                  <span className="mono text-[10px] uppercase tracking-widest font-bold text-emerald-800">
+                  <span className="text-[13px] font-semibold text-emerald-800">
                     {allServicesCatalog.length} services across {serviceGroups.length} categories
                   </span>
                   <Link
                     to="/services"
                     onClick={() => setIsServicesOpen(false)}
-                    className="mono text-[10px] text-zinc-500 hover:text-emerald-700 font-bold uppercase underline"
+                    className="text-[13px] text-zinc-500 hover:text-emerald-700 font-semibold underline"
                   >
                     View all services →
                   </Link>
@@ -222,15 +230,15 @@ const Navbar = () => {
                 </div>
 
                 <div className="border-t border-zinc-200 px-4 py-2.5 bg-zinc-50 flex items-center justify-between">
-                  <span className="mono text-[10px] text-zinc-600 font-bold">
-                    Need a complete turn key build?
+                  <span className="text-[13px] text-zinc-600">
+                    Marketing &amp; SEO, solo services, software stack and case studies
                   </span>
                   <Link
-                    to="/packages"
+                    to="/services"
                     onClick={() => setIsServicesOpen(false)}
-                    className="mono text-[10px] text-emerald-800 font-bold uppercase hover:underline"
+                    className="text-[13px] text-emerald-800 font-semibold hover:underline"
                   >
-                    View Packages →
+                    Browse everything →
                   </Link>
                 </div>
               </div>
@@ -242,7 +250,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.href}
-              className="mono text-xs uppercase tracking-wider font-bold text-zinc-800 hover:text-emerald-700 transition-colors"
+              className="text-[15px] font-semibold text-zinc-700 hover:text-emerald-700 transition-colors"
             >
               {link.name}
             </Link>
@@ -252,9 +260,9 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => openBooking()}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-none mono text-xs uppercase tracking-wider btn-hover flex items-center gap-2 shadow-sm"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-none text-[15px] btn-hover flex items-center gap-2 shadow-sm"
           >
-            <Sparkles size={14} /> Free Consultation
+            Book a free call
           </button>
         </div>
 
@@ -276,7 +284,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => { setIsOpen(false); openBooking(); }}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-3.5 px-4 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md"
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-3.5 px-4 font-bold tracking-wider text-xs flex items-center justify-center gap-2 shadow-md"
             >
               <Sparkles size={15} /> Book Free Consultation Call
             </button>
@@ -286,7 +294,7 @@ const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="w-full flex items-center justify-between p-3.5 mono text-xs uppercase font-bold tracking-wider text-zinc-950 hover:bg-zinc-100 transition-colors"
+                className="w-full flex items-center justify-between p-3.5 mono text-xs font-bold tracking-wider text-zinc-950 hover:bg-zinc-100 transition-colors"
               >
                 <span className="flex items-center gap-2 text-emerald-800">
                   <Layers size={15} /> Services & Capabilities Dropdown
@@ -307,7 +315,7 @@ const Navbar = () => {
                         to={s.href}
                         onClick={() => setIsOpen(false)}
                         className={cn(
-                          "flex items-center gap-2.5 px-3 py-2.5 text-[11px] uppercase font-bold tracking-wider transition-colors",
+                          "flex items-center gap-2.5 px-3 py-2.5 text-[11px] font-bold tracking-wider transition-colors",
                           s.highlight 
                             ? "bg-emerald-50 text-emerald-900 border-l-2 border-emerald-600 font-bold" 
                             : "text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50"
@@ -321,7 +329,7 @@ const Navbar = () => {
 
                   {serviceGroups.map((group) => (
                     <div key={group.category} className="pt-2">
-                      <div className="px-3 pb-1 mono text-[9px] uppercase tracking-widest font-bold text-zinc-400">
+                      <div className="px-3 pb-1 mono text-[9px] tracking-wide font-bold text-zinc-400">
                         {group.category}
                       </div>
                       {group.items.map((s) => {
@@ -331,7 +339,7 @@ const Navbar = () => {
                             key={s.href}
                             to={s.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-2.5 px-3 py-2.5 text-[11px] uppercase font-bold tracking-wider text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50 transition-colors"
+                            className="flex items-center gap-2.5 px-3 py-2.5 text-[11px] font-bold tracking-wider text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50 transition-colors"
                           >
                             <Icon size={14} className="text-emerald-700 shrink-0" />
                             <span>{s.name}</span>
@@ -346,10 +354,10 @@ const Navbar = () => {
 
             {/* Nav Links */}
             <div className="space-y-1 pt-2">
-              <div className="mono text-[10px] uppercase tracking-widest text-zinc-400 font-bold px-1 pb-1">
+              <div className="text-xs tracking-wide text-zinc-400 font-semibold px-1 pb-1">
                 Navigation
               </div>
-              {navLinks.map((link) => (
+              {[...navLinksBefore, ...navLinks].map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}

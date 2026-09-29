@@ -75,7 +75,7 @@ export const ArchitectureFlow: React.FC = () => {
     <div className="border border-zinc-200 bg-white p-6 md:p-8 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200">
         <div>
-          <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold flex items-center gap-1.5">
+          <div className="mono text-xs tracking-wide text-emerald-800 font-bold flex items-center gap-1.5">
             <Sparkles size={14} className="text-emerald-600" /> Interactive Execution Pipeline
           </div>
           <h3 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 mt-1">
@@ -87,7 +87,7 @@ export const ArchitectureFlow: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsPlaying(!isPlaying)}
-            className="border border-zinc-300 hover:border-emerald-600 px-3 py-1.5 mono text-[11px] uppercase font-bold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 transition-colors"
+            className="border border-zinc-300 hover:border-emerald-600 px-3 py-1.5 mono text-[11px] font-bold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 transition-colors"
           >
             <RefreshCw size={12} className={isPlaying ? "animate-spin text-emerald-600" : ""} />
             {isPlaying ? "Live Auto-Cycle" : "Paused"}
@@ -116,13 +116,13 @@ export const ArchitectureFlow: React.FC = () => {
             >
               <div className="flex items-center justify-between mb-2">
                 <Icon size={18} className={isCurrent ? "text-emerald-700" : "text-zinc-500"} />
-                <span className={`mono text-[9px] uppercase font-bold px-1.5 py-0.5 border ${
+                <span className={`text-[10px] font-semibold px-1.5 py-0.5 border ${
                   isCurrent ? "bg-emerald-600 text-white border-emerald-600" : "bg-white text-zinc-600 border-zinc-200"
                 }`}>
                   {stage.badge}
                 </span>
               </div>
-              <div className="mono text-xs uppercase font-bold tracking-tight text-zinc-950">
+              <div className="mono text-xs font-bold tracking-tight text-zinc-950">
                 {stage.name.split('.')[1]}
               </div>
             </button>
@@ -146,7 +146,7 @@ export const ArchitectureFlow: React.FC = () => {
                 <CurrentIcon size={22} />
               </div>
               <div>
-                <span className="mono text-[10px] uppercase tracking-widest text-emerald-800 font-bold">
+                <span className="mono text-[10px] tracking-wide text-emerald-800 font-bold">
                   Active Execution Layer // Phase {activeStage + 1}
                 </span>
                 <h4 className="text-lg md:text-xl font-bold text-zinc-950 tracking-tight">
@@ -164,7 +164,7 @@ export const ArchitectureFlow: React.FC = () => {
           </p>
 
           <div>
-            <div className="mono text-[11px] uppercase tracking-wider text-zinc-500 font-bold mb-2.5">
+            <div className="mono text-[11px] tracking-wider text-zinc-500 font-bold mb-2.5">
               Live System Outputs & Sync Handshakes:
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">

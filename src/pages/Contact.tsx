@@ -106,7 +106,7 @@ const Contact = () => {
                     <Mail size={22} />
                   </div>
                   <div>
-                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Email Our Team</div>
+                    <div className="mono text-xs tracking-wider text-zinc-500 font-bold">Email Our Team</div>
                     <a href="mailto:info@calpir.com" className="text-base md:text-lg font-bold text-zinc-950 hover:text-emerald-700 transition-colors">
                       info@calpir.com
                     </a>
@@ -118,7 +118,7 @@ const Contact = () => {
                     <Phone size={22} />
                   </div>
                   <div>
-                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">Direct Phone / WhatsApp</div>
+                    <div className="mono text-xs tracking-wider text-zinc-500 font-bold">Direct Phone / WhatsApp</div>
                     <a href="tel:+447346875731" className="text-base md:text-lg font-bold text-zinc-950 hover:text-emerald-700 transition-colors">
                       +44 7346 875731
                     </a>
@@ -130,14 +130,14 @@ const Contact = () => {
                     <MapPin size={22} />
                   </div>
                   <div>
-                    <div className="mono text-xs uppercase tracking-wider text-zinc-500 font-bold">HQ Location</div>
+                    <div className="mono text-xs tracking-wider text-zinc-500 font-bold">HQ Location</div>
                     <div className="text-base md:text-lg font-bold text-zinc-950">Bristol, United Kingdom</div>
                   </div>
                 </div>
               </div>
 
               <div className="p-5 border border-emerald-200 bg-emerald-50 space-y-1.5 shadow-sm">
-                <div className="flex items-center gap-2 text-emerald-800 mono text-xs uppercase font-bold">
+                <div className="flex items-center gap-2 text-emerald-800 mono text-xs font-bold">
                   <Sparkles size={14} className="text-emerald-600" /> Squad Response Guarantee
                 </div>
                 <p className="text-xs text-zinc-700 leading-relaxed mono">
@@ -154,7 +154,7 @@ const Contact = () => {
             >
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold">
+                  <div className="mono text-xs tracking-wide text-emerald-800 font-bold">
                     Project Request Form
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 tracking-tight">
@@ -162,7 +162,7 @@ const Contact = () => {
                   </h3>
 
                   <div className="space-y-1.5">
-                    <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                    <label className="mono text-xs text-zinc-700 font-bold block">
                       Your Full Name *
                     </label>
                     <Input
@@ -175,7 +175,7 @@ const Contact = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                      <label className="mono text-xs text-zinc-700 font-bold block">
                         Email *
                       </label>
                       <Input
@@ -188,7 +188,7 @@ const Contact = () => {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                      <label className="mono text-xs text-zinc-700 font-bold block">
                         Phone / WhatsApp
                       </label>
                       <PhoneInput
@@ -199,13 +199,13 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                    <label className="mono text-xs text-zinc-700 font-bold block">
                       Interested Package or Solo Service
                     </label>
                     <select
                       value={formData.package}
                       onChange={(e) => setFormData({ ...formData, package: e.target.value })}
-                      className="w-full bg-white text-zinc-950 border border-zinc-300 rounded-none h-12 px-3 mono text-xs uppercase focus:border-emerald-600 cursor-pointer"
+                      className="w-full bg-white text-zinc-950 border border-zinc-300 rounded-none h-12 px-3 mono text-xs focus:border-emerald-600 cursor-pointer"
                     >
                       <option value="Starter Launch Package ($1,499)">Starter Launch Package ($1,499)</option>
                       <option value="Growth Launch Package ($3,499)">Growth Launch Package ($3,499)</option>
@@ -221,7 +221,7 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="mono text-xs uppercase text-zinc-700 font-bold block">
+                    <label className="mono text-xs text-zinc-700 font-bold block">
                       Project Details & Goals *
                     </label>
                     <Textarea
@@ -277,7 +277,7 @@ const Contact = () => {
                       setIsSubmitted(false);
                       setFormData({ name: '', email: '', phone: '', package: 'Starter Launch Package ($1,499)', message: '' });
                     }}
-                    className="border-zinc-300 text-zinc-900 rounded-none mono text-xs uppercase font-bold hover:bg-zinc-100"
+                    className="border-zinc-300 text-zinc-900 rounded-none mono text-xs font-bold hover:bg-zinc-100"
                   >
                     Send Another Message
                   </Button>

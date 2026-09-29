@@ -76,7 +76,7 @@ const Index = () => {
       <section className="pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 border-b border-zinc-200 relative bg-gradient-to-b from-emerald-50/40 via-white to-white">
         <div className="container-custom text-center">
           <motion.div {...reveal}>
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 py-1 mb-4 sm:mb-5 mono text-[10px] sm:text-xs uppercase tracking-widest text-emerald-800 font-bold rounded-none">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 border border-emerald-300 bg-emerald-50 px-3 py-1 mb-4 sm:mb-5 mono text-[10px] sm:text-xs tracking-wide text-emerald-800 font-bold rounded-none">
               <Sparkles size={13} className="text-emerald-600 shrink-0" /> Set it up, then get it found
             </div>
 
@@ -110,7 +110,7 @@ const Index = () => {
             </div>
 
             {/* Reassurance points */}
-            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-8 mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-zinc-200 mono text-[11px] sm:text-xs uppercase tracking-wider text-zinc-700 font-bold">
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-8 mt-8 sm:mt-12 pt-5 sm:pt-8 border-t border-zinc-200 mono text-[11px] sm:text-xs tracking-wider text-zinc-700 font-bold">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <CheckCircle2 size={14} className="text-emerald-600 shrink-0" /> Full Business Setup Included
               </div>
@@ -141,7 +141,7 @@ const Index = () => {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="mono text-[10px] uppercase tracking-widest font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
+                      <span className="mono text-[10px] tracking-wide font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 border border-emerald-200">
                         Pillar {item.pillar}
                       </span>
                       <div className="p-1.5 bg-zinc-50 border border-zinc-200 text-emerald-700 group-hover:bg-emerald-50 transition-colors">
@@ -158,7 +158,7 @@ const Index = () => {
                     </p>
                   </div>
 
-                  <div className="pt-3 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-[10px] text-zinc-400 mono uppercase tracking-wider font-bold">
+                  <div className="pt-3 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-[10px] text-zinc-400 mono tracking-wider font-bold">
                     <CheckCircle2 size={12} className="text-emerald-600 shrink-0" />
                     <span>Included in Launch</span>
                   </div>
@@ -206,7 +206,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 mb-2">{s.title}</h3>
                 <p className="text-zinc-600 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">{s.desc}</p>
-                <div className="flex items-center gap-1.5 text-emerald-700 mono text-xs uppercase tracking-wider font-bold">
+                <div className="flex items-center gap-1.5 text-emerald-700 mono text-xs tracking-wider font-bold">
                   Explore Full Module <ArrowRight size={13} />
                 </div>
               </Link>
@@ -214,10 +214,10 @@ const Index = () => {
           </div>
 
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
-            <Button asChild variant="outline" className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-[11px] sm:text-xs uppercase font-bold py-5 sm:py-6 px-6 sm:px-8 rounded-none">
+            <Button asChild variant="outline" className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-[11px] sm:text-xs font-bold py-5 sm:py-6 px-6 sm:px-8 rounded-none">
               <Link to="/software-stack">Browse Our 100+ Integrated Software Stack <ArrowRight size={14} className="ml-1.5" /></Link>
             </Button>
-            <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-800 hover:bg-zinc-100 mono text-[11px] sm:text-xs uppercase font-bold py-5 sm:py-6 px-6 sm:px-8 rounded-none">
+            <Button asChild variant="outline" className="w-full sm:w-auto border-zinc-300 text-zinc-800 hover:bg-zinc-100 mono text-[11px] sm:text-xs font-bold py-5 sm:py-6 px-6 sm:px-8 rounded-none">
               <Link to="/solo-services">Browse Individual Solo Services <Layers size={14} className="ml-1.5" /></Link>
             </Button>
           </div>
@@ -239,11 +239,11 @@ const Index = () => {
               </p>
               
               <div className="space-y-2.5 pt-1 sm:pt-2">
-                <div className="flex items-center gap-2.5 mono text-[11px] sm:text-xs uppercase tracking-wider font-bold text-zinc-800">
+                <div className="flex items-center gap-2.5 mono text-[11px] sm:text-xs tracking-wider font-bold text-zinc-800">
                   <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-emerald-600 rounded-full animate-ping" />
                   Real Time Data Flow Across Legal, Ops, CRM, Finance, and AI
                 </div>
-                <div className="mono text-[11px] sm:text-xs text-emerald-800 font-bold uppercase tracking-wider border-l-2 border-emerald-600 pl-3 sm:pl-4 py-1.5 bg-emerald-50/60">
+                <div className="mono text-[11px] sm:text-xs text-emerald-800 font-bold tracking-wider border-l-2 border-emerald-600 pl-3 sm:pl-4 py-1.5 bg-emerald-50/60">
                   One complete operational foundation. Zero gaps. Everything ready on day one.
                 </div>
               </div>

@@ -202,7 +202,7 @@ const Assessment = () => {
             <div>
               <div className="mb-12">
                 <div className="flex justify-between items-end mb-4">
-                  <span className="text-emerald-800 mono font-bold uppercase tracking-widest text-xs">
+                  <span className="text-emerald-800 mono font-bold tracking-wide text-xs">
                     Question {step + 1} of {questions.length}
                   </span>
                   <span className="text-zinc-600 mono font-bold text-xs">
@@ -258,7 +258,7 @@ const Assessment = () => {
               {/* Preliminary Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="border border-rose-200 p-8 bg-rose-50/60 shadow-sm">
-                  <div className="mono text-xs uppercase tracking-widest text-rose-700 font-bold mb-3">
+                  <div className="mono text-xs tracking-wide text-rose-700 font-bold mb-3">
                     Estimated Monthly Financial Drag (Action Required)
                   </div>
                   <div className="text-5xl md:text-6xl font-bold text-rose-600 mb-3">
@@ -270,7 +270,7 @@ const Assessment = () => {
                 </div>
 
                 <div className="border border-emerald-200 p-8 bg-emerald-50/70 shadow-sm">
-                  <div className="mono text-xs uppercase tracking-widest text-emerald-800 font-bold mb-3">
+                  <div className="mono text-xs tracking-wide text-emerald-800 font-bold mb-3">
                     Primary Strategic Objective
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 mb-3">
@@ -285,7 +285,7 @@ const Assessment = () => {
               {/* Gate with Formspree */}
               {!isReportUnlocked ? (
                 <div className="border-2 border-emerald-600 bg-white p-6 md:p-10 shadow-xl relative">
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs uppercase tracking-widest font-bold flex items-center gap-1.5 shadow-sm">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs tracking-wide font-bold flex items-center gap-1.5 shadow-sm">
                     <Lock size={13} /> Full Report Ready To Dispatch
                   </div>
 
@@ -300,7 +300,7 @@ const Assessment = () => {
 
                   <form onSubmit={handleSendReport} className="max-w-md mx-auto space-y-4">
                     <div>
-                      <label className="mono text-[11px] uppercase text-zinc-700 font-bold block mb-1.5">
+                      <label className="mono text-[11px] text-zinc-700 font-bold block mb-1.5">
                         Your Full Name *
                       </label>
                       <Input
@@ -313,7 +313,7 @@ const Assessment = () => {
                     </div>
 
                     <div>
-                      <label className="mono text-[11px] uppercase text-zinc-700 font-bold block mb-1.5">
+                      <label className="mono text-[11px] text-zinc-700 font-bold block mb-1.5">
                         Email *
                       </label>
                       <Input
@@ -328,7 +328,7 @@ const Assessment = () => {
                     </div>
 
                     <div>
-                      <label className="mono text-[11px] uppercase text-zinc-700 font-bold block mb-1.5">
+                      <label className="mono text-[11px] text-zinc-700 font-bold block mb-1.5">
                         Phone / WhatsApp (Optional)
                       </label>
                       <PhoneInput
@@ -413,7 +413,7 @@ const Assessment = () => {
               <div className="flex justify-center pt-4">
                 <Button
                   variant="outline"
-                  className="border-zinc-300 text-zinc-900 py-6 px-8 rounded-none font-bold text-xs uppercase tracking-wider hover:bg-zinc-100"
+                  className="border-zinc-300 text-zinc-900 py-6 px-8 rounded-none font-bold text-xs tracking-wider hover:bg-zinc-100"
                   onClick={() => {
                     setStep(0);
                     setAnswers({});
