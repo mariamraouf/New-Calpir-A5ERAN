@@ -1,10 +1,11 @@
 /**
  * What each service costs, in the three currencies we sell in.
  *
- * These are starting prices for a defined scope, not estimates. The promise on
- * the site is that you pay for what you see, so anything outside a listed scope
- * is quoted and agreed before it starts rather than appearing on an invoice
- * afterwards.
+ * These are fixed prices for a defined scope, not starting points and not
+ * estimates. The promise on the site is that you pay for what you see, so the
+ * number here is the number charged. If a job genuinely falls outside the
+ * listed scope, the new figure is agreed before any work starts, never added
+ * to an invoice afterwards. Nothing on the site should ever print "from".
  *
  * GBP and EUR are set as their own clean numbers rather than converted from USD
  * at whatever today's rate is, so a price does not move because a currency did.

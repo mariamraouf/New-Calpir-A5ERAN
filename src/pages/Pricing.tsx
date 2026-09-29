@@ -41,9 +41,8 @@ const Pricing = () => {
             and what it costs.
           </h1>
           <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-            Four parts of a business, each on its own monthly plan. Buy one, buy
-            two, or take all four together and pay less than the sum. Cancel any
-            month.
+            Six departments, each on its own monthly plan. Buy one, buy two, or
+            take the lot together and pay less than the sum. Cancel any month.
           </p>
         </div>
       </section>
@@ -59,8 +58,8 @@ const Pricing = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-14">
             {[
               {
-                h: 'You pay for what you see',
-                p: 'The number on the card is the number. If your scope genuinely needs more, you are told the new figure before anything starts, not on the invoice afterwards.',
+                h: 'Fixed, not "from"',
+                p: 'The number on the card is the number you are charged. No "starting at", no asterisk, no quote call. If a job genuinely falls outside the listed scope you are told the new figure before anything starts, never on the invoice afterwards.',
               },
               {
                 h: 'Cancel any month',

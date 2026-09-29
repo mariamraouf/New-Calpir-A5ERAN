@@ -53,10 +53,22 @@ const CATALOG: Record<string, CatalogEntry> = {
     price: { usd: 449, gbp: 359, eur: 419 },
     mode: 'subscription',
   },
+  'compliance-filings-monthly': {
+    name: 'Compliance & Filings plan',
+    description: 'Monthly filing deadlines, registered agent and company records.',
+    price: { usd: 249, gbp: 199, eur: 229 },
+    mode: 'subscription',
+  },
+  'brand-content-monthly': {
+    name: 'Brand & Content plan',
+    description: 'Monthly content calendar, graphics, video and brand templates.',
+    price: { usd: 699, gbp: 559, eur: 649 },
+    mode: 'subscription',
+  },
   'everything-monthly': {
     name: 'Everything plan',
-    description: 'All four monthly plans together, on one invoice.',
-    price: { usd: 2499, gbp: 1999, eur: 2329 },
+    description: 'All six monthly plans together, on one invoice.',
+    price: { usd: 2899, gbp: 2319, eur: 2699 },
     mode: 'subscription',
   },
   'starter-build': {

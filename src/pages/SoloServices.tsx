@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
+import RecurringOption from '@/components/plans/RecurringOption';
 import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servicePricing';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { SERVICE_CATEGORIES } from '@/data/serviceCategories';
@@ -231,6 +232,10 @@ const SoloServices = () => {
                     </motion.div>
                   );
                 })}
+              </div>
+
+              <div className="mt-7">
+                <RecurringOption categoryId={category.id} currency={currency} />
               </div>
             </div>
           ))}

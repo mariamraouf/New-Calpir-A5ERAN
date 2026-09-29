@@ -93,12 +93,12 @@ const GrowthAndPlans = () => {
               Or let us <span className="text-emerald-700">run it.</span>
             </h2>
             <p className="text-lg text-slate-600 max-w-[720px] mx-auto leading-relaxed">
-              Four parts of a business, each on its own monthly plan. Take one,
-              take all four for less than the sum, cancel any month.
+              Six departments, each on its own monthly plan. Take one, take the lot
+              for less than the sum, cancel any month.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
             {singles.map((plan) => {
               const Icon = PLAN_ICONS[plan.id] || Search;
               return (

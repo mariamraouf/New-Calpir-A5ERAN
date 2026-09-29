@@ -13,6 +13,7 @@ import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { ArchitectureFlow } from '@/components/visuals/ArchitectureFlow';
 import { SERVICE_CATEGORIES as CATEGORIES } from '@/data/serviceCategories';
+import RecurringOption from '@/components/plans/RecurringOption';
 
 
 const Services = () => {
@@ -100,7 +101,7 @@ const Services = () => {
                 <motion.div {...reveal} className="mb-8 max-w-[760px]">
                   <div className="flex flex-wrap items-center gap-4 mb-4">
                     <SectionLabel>{category.name}</SectionLabel>
-                    <span className="mono text-xs tracking-wide text-slate-500 font-bold">
+                    <span className="text-[13.5px] text-slate-500 font-semibold">
                       {services.length} services
                     </span>
                   </div>
@@ -116,7 +117,7 @@ const Services = () => {
                       <Link
                         key={service.id}
                         to={`/services/${service.slug}`}
-                        className="border border-slate-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block flex flex-col"
+                        className="surface surface-hover p-7 group flex flex-col"
                       >
                         <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform origin-left">
                           <Icon size={32} />
@@ -127,12 +128,16 @@ const Services = () => {
                         <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
                           {service.shortDesc}
                         </p>
-                        <div className="flex items-center gap-2 text-emerald-700 mono text-xs tracking-wider font-bold">
-                          Explore Module <ArrowRight size={14} />
-                        </div>
+                        <span className="card-cta mt-auto">
+                          See what is included <ArrowRight size={15} />
+                        </span>
                       </Link>
                     );
                   })}
+                </div>
+
+                <div className="mt-7">
+                  <RecurringOption categoryId={category.id} />
                 </div>
               </div>
             );

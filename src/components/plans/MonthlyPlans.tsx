@@ -98,7 +98,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
 
             <div className="bg-white text-navy p-8 rounded-xl">
               <p className="mono text-[11px] tracking-wide text-slate-400 mb-2">
-                All four bought separately
+                Bought separately
               </p>
               <p className="price-figure text-2xl font-bold text-slate-400 line-through mb-5">
                 {symbol}{separate.toLocaleString('en-US')} a month

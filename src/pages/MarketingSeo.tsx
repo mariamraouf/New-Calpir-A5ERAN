@@ -85,7 +85,7 @@ const MarketingSeo = () => {
               </p>
               {price && (
                 <div className="mono text-xs tracking-wide font-bold text-emerald-700">
-                  From {symbol}{price[currency].toLocaleString('en-US')}
+                  {symbol}{price[currency].toLocaleString('en-US')}
                 </div>
               )}
             </Link>
