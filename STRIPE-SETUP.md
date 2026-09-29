@@ -26,6 +26,47 @@ the moment somebody clicks.
 **Never paste that key into a file in this repository.** It belongs only in the
 Vercel dashboard. Anyone holding it can charge your account.
 
+
+## Step two: the webhook
+
+Checkout tells the buyer they paid. The webhook is what tells *you*. Without it
+somebody can subscribe, close the tab, and you find out when the money appears
+in Stripe a week later.
+
+1. Stripe dashboard → **Developers → Webhooks → Add endpoint**.
+2. Endpoint URL: `https://www.calpir.com/api/stripe-webhook`
+3. Select these four events:
+   - `checkout.session.completed`
+   - `customer.subscription.deleted`
+   - `invoice.payment_failed`
+   - `invoice.paid`
+4. Stripe shows you a **Signing secret** starting `whsec_`. Copy it.
+5. Vercel → Settings → Environment Variables → add `STRIPE_WEBHOOK_SECRET`
+   with that value. Redeploy.
+
+You will then get an email when somebody subscribes, when somebody cancels, and
+when a renewal fails. They go through the same Formspree address the contact
+form uses, so there is nothing new to sign up for.
+
+The endpoint verifies Stripe's signature on every request and rejects anything
+that does not match, including replays of an old genuine event. Without that
+check anyone who found the URL could invent sales.
+
+## Step three: three switches in the Stripe dashboard
+
+These need no code and Stripe's own guidance recommends all three for a
+business shaped like yours.
+
+| Switch | Where | Why |
+| --- | --- | --- |
+| **Customer portal** | Settings → Billing → Customer portal | Subscribers cancel and update their own cards instead of emailing you. |
+| **Revenue recovery** | Billing → Revenue recovery | Smart retries plus automatic failed-payment emails. Recovers a slice of every failed renewal without you doing anything. |
+| **Stripe Tax** | Tax → Settings | Set your head office and a product tax category. You are below the VAT threshold, so leave collection off: Stripe then watches your sales against UK and EU thresholds for free and warns you before you cross one. |
+
+The tax one matters most. Selling services into the UK and EU, the moment you
+cross a registration threshold the obligation is immediate and backdated. Free
+monitoring means you find out in advance rather than from an accountant.
+
 ## Optional
 
 | Name | What it does |
