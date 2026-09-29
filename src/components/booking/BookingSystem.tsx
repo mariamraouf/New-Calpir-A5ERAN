@@ -135,17 +135,17 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
   };
 
   return (
-    <div className={bare ? "bg-white p-4 sm:p-6 md:p-8" : "border border-zinc-200 bg-white p-4 sm:p-6 md:p-10 shadow-lg"}>
+    <div className={bare ? "bg-white p-4 sm:p-6 md:p-8" : "border border-slate-200 bg-white p-4 sm:p-6 md:p-10 shadow-lg"}>
       {step === 1 && (
         <div className="space-y-6 sm:space-y-8">
-          <div className="flex items-center gap-3.5 sm:gap-5 pb-5 sm:pb-6 border-b border-zinc-200">
+          <div className="flex items-center gap-3.5 sm:gap-5 pb-5 sm:pb-6 border-b border-slate-200">
             <div className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-600 flex items-center justify-center shrink-0 text-white shadow-sm">
               <User size={24} className="sm:w-7 sm:h-7" />
             </div>
             <div>
               <div className="mono text-[10px] sm:text-xs tracking-wide text-emerald-800 font-bold">Squad Lead</div>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950">Maria</h3>
-              <p className="mono text-[10px] sm:text-xs text-zinc-600 font-bold">30 MINUTE FREE STRATEGY CONSULTATION</p>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-navy">Maria</h3>
+              <p className="mono text-[10px] sm:text-xs text-slate-600 font-bold">30 MINUTE FREE STRATEGY CONSULTATION</p>
             </div>
           </div>
 
@@ -165,10 +165,10 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
                       onClick={() => setSelectedDate(date)}
                       className={cn(
                         "p-2 sm:p-3 border mono text-[10px] sm:text-xs flex flex-col items-center transition-all font-bold",
-                        isSelected ? "border-emerald-600 bg-emerald-600 text-white shadow-sm" : "border-zinc-200 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950 bg-zinc-50"
+                        isSelected ? "border-emerald-600 bg-emerald-600 text-white shadow-sm" : "border-slate-200 text-slate-600 hover:border-emerald-600 hover:text-navy bg-slate-50"
                       )}
                     >
-                      <span className={isSelected ? "text-emerald-100" : "text-zinc-500"}>{format(date, 'EEE')}</span>
+                      <span className={isSelected ? "text-emerald-100" : "text-slate-500"}>{format(date, 'EEE')}</span>
                       <span className="text-base sm:text-lg font-bold">{format(date, 'dd')}</span>
                     </button>
                   );
@@ -183,11 +183,11 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
                 </label>
                 <div className="w-full sm:w-56">
                   <Select value={userTimezone} onValueChange={setUserTimezone}>
-                    <SelectTrigger className="bg-white border-zinc-300 mono text-[10px] sm:text-[11px] text-zinc-950 h-8 sm:h-9 rounded-none flex items-center gap-1.5 focus:ring-emerald-600">
+                    <SelectTrigger className="bg-white border-slate-300 mono text-[10px] sm:text-[11px] text-navy h-8 sm:h-9 rounded-xl flex items-center gap-1.5 focus:ring-emerald-600">
                       <Globe size={12} className="text-emerald-600 shrink-0" />
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-zinc-200 text-zinc-950 max-h-64 shadow-xl z-50">
+                    <SelectContent className="bg-white border-slate-200 text-navy max-h-64 shadow-xl z-50">
                       {timezones.map((tz) => (
                         <SelectItem key={tz.value} value={tz.value} className="mono text-xs hover:bg-emerald-50 cursor-pointer">
                           {tz.label}
@@ -210,10 +210,10 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
                       className={cn(
                         "p-2 sm:p-2.5 border mono text-[11px] sm:text-xs font-bold transition-all",
                         !free
-                          ? "border-zinc-100 text-zinc-300 bg-zinc-50 line-through cursor-not-allowed"
+                          ? "border-slate-100 text-zinc-300 bg-slate-50 line-through cursor-not-allowed"
                           : selectedTime === time
                             ? "border-emerald-600 bg-emerald-600 text-white shadow-sm"
-                            : "border-zinc-200 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950 bg-zinc-50",
+                            : "border-slate-200 text-slate-600 hover:border-emerald-600 hover:text-navy bg-slate-50",
                         loadingSlots && "opacity-60"
                       )}
                     >
@@ -229,7 +229,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
             type="button"
             disabled={!selectedTime}
             onClick={() => setStep(2)}
-            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-none font-bold text-sm sm:text-lg tracking-tight btn-hover"
+            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-xl font-bold text-sm sm:text-lg tracking-tight btn-hover"
           >
             Confirm Time Slot <ArrowRight className="ml-2" size={16} />
           </Button>
@@ -239,55 +239,55 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
       {step === 2 && (
         <form onSubmit={handleBooking} className="space-y-5 sm:space-y-6 animate-in fade-in slide-in-from-bottom-4">
           <div className="text-center space-y-1">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-950">Finalize booking details</h3>
-            <p className="text-xs sm:text-sm text-zinc-600">Enter your details to generate your Google Meet video link</p>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-navy">Finalize booking details</h3>
+            <p className="text-xs sm:text-sm text-slate-600">Enter your details to generate your Google Meet video link</p>
           </div>
 
           <div className="space-y-3.5 sm:space-y-4">
             <div className="space-y-1">
-              <label className="mono text-[11px] sm:text-xs text-zinc-700 font-bold block">Your Name *</label>
+              <label className="mono text-[11px] sm:text-xs text-slate-600 font-bold block">Your Name *</label>
               <Input 
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-white text-zinc-950 border-zinc-300 rounded-none h-11 sm:h-12 mono text-xs sm:text-sm focus:border-emerald-600"
+                className="bg-white text-navy border-slate-300 rounded-xl h-11 sm:h-12 mono text-xs sm:text-sm focus:border-emerald-600"
               />
             </div>
             
             <div className="space-y-1">
-              <label className="mono text-[11px] sm:text-xs text-zinc-700 font-bold block">Email *</label>
+              <label className="mono text-[11px] sm:text-xs text-slate-600 font-bold block">Email *</label>
               <Input 
                 required
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-white text-zinc-950 border-zinc-300 rounded-none h-11 sm:h-12 mono text-xs sm:text-sm focus:border-emerald-600"
+                className="bg-white text-navy border-slate-300 rounded-xl h-11 sm:h-12 mono text-xs sm:text-sm focus:border-emerald-600"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="mono text-[11px] sm:text-xs text-zinc-700 font-bold block">What are you looking to build or solve? (Optional)</label>
+              <label className="mono text-[11px] sm:text-xs text-slate-600 font-bold block">What are you looking to build or solve? (Optional)</label>
               <Textarea 
                 value={formData.businessNotes}
                 onChange={(e) => setFormData({ ...formData, businessNotes: e.target.value })}
-                className="bg-white text-zinc-950 border-zinc-300 rounded-none mono text-xs sm:text-sm focus:border-emerald-600 resize-none"
+                className="bg-white text-navy border-slate-300 rounded-xl mono text-xs sm:text-sm focus:border-emerald-600 resize-none"
                 rows={3}
               />
             </div>
           </div>
 
-          <div className="bg-zinc-50 border border-zinc-200 p-3.5 sm:p-5 space-y-2 sm:space-y-3 text-xs sm:text-sm">
-            <div className="flex justify-between items-center border-b border-zinc-200 pb-2">
-              <span className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Date</span>
-              <span className="font-bold text-zinc-950">{format(selectedDate, 'MMMM dd, yyyy')}</span>
+          <div className="bg-slate-50 border border-slate-200 p-3.5 sm:p-5 space-y-2 sm:space-y-3 text-xs sm:text-sm">
+            <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+              <span className="mono text-[10px] sm:text-xs tracking-wider text-slate-500 font-bold">Date</span>
+              <span className="font-bold text-navy">{format(selectedDate, 'MMMM dd, yyyy')}</span>
             </div>
-            <div className="flex justify-between items-center border-b border-zinc-200 pb-2">
-              <span className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Time</span>
-              <span className="font-bold text-zinc-950">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
+            <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+              <span className="mono text-[10px] sm:text-xs tracking-wider text-slate-500 font-bold">Time</span>
+              <span className="font-bold text-navy">{convertToUserTime(selectedTime!)} ({userTimezone})</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Platform</span>
+              <span className="mono text-[10px] sm:text-xs tracking-wider text-slate-500 font-bold">Platform</span>
               <span className="font-bold text-emerald-700">Google Meet</span>
             </div>
           </div>
@@ -306,13 +306,13 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
       />
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-zinc-300 text-zinc-800 hover:bg-zinc-100 py-5 sm:py-6 rounded-none font-bold text-[11px] sm:text-xs">
+            <Button type="button" variant="outline" onClick={() => setStep(1)} disabled={isSending} className="border-slate-300 text-zinc-800 hover:bg-slate-100 py-5 sm:py-6 rounded-xl font-bold text-[11px] sm:text-xs">
               Back
             </Button>
             <Button 
               type="submit"
               disabled={!formData.name || !formData.email || isSending}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-none font-bold text-[11px] sm:text-xs flex items-center justify-center gap-2 btn-hover"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white py-5 sm:py-6 rounded-xl font-bold text-[11px] sm:text-xs flex items-center justify-center gap-2 btn-hover"
             >
               {isSending ? <Loader2 className="animate-spin" size={16} /> : "Confirm Session"}
             </Button>
@@ -325,13 +325,13 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
           <div className="w-14 h-14 sm:w-16 sm:h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto">
             <CheckCircle2 size={32} />
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950">Booking confirmed</h3>
-          <p className="text-zinc-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-            Your strategy session with Maria is in the calendar for <span className="text-zinc-950 font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. The invite is on its way to <span className="text-emerald-700 font-bold">{formData.email}</span>.
+          <h3 className="text-2xl sm:text-3xl font-bold text-navy">Booking confirmed</h3>
+          <p className="text-slate-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+            Your strategy session with Maria is in the calendar for <span className="text-navy font-bold">{format(selectedDate, 'MMMM dd')} at {convertToUserTime(selectedTime!)}</span>. The invite is on its way to <span className="text-emerald-700 font-bold">{formData.email}</span>.
           </p>
           {meetLink && (
             <div className="space-y-2">
-              <p className="mono text-[10px] sm:text-xs tracking-wider text-zinc-500 font-bold">Your Google Meet link</p>
+              <p className="mono text-[10px] sm:text-xs tracking-wider text-slate-500 font-bold">Your Google Meet link</p>
               <a
                 href={meetLink}
                 target="_blank"
@@ -342,7 +342,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
               </a>
             </div>
           )}
-          <Button asChild variant="outline" className="border-zinc-300 text-zinc-900 py-4 sm:py-5 px-6 sm:px-8 rounded-none font-bold hover:bg-zinc-100 text-xs">
+          <Button asChild variant="outline" className="border-slate-300 text-navy py-4 sm:py-5 px-6 sm:px-8 rounded-xl font-bold hover:bg-slate-100 text-xs">
             <a href="/">Return Home</a>
           </Button>
         </div>

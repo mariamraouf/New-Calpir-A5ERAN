@@ -24,11 +24,11 @@ const SystemStatus = () => {
   ];
 
   return (
-    <div className="border border-zinc-200 bg-zinc-50 p-6 mono text-xs tracking-wide text-zinc-700 shadow-sm">
-      <div className="flex justify-between items-center mb-6 border-b border-zinc-200 pb-4">
+    <div className="border border-slate-200 bg-slate-50 p-6 mono text-xs tracking-wide text-slate-600 shadow-sm">
+      <div className="flex justify-between items-center mb-6 border-b border-slate-200 pb-4">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 bg-emerald-600 rounded-full animate-pulse" />
-          <span className="font-bold text-zinc-950">SYSTEM_STATUS: {status}</span>
+          <span className="font-bold text-navy">SYSTEM_STATUS: {status}</span>
         </div>
         <div className="text-emerald-800 font-bold">UPTIME: {uptime}%</div>
       </div>
@@ -36,16 +36,16 @@ const SystemStatus = () => {
       <div className="space-y-3 mb-6">
         {systems.map((s) => (
           <div key={s.name} className="flex justify-between items-center">
-            <span className="text-zinc-600 font-semibold">{s.name}</span>
+            <span className="text-slate-600 font-semibold">{s.name}</span>
             <span className="text-emerald-700 font-bold">{s.status}</span>
           </div>
         ))}
       </div>
 
-      <div className="pt-4 border-t border-zinc-200">
+      <div className="pt-4 border-t border-slate-200">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-zinc-600 font-bold">LATENCY</span>
-          <span className="text-zinc-950 font-bold">{latency}MS</span>
+          <span className="text-slate-600 font-bold">LATENCY</span>
+          <span className="text-navy font-bold">{latency}MS</span>
         </div>
         <div className="w-full h-1.5 bg-zinc-200 overflow-hidden">
           <motion.div 

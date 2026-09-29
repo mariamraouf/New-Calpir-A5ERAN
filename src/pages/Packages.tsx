@@ -125,7 +125,7 @@ const Packages = () => {
         </span>
       );
     }
-    return <span className="mono text-xs font-bold text-zinc-900">{val}</span>;
+    return <span className="mono text-xs font-bold text-navy">{val}</span>;
   };
 
   return (
@@ -137,14 +137,14 @@ const Packages = () => {
       />
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom text-center">
           <p className="text-emerald-700 font-semibold mb-5 tracking-wide">Packages</p>
-          <h1 className="text-4xl md:text-6xl leading-[1.05] mb-6 font-extrabold tracking-tight text-zinc-950">
+          <h1 className="text-4xl md:text-6xl leading-[1.05] mb-6 font-extrabold tracking-tight text-navy">
             One payment. <br />
             <span className="text-emerald-700">A business that runs.</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-600 max-w-[760px] mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 max-w-[760px] mx-auto leading-relaxed">
             Three fixed scope builds that take you from nothing to open, in 7 to
             28 days. Click any feature to see exactly what gets built. A monthly
             plan afterwards is optional.
@@ -156,7 +156,7 @@ const Packages = () => {
         <div className="container-custom">
           {/* One time build packages */}
           <div className="flex justify-center mb-10">
-            <div className="inline-flex border border-zinc-200">
+            <div className="inline-flex border border-slate-200 rounded-full p-1 bg-white">
               {(['usd', 'gbp', 'eur'] as Currency[]).map((c) => (
                 <button
                   key={c}
@@ -164,8 +164,8 @@ const Packages = () => {
                   onClick={() => setCurrency(c)}
                   aria-pressed={currency === c}
                   className={cn(
-                    'px-5 py-2 text-sm font-semibold transition-colors',
-                    currency === c ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-500 hover:text-zinc-900',
+                    'px-5 py-2 text-sm font-semibold rounded-full transition-colors',
+                    currency === c ? 'bg-navy text-white' : 'bg-transparent text-slate-500 hover:text-navy',
                   )}
                 >
                   {c === 'usd' ? '$ USD' : c === 'gbp' ? '\u00A3 GBP' : '\u20AC EUR'}
@@ -179,8 +179,8 @@ const Packages = () => {
               const Icon = p.icon;
               return (
                 <div key={i} className={cn(
-                  "bg-white p-8 md:p-10 border flex flex-col relative transition-all duration-300 shadow-sm",
-                  p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-zinc-200 hover:border-emerald-600 hover:shadow-md"
+                  "bg-white p-8 md:p-10 border rounded-2xl flex flex-col relative surface-hover",
+                  p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-slate-200 hover:border-emerald-600 hover:shadow-md"
                 )}>
                   {p.featured && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs tracking-wide font-bold flex items-center gap-1.5 shadow-md">
@@ -193,17 +193,17 @@ const Packages = () => {
                       <Icon size={20} />
                     </div>
                   </div>
-                  <h3 className="text-3xl font-bold text-zinc-950 mb-2">{p.name}</h3>
-                  <div className="price-figure text-5xl font-bold text-zinc-950 mb-1">
+                  <h3 className="text-3xl font-bold text-navy mb-2">{p.name}</h3>
+                  <div className="price-figure text-5xl font-bold text-navy mb-1">
                     {(() => { const b = buildFor(p.name); return b ? formatPrice(b.price, currency) : p.price; })()}
                   </div>
-                  <div className="mono text-[11px] tracking-wide text-zinc-400 font-bold mb-3">
+                  <div className="mono text-[11px] tracking-wide text-slate-400 font-bold mb-3">
                     One time payment. Nothing recurring.
                   </div>
-                  <div className="mono text-xs font-bold text-zinc-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
-                  <p className="text-zinc-600 text-sm leading-relaxed mb-8">{p.desc}</p>
+                  <div className="mono text-xs font-bold text-slate-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-8">{p.desc}</p>
                   
-                  <div className="space-y-3 mb-10 flex-grow border-t border-zinc-200 pt-6">
+                  <div className="space-y-3 mb-10 flex-grow border-t border-slate-200 pt-6">
                     {p.features.map((f, j) => (
                       <div key={j} className="flex gap-3 items-start group/item">
                         <CheckCircle2 className="text-emerald-600 shrink-0 mt-0.5" size={16} />
@@ -234,7 +234,7 @@ const Packages = () => {
                         footnote={b.timeline}
                       />
                     ) : (
-                      <Button asChild className="w-full py-7 rounded-none font-bold text-lg tracking-tight bg-zinc-900 text-white">
+                      <Button asChild className="w-full py-7 rounded-xl font-bold text-lg tracking-tight bg-navy-800 text-white">
                         <Link to="/contact">Get started with {p.name}</Link>
                       </Button>
                     );
@@ -249,10 +249,10 @@ const Packages = () => {
             <SectionLabel>In-Depth Breakdown</SectionLabel>
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
               <div>
-                <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight">
+                <h2 className="text-3xl md:text-5xl font-bold text-navy tracking-tight">
                   Detailed Feature <br /> <span className="text-emerald-700">Comparison.</span>
                 </h2>
-                <p className="text-zinc-600 text-sm mt-2 max-w-[500px]">
+                <p className="text-slate-600 text-sm mt-2 max-w-[500px]">
                   Click on any feature name with an info icon to see our detailed execution methodology.
                 </p>
               </div>
@@ -268,28 +268,28 @@ const Packages = () => {
               </div>
             </div>
 
-            <div className="border border-zinc-200 bg-white overflow-x-auto shadow-md">
+            <div className="border border-slate-200 bg-white overflow-x-auto shadow-md">
               <table className="w-full text-left border-collapse min-w-[700px]">
                 <thead>
-                  <tr className="border-b border-zinc-200 bg-zinc-50">
+                  <tr className="border-b border-slate-200 bg-slate-50">
                     <th className="p-5 mono text-xs tracking-wider text-emerald-800 font-bold w-2/5">
                       System Module & Capability
                     </th>
-                    <th className="p-5 mono text-xs tracking-wider text-zinc-900 font-bold w-1/5">
+                    <th className="p-5 mono text-xs tracking-wider text-navy font-bold w-1/5">
                       Starter ($1,499)
                     </th>
                     <th className="p-5 mono text-xs tracking-wider text-emerald-800 font-bold w-1/5 bg-emerald-50/50">
                       Growth ($3,499)
                     </th>
-                    <th className="p-5 mono text-xs tracking-wider text-zinc-900 font-bold w-1/5">
+                    <th className="p-5 mono text-xs tracking-wider text-navy font-bold w-1/5">
                       Ultimate ($6,999)
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-200">
                   {comparisonRows.map((row, i) => (
-                    <tr key={i} className="hover:bg-zinc-50/80 transition-colors">
-                      <td className="p-5 font-bold text-zinc-950 text-xs mono">
+                    <tr key={i} className="hover:bg-slate-50/80 transition-colors">
+                      <td className="p-5 font-bold text-navy text-xs mono">
                         {row.modal ? (
                           <button
                             type="button"
@@ -317,7 +317,7 @@ const Packages = () => {
           <div>
             <SectionLabel>À La Carte Add-Ons</SectionLabel>
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-              <h2 className="text-3xl md:text-5xl font-bold text-zinc-950">Need something specific?</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-navy">Need something specific?</h2>
               <Button asChild variant="outline" className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-xs font-bold">
                 <Link to="/solo-services">View All Solo Services <ArrowRight size={14} className="ml-1" /></Link>
               </Button>
@@ -330,17 +330,17 @@ const Packages = () => {
                 { name: "Brand Identity & Palettes", price: "$399", desc: "Full visual identity, SVG logo suite & color psychology", key: "brand_palette" },
                 { name: "Short-Form Video Reels (5x)", price: "$299", desc: "Kinetic subtitles, sound design & viral editing for TikTok/IG", key: "video_creative" }
               ].map((add, i) => (
-                <div key={i} className="border border-zinc-200 p-6 bg-zinc-50/50 flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all">
+                <div key={i} className="surface surface-hover p-6 flex flex-col justify-between">
                   <div>
-                    <div className="mono text-xs tracking-wider text-zinc-700 font-bold mb-2">{add.name}</div>
+                    <div className="mono text-xs tracking-wider text-slate-600 font-bold mb-2">{add.name}</div>
                     <div className="text-3xl font-bold text-emerald-700 mb-2">{add.price}</div>
-                    <p className="text-xs text-zinc-600 leading-relaxed mb-4">{add.desc}</p>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4">{add.desc}</p>
                   </div>
                   <Button 
                     type="button" 
                     variant="outline" 
                     onClick={() => setActiveModal(add.key)}
-                    className="w-full border-zinc-300 text-zinc-800 hover:bg-white hover:border-emerald-600 mono text-[10px] font-bold py-3"
+                    className="w-full border-slate-300 text-zinc-800 hover:bg-white hover:border-emerald-600 mono text-[10px] font-bold py-3"
                   >
                     Inspect Add-on
                   </Button>

@@ -71,11 +71,11 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
           }}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? 'hero-email-error' : undefined}
-          className="flex-1 min-w-0 min-h-[56px] sm:min-h-[64px] border border-zinc-300 bg-white px-4 text-sm sm:text-base text-zinc-900 placeholder:text-zinc-400 rounded-none focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-colors"
+          className="flex-1 min-w-0 min-h-[56px] sm:min-h-[64px] border border-slate-300 bg-white px-4 text-sm sm:text-base text-navy placeholder:text-slate-400 rounded-xl focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 transition-colors"
         />
         <Button
           type="submit"
-          className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 min-h-[56px] sm:min-h-[64px] h-auto rounded-none font-bold text-xs sm:text-base tracking-tight btn-hover shadow-md shrink-0"
+          className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-8 min-h-[56px] sm:min-h-[64px] h-auto rounded-xl font-bold text-xs sm:text-base tracking-tight btn-hover shadow-md shrink-0"
         >
           {label} <ArrowRight size={16} className="ml-1.5" />
         </Button>
@@ -90,7 +90,7 @@ export const EmailCaptureCTA: React.FC<EmailCaptureCTAProps> = ({
           {error}
         </p>
       ) : (
-        <p className="mt-2.5 mono text-[11px] tracking-wider text-zinc-500 text-center max-w-xl mx-auto">
+        <p className="mt-2.5 mono text-[11px] tracking-wider text-slate-500 text-center max-w-xl mx-auto">
           Free 30 minute call. No obligation, and we will tell you if you do not need us.
         </p>
       )}

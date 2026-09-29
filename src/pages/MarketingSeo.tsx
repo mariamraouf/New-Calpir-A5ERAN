@@ -58,10 +58,10 @@ const MarketingSeo = () => {
 
   const renderServiceGroup = (title: string, blurb: string, ids: string[]) => (
     <div className="mb-16">
-      <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-950 mb-3">
+      <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-navy mb-3">
         {title}
       </h3>
-      <p className="text-zinc-600 mb-8 max-w-[720px] leading-relaxed">{blurb}</p>
+      <p className="text-slate-600 mb-8 max-w-[720px] leading-relaxed">{blurb}</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {ids.map((id) => {
           const service = allServicesCatalog.find((s) => s.id === id);
@@ -72,15 +72,15 @@ const MarketingSeo = () => {
             <Link
               key={id}
               to={`/services/${service.slug}`}
-              className="group border border-zinc-200 p-6 bg-white hover:border-emerald-600 hover:shadow-md transition-all flex flex-col"
+              className="group surface surface-hover p-6 flex flex-col"
             >
               <div className="w-10 h-10 flex items-center justify-center bg-emerald-50 border border-emerald-200 mb-4">
                 <Icon size={18} className="text-emerald-700" />
               </div>
-              <h4 className="font-bold text-zinc-950 mb-2 leading-tight group-hover:text-emerald-700 transition-colors">
+              <h4 className="font-bold text-navy mb-2 leading-tight group-hover:text-emerald-700 transition-colors">
                 {service.title}
               </h4>
-              <p className="text-sm text-zinc-600 leading-relaxed mb-4 flex-grow">
+              <p className="text-sm text-slate-600 leading-relaxed mb-4 flex-grow">
                 {service.shortDesc}
               </p>
               {price && (
@@ -104,15 +104,15 @@ const MarketingSeo = () => {
       />
       <Navbar />
 
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <div className="max-w-[900px]">
             <SectionLabel>Marketing &amp; SEO</SectionLabel>
-            <h1 className="text-5xl md:text-7xl leading-[0.95] mb-8 font-bold tracking-tight text-zinc-950">
+            <h1 className="text-5xl md:text-7xl leading-[0.95] mb-8 font-bold tracking-tight text-navy">
               Being good is not <br />
               <span className="text-emerald-700">being found.</span>
             </h1>
-            <p className="text-lg md:text-2xl text-zinc-600 leading-relaxed mb-8">
+            <p className="text-lg md:text-2xl text-slate-600 leading-relaxed mb-8">
               Most small businesses lose to competitors who are worse at the job
               and better at being seen. We do the search work, the content, the
               ads and the outbound, monthly, and we show you what moved.
@@ -120,7 +120,7 @@ const MarketingSeo = () => {
             <div className="flex flex-wrap gap-4">
               <Button
                 asChild
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-9 py-7 rounded-none font-bold tracking-tight transition-transform hover:-translate-y-1"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-9 py-7 rounded-xl font-bold tracking-tight transition-transform hover:-translate-y-1"
               >
                 <a href="#plan">
                   See the monthly plan <ArrowRight size={18} className="ml-2" />
@@ -129,7 +129,7 @@ const MarketingSeo = () => {
               <Button
                 asChild
                 variant="outline"
-                className="border-zinc-300 text-zinc-800 hover:bg-zinc-50 px-9 py-7 rounded-none font-bold tracking-tight"
+                className="border-slate-300 text-zinc-800 hover:bg-slate-50 px-9 py-7 rounded-xl font-bold tracking-tight"
               >
                 <Link to="/services">Browse every service</Link>
               </Button>
@@ -139,14 +139,14 @@ const MarketingSeo = () => {
       </section>
 
       {/* The honest framing */}
-      <section className="section-padding border-b border-zinc-200">
+      <section className="section-padding border-b border-slate-200">
         <div className="container-custom grid lg:grid-cols-[1fr,1.1fr] gap-14 items-start">
           <div>
             <SectionLabel>How we work</SectionLabel>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-950 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-navy mb-6">
               No dashboards <br /> full of nothing.
             </h2>
-            <p className="text-zinc-600 text-lg leading-relaxed">
+            <p className="text-slate-600 text-lg leading-relaxed">
               Impressions went up. Reach improved. Engagement is trending. None
               of that is money. We report on the searches that bring buyers, the
               enquiries that arrive, and what each one cost, and when something
@@ -173,11 +173,11 @@ const MarketingSeo = () => {
                 p: 'Conversion tracking, call tracking and attribution go in before the spending starts, so you can tell which half of the marketing worked.',
               },
             ].map((item) => (
-              <div key={item.h} className="flex gap-4 border-b border-zinc-100 pb-5">
+              <div key={item.h} className="flex gap-4 border-b border-slate-100 pb-5">
                 <Check size={20} className="text-emerald-600 shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-zinc-950 mb-1">{item.h}</h3>
-                  <p className="text-zinc-600 leading-relaxed">{item.p}</p>
+                  <h3 className="font-bold text-navy mb-1">{item.h}</h3>
+                  <p className="text-slate-600 leading-relaxed">{item.p}</p>
                 </div>
               </div>
             ))}
@@ -186,14 +186,14 @@ const MarketingSeo = () => {
       </section>
 
       {/* The services under the pillar */}
-      <section className="section-padding border-b border-zinc-200 bg-zinc-50/60">
+      <section className="section-padding border-b border-slate-200 bg-slate-50/60">
         <div className="container-custom">
           <div className="mb-14">
             <SectionLabel>What sits under it</SectionLabel>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-5">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-navy mb-5">
               Twelve services, <br /> three jobs.
             </h2>
-            <p className="text-lg text-zinc-600 max-w-[760px] leading-relaxed">
+            <p className="text-lg text-slate-600 max-w-[760px] leading-relaxed">
               Get found, create demand, turn it into revenue. Buy any of these on
               their own, or take the monthly plan and we run the lot.
             </p>
@@ -218,14 +218,14 @@ const MarketingSeo = () => {
       </section>
 
       {/* The plan */}
-      <section id="plan" className="section-padding border-b border-zinc-200">
+      <section id="plan" className="section-padding border-b border-slate-200">
         <div className="container-custom">
           <div className="text-center mb-4">
             <SectionLabel>Monthly</SectionLabel>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-zinc-950 mb-5">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-navy mb-5">
               Run it for <span className="text-emerald-700">me.</span>
             </h2>
-            <p className="text-lg text-zinc-600 max-w-[720px] mx-auto leading-relaxed">
+            <p className="text-lg text-slate-600 max-w-[720px] mx-auto leading-relaxed">
               One price, every month, for the whole marketing and search function.
               Cancel any month. Or add the other three plans and we run the rest
               of the business too.
@@ -256,7 +256,7 @@ const MarketingSeo = () => {
       <section className="section-padding">
         <div className="container-custom">
           <SectionLabel>Worth reading first</SectionLabel>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-950 mb-10">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-navy mb-10">
             Before you spend anything.
           </h2>
           <div className="grid sm:grid-cols-2 gap-5">
@@ -264,9 +264,9 @@ const MarketingSeo = () => {
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
-                className="group border border-zinc-200 p-7 hover:border-emerald-600 hover:shadow-md transition-all flex items-center justify-between gap-5"
+                className="group surface surface-hover p-7 flex items-center justify-between gap-5"
               >
-                <span className="font-bold text-zinc-950 group-hover:text-emerald-700 transition-colors leading-snug">
+                <span className="font-bold text-navy group-hover:text-emerald-700 transition-colors leading-snug">
                   {post.title}
                 </span>
                 <ArrowRight size={18} className="text-emerald-600 shrink-0" />

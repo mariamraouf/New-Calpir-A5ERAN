@@ -205,7 +205,7 @@ const Assessment = () => {
                   <span className="text-emerald-800 mono font-bold tracking-wide text-xs">
                     Question {step + 1} of {questions.length}
                   </span>
-                  <span className="text-zinc-600 mono font-bold text-xs">
+                  <span className="text-slate-600 mono font-bold text-xs">
                     {Math.round(((step + 1) / questions.length) * 100)}% Complete
                   </span>
                 </div>
@@ -220,7 +220,7 @@ const Assessment = () => {
                   exit={{ opacity: 0, x: -20 }}
                   className="space-y-8"
                 >
-                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-950 leading-tight">
+                  <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-navy leading-tight">
                     {questions[step].title}
                   </h1>
                   <div className="grid grid-cols-1 gap-3.5">
@@ -233,7 +233,7 @@ const Assessment = () => {
                           "p-6 md:p-7 text-left border transition-all font-bold text-base md:text-lg tracking-tight",
                           answers[questions[step].id] === opt.value
                             ? "border-emerald-600 bg-emerald-50 text-emerald-950 shadow-sm"
-                            : "border-zinc-200 bg-zinc-50 text-zinc-900 hover:border-emerald-600 hover:bg-white"
+                            : "border-slate-200 bg-slate-50 text-navy hover:border-emerald-600 hover:bg-white"
                         )}
                       >
                         {opt.label}
@@ -247,10 +247,10 @@ const Assessment = () => {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-12">
               <div className="text-center">
                 <SectionLabel>Analysis Complete</SectionLabel>
-                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-zinc-950 mb-4">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-navy mb-4">
                   Your Systems <br /> <span className="text-emerald-700">Blueprint</span>
                 </h1>
-                <p className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
                   We have mapped out your exact operational bottlenecks and projected ROI improvements.
                 </p>
               </div>
@@ -264,7 +264,7 @@ const Assessment = () => {
                   <div className="text-5xl md:text-6xl font-bold text-rose-600 mb-3">
                     ${results.wastedMoney.toLocaleString()}
                   </div>
-                  <p className="mono text-xs md:text-sm text-zinc-700 leading-relaxed">
+                  <p className="mono text-xs md:text-sm text-slate-600 leading-relaxed">
                     Based on {results.rawHours} hours per week of manual admin, you are losing <strong className="text-rose-700">${(results.annualWaste).toLocaleString()}</strong> every year in preventable overhead.
                   </p>
                 </div>
@@ -273,10 +273,10 @@ const Assessment = () => {
                   <div className="mono text-xs tracking-wide text-emerald-800 font-bold mb-3">
                     Primary Strategic Objective
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-zinc-950 mb-3">
+                  <h3 className="text-2xl md:text-3xl font-bold text-navy mb-3">
                     System synchronization
                   </h3>
-                  <p className="mono text-xs md:text-sm text-zinc-700 leading-relaxed">
+                  <p className="mono text-xs md:text-sm text-slate-600 leading-relaxed">
                     Eliminate your operational bottleneck by connecting your website, CRM, and AI workflows into one smooth self-running engine.
                   </p>
                 </div>
@@ -290,17 +290,17 @@ const Assessment = () => {
                   </div>
 
                   <div className="text-center max-w-xl mx-auto space-y-3 mb-8 pt-2">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-navy tracking-tight">
                       Unlock your complete 8-Page infrastructure blueprint
                     </h3>
-                    <p className="text-zinc-600 text-xs md:text-sm leading-relaxed mono">
+                    <p className="text-slate-600 text-xs md:text-sm leading-relaxed mono">
                       Enter your details below to instantly view your tailored module roadmap and receive the PDF copy in your inbox.
                     </p>
                   </div>
 
                   <form onSubmit={handleSendReport} className="max-w-md mx-auto space-y-4">
                     <div>
-                      <label className="mono text-[11px] text-zinc-700 font-bold block mb-1.5">
+                      <label className="mono text-[11px] text-slate-600 font-bold block mb-1.5">
                         Your Full Name *
                       </label>
                       <Input
@@ -308,12 +308,12 @@ const Assessment = () => {
                         placeholder="Alex Smith"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
-                        className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
+                        className="bg-white text-navy border-slate-300 rounded-xl h-12 mono text-sm focus:border-emerald-600"
                       />
                     </div>
 
                     <div>
-                      <label className="mono text-[11px] text-zinc-700 font-bold block mb-1.5">
+                      <label className="mono text-[11px] text-slate-600 font-bold block mb-1.5">
                         Email *
                       </label>
                       <Input
@@ -323,12 +323,12 @@ const Assessment = () => {
                         placeholder="alex@example.com"
                         value={userEmail}
                         onChange={(e) => setUserEmail(e.target.value)}
-                        className="bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-sm focus:border-emerald-600"
+                        className="bg-white text-navy border-slate-300 rounded-xl h-12 mono text-sm focus:border-emerald-600"
                       />
                     </div>
 
                     <div>
-                      <label className="mono text-[11px] text-zinc-700 font-bold block mb-1.5">
+                      <label className="mono text-[11px] text-slate-600 font-bold block mb-1.5">
                         Phone / WhatsApp (Optional)
                       </label>
                       <PhoneInput
@@ -359,7 +359,7 @@ const Assessment = () => {
                     <Button
                       type="submit"
                       disabled={isSendingReport || !userEmail || !userName}
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-none font-bold text-base md:text-lg tracking-tight btn-hover flex items-center justify-center gap-2"
+                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-7 rounded-xl font-bold text-base md:text-lg tracking-tight btn-hover flex items-center justify-center gap-2"
                     >
                       {isSendingReport ? (
                         <Loader2 className="animate-spin" />
@@ -374,20 +374,20 @@ const Assessment = () => {
               ) : (
                 <div className="space-y-10 animate-in fade-in duration-500">
                   <div className="p-5 bg-emerald-50 border border-emerald-300 text-center mono text-xs md:text-sm text-emerald-900 font-bold">
-                    ✓ Full Architecture Report Dispatched to <span className="text-zinc-950 font-bold">{userEmail}</span>
+                    ✓ Full Architecture Report Dispatched to <span className="text-navy font-bold">{userEmail}</span>
                   </div>
 
                   <div className="space-y-4">
                     <SectionLabel>Your Recommended Execution Modules</SectionLabel>
                     <div className="grid grid-cols-1 gap-4">
                       {results.recommendations.map((s, i) => (
-                        <div key={i} className="border border-zinc-200 p-6 md:p-8 bg-zinc-50 flex flex-col md:flex-row gap-5 items-start">
+                        <div key={i} className="border border-slate-200 p-6 md:p-8 bg-slate-50 flex flex-col md:flex-row gap-5 items-start">
                           <div className="w-12 h-12 bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm">
                             <Zap size={24} />
                           </div>
                           <div>
-                            <h4 className="text-xl md:text-2xl font-bold text-zinc-950 mb-1.5">{s.title}</h4>
-                            <p className="mono text-xs md:text-sm text-zinc-600 leading-relaxed">{s.desc}</p>
+                            <h4 className="text-xl md:text-2xl font-bold text-navy mb-1.5">{s.title}</h4>
+                            <p className="mono text-xs md:text-sm text-slate-600 leading-relaxed">{s.desc}</p>
                           </div>
                         </div>
                       ))}
@@ -402,7 +402,7 @@ const Assessment = () => {
                       Book a free 30 minute strategy session with Maria to review your custom blueprint together.
                     </p>
                     <div className="pt-2">
-                      <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-10 py-6 rounded-none font-bold text-base tracking-tight transition-all">
+                      <Button asChild className="bg-navy text-white hover:bg-navy-800 px-10 py-6 rounded-xl font-bold text-base tracking-tight transition-all">
                         <Link to="/contact">Book Free Strategy Session with Maria</Link>
                       </Button>
                     </div>
@@ -413,7 +413,7 @@ const Assessment = () => {
               <div className="flex justify-center pt-4">
                 <Button
                   variant="outline"
-                  className="border-zinc-300 text-zinc-900 py-6 px-8 rounded-none font-bold text-xs tracking-wider hover:bg-zinc-100"
+                  className="border-slate-300 text-navy py-6 px-8 rounded-xl font-bold text-xs tracking-wider hover:bg-slate-100"
                   onClick={() => {
                     setStep(0);
                     setAnswers({});

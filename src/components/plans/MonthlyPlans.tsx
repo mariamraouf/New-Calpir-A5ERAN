@@ -37,7 +37,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
   return (
     <div>
       <div className="flex justify-center mb-10">
-        <div className="inline-flex border border-zinc-200">
+        <div className="inline-flex border border-slate-200 rounded-full p-1 bg-white">
           {CURRENCIES.map((c) => (
             <button
               key={c.code}
@@ -45,10 +45,10 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               onClick={() => onCurrencyChange(c.code)}
               aria-pressed={currency === c.code}
               className={cn(
-                'px-5 py-2 mono text-xs tracking-wide font-bold transition-colors',
+                'px-5 py-2 text-sm font-semibold rounded-full transition-colors',
                 currency === c.code
-                  ? 'bg-zinc-950 text-white'
-                  : 'bg-white text-zinc-500 hover:text-zinc-900',
+                  ? 'bg-navy text-white'
+                  : 'bg-transparent text-slate-500 hover:text-navy',
               )}
             >
               {c.symbol} {c.label}
@@ -76,7 +76,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
       </div>
 
       {showBundle && bundle && (
-        <div className="bg-zinc-950 text-white p-8 md:p-12">
+        <div className="bg-navy text-white p-8 md:p-12 rounded-2xl">
           <div className="grid lg:grid-cols-[1.1fr,1fr] gap-10 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold mb-5">
@@ -96,11 +96,11 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               </ul>
             </div>
 
-            <div className="bg-white text-zinc-950 p-8">
-              <p className="mono text-[11px] tracking-wide text-zinc-400 mb-2">
+            <div className="bg-white text-navy p-8 rounded-xl">
+              <p className="mono text-[11px] tracking-wide text-slate-400 mb-2">
                 All four bought separately
               </p>
-              <p className="price-figure text-2xl font-bold text-zinc-400 line-through mb-5">
+              <p className="price-figure text-2xl font-bold text-slate-400 line-through mb-5">
                 {symbol}{separate.toLocaleString('en-US')} a month
               </p>
               <p className="mono text-[11px] tracking-wide text-emerald-700 font-bold mb-2">
@@ -108,7 +108,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               </p>
               <div className="flex items-baseline gap-2 mb-2">
                 <span className="price-figure text-5xl font-bold">{formatPrice(bundle.price, currency)}</span>
-                <span className="text-zinc-500 font-bold">/month</span>
+                <span className="text-slate-500 font-bold">/month</span>
               </div>
               <p className="text-emerald-700 font-bold mb-8">
                 You keep {symbol}{saving.toLocaleString('en-US')} every month.

@@ -48,7 +48,7 @@ const LaunchTimeline = () => {
       <div className="container-custom">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <SectionLabel>The 7-Day Launch Blueprint</SectionLabel>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-zinc-950 tracking-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-navy tracking-tight">
             From Idea to Fully <br /> Automated Business <br /> <span className="text-emerald-700">In One Week.</span>
           </h2>
         </div>
@@ -79,10 +79,10 @@ const LaunchTimeline = () => {
                   </div>
                   <div className="flex-1 pl-12 sm:pl-0 sm:w-1/2 sm:pr-8 sm:text-right">
                     <div className="mono text-sm font-bold text-emerald-700">{event.day}</div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 mt-1">{event.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-navy mt-1">{event.title}</h3>
                   </div>
                   <div className="flex-1 sm:w-1/2 sm:pl-8">
-                    <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">{event.description}</p>
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{event.description}</p>
                   </div>
                 </motion.div>
               );

@@ -77,7 +77,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-white/95 backdrop-blur-md border-b border-zinc-200 sticky top-0 z-[100] shadow-sm">
+    <nav className="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-[100] shadow-sm">
       <div className="container-custom h-16 sm:h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center group gap-2.5 sm:gap-3.5">
@@ -92,7 +92,7 @@ const Navbar = () => {
             className="h-8 sm:h-10 md:h-11 w-auto object-contain shrink-0 bg-transparent"
           />
           <div className="flex flex-col">
-            <span className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors">
+            <span className="text-xl sm:text-2xl font-bold tracking-tight text-navy group-hover:text-emerald-700 transition-colors">
               Calpir
             </span>
             <span className="mono text-[8px] sm:text-[9px] tracking-wide text-emerald-700 font-bold hidden sm:block">
@@ -107,7 +107,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.href}
-              className="text-[15px] font-semibold text-zinc-700 hover:text-emerald-700 transition-colors"
+              className="text-[15px] font-semibold text-slate-600 hover:text-emerald-700 transition-colors"
             >
               {link.name}
             </Link>
@@ -141,15 +141,15 @@ const Navbar = () => {
                 navigable, so categories sit on the left and the chosen
                 category's services fill the right. */}
             {isServicesOpen && (
-              <div className="absolute top-full -left-4 w-[760px] bg-white border border-zinc-200 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="px-4 py-2.5 border-b border-zinc-200 flex items-center justify-between">
+              <div className="absolute top-full -left-4 w-[760px] bg-white border border-slate-200 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
                   <span className="text-[13px] font-semibold text-emerald-800">
                     {allServicesCatalog.length} services across {serviceGroups.length} categories
                   </span>
                   <Link
                     to="/services"
                     onClick={() => setIsServicesOpen(false)}
-                    className="text-[13px] text-zinc-500 hover:text-emerald-700 font-semibold underline"
+                    className="text-[13px] text-slate-500 hover:text-emerald-700 font-semibold underline"
                   >
                     View all services →
                   </Link>
@@ -157,7 +157,7 @@ const Navbar = () => {
 
                 <div className="flex">
                   {/* Categories */}
-                  <div className="w-[250px] shrink-0 border-r border-zinc-200 bg-zinc-50/70 p-2">
+                  <div className="w-[250px] shrink-0 border-r border-slate-200 bg-slate-50/70 p-2">
                     <Link
                       to={soloEntry.href}
                       onClick={() => setIsServicesOpen(false)}
@@ -187,13 +187,13 @@ const Navbar = () => {
                           'w-full text-left flex items-center justify-between gap-2 px-2.5 py-2 transition-colors border-l-2',
                           activeCategory === group.category
                             ? 'bg-white border-emerald-600 text-emerald-800'
-                            : 'border-transparent text-zinc-700 hover:bg-white hover:text-emerald-700'
+                            : 'border-transparent text-slate-600 hover:bg-white hover:text-emerald-700'
                         )}
                       >
                         <span className="text-[11px] font-bold tracking-tight">
                           {group.category}
                         </span>
-                        <span className="mono text-[9px] text-zinc-400">
+                        <span className="mono text-[9px] text-slate-400">
                           {group.items.length}
                         </span>
                       </button>
@@ -211,13 +211,13 @@ const Navbar = () => {
                               key={item.href}
                               to={item.href}
                               onClick={() => setIsServicesOpen(false)}
-                              className="group flex items-start gap-2.5 p-2.5 hover:bg-zinc-50 border-l-2 border-transparent hover:border-emerald-600 transition-all"
+                              className="group flex items-start gap-2.5 p-2.5 hover:bg-slate-50 border-l-2 border-transparent hover:border-emerald-600 transition-all"
                             >
-                              <div className="p-1.5 shrink-0 bg-zinc-100 text-emerald-700 group-hover:bg-emerald-100 transition-colors">
+                              <div className="p-1.5 shrink-0 bg-slate-100 text-emerald-700 group-hover:bg-emerald-100 transition-colors">
                                 <Icon size={14} />
                               </div>
                               <div className="min-w-0">
-                                <div className="text-[11px] font-bold tracking-tight text-zinc-950 group-hover:text-emerald-700 transition-colors leading-snug">
+                                <div className="text-[11px] font-bold tracking-tight text-navy group-hover:text-emerald-700 transition-colors leading-snug">
                                   {item.name}
                                 </div>
                               </div>
@@ -229,8 +229,8 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <div className="border-t border-zinc-200 px-4 py-2.5 bg-zinc-50 flex items-center justify-between">
-                  <span className="text-[13px] text-zinc-600">
+                <div className="border-t border-slate-200 px-4 py-2.5 bg-slate-50 flex items-center justify-between">
+                  <span className="text-[13px] text-slate-600">
                     Marketing &amp; SEO, solo services, software stack and case studies
                   </span>
                   <Link
@@ -250,7 +250,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.href}
-              className="text-[15px] font-semibold text-zinc-700 hover:text-emerald-700 transition-colors"
+              className="text-[15px] font-semibold text-slate-600 hover:text-emerald-700 transition-colors"
             >
               {link.name}
             </Link>
@@ -260,7 +260,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => openBooking()}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-none text-[15px] btn-hover flex items-center gap-2 shadow-sm"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl text-[15px] btn-hover flex items-center gap-2 shadow-sm"
           >
             Book a free call
           </button>
@@ -268,17 +268,17 @@ const Navbar = () => {
 
         {/* Mobile Hamburger Button */}
         <button 
-          className="lg:hidden text-zinc-900 p-2 border border-zinc-200 rounded-none bg-zinc-50 hover:bg-zinc-100 transition-colors"
+          className="lg:hidden text-navy p-2 border border-slate-200 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors"
           onClick={() => setIsOpen(!isOpen)} 
           aria-label="Toggle Navigation Menu"
         >
-          {isOpen ? <X size={22} className="text-zinc-950" /> : <Menu size={22} className="text-zinc-950" />}
+          {isOpen ? <X size={22} className="text-navy" /> : <Menu size={22} className="text-navy" />}
         </button>
       </div>
 
       {/* Mobile Drawer (Visible below lg) */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 bg-white z-[99] overflow-y-auto border-b border-zinc-200 shadow-2xl flex flex-col justify-between">
+        <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 bg-white z-[99] overflow-y-auto border-b border-slate-200 shadow-2xl flex flex-col justify-between">
           <div className="p-5 sm:p-6 space-y-4">
             {/* Top Action Button on Mobile */}
             <button
@@ -290,11 +290,11 @@ const Navbar = () => {
             </button>
 
             {/* Mobile Dropdown / Accordion */}
-            <div className="border border-zinc-200 bg-zinc-50">
+            <div className="border border-slate-200 bg-slate-50">
               <button
                 type="button"
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="w-full flex items-center justify-between p-3.5 mono text-xs font-bold tracking-wider text-zinc-950 hover:bg-zinc-100 transition-colors"
+                className="w-full flex items-center justify-between p-3.5 mono text-xs font-bold tracking-wider text-navy hover:bg-slate-100 transition-colors"
               >
                 <span className="flex items-center gap-2 text-emerald-800">
                   <Layers size={15} /> Services & Capabilities Dropdown
@@ -306,7 +306,7 @@ const Navbar = () => {
               </button>
 
               {isMobileServicesOpen && (
-                <div className="p-2 space-y-1 bg-white border-t border-zinc-200">
+                <div className="p-2 space-y-1 bg-white border-t border-slate-200">
                   {[soloEntry].map((s) => {
                     const Icon = s.icon;
                     return (
@@ -318,7 +318,7 @@ const Navbar = () => {
                           "flex items-center gap-2.5 px-3 py-2.5 text-[11px] font-bold tracking-wider transition-colors",
                           s.highlight 
                             ? "bg-emerald-50 text-emerald-900 border-l-2 border-emerald-600 font-bold" 
-                            : "text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50"
+                            : "text-slate-600 hover:text-emerald-700 hover:bg-slate-50"
                         )}
                       >
                         <Icon size={14} className="text-emerald-700 shrink-0" />
@@ -329,7 +329,7 @@ const Navbar = () => {
 
                   {serviceGroups.map((group) => (
                     <div key={group.category} className="pt-2">
-                      <div className="px-3 pb-1 mono text-[9px] tracking-wide font-bold text-zinc-400">
+                      <div className="px-3 pb-1 mono text-[9px] tracking-wide font-bold text-slate-400">
                         {group.category}
                       </div>
                       {group.items.map((s) => {
@@ -339,7 +339,7 @@ const Navbar = () => {
                             key={s.href}
                             to={s.href}
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center gap-2.5 px-3 py-2.5 text-[11px] font-bold tracking-wider text-zinc-700 hover:text-emerald-700 hover:bg-zinc-50 transition-colors"
+                            className="flex items-center gap-2.5 px-3 py-2.5 text-[11px] font-bold tracking-wider text-slate-600 hover:text-emerald-700 hover:bg-slate-50 transition-colors"
                           >
                             <Icon size={14} className="text-emerald-700 shrink-0" />
                             <span>{s.name}</span>
@@ -354,7 +354,7 @@ const Navbar = () => {
 
             {/* Nav Links */}
             <div className="space-y-1 pt-2">
-              <div className="text-xs tracking-wide text-zinc-400 font-semibold px-1 pb-1">
+              <div className="text-xs tracking-wide text-slate-400 font-semibold px-1 pb-1">
                 Navigation
               </div>
               {[...navLinksBefore, ...navLinks].map((link) => (
@@ -362,18 +362,18 @@ const Navbar = () => {
                   key={link.name}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between p-3 text-sm font-bold text-zinc-900 hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors border-b border-zinc-100"
+                  className="flex items-center justify-between p-3 text-sm font-bold text-navy hover:text-emerald-700 hover:bg-emerald-50/50 transition-colors border-b border-slate-100"
                 >
                   <span>{link.name}</span>
-                  <ArrowRight size={14} className="text-zinc-400" />
+                  <ArrowRight size={14} className="text-slate-400" />
                 </Link>
               ))}
             </div>
           </div>
 
           {/* Footer inside mobile menu */}
-          <div className="p-5 border-t border-zinc-200 bg-zinc-50 mono text-[11px] text-zinc-600 space-y-1 text-center">
-            <div className="font-bold text-zinc-950">Calpir Technologies • Bristol, UK</div>
+          <div className="p-5 border-t border-slate-200 bg-slate-50 mono text-[11px] text-slate-600 space-y-1 text-center">
+            <div className="font-bold text-navy">Calpir Technologies • Bristol, UK</div>
             <div className="text-emerald-800 font-bold">+44 7346 875731 • info@calpir.com</div>
           </div>
         </div>

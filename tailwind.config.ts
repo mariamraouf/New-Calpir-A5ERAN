@@ -19,6 +19,21 @@ export default {
     },
     extend: {
       colors: {
+        /* The ink colour. Pure black on white is harsh and makes a long page
+           tiring; a deep navy reads as considered rather than default. */
+        navy: {
+          DEFAULT: "#0B1B3D",
+          900: "#0B1B3D",
+          800: "#152A57",
+          700: "#1E3A6E",
+          50: "#F4F6FB",
+        },
+        /* Warm accent, for the one thing on a screen that should be noticed. */
+        gold: {
+          DEFAULT: "#F59E0B",
+          400: "#FBBF24",
+          50: "#FFFBEB",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

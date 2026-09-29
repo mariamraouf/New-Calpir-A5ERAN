@@ -72,13 +72,13 @@ export const ArchitectureFlow: React.FC = () => {
   const CurrentIcon = current.icon;
 
   return (
-    <div className="border border-zinc-200 bg-white p-6 md:p-8 shadow-sm">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200">
+    <div className="border border-slate-200 bg-white p-6 md:p-8 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
         <div>
           <div className="mono text-xs tracking-wide text-emerald-800 font-bold flex items-center gap-1.5">
             <Sparkles size={14} className="text-emerald-600" /> Interactive Execution Pipeline
           </div>
-          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-zinc-950 mt-1">
+          <h3 className="text-xl md:text-2xl font-bold tracking-tight text-navy mt-1">
             How data flows through your Calpir system
           </h3>
         </div>
@@ -87,7 +87,7 @@ export const ArchitectureFlow: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsPlaying(!isPlaying)}
-            className="border border-zinc-300 hover:border-emerald-600 px-3 py-1.5 mono text-[11px] font-bold text-zinc-700 hover:text-zinc-950 flex items-center gap-1.5 transition-colors"
+            className="border border-slate-300 hover:border-emerald-600 px-3 py-1.5 mono text-[11px] font-bold text-slate-600 hover:text-navy flex items-center gap-1.5 transition-colors"
           >
             <RefreshCw size={12} className={isPlaying ? "animate-spin text-emerald-600" : ""} />
             {isPlaying ? "Live Auto-Cycle" : "Paused"}
@@ -111,18 +111,18 @@ export const ArchitectureFlow: React.FC = () => {
               className={`p-3 text-left border transition-all flex flex-col justify-between ${
                 isCurrent 
                   ? "border-emerald-600 bg-emerald-50 shadow-sm" 
-                  : "border-zinc-200 bg-zinc-50 hover:bg-white hover:border-zinc-300"
+                  : "border-slate-200 bg-slate-50 hover:bg-white hover:border-slate-300"
               }`}
             >
               <div className="flex items-center justify-between mb-2">
-                <Icon size={18} className={isCurrent ? "text-emerald-700" : "text-zinc-500"} />
+                <Icon size={18} className={isCurrent ? "text-emerald-700" : "text-slate-500"} />
                 <span className={`text-[10px] font-semibold px-1.5 py-0.5 border ${
-                  isCurrent ? "bg-emerald-600 text-white border-emerald-600" : "bg-white text-zinc-600 border-zinc-200"
+                  isCurrent ? "bg-emerald-600 text-white border-emerald-600" : "bg-white text-slate-600 border-slate-200"
                 }`}>
                   {stage.badge}
                 </span>
               </div>
-              <div className="mono text-xs font-bold tracking-tight text-zinc-950">
+              <div className="mono text-xs font-bold tracking-tight text-navy">
                 {stage.name.split('.')[1]}
               </div>
             </button>
@@ -149,27 +149,27 @@ export const ArchitectureFlow: React.FC = () => {
                 <span className="mono text-[10px] tracking-wide text-emerald-800 font-bold">
                   Active Execution Layer // Phase {activeStage + 1}
                 </span>
-                <h4 className="text-lg md:text-xl font-bold text-zinc-950 tracking-tight">
+                <h4 className="text-lg md:text-xl font-bold text-navy tracking-tight">
                   {current.name}
                 </h4>
               </div>
             </div>
-            <div className="mono text-xs text-zinc-700 bg-white border border-emerald-300 px-3 py-1 self-start md:self-auto font-bold">
+            <div className="mono text-xs text-slate-600 bg-white border border-emerald-300 px-3 py-1 self-start md:self-auto font-bold">
               Latency: <span className="text-emerald-700 font-bold">{current.time}</span>
             </div>
           </div>
 
-          <p className="text-sm md:text-base text-zinc-700 leading-relaxed mono">
+          <p className="text-sm md:text-base text-slate-600 leading-relaxed mono">
             {current.description}
           </p>
 
           <div>
-            <div className="mono text-[11px] tracking-wider text-zinc-500 font-bold mb-2.5">
+            <div className="mono text-[11px] tracking-wider text-slate-500 font-bold mb-2.5">
               Live System Outputs & Sync Handshakes:
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
               {current.outputs.map((out, i) => (
-                <div key={i} className="flex items-center gap-2 p-2.5 bg-white border border-zinc-200 shadow-sm text-xs mono text-zinc-800 font-semibold">
+                <div key={i} className="flex items-center gap-2 p-2.5 bg-white border border-slate-200 shadow-sm text-xs mono text-zinc-800 font-semibold">
                   <CheckCircle2 size={14} className="text-emerald-600 shrink-0" />
                   <span className="truncate">{out}</span>
                 </div>
@@ -179,7 +179,7 @@ export const ArchitectureFlow: React.FC = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className="mt-4 pt-3 flex flex-wrap items-center justify-between gap-2 mono text-[11px] text-zinc-500 border-t border-zinc-100">
+      <div className="mt-4 pt-3 flex flex-wrap items-center justify-between gap-2 mono text-[11px] text-slate-500 border-t border-slate-100">
         <div className="flex items-center gap-1.5">
           <ShieldCheck size={14} className="text-emerald-600" />
           <span>Encrypted 256-bit AES data transport</span>

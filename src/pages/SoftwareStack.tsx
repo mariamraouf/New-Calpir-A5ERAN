@@ -40,13 +40,13 @@ const SoftwareStack = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <SectionLabel>100+ Supported Tools & Platforms</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-bold tracking-tight text-zinc-950">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-bold tracking-tight text-navy">
             Our Software <br /> <span className="text-emerald-700">Stack.</span>
           </h1>
-          <p className="text-lg md:text-2xl text-zinc-600 max-w-3xl leading-relaxed">
+          <p className="text-lg md:text-2xl text-slate-600 max-w-3xl leading-relaxed">
             Here are the 100+ platforms, languages, and tools our team builds with every day.
           </p>
 
@@ -56,10 +56,10 @@ const SoftwareStack = () => {
               <HeartHandshake size={28} />
             </div>
             <div className="space-y-1.5">
-              <h2 className="text-xl md:text-2xl font-bold text-zinc-950 tracking-tight">
+              <h2 className="text-xl md:text-2xl font-bold text-navy tracking-tight">
                 Don't stress: You don't need to pick or learn any of this
               </h2>
-              <p className="text-sm md:text-base text-zinc-700 leading-relaxed">
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed">
                 You never have to waste 100 hours running trials or comparing 50 apps yourself. That is why we are here as your dedicated squad. We listen to what you want to achieve, handpick the exact right tools for your business, configure everything, and hand you a simple, self-running engine.
               </p>
             </div>
@@ -68,17 +68,17 @@ const SoftwareStack = () => {
       </section>
 
       {/* Search & Filter Bar */}
-      <section className="py-8 border-b border-zinc-200 sticky top-20 bg-white/95 backdrop-blur-md z-40 shadow-sm">
+      <section className="py-8 border-b border-slate-200 sticky top-20 bg-white/95 backdrop-blur-md z-40 shadow-sm">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" />
+              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
               <Input
                 placeholder="Search by tool name, use case, or category..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-11 bg-white text-zinc-950 border-zinc-300 rounded-none h-12 mono text-xs tracking-wider focus:border-emerald-600 w-full"
+                className="pl-11 bg-white text-navy border-slate-300 rounded-xl h-12 mono text-xs tracking-wider focus:border-emerald-600 w-full"
               />
             </div>
 
@@ -98,7 +98,7 @@ const SoftwareStack = () => {
                   "px-4 py-2 mono text-xs tracking-wider font-bold whitespace-nowrap transition-all border",
                   activeCategory === cat
                     ? "border-emerald-600 bg-emerald-600 text-white shadow-sm"
-                    : "border-zinc-200 bg-zinc-50 text-zinc-700 hover:border-emerald-600 hover:text-zinc-950"
+                    : "border-slate-200 bg-slate-50 text-slate-600 hover:border-emerald-600 hover:text-navy"
                 )}
               >
                 {cat}
@@ -121,7 +121,7 @@ const SoftwareStack = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.2, delay: Math.min(idx * 0.02, 0.3) }}
-                  className="border border-zinc-200 p-5 bg-white flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all group"
+                  className="border border-slate-200 p-5 bg-white flex flex-col justify-between hover:border-emerald-600 hover:shadow-md transition-all group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -133,19 +133,19 @@ const SoftwareStack = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-zinc-950 tracking-tight mb-1 group-hover:text-emerald-700 transition-colors">
+                    <h3 className="text-lg font-bold text-navy tracking-tight mb-1 group-hover:text-emerald-700 transition-colors">
                       {tool.name}
                     </h3>
-                    <div className="mono text-[10px] text-zinc-500 tracking-wide font-bold mb-2">
+                    <div className="mono text-[10px] text-slate-500 tracking-wide font-bold mb-2">
                       {tool.category}
                     </div>
 
-                    <p className="text-zinc-600 text-xs leading-relaxed mono">
+                    <p className="text-slate-600 text-xs leading-relaxed mono">
                       {tool.useCase}
                     </p>
                   </div>
 
-                  <div className="pt-3 mt-4 border-t border-zinc-100 flex items-center gap-1.5 text-[11px] text-zinc-500 mono">
+                  <div className="pt-3 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-slate-500 mono">
                     <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
                     <span>Tested & Integrated</span>
                   </div>
@@ -155,13 +155,13 @@ const SoftwareStack = () => {
           </div>
 
           {filteredTools.length === 0 && (
-            <div className="text-center py-20 border border-zinc-200 p-12 bg-zinc-50">
+            <div className="text-center py-20 border border-slate-200 p-12 bg-slate-50">
               <div className="text-4xl mb-3">🔍</div>
-              <h3 className="text-2xl font-bold text-zinc-950 mb-2">No tools found matching "{search}"</h3>
-              <p className="text-zinc-600 text-sm mono mb-6">
+              <h3 className="text-2xl font-bold text-navy mb-2">No tools found matching "{search}"</h3>
+              <p className="text-slate-600 text-sm mono mb-6">
                 Have a niche or proprietary platform? If it has an API, webhook or database, we can wire it up for you.
               </p>
-              <Button onClick={() => { setSearch(''); setActiveCategory('All'); }} variant="outline" className="border-zinc-300 text-zinc-900 rounded-none mono text-xs">
+              <Button onClick={() => { setSearch(''); setActiveCategory('All'); }} variant="outline" className="border-slate-300 text-navy rounded-xl mono text-xs">
                 Reset Search Filters
               </Button>
             </div>
@@ -172,14 +172,14 @@ const SoftwareStack = () => {
             <div className="inline-flex items-center gap-2 mono text-xs tracking-wide text-emerald-800 font-bold">
               <Sparkles size={14} /> Custom API & Webhook Integrations
             </div>
-            <h3 className="text-2xl sm:text-4xl font-bold text-zinc-950 tracking-tight">
+            <h3 className="text-2xl sm:text-4xl font-bold text-navy tracking-tight">
               Using a tool not listed here?
             </h3>
-            <p className="text-zinc-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               We connect custom internal databases, niche software, and bespoke webhooks every day. Tell us what you are currently using and we will connect it into your new ecosystem.
             </p>
             <div className="pt-2">
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-none font-bold text-sm tracking-wider btn-hover">
+              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 rounded-xl font-bold text-sm tracking-wider btn-hover">
                 <Link to="/contact">Book Free Consultation Call <ArrowRight size={16} className="ml-2" /></Link>
               </Button>
             </div>

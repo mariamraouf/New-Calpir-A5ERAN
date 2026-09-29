@@ -87,7 +87,7 @@ const BlogPost = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-16 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-40 md:pt-48 pb-16 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom max-w-[1000px]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -97,7 +97,7 @@ const BlogPost = () => {
             <div className="flex items-center gap-4 mb-8">
               <Link
                 to="/blog"
-                className="w-12 h-12 border border-zinc-300 flex items-center justify-center hover:bg-zinc-100 text-zinc-900 transition-all shadow-sm"
+                className="w-12 h-12 border border-slate-300 flex items-center justify-center hover:bg-slate-100 text-navy transition-all shadow-sm"
                 aria-label="Back to the blog"
               >
                 <ArrowLeft size={20} />
@@ -105,11 +105,11 @@ const BlogPost = () => {
               <SectionLabel>FOUNDER GUIDE</SectionLabel>
             </div>
 
-            <h1 className="article-title text-3xl md:text-5xl font-bold mb-8 leading-[1.1] text-zinc-950 max-w-[20ch] md:max-w-[24ch]">
+            <h1 className="article-title text-3xl md:text-5xl font-bold mb-8 leading-[1.1] text-navy max-w-[20ch] md:max-w-[24ch]">
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap gap-6 py-6 border-y border-zinc-200 mono text-xs tracking-wider text-zinc-600 font-bold">
+            <div className="flex flex-wrap gap-6 py-6 border-y border-slate-200 mono text-xs tracking-wider text-slate-600 font-bold">
               <div className="flex items-center gap-2">
                 <User size={14} className="text-emerald-700" /> {post.author}
               </div>
@@ -134,7 +134,7 @@ const BlogPost = () => {
             alt={post.imageAlt || post.title}
             width={1200}
             height={630}
-            className="w-full h-auto border border-zinc-200 shadow-sm"
+            className="w-full h-auto border border-slate-200 shadow-sm"
             loading="eager"
           />
         </div>
@@ -152,13 +152,13 @@ const BlogPost = () => {
           </motion.div>
 
           {next && next.slug !== post.slug ? (
-            <div className="mt-16 pt-8 border-t border-zinc-200">
+            <div className="mt-16 pt-8 border-t border-slate-200">
               <p className="mono text-xs tracking-wide text-emerald-700 font-bold mb-3">
                 Read next
               </p>
               <Link
                 to={`/blog/${next.slug}`}
-                className="article-title text-xl md:text-2xl font-bold text-zinc-950 hover:text-emerald-700 transition-colors"
+                className="article-title text-xl md:text-2xl font-bold text-navy hover:text-emerald-700 transition-colors"
               >
                 {next.title}
               </Link>
@@ -168,18 +168,18 @@ const BlogPost = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding border-t border-zinc-200 bg-emerald-50/60">
+      <section className="section-padding border-t border-slate-200 bg-emerald-50/60">
         <div className="container-custom text-center">
-          <h2 className="text-4xl md:text-6xl mb-8 font-bold tracking-tight text-zinc-950">
+          <h2 className="text-4xl md:text-6xl mb-8 font-bold tracking-tight text-navy">
             Ready to Deploy Your <br /> Complete Business Engine?
           </h2>
-          <p className="text-lg text-zinc-700 mb-12 max-w-[600px] mx-auto leading-relaxed">
+          <p className="text-lg text-slate-600 mb-12 max-w-[600px] mx-auto leading-relaxed">
             Book a free 30 minute consultation with the Calpir team to map out your full company
             setup.
           </p>
           <Button
             asChild
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-none font-bold text-xl tracking-tight btn-hover"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white px-12 py-8 rounded-xl font-bold text-xl tracking-tight btn-hover"
           >
             <Link to="/contact">
               Book Free Consultation <ArrowRight className="ml-2" size={18} />

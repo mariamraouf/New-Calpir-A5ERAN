@@ -205,7 +205,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
                 compact ? "p-1.5" : "p-2 sm:p-2.5",
                 isSelected 
                   ? "text-emerald-950 bg-emerald-100 border-emerald-400 shadow-[0_0_12px_rgba(5,150,105,0.4)]" 
-                  : "text-emerald-700 bg-white border-zinc-200 group-hover/node:border-emerald-500 group-hover/node:bg-emerald-50"
+                  : "text-emerald-700 bg-white border-slate-200 group-hover/node:border-emerald-500 group-hover/node:bg-emerald-50"
               )}>
                 <IconComponent className={cn(compact ? "w-3.5 h-3.5" : "w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5")} />
               </div>
@@ -216,7 +216,7 @@ const ConnectedEcosystem: React.FC<ConnectedEcosystemProps> = ({
                 compact ? "text-[7.5px]" : "text-[8px] sm:text-[9px] md:text-[10px]",
                 isSelected 
                   ? "text-emerald-950 font-extrabold" 
-                  : "text-zinc-700 group-hover/node:text-emerald-800"
+                  : "text-slate-600 group-hover/node:text-emerald-800"
               )}>
                 {node.label}
               </span>

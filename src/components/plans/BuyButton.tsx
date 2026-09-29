@@ -49,10 +49,10 @@ const BuyButton: React.FC<BuyButtonProps> = ({
         onClick={handleBuy}
         disabled={busy}
         className={cn(
-          'w-full py-7 rounded-none font-bold tracking-tight text-base transition-transform hover:-translate-y-0.5',
+          'w-full py-7 rounded-xl font-bold tracking-tight text-base transition-transform hover:-translate-y-0.5',
           variant === 'emerald'
             ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-            : 'bg-zinc-950 hover:bg-zinc-800 text-white',
+            : 'bg-navy hover:bg-navy-800 text-white',
         )}
       >
         {busy ? (
@@ -68,7 +68,7 @@ const BuyButton: React.FC<BuyButtonProps> = ({
       </Button>
 
       {footnote && !error && (
-        <p className="mono text-[11px] tracking-wide text-zinc-400 mt-3 text-center">
+        <p className="mono text-[11px] tracking-wide text-slate-400 mt-3 text-center">
           {footnote}
         </p>
       )}

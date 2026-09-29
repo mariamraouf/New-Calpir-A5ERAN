@@ -97,11 +97,11 @@ const CaseStudies = () => {
       />
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>Proof of Concept</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-navy">
               Case <br /> <span className="text-emerald-700">Studies.</span>
             </h1>
           </motion.div>
@@ -117,16 +117,16 @@ const CaseStudies = () => {
                   <div className="mono text-emerald-800 text-xs font-bold mb-4 tracking-widest">
                     [{c.id}] // {c.industry}
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-bold text-zinc-950 tracking-tight mb-8">{c.title}</h2>
+                  <h2 className="text-3xl md:text-5xl font-bold text-navy tracking-tight mb-8">{c.title}</h2>
                   
                   <div className="space-y-8 mb-8">
                     <div>
-                      <div className="mono text-xs tracking-wide text-zinc-500 font-bold mb-2">Challenge</div>
-                      <p className="text-zinc-700 text-base leading-relaxed">{c.challenge}</p>
+                      <div className="mono text-xs tracking-wide text-slate-500 font-bold mb-2">Challenge</div>
+                      <p className="text-slate-600 text-base leading-relaxed">{c.challenge}</p>
                     </div>
                     
                     <div>
-                      <div className="mono text-xs tracking-wide text-zinc-500 font-bold mb-3">What We Built</div>
+                      <div className="mono text-xs tracking-wide text-slate-500 font-bold mb-3">What We Built</div>
                       <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {c.built.map((item) => (
                           <li key={item} className="flex items-center gap-2.5 mono text-xs text-zinc-800 tracking-wider font-semibold">
@@ -138,9 +138,9 @@ const CaseStudies = () => {
 
                     <div className="grid grid-cols-2 gap-6">
                       {c.results.map((res, idx) => (
-                        <div key={idx} className="border border-zinc-200 p-6 bg-zinc-50 shadow-sm">
+                        <div key={idx} className="border border-slate-200 p-6 bg-slate-50 shadow-sm">
                           <div className="text-4xl font-bold text-emerald-700 mb-1">{res.value}</div>
-                          <div className="mono text-xs tracking-wider font-bold text-zinc-700">{res.label}</div>
+                          <div className="mono text-xs tracking-wider font-bold text-slate-600">{res.label}</div>
                         </div>
                       ))}
                     </div>
@@ -152,7 +152,7 @@ const CaseStudies = () => {
                   </div>
                 </div>
                 
-                <div className={`aspect-video bg-zinc-100 border border-zinc-200 overflow-hidden relative group shadow-sm ${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                <div className={`aspect-video bg-slate-100 border border-slate-200 overflow-hidden relative group shadow-sm ${i % 2 !== 0 ? 'lg:order-1' : ''}`}>
                   <img src={c.image} alt={c.client} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent" />
                   <div className="absolute bottom-6 left-6">
@@ -170,7 +170,7 @@ const CaseStudies = () => {
       <section className="section-padding bg-emerald-700 text-white text-center shadow-inner">
         <div className="container-custom">
           <h2 className="text-4xl md:text-7xl mb-8 font-bold tracking-tight text-white">Ready for Your Own <br /> Success Story?</h2>
-          <Button asChild className="bg-zinc-950 text-white hover:bg-zinc-800 px-12 py-8 rounded-none font-bold text-xl tracking-tight transition-all btn-hover">
+          <Button asChild className="bg-navy text-white hover:bg-navy-800 px-12 py-8 rounded-xl font-bold text-xl tracking-tight transition-all btn-hover">
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>

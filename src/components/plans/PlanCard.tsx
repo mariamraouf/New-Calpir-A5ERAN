@@ -40,10 +40,10 @@ const PlanCard: React.FC<PlanCardProps> = ({
   return (
     <div
       className={cn(
-        'relative flex flex-col bg-white border p-8 transition-transform duration-200 hover:-translate-y-1',
+        'relative flex flex-col bg-white border rounded-2xl p-8 surface-hover',
         featured
           ? 'border-emerald-600 border-2 shadow-xl shadow-emerald-900/5'
-          : 'border-zinc-200',
+          : 'border-slate-200',
       )}
     >
       {featured && (
@@ -56,10 +56,10 @@ const PlanCard: React.FC<PlanCardProps> = ({
         <div className="w-10 h-10 flex items-center justify-center bg-emerald-50 border border-emerald-200">
           <Icon size={18} className="text-emerald-700" />
         </div>
-        <h3 className="text-xl font-bold tracking-tight text-zinc-950">{name}</h3>
+        <h3 className="text-xl font-bold tracking-tight text-navy">{name}</h3>
       </div>
 
-      <p className="text-zinc-600 mb-6 leading-relaxed md:min-h-[72px]">{tagline}</p>
+      <p className="text-slate-600 mb-6 leading-relaxed md:min-h-[72px]">{tagline}</p>
 
       {note && (
         <p className="mono text-[11px] tracking-wide text-emerald-700 font-bold mb-2">
@@ -68,26 +68,26 @@ const PlanCard: React.FC<PlanCardProps> = ({
       )}
 
       <div className="flex items-baseline gap-2 mb-1">
-        <span className="price-figure text-4xl font-bold text-zinc-950">{formatPrice(price, currency)}</span>
-        <span className="text-zinc-500 font-bold">
+        <span className="price-figure text-4xl font-bold text-navy">{formatPrice(price, currency)}</span>
+        <span className="text-slate-500 font-bold">
           {billing === 'month' ? '/month' : 'one time'}
         </span>
       </div>
-      <p className="mono text-[11px] tracking-wide text-zinc-400 mb-7">
+      <p className="mono text-[11px] tracking-wide text-slate-400 mb-7">
         {billing === 'month' ? 'Cancel any month. No tie in.' : 'Single payment. Nothing recurring.'}
       </p>
 
       <ul className="space-y-3 mb-8 flex-grow">
         {included.map((item) => (
-          <li key={item} className="flex gap-3 text-zinc-700 leading-relaxed">
+          <li key={item} className="flex gap-3 text-slate-600 leading-relaxed">
             <Check size={17} className="text-emerald-600 shrink-0 mt-1" />
             <span>{item}</span>
           </li>
         ))}
       </ul>
 
-      <p className="text-sm text-zinc-500 border-t border-zinc-100 pt-5 mb-6">
-        <span className="font-bold text-zinc-700">Best for:</span> {who}
+      <p className="text-sm text-slate-500 border-t border-slate-100 pt-5 mb-6">
+        <span className="font-bold text-slate-600">Best for:</span> {who}
       </p>
 
       <BuyButton

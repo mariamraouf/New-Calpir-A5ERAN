@@ -36,14 +36,14 @@ const Services = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-zinc-200 bg-gradient-to-b from-emerald-50/40 to-white">
+      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
         <div className="container-custom">
           <motion.div {...reveal}>
             <SectionLabel>The Capabilities</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-zinc-950">
+            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-navy">
               Our <br /> <span className="text-emerald-700">Services.</span>
             </h1>
-            <p className="text-lg md:text-2xl text-zinc-600 max-w-[800px] leading-relaxed">
+            <p className="text-lg md:text-2xl text-slate-600 max-w-[800px] leading-relaxed">
               {allServicesCatalog.length} services across {CATEGORIES.length} categories. Take the
               whole stack as a package, or any single piece on its own.
             </p>
@@ -55,7 +55,7 @@ const Services = () => {
       {/* Sticks directly beneath the navbar, which is itself sticky at top-0 with
           z-[100]. Matching the navbar's own top-16 sm:top-20 measurement keeps the
           two bars from overlapping. */}
-      <section className="border-b border-zinc-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm">
+      <section className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm">
         <div className="container-custom px-6">
           <nav
             aria-label="Service categories"
@@ -65,10 +65,10 @@ const Services = () => {
               <a
                 key={c.id}
                 href={`#${c.id}`}
-                className="group flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] tracking-wider font-bold text-zinc-600 hover:text-emerald-700 transition-colors"
+                className="group flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] tracking-wider font-bold text-slate-600 hover:text-emerald-700 transition-colors"
               >
                 {c.name}
-                <span className="text-[10px] text-zinc-400 group-hover:text-emerald-600">
+                <span className="text-[10px] text-slate-400 group-hover:text-emerald-600">
                   {byCategory(c.name).length}
                 </span>
               </a>
@@ -78,7 +78,7 @@ const Services = () => {
       </section>
 
       {/* Interactive Flow Visual */}
-      <section className="section-padding border-b border-zinc-200 bg-zinc-50/70">
+      <section className="section-padding border-b border-slate-200 bg-slate-50/70">
         <div className="container-custom">
           <ArchitectureFlow />
         </div>
@@ -95,16 +95,16 @@ const Services = () => {
               <div
                 key={category.id}
                 id={category.id}
-                className="mb-20 scroll-mt-36 pt-8 border-t border-zinc-200 first:border-t-0 first:pt-0"
+                className="mb-20 scroll-mt-36 pt-8 border-t border-slate-200 first:border-t-0 first:pt-0"
               >
                 <motion.div {...reveal} className="mb-8 max-w-[760px]">
                   <div className="flex flex-wrap items-center gap-4 mb-4">
                     <SectionLabel>{category.name}</SectionLabel>
-                    <span className="mono text-xs tracking-wide text-zinc-500 font-bold">
+                    <span className="mono text-xs tracking-wide text-slate-500 font-bold">
                       {services.length} services
                     </span>
                   </div>
-                  <p className="text-base md:text-lg text-zinc-600 leading-relaxed">
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed">
                     {category.blurb}
                   </p>
                 </motion.div>
@@ -116,15 +116,15 @@ const Services = () => {
                       <Link
                         key={service.id}
                         to={`/services/${service.slug}`}
-                        className="border border-zinc-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block flex flex-col"
+                        className="border border-slate-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all group block flex flex-col"
                       >
                         <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform origin-left">
                           <Icon size={32} />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-zinc-950 mb-2.5 leading-tight">
+                        <h3 className="text-xl md:text-2xl font-bold text-navy mb-2.5 leading-tight">
                           {service.title}
                         </h3>
-                        <p className="text-zinc-600 text-sm leading-relaxed mb-6 flex-1">
+                        <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
                           {service.shortDesc}
                         </p>
                         <div className="flex items-center gap-2 text-emerald-700 mono text-xs tracking-wider font-bold">

@@ -89,13 +89,13 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   const currentCountry = countries[selectedCountryIndex] || countries[0];
 
   return (
-    <div className={`relative flex items-center w-full h-12 bg-white border border-zinc-300 transition-colors focus-within:border-emerald-600 focus-within:ring-1 focus-within:ring-emerald-600 shadow-sm ${className}`}>
+    <div className={`relative flex items-center w-full h-12 bg-white border border-slate-300 transition-colors focus-within:border-emerald-600 focus-within:ring-1 focus-within:ring-emerald-600 shadow-sm ${className}`}>
       {/* Country Code Picker Box */}
-      <div className="relative h-full flex items-center bg-zinc-50 border-r border-zinc-200 px-3 cursor-pointer shrink-0 hover:bg-zinc-100 transition-colors">
+      <div className="relative h-full flex items-center bg-slate-50 border-r border-slate-200 px-3 cursor-pointer shrink-0 hover:bg-slate-100 transition-colors">
         <div className="flex items-center gap-1.5 pointer-events-none select-none">
           <span className="text-base leading-none">{currentCountry.flag}</span>
-          <span className="mono text-xs font-bold text-zinc-900">{currentCountry.code}</span>
-          <ChevronDown size={13} className="text-zinc-500 shrink-0" />
+          <span className="mono text-xs font-bold text-navy">{currentCountry.code}</span>
+          <ChevronDown size={13} className="text-slate-500 shrink-0" />
         </div>
 
         {/* Full Native Select overlay for seamless cross-platform picker */}
@@ -106,7 +106,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
           aria-label="Select Country Code"
         >
           {countries.map((c, i) => (
-            <option key={`${c.country}-${c.code}-${i}`} value={i} className="text-zinc-900 bg-white py-1">
+            <option key={`${c.country}-${c.code}-${i}`} value={i} className="text-navy bg-white py-1">
               {c.flag} {c.code} ({c.name})
             </option>
           ))}
@@ -119,7 +119,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
         value={rawNumber}
         onChange={handleNumberChange}
         placeholder={placeholder}
-        className="w-full h-full px-3.5 bg-transparent mono text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none"
+        className="w-full h-full px-3.5 bg-transparent mono text-sm text-navy placeholder:text-slate-400 focus:outline-none"
       />
     </div>
   );

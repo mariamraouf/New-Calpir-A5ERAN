@@ -52,7 +52,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
   const [sending, setSending] = useState(false);
 
   const field =
-    'w-full border border-zinc-300 bg-white px-4 py-3 text-base text-zinc-900 placeholder:text-zinc-400 rounded-none focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600';
+    'w-full border border-slate-300 bg-white px-4 py-3 text-base text-navy placeholder:text-slate-400 rounded-xl focus:outline-none focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600';
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,7 +83,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
   return (
     <form onSubmit={submit} className="space-y-4">
       <div>
-        <label htmlFor="popup-name" className="mono text-[11px] tracking-wider text-zinc-700 font-bold block mb-1.5">
+        <label htmlFor="popup-name" className="mono text-[11px] tracking-wider text-slate-600 font-bold block mb-1.5">
           Your name
         </label>
         <input
@@ -96,7 +96,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
         />
       </div>
       <div>
-        <label htmlFor="popup-email" className="mono text-[11px] tracking-wider text-zinc-700 font-bold block mb-1.5">
+        <label htmlFor="popup-email" className="mono text-[11px] tracking-wider text-slate-600 font-bold block mb-1.5">
           Email
         </label>
         <input
@@ -110,7 +110,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
         />
       </div>
       <div>
-        <label htmlFor="popup-message" className="mono text-[11px] tracking-wider text-zinc-700 font-bold block mb-1.5">
+        <label htmlFor="popup-message" className="mono text-[11px] tracking-wider text-slate-600 font-bold block mb-1.5">
           What are you trying to get done?
         </label>
         <textarea
@@ -139,7 +139,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
       <Button
         type="submit"
         disabled={sending}
-        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 rounded-none font-bold tracking-tight"
+        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 rounded-xl font-bold tracking-tight"
       >
         {sending ? (
           <>
@@ -151,7 +151,7 @@ const MessageForm: React.FC<{ initialEmail?: string; onSent: () => void }> = ({
           </>
         )}
       </Button>
-      <p className="mono text-[10px] tracking-wider text-zinc-500 text-center">
+      <p className="mono text-[10px] tracking-wider text-slate-500 text-center">
         We reply within 4 business hours. No sales sequence, no newsletter.
       </p>
     </form>
@@ -191,7 +191,7 @@ export const BookingModalProvider: React.FC<{ children: React.ReactNode }> = ({ 
         'flex-1 flex items-center justify-center gap-2 py-3 mono text-[11px] sm:text-xs tracking-wider font-bold border-b-2 transition-colors',
         tab === id
           ? 'border-emerald-600 text-emerald-800 bg-emerald-50/60'
-          : 'border-transparent text-zinc-500 hover:text-emerald-700'
+          : 'border-transparent text-slate-500 hover:text-emerald-700'
       )}
     >
       <Icon size={14} /> {label}
@@ -203,7 +203,7 @@ export const BookingModalProvider: React.FC<{ children: React.ReactNode }> = ({ 
       {children}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-[min(94vw,860px)] w-full p-0 rounded-none border-zinc-300 max-h-[92dvh] overflow-y-auto gap-0">
+        <DialogContent className="max-w-[min(94vw,860px)] w-full p-0 rounded-xl border-slate-300 max-h-[92dvh] overflow-y-auto gap-0">
           <DialogTitle className="sr-only">
             {tab === 'book' ? 'Book a free consultation' : 'Send Calpir a message'}
           </DialogTitle>
@@ -211,7 +211,7 @@ export const BookingModalProvider: React.FC<{ children: React.ReactNode }> = ({ 
             Pick a time for a free 30 minute call, or send a message and we will reply by email.
           </DialogDescription>
 
-          <div className="flex border-b border-zinc-200 sticky top-0 bg-white z-10">
+          <div className="flex border-b border-slate-200 sticky top-0 bg-white z-10">
             {tabBtn('book', 'Pick a time', CalendarCheck)}
             {tabBtn('message', 'Send a message', Mail)}
           </div>

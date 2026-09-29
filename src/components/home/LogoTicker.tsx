@@ -9,7 +9,7 @@ const TickerContent = () => (
     {allSoftwareStack.slice(0, 40).map((tool) => (
       <div key={tool.name} className="flex flex-col items-center gap-2 shrink-0">
         <SoftwareLogo tool={tool} className="w-12 h-12" />
-        <span className="mono text-[10px] font-bold text-zinc-500">{tool.name}</span>
+        <span className="mono text-[10px] font-bold text-slate-500">{tool.name}</span>
       </div>
     ))}
   </div>
@@ -17,7 +17,7 @@ const TickerContent = () => (
 
 const LogoTicker = () => {
   return (
-    <div className="w-full overflow-hidden group py-10 bg-zinc-50/50 border-y border-zinc-200">
+    <div className="w-full overflow-hidden group py-10 bg-slate-50/50 border-y border-slate-200">
       <div 
         className="flex"
         style={{

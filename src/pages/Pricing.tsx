@@ -31,16 +31,16 @@ const Pricing = () => {
       />
       <Navbar />
 
-      <section className="pt-36 md:pt-44 pb-16 px-6 border-b border-zinc-200">
+      <section className="pt-36 md:pt-44 pb-16 px-6 border-b border-slate-200">
         <div className="container-custom text-center max-w-[820px] mx-auto">
           <p className="text-emerald-700 font-semibold mb-5 tracking-wide">
             Monthly plans
           </p>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-950 mb-6 leading-[1.05]">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-navy mb-6 leading-[1.05]">
             Pick what you want run, <br className="hidden md:block" />
             and what it costs.
           </h1>
-          <p className="text-lg md:text-xl text-zinc-600 leading-relaxed">
+          <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
             Four parts of a business, each on its own monthly plan. Buy one, buy
             two, or take all four together and pay less than the sum. Cancel any
             month.
@@ -54,7 +54,7 @@ const Pricing = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 border-t border-zinc-200 bg-zinc-50">
+      <section className="py-16 md:py-20 border-t border-slate-200 bg-slate-50">
         <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-8 mb-14">
             {[
@@ -72,25 +72,25 @@ const Pricing = () => {
               },
             ].map((item) => (
               <div key={item.h}>
-                <h3 className="text-lg font-bold text-zinc-950 mb-3">{item.h}</h3>
-                <p className="text-zinc-600 leading-relaxed">{item.p}</p>
+                <h3 className="text-lg font-bold text-navy mb-3">{item.h}</h3>
+                <p className="text-slate-600 leading-relaxed">{item.p}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-white border border-zinc-200 p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="bg-white border border-slate-200 p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold text-zinc-950 mb-2">
+              <h3 className="text-2xl font-bold text-navy mb-2">
                 Need it built first?
               </h3>
-              <p className="text-zinc-600 leading-relaxed max-w-[540px]">
+              <p className="text-slate-600 leading-relaxed max-w-[540px]">
                 The one time packages take a business from nothing to running,
                 in 7 to 28 days. A monthly plan afterwards is optional.
               </p>
             </div>
             <Button
               asChild
-              className="bg-zinc-950 hover:bg-zinc-800 text-white px-8 py-6 rounded-none font-semibold text-base shrink-0"
+              className="bg-navy hover:bg-navy-800 text-white px-8 py-6 rounded-xl font-semibold text-base shrink-0"
             >
               <Link to="/packages">
                 See packages <ArrowRight size={18} className="ml-2" />

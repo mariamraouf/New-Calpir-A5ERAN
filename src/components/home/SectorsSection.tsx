@@ -47,16 +47,16 @@ const sectors = [
 
 const SectorsSection = () => {
   return (
-    <section className="section-padding border-b border-zinc-200 bg-zinc-50/60">
+    <section className="section-padding border-b border-slate-200 bg-slate-50/60">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <SectionLabel>Tailored Industry Blueprints</SectionLabel>
-            <h2 className="text-4xl md:text-6xl font-bold text-zinc-950 tracking-tight">
+            <h2 className="text-4xl md:text-6xl font-bold text-navy tracking-tight">
               Sectors We <br /> <span className="text-emerald-700">Launch & Scale.</span>
             </h2>
           </div>
-          <p className="text-zinc-600 text-base md:text-lg max-w-[460px] leading-relaxed">
+          <p className="text-slate-600 text-base md:text-lg max-w-[460px] leading-relaxed">
             We don't do cookie-cutter templates. Every industry has unique bottlenecks, so we configure the exact tech stack proven to make your specific sector crush it.
           </p>
         </div>
@@ -67,21 +67,21 @@ const SectorsSection = () => {
               key={i}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
-              className="border border-zinc-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all flex flex-col justify-between"
+              className="border border-slate-200 p-8 bg-white hover:border-emerald-600 hover:shadow-lg transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="mb-6 p-3 bg-emerald-50 border border-emerald-200 inline-block">
                   {sector.icon}
                 </div>
-                <h3 className="text-2xl font-bold text-zinc-950 mb-3 tracking-tight">
+                <h3 className="text-2xl font-bold text-navy mb-3 tracking-tight">
                   {sector.title}
                 </h3>
-                <p className="text-zinc-600 text-sm leading-relaxed mb-6">
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
                   {sector.desc}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-zinc-100">
+              <div className="pt-4 border-t border-slate-100">
                 <div className="mono text-[11px] tracking-wider text-emerald-800 font-bold">
                   {sector.tools}
                 </div>
