@@ -103,6 +103,18 @@ const Footer = () => {
 
       <div className="container-custom pt-6 sm:pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs text-slate-500 mono text-center sm:text-left">
         <p>© 2026 Calpir Technologies Ltd.</p>
+        {/* The site says "cancel any month" in a dozen places. This is the
+            place a customer actually does it: Stripe emails them a link, they
+            change the card, read old invoices or cancel, without asking us
+            first. A promise with no button behind it is not a promise. */}
+        <a
+          href="https://billing.stripe.com/p/login/eVqeVc7ewbIp2CP51LeUU00"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-600 hover:text-emerald-700 transition-colors font-bold"
+        >
+          Manage or cancel your plan
+        </a>
         <p className="flex items-center gap-1.5 justify-center">
           Crafted with <Heart size={12} className="text-rose-600 fill-rose-600" /> for ambitious founders
         </p>
