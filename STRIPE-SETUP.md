@@ -28,9 +28,11 @@ environment.
   every session.
 - **Tax behaviour: exclusive** on every price. Change this before enabling
   Stripe Tax if your prices are meant to include tax.
-- **Webhook** at `https://calpir.com/api/stripe-webhook` on
+- **Webhook** at `https://www.calpir.com/api/stripe-webhook` on
   `checkout.session.completed`, `customer.subscription.deleted`,
   `customer.subscription.updated`, `invoice.payment_failed`, `invoice.paid`.
+  Both accounts point at that same one URL. See "One webhook, both accounts"
+  below for why that is safe and why it is better than two.
 - **Customer portal**, default configuration: invoice history, card updates,
   switching between the seven monthly plans, promotion codes, cancel at period
   end with a reason collected, shareable login page on.
@@ -49,22 +51,44 @@ Vercel → project → Settings → Environment Variables:
 
 | Name | Value | Environment |
 |---|---|---|
-| `STRIPE_SECRET_KEY` | the **live** `sk_live_...` key | Production |
-| `STRIPE_SECRET_KEY` | the **test** `sk_test_...` key | Preview, Development |
-| `STRIPE_WEBHOOK_SECRET` | the live `whsec_...` (see below) | Production |
-| `STRIPE_WEBHOOK_SECRET` | the test `whsec_...` | Preview, Development |
-| `SITE_URL` | `https://calpir.com` | all |
+| `STRIPE_SECRET_KEY` | the **live** `sk_live_...` key | Production only |
+| `STRIPE_SECRET_KEY` | the sandbox `sk_test_...` key | Preview, Development |
+| `STRIPE_WEBHOOK_SECRET` | `<live whsec_...>,<sandbox whsec_...>` | Production only |
+| `SITE_URL` | `https://www.calpir.com` | Production only |
 
-That split is the whole point: production takes real money, previews cannot.
+Three things about that table are deliberate and easy to get wrong.
+
+**The secret key split is the whole point.** Production takes real money,
+previews cannot, because a preview build only ever holds a test key.
+
+**`STRIPE_WEBHOOK_SECRET` holds both secrets, comma separated, on Production.**
+Not one per environment. Stripe sends every event to the live site whichever
+mode it came from, so the live site is the one that has to recognise both. A
+preview build never receives a webhook and does not need the variable at all.
+
+**`SITE_URL` is Production only.** `api/checkout.ts` falls back to the host the
+request arrived on, so a preview deploy returns the buyer to that preview
+rather than bouncing them to the live site mid test. Set it on all three and
+every preview checkout ends up on www.
+
+Never prefix either secret with `VITE_`. Anything named `VITE_something` is
+bundled into the JavaScript every visitor downloads.
 
 The `sk_test` key that was pasted into a chat should be **rolled**. Never paste
 an `sk_live_` key anywhere but Vercel.
 
 ### 2. Webhook signing secrets
 
-Stripe → Developers → Webhooks → the `calpir.com/api/stripe-webhook` endpoint →
-**Reveal** → copy into Vercel. Do this once in live mode and once in test mode;
-they are different secrets.
+Stripe → Developers → Webhooks → the `www.calpir.com/api/stripe-webhook`
+endpoint → **Reveal** → copy. Do this twice, once signed into the live account
+and once in the sandbox, then put **both** into the single Production
+`STRIPE_WEBHOOK_SECRET`, separated by a comma:
+
+```
+whsec_theLiveOne,whsec_theSandboxOne
+```
+
+Order does not matter and spaces around the comma are ignored.
 
 Without it the handler rejects every event, which is correct: an unverified
 webhook is an open door.
@@ -84,6 +108,52 @@ can actually be paid.
   notices.
 - **Stripe Tax** (Tax → Settings): if you enable it, set your origin address
   and re-check `tax_behavior` on the prices first.
+
+## One webhook, both accounts
+
+`api/stripe-webhook.ts` verifies a signature and sends an email. It never calls
+the Stripe API, so it holds no secret key and does not care which account an
+event came from. That is what makes a single endpoint safe for both.
+
+`STRIPE_WEBHOOK_SECRET` is therefore a list. The handler tries each secret in
+turn with a constant time comparison and accepts the event if any one matches.
+An event signed with neither is still rejected with a 400, exactly as before.
+
+Two things fall out of this:
+
+- **One place to look.** A sandbox sale and a real one land in the same inbox.
+- **Rotating a secret drops nothing.** Add the new secret beside the old one,
+  deploy, confirm events still arrive, then remove the old one.
+
+**A sandbox event is labelled.** Stripe sets `livemode` on the event itself and
+the body is signed, so it cannot be forged. When it is false the subject line
+becomes `[TEST] New Calpir subscriber` and the first line of the email reads
+`THIS IS A SANDBOX EVENT`. A test can never be mistaken for a sale.
+
+## Running a test checkout
+
+Preview builds hold the sandbox key, so every checkout on one is fake money.
+
+1. Push any branch other than `main`. Vercel builds it and gives you a preview
+   URL.
+2. Open `/pricing` on that URL and buy something.
+3. Pay with `4242 4242 4242 4242`, any future expiry, any CVC, any postcode.
+4. The `[TEST]` email should arrive at info@calpir.com within a few seconds.
+   That is the only thing that proves the sandbox signing secret is right.
+
+Other cards worth knowing:
+
+| Number | What it does |
+|---|---|
+| `4242 4242 4242 4242` | succeeds |
+| `4000 0025 0000 3155` | asks for 3D Secure |
+| `4000 0000 0000 9995` | declines, insufficient funds |
+| `4000 0000 0000 0341` | attaches fine, then fails on the charge |
+
+What to look for: a monthly plan should say **nothing due today** and create a
+subscription in `trialing`; a build package should charge in full immediately;
+switching to GBP should charge the pound figure printed on the card rather than
+a conversion of the dollar one.
 
 ## Checking the prices have not drifted
 

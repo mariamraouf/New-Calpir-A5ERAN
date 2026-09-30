@@ -12,7 +12,8 @@
  *   invoice.paid                  a renewal did (monthly cycles only)
  *
  * Needs STRIPE_WEBHOOK_SECRET, which Stripe gives you when you add the
- * endpoint. See STRIPE-SETUP.md.
+ * endpoint. It takes a comma separated list, so one deployment can accept
+ * both the live secret and the sandbox one. See STRIPE-SETUP.md.
  *
  * Notification goes through the same Formspree endpoint the contact form
  * already uses, so there is no second email provider to pay for or break.
@@ -37,29 +38,56 @@ const readRawBody = (req: any): Promise<string> =>
   });
 
 /**
+ * The signing secrets this deployment will accept, from
+ * STRIPE_WEBHOOK_SECRET, which may hold more than one separated by commas.
+ *
+ * Why more than one. Test mode and live mode are different Stripe accounts
+ * with different signing secrets, but the same handler serves both, because
+ * this file only verifies a message and sends an email. It never calls the
+ * Stripe API, so it does not care which mode an event came from and needs no
+ * secret key of its own. Accepting both means a sandbox checkout on a preview
+ * build lands in the same inbox as a real one, and there is one endpoint to
+ * look after rather than two.
+ *
+ * It is also how you rotate a secret without dropping an event: add the new
+ * one alongside the old, deploy, then remove the old.
+ */
+const signingSecrets = (): string[] =>
+  (process.env.STRIPE_WEBHOOK_SECRET || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+/**
  * Verify the stripe-signature header ourselves rather than pulling in the SDK.
  * Header looks like: t=1699999999,v1=abc...,v1=def...
+ *
+ * True if any accepted secret produces a matching signature. Every candidate
+ * is compared with timingSafeEqual, and a wrong secret fails exactly as it
+ * did when there was only one.
  */
-const verifySignature = (payload: string, header: string, secret: string): boolean => {
+const verifySignature = (payload: string, header: string, secrets: string[]): boolean => {
   const parts = header.split(',').map((p) => p.trim());
   const timestamp = parts.find((p) => p.startsWith('t='))?.slice(2);
   const signatures = parts.filter((p) => p.startsWith('v1=')).map((p) => p.slice(3));
 
-  if (!timestamp || signatures.length === 0) return false;
+  if (!timestamp || signatures.length === 0 || secrets.length === 0) return false;
 
   const age = Math.floor(Date.now() / 1000) - Number(timestamp);
   if (!Number.isFinite(age) || Math.abs(age) > TOLERANCE_SECONDS) return false;
 
-  const expected = createHmac('sha256', secret)
-    .update(`${timestamp}.${payload}`, 'utf8')
-    .digest('hex');
-  const expectedBuf = Buffer.from(expected, 'utf8');
+  return secrets.some((secret) => {
+    const expected = createHmac('sha256', secret)
+      .update(`${timestamp}.${payload}`, 'utf8')
+      .digest('hex');
+    const expectedBuf = Buffer.from(expected, 'utf8');
 
-  // Compare against every v1 present: Stripe sends more than one while a
-  // signing secret is being rotated.
-  return signatures.some((sig) => {
-    const sigBuf = Buffer.from(sig, 'utf8');
-    return sigBuf.length === expectedBuf.length && timingSafeEqual(sigBuf, expectedBuf);
+    // Compare against every v1 present: Stripe sends more than one while a
+    // signing secret is being rotated.
+    return signatures.some((sig) => {
+      const sigBuf = Buffer.from(sig, 'utf8');
+      return sigBuf.length === expectedBuf.length && timingSafeEqual(sigBuf, expectedBuf);
+    });
   });
 };
 
@@ -68,7 +96,27 @@ const money = (amount: number | null | undefined, currency: string | null | unde
   return `${(amount / 100).toFixed(2)} ${String(currency || '').toUpperCase()}`;
 };
 
-const notify = async (subject: string, lines: string[]) => {
+/**
+ * Send the email.
+ *
+ * `live` is event.livemode. A sandbox checkout and a real one now arrive at
+ * the same address, so a test has to announce itself in the subject line or
+ * the first fake sale will be celebrated. Stripe sets this flag itself and
+ * nothing in the request can forge it, because the body was signed.
+ */
+const notify = async (subject: string, lines: string[], live = true) => {
+  const tagged = live ? subject : `[TEST] ${subject}`;
+  const body = live
+    ? lines
+    : [
+        'THIS IS A SANDBOX EVENT. No money moved and no real customer exists.',
+        '',
+        ...lines,
+      ];
+  return send(tagged, body);
+};
+
+const send = async (subject: string, lines: string[]) => {
   try {
     await fetch(NOTIFY_ENDPOINT, {
       method: 'POST',
@@ -92,8 +140,8 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
-  if (!secret) {
+  const secrets = signingSecrets();
+  if (secrets.length === 0) {
     console.error('webhook not configured: STRIPE_WEBHOOK_SECRET is missing');
     res.status(503).json({ ok: false, error: 'Webhook not configured' });
     return;
@@ -113,7 +161,7 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  if (!verifySignature(raw, signature, secret)) {
+  if (!verifySignature(raw, signature, secrets)) {
     // Anyone can POST to this URL. Without this check they could invent sales.
     console.error('webhook signature did not verify');
     res.status(400).json({ ok: false, error: 'Signature verification failed' });
@@ -129,6 +177,7 @@ export default async function handler(req: any, res: any) {
   }
 
   const obj = event?.data?.object || {};
+  const live = event?.livemode !== false;
 
   try {
     switch (event.type) {
@@ -149,6 +198,7 @@ export default async function handler(req: any, res: any) {
             '',
             'Next: send the questionnaire and the kickoff booking link.',
           ],
+          live,
         );
         break;
       }
@@ -164,7 +214,7 @@ export default async function handler(req: any, res: any) {
           `Comment:      ${obj.cancellation_details?.comment || 'none'}`,
           '',
           'Worth one email asking what went wrong.',
-        ]);
+        ], live);
         break;
       }
 
@@ -182,7 +232,7 @@ export default async function handler(req: any, res: any) {
             `Subscription: ${obj.id}`,
             `Customer:     ${obj.customer || 'unknown'}`,
             `Plan:         ${obj.metadata?.plan_id || 'unknown'}`,
-          ]);
+          ], live);
           break;
         }
 
@@ -197,7 +247,7 @@ export default async function handler(req: any, res: any) {
             `Ends:         ${obj.cancel_at ? new Date(obj.cancel_at * 1000).toISOString() : 'end of period'}`,
             `Reason:       ${obj.cancellation_details?.reason || 'not given'}`,
             `Comment:      ${obj.cancellation_details?.comment || 'none'}`,
-          ]);
+          ], live);
           break;
         }
 
@@ -215,7 +265,7 @@ export default async function handler(req: any, res: any) {
           `Attempt:  ${obj.attempt_count ?? 'unknown'}`,
           '',
           'Do not chase yet. Stripe retries and emails them first.',
-        ]);
+        ], live);
         break;
       }
 

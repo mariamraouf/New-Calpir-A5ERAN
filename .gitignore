@@ -23,3 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 .dyad/
+
+# Secrets. A filled in .env holds a live Stripe key, and this repo is public
+# on GitHub. .env.example is the committed one and holds only placeholders.
+.env
+.env.*
+!.env.example
