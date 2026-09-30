@@ -16,12 +16,13 @@ import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servicePricing';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
+import { useAutoCurrency } from '@/lib/currency';
 
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const data = allServicesCatalog.find(s => s.slug === slug);
-  const [currency, setCurrency] = React.useState<Currency>('usd');
+  const [currency, setCurrency] = useAutoCurrency();
   const { openBooking } = useBookingModal();
   const pricing = data ? servicePricing[data.slug] : undefined;
 

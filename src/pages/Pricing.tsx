@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -13,7 +13,8 @@ import MetaSEO from '@/components/seo/MetaSEO';
 import MonthlyPlans from '@/components/plans/MonthlyPlans';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import type { Currency } from '@/data/plans';
+import { useAutoCurrency } from '@/lib/currency';
+import { MONTHLY_PLANS, formatPrice } from '@/data/plans';
 
 /**
  * Monthly pricing, on its own page.
@@ -24,13 +25,20 @@ import type { Currency } from '@/data/plans';
  * so they get different pages and each one says plainly which it is.
  */
 const Pricing = () => {
-  const [currency, setCurrency] = useState<Currency>('usd');
+  const [currency, setCurrency] = useAutoCurrency();
+
+  // The hero used to state $249 whatever currency the page was showing, so a
+  // British visitor read a dollar figure at the top and pound figures a
+  // screen below. Read it off the plans instead, in whichever currency is on.
+  const cheapest = MONTHLY_PLANS.reduce((low, plan) =>
+    plan.price[currency] < low.price[currency] ? plan : low,
+  );
 
   return (
     <div className="min-h-screen bg-white">
       <MetaSEO
-        title="Pricing | Monthly Plans from $449 | Calpir"
-        description="Marketing and SEO, operations, sales and HR, each on a monthly plan from $449. Take one or take all four for less than the sum. Cancel any month. Prices in dollars, pounds and euros."
+        title="Pricing | Six Monthly Plans, $249 to $3,299 | Calpir"
+        description="Six monthly plans between $249 and $999, or all six together for $3,299. Every figure fixed, never from. Cancel any month. Dollars, pounds and euros, set not converted."
         path="/pricing"
       />
       <Navbar />
@@ -45,7 +53,7 @@ const Pricing = () => {
         stats={[
           { value: '7 days', label: 'Free before you pay' },
           { value: '6', label: 'Departments to choose from' },
-          { value: '$249', label: 'The smallest plan' },
+          { value: formatPrice(cheapest.price, currency), label: 'The smallest plan' },
           { value: 'Any month', label: 'Cancel, no tie in' },
         ]}
       />

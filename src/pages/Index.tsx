@@ -68,7 +68,7 @@ const Index = () => {
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       <MetaSEO 
         title="Calpir | Business Setup, Marketing & SEO, Run Monthly"
-        description="Calpir builds your entire company infrastructure, then runs the marketing, SEO, operations, sales and HR on a monthly plan. One time packages from $1,499, monthly plans from $449. Every price published."
+        description="Calpir builds your whole company infrastructure, then runs marketing, SEO, operations, sales and HR monthly. Packages $1,499 to $6,999, plans $249 to $999. Every price published."
         path="/"
       />
       <Navbar />

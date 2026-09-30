@@ -17,6 +17,7 @@ import FeatureModal from '@/components/ui/FeatureModal';
 import MetaSEO from '@/components/seo/MetaSEO';
 import BuyButton from '@/components/plans/BuyButton';
 import { ONE_TIME_PACKAGES, formatPrice, type Currency } from '@/data/plans';
+import { useAutoCurrency } from '@/lib/currency';
 
 const Packages = () => {
   const location = useLocation();
@@ -39,7 +40,7 @@ const Packages = () => {
     }
   }, [location.hash, location.key]);
 
-  const [currency, setCurrency] = useState<Currency>('usd');
+  const [currency, setCurrency] = useAutoCurrency();
 
   // The one-time cards carry their own copy; price, id and timeline come from
   // src/data/plans.ts so the number on screen is the number Stripe charges.
@@ -154,7 +155,7 @@ const Packages = () => {
   return (
     <div className="min-h-screen bg-white">
       <MetaSEO 
-        title="Packages | Complete Business Setup from $1,499 | Calpir"
+        title="Packages | Business Setup, $1,499 to $6,999 | Calpir"
         description="Three fixed scope packages that take a business from idea to running in 7 to 28 days. One payment, every price published, pay online."
         path="/packages"
       />

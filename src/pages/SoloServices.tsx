@@ -18,6 +18,7 @@ import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servic
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { SERVICE_CATEGORIES } from '@/data/serviceCategories';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
+import { useAutoCurrency } from '@/lib/currency';
 
 /**
  * Every service in the catalogue, priced, on one page.
@@ -28,7 +29,7 @@ import { useBookingModal } from '@/components/booking/BookingModalProvider';
  */
 const SoloServices = () => {
   const [filter, setFilter] = useState<string>('All');
-  const [currency, setCurrency] = useState<Currency>('usd');
+  const [currency, setCurrency] = useAutoCurrency();
   const { openBooking } = useBookingModal();
 
   const visibleCategories = useMemo(

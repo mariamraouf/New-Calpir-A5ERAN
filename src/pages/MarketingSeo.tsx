@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -13,7 +13,7 @@ import { ArrowRight, Check } from 'lucide-react';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { servicePricing, CURRENCIES } from '@/data/servicePricing';
-import type { Currency } from '@/data/plans';
+import { useAutoCurrency } from '@/lib/currency';
 
 /**
  * The marketing and search pillar.
@@ -53,7 +53,7 @@ const RELATED_READING = [
 ];
 
 const MarketingSeo = () => {
-  const [currency, setCurrency] = useState<Currency>('usd');
+  const [currency, setCurrency] = useAutoCurrency();
   const symbol = CURRENCIES.find((c) => c.code === currency)?.symbol ?? '$';
 
   const renderServiceGroup = (title: string, blurb: string, ids: string[]) => (
