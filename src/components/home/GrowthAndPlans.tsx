@@ -6,6 +6,7 @@ import { ArrowRight, Search, Settings, PhoneOutgoing, Users, Palette, Landmark }
 import SectionLabel from '@/components/ui/SectionLabel';
 import { Button } from '@/components/ui/button';
 import { MONTHLY_PLANS, formatPrice } from '@/data/plans';
+import { PLAN_PHOTOS } from '@/data/planPhotos';
 
 /**
  * The homepage block that says Calpir is not only a setup company.
@@ -130,23 +131,38 @@ const GrowthAndPlans = () => {
               return (
                 <Link
                   key={plan.id}
-                  to="/packages"
-                  className="group surface surface-hover p-7 flex flex-col"
+                  to="/pricing"
+                  className="group surface surface-hover flex flex-col overflow-hidden"
                 >
-                  <div className="w-10 h-10 flex items-center justify-center bg-emerald-50 border border-emerald-200 mb-5">
-                    <Icon size={18} className="text-emerald-700" />
-                  </div>
-                  <h3 className="font-bold text-navy text-lg mb-2 group-hover:text-emerald-700 transition-colors">
-                    {plan.name}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
-                    {plan.tagline}
-                  </p>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="price-figure text-3xl font-bold text-navy">
-                      {formatPrice(plan.price, 'usd')}
+                  <div className="relative h-36 w-full overflow-hidden bg-slate-100">
+                    <img
+                      src={PLAN_PHOTOS[plan.id]?.card}
+                      alt={PLAN_PHOTOS[plan.id]?.alt || ''}
+                      width={800}
+                      height={520}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/45 to-transparent" />
+                    <span className="absolute bottom-3 left-3 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/95 text-emerald-700 shadow-sm">
+                      <Icon size={17} />
                     </span>
-                    <span className="text-slate-500 font-bold text-sm">/month</span>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="font-bold text-navy text-lg mb-2 group-hover:text-emerald-700 transition-colors">
+                      {plan.name}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
+                      {plan.tagline}
+                    </p>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="price-figure text-3xl font-bold text-navy">
+                        {formatPrice(plan.price, 'usd')}
+                      </span>
+                      <span className="text-slate-500 font-bold text-sm">/month</span>
+                    </div>
                   </div>
                 </Link>
               );

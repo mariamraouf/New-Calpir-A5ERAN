@@ -8,6 +8,8 @@ import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Sparkles, Rocket, BarCha
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import PackageCard from '@/components/packages/PackageCard';
+import PhotoBand from '@/components/ui/PhotoBand';
+import { BUILD_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { Link, useLocation } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
@@ -172,6 +174,14 @@ const Packages = () => {
         </div>
       </section>
 
+      <PhotoBand
+        photo={BUILD_PHOTO}
+        compact
+        eyebrow="One payment"
+        title={<>Built once, handed over, <br className="hidden sm:block" />and yours.</>}
+        body="Every account, domain and login is registered in your name from the first day. Walk away whenever you like and you keep all of it."
+      />
+
       <section className="section-padding">
         <div className="container-custom">
           {/* One time build packages */}
@@ -193,6 +203,7 @@ const Packages = () => {
               ))}
             </div>
           </div>
+
 
           {/* The same card the homepage uses, so this page confirms what that
               one said rather than restating it in a different shape. */}

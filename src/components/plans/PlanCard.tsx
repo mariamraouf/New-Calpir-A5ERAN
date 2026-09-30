@@ -5,6 +5,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { formatPrice, type Currency, type PlanPrice, type PlanItem, MONTHLY_TRIAL_DAYS } from '@/data/plans';
+import { PLAN_PHOTOS } from '@/data/planPhotos';
 import BuyButton from './BuyButton';
 import IncludedList from './IncludedList';
 
@@ -37,24 +38,49 @@ const PlanCard: React.FC<PlanCardProps> = ({
   included, iconName, featured, note, buttonLabel,
 }) => {
   const Icon = serviceIconMap[iconName] || FallbackIcon;
+  const photo = PLAN_PHOTOS[planId];
 
   return (
     <div
       className={cn(
-        'relative flex flex-col bg-white border rounded-2xl p-8 surface-hover',
+        'relative flex flex-col bg-white border rounded-2xl overflow-hidden surface-hover',
         featured
           ? 'border-emerald-600 border-2 shadow-xl shadow-emerald-900/5'
           : 'border-slate-200',
       )}
     >
-      {featured && (
+      {/* A photograph of the work, not another icon. A plan is a relationship
+          with people in it, so the card leads with people. */}
+      {photo && (
+        <div className="relative h-40 w-full overflow-hidden bg-slate-100">
+          <img
+            src={photo.card}
+            alt={photo.alt}
+            width={800}
+            height={520}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
+          {featured && (
+            <span className="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+              Most popular
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="flex flex-col flex-grow p-8">
+
+      {featured && !photo && (
         <div className="absolute -top-3 left-8 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold px-3 py-1">
           Most popular
         </div>
       )}
 
       <div className="flex items-center gap-3 mb-5">
-        <div className="w-10 h-10 flex items-center justify-center bg-emerald-50 border border-emerald-200">
+        <div className="w-10 h-10 flex items-center justify-center bg-emerald-50 border border-emerald-200 rounded-lg">
           <Icon size={18} className="text-emerald-700" />
         </div>
         <h3 className="text-xl font-bold tracking-tight text-navy">{name}</h3>
@@ -94,7 +120,7 @@ const PlanCard: React.FC<PlanCardProps> = ({
         label={buttonLabel || (billing === 'month' ? 'Subscribe' : 'Buy this package')}
         variant={featured ? 'emerald' : 'dark'}
       />
-
+      </div>
     </div>
   );
 };

@@ -23,6 +23,8 @@ import GrowthAndPlans from '@/components/home/GrowthAndPlans';
 import PackagesPreview from '@/components/home/PackagesPreview';
 import ShowcaseBand from '@/components/home/ShowcaseBand';
 import TrialBand from '@/components/home/TrialBand';
+import PhotoBand from '@/components/ui/PhotoBand';
+import { OWNER_PHOTO, TEAM_PHOTO } from '@/data/planPhotos';
 
 const Index = () => {
   const { openBooking } = useBookingModal();
@@ -275,11 +277,28 @@ const Index = () => {
         </div>
       </section>
 
+      <PhotoBand
+        photo={OWNER_PHOTO}
+        eyebrow="Who this is for"
+        title={<>People who are good at the job, <br className="hidden sm:block" />and busy doing it.</>}
+        body="You did not start a business to learn six pieces of software and a filing calendar. We take the parts that are not why you started, and run them."
+        cta={{ label: 'See what we run', href: '/pricing' }}
+      />
+
       <ShowcaseBand />
 
       <PackagesPreview />
 
       <GrowthAndPlans />
+
+      <PhotoBand
+        photo={TEAM_PHOTO}
+        compact
+        eyebrow="One team"
+        title={<>Six departments. <br className="hidden sm:block" />One team behind them.</>}
+        body="The people writing your marketing know what your CRM is sending and who you just hired. Six separate agencies never do."
+        cta={{ label: 'Meet the squad', href: '/about' }}
+      />
 
       <TrialBand />
 
