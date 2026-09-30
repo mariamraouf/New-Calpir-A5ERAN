@@ -72,3 +72,17 @@ export const BUILD_PHOTO: Photo = {
 };
 
 export const OWNER_PHOTO: Photo = PLAN_PHOTOS['marketing-seo-monthly'];
+
+/**
+ * The home page hero.
+ *
+ * A desk with the whole business drawn out on paper: the plan, the numbers,
+ * the channels and the tools, before any of it exists. That is the moment
+ * this company sells into, which is why it sits behind the first thing
+ * anybody reads rather than a photograph of somebody else's shop.
+ */
+export const HERO_PHOTO: Photo = {
+  band: '/img/photo/hero-desk.jpg',
+  card: '/img/photo/hero-desk-card.jpg',
+  alt: 'A desk seen from above: a business plan drawn by hand across a large sheet of paper, with a laptop, a camera and a coffee around it',
+};

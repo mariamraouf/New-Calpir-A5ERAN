@@ -20,7 +20,7 @@ import PackagesPreview from '@/components/home/PackagesPreview';
 import ShowcaseBand from '@/components/home/ShowcaseBand';
 import TrialBand from '@/components/home/TrialBand';
 import PhotoBand from '@/components/ui/PhotoBand';
-import { OWNER_PHOTO, TEAM_PHOTO } from '@/data/planPhotos';
+import { OWNER_PHOTO, TEAM_PHOTO, HERO_PHOTO } from '@/data/planPhotos';
 import { tintAt } from '@/data/departmentTints';
 import { cn } from '@/lib/utils';
 
@@ -81,12 +81,12 @@ const Index = () => {
           all, which is where the eye should land. */}
       <section className="relative overflow-hidden bg-deep">
         <img
-          src={OWNER_PHOTO.band}
+          src={HERO_PHOTO.band}
           alt=""
           aria-hidden
-          width={1500}
-          height={752}
-          className="absolute inset-0 w-full h-full object-cover opacity-35"
+          width={1800}
+          height={1325}
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-[0.30]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-deep-900/96 via-deep-900/86 to-deep-800/62" />
         <div className="absolute inset-0 bg-[radial-gradient(110%_85%_at_95%_8%,rgba(255,255,255,0.07),transparent_58%)]" />
