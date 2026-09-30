@@ -168,6 +168,43 @@ export default async function handler(req: any, res: any) {
         break;
       }
 
+      case 'customer.subscription.updated': {
+        // The two changes worth an email: the free week ending, because that
+        // is the moment a trial becomes a paying customer, and somebody
+        // setting a cancellation for the end of the period, because there is
+        // still time to ask why.
+        const prev = (event.data as any)?.previous_attributes || {};
+
+        if (prev.status === 'trialing' && obj.status === 'active') {
+          await notify('A Calpir trial just converted', [
+            'A seven day trial ended and the first invoice is now due.',
+            '',
+            `Subscription: ${obj.id}`,
+            `Customer:     ${obj.customer || 'unknown'}`,
+            `Plan:         ${obj.metadata?.plan_id || 'unknown'}`,
+          ]);
+          break;
+        }
+
+        if (prev.cancel_at_period_end === false && obj.cancel_at_period_end === true) {
+          await notify('A Calpir plan is set to cancel', [
+            'A customer has asked to cancel at the end of the current period.',
+            'They are still paying until then, so there is time to ask why.',
+            '',
+            `Subscription: ${obj.id}`,
+            `Customer:     ${obj.customer || 'unknown'}`,
+            `Plan:         ${obj.metadata?.plan_id || 'unknown'}`,
+            `Ends:         ${obj.cancel_at ? new Date(obj.cancel_at * 1000).toISOString() : 'end of period'}`,
+            `Reason:       ${obj.cancellation_details?.reason || 'not given'}`,
+            `Comment:      ${obj.cancellation_details?.comment || 'none'}`,
+          ]);
+          break;
+        }
+
+        console.log('subscription updated, nothing worth an email:', obj.id);
+        break;
+      }
+
       case 'invoice.payment_failed': {
         await notify('A Calpir renewal failed', [
           'A monthly payment did not go through. Stripe will retry on its own.',

@@ -1,106 +1,99 @@
-# Turning on card payments
+# Stripe
 
-Until you do this, every Subscribe and Buy button still works, it just answers
-"Card payment is not switched on yet" and offers the booking calendar instead.
-Nothing on the site breaks while the key is missing.
+## What is already done
 
-## What you need to do
+Set up in the **Calpir sandbox** account (`acct_1UL41HC6yRyaZyeM`), test mode:
 
-1. Sign in to your Stripe dashboard and go to **Developers → API keys**.
-2. Copy the **Secret key**. It starts with `sk_live_` for real money, or
-   `sk_test_` if you want to try it first without charging anyone.
-3. Go to your Vercel project → **Settings → Environment Variables**.
-4. Add one variable:
+- **10 products, 10 prices.** One per plan and package, each price carrying all
+  three currencies as `currency_options`, so a customer paying in pounds gets
+  the pound figure rather than a converted dollar one.
+- **Lookup keys.** Every price's `lookup_key` is the plan id used on the site,
+  e.g. `marketing-seo-monthly`. The code finds prices by that key, never by a
+  hardcoded `price_...` id, so the same deploy works against test and live.
+- **Seven day trial**, set on all seven recurring prices *and* stated again in
+  `api/checkout.ts`, so the promise on the site is enforced in two places.
+- **Tax behaviour: exclusive** on every price. Change this before turning on
+  Stripe Tax if your prices are meant to include tax.
+- **Webhook endpoint** at `https://calpir.com/api/stripe-webhook`, listening for
+  `checkout.session.completed`, `customer.subscription.deleted`,
+  `customer.subscription.updated`, `invoice.payment_failed` and `invoice.paid`.
+- **Customer portal**, with invoice history, payment method updates, plan
+  switching between the seven monthly plans, promotion codes, and cancellation
+  at period end with a reason collected. Shareable login page is on.
 
-   | Name | Value |
-   | --- | --- |
-   | `STRIPE_SECRET_KEY` | the key you copied |
+## What still needs a human
 
-   Set it for Production, Preview and Development.
-5. Redeploy. Vercel will not pick up a new variable until the next deploy.
+### 1. The secret key, in Vercel
 
-That is the whole setup. There is nothing to create in Stripe first: no
-products, no price objects. The site sends Stripe the name and the amount at
-the moment somebody clicks.
+Stripe → Developers → API keys → reveal the secret key.
 
-**Never paste that key into a file in this repository.** It belongs only in the
-Vercel dashboard. Anyone holding it can charge your account.
+In Vercel → your project → Settings → Environment Variables:
 
+| Name | Value |
+|---|---|
+| `STRIPE_SECRET_KEY` | the `sk_test_...` key, for Preview and Development |
+| `STRIPE_WEBHOOK_SECRET` | see below |
+| `SITE_URL` | `https://calpir.com` |
 
-## Step two: the webhook
+The `sk_test` key that was pasted into a chat earlier should be **rolled**
+before anything real depends on it. Roll it, then paste the fresh one into
+Vercel. Never paste an `sk_live_` key anywhere but Vercel.
 
-Checkout tells the buyer they paid. The webhook is what tells *you*. Without it
-somebody can subscribe, close the tab, and you find out when the money appears
-in Stripe a week later.
+### 2. The webhook secret
 
-1. Stripe dashboard → **Developers → Webhooks → Add endpoint**.
-2. Endpoint URL: `https://www.calpir.com/api/stripe-webhook`
-3. Select these four events:
-   - `checkout.session.completed`
-   - `customer.subscription.deleted`
-   - `invoice.payment_failed`
-   - `invoice.paid`
-4. Stripe shows you a **Signing secret** starting `whsec_`. Copy it.
-5. Vercel → Settings → Environment Variables → add `STRIPE_WEBHOOK_SECRET`
-   with that value. Redeploy.
+Stripe → Developers → Webhooks → the `calpir.com/api/stripe-webhook` endpoint →
+**Reveal** the signing secret (`whsec_...`) → copy it into Vercel as
+`STRIPE_WEBHOOK_SECRET`.
 
-You will then get an email when somebody subscribes, when somebody cancels, and
-when a renewal fails. They go through the same Formspree address the contact
-form uses, so there is nothing new to sign up for.
+Without it the webhook handler rejects every event, which is the correct
+behaviour: an unverified webhook is an open door.
 
-The endpoint verifies Stripe's signature on every request and rejects anything
-that does not match, including replays of an old genuine event. Without that
-check anyone who found the URL could invent sales.
+### 3. Repeat the catalogue in live mode
 
-## Step three: three switches in the Stripe dashboard
+Everything above is in the sandbox. When you are ready to take real money,
+connect the live account and the same setup can be repeated against it. Use
+**the same lookup keys**; nothing in the code changes.
 
-These need no code and Stripe's own guidance recommends all three for a
-business shaped like yours.
+### 4. Three dashboard switches worth turning on
 
-| Switch | Where | Why |
-| --- | --- | --- |
-| **Customer portal** | Settings → Billing → Customer portal | Subscribers cancel and update their own cards instead of emailing you. |
-| **Revenue recovery** | Billing → Revenue recovery | Smart retries plus automatic failed-payment emails. Recovers a slice of every failed renewal without you doing anything. |
-| **Stripe Tax** | Tax → Settings | Set your head office and a product tax category. You are below the VAT threshold, so leave collection off: Stripe then watches your sales against UK and EU thresholds for free and warns you before you cross one. |
+- **Revenue recovery** (Billing → Revenue recovery): retries failed payments on
+  a schedule and emails the customer. Without it, one declined card silently
+  ends a subscription.
+- **Customer emails** (Settings → Customer emails): receipts and failed payment
+  emails. Off by default in test mode.
+- **Stripe Tax** (Tax → Settings): if you turn it on, set your origin address
+  and check the `tax_behavior` on the prices first.
 
-The tax one matters most. Selling services into the UK and EU, the moment you
-cross a registration threshold the obligation is immediate and backdated. Free
-monitoring means you find out in advance rather than from an accountant.
+## Checking the prices have not drifted
 
-## Optional
+The site shows `src/data/plans.ts`. Stripe charges the Price with the matching
+lookup key. This checks they agree:
 
-| Name | What it does |
-| --- | --- |
-| `SITE_URL` | Forces the return address after payment, e.g. `https://www.calpir.com`. Without it the site works this out from the incoming request, which is correct in almost every case. |
+```bash
+STRIPE_SECRET_KEY=sk_test_... node scripts/check-stripe-prices.mjs
+```
 
-## Where the prices live
+It reports every plan and every currency, warns about anything active in Stripe
+that the site does not sell, and exits non zero on a mismatch. Run it after
+changing any price, and against the live key before the first real customer.
 
-Two files, deliberately:
+## How a purchase actually flows
 
-- `src/data/plans.ts` is what the visitor sees on screen.
-- `api/checkout.ts` is what Stripe actually charges.
+1. The browser posts `{ planId, currency }` to `/api/checkout`. **No amount is
+   ever sent from the browser.**
+2. `api/checkout.ts` checks the plan id against its own allowlist, resolves the
+   Stripe price by lookup key, and opens a Checkout Session: subscription mode
+   with a seven day trial for a plan, payment mode with an invoice and a
+   customer record for a package.
+3. Stripe collects the card. For a monthly plan it charges nothing until day
+   eight.
+4. Stripe calls the webhook. `api/stripe-webhook.ts` verifies the signature,
+   then posts a notification to the Formspree address so a new customer,
+   cancellation or failed payment lands in the inbox.
+5. The customer manages everything else themselves in the portal.
 
-They hold the same numbers. The second copy exists because anything the browser
-sends can be edited before it arrives, so the amount is never taken from the
-page. **If you change a price, change it in both files**, or the card will be
-charged the old number.
+## If payments are not switched on
 
-## What each plan does at checkout
-
-| Plan | Mode | Billing |
-| --- | --- | --- |
-| Marketing & SEO, Ops & Systems, Sales & Outreach, HR & Admin, Everything | subscription | Charged monthly until cancelled |
-| Starter, Growth, Ultimate | payment | Charged once |
-
-Buyers land on `/checkout/success` afterwards, which tells them what happens
-next. That page is set to noindex, so it will not turn up in Google.
-
-## Two things worth doing in Stripe once it is live
-
-1. **Customer portal.** Settings → Billing → Customer portal, switch it on.
-   That gives subscribers a link to update their card or cancel themselves,
-   instead of emailing you.
-2. **A test run.** Use a `sk_test_` key and Stripe's test card `4242 4242 4242
-   4242` with any future expiry, and buy your own Marketing plan. Confirm the
-   subscription appears in Stripe and that you land on the success page. Then
-   swap in the live key.
+With no `STRIPE_SECRET_KEY`, `/api/checkout` answers 503 with a friendly message
+and the site falls back to the booking popup. That is deliberate: a missing key
+should cost you a call, not a customer.
