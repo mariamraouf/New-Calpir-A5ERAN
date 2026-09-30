@@ -56,7 +56,7 @@ const TrialBand = () => (
             until the eighth day. If it has not earned its place by then, you
             cancel and it has cost you nothing but a week of our time.
           </p>
-          <Button asChild className="bg-navy hover:bg-navy-800 text-white px-7 py-6 rounded-xl font-semibold text-[15px]">
+          <Button asChild className="bg-deep hover:bg-deep-900 text-white px-7 py-6 rounded-xl font-semibold text-[15px]">
             <Link to="/pricing">
               Start a free week <ArrowRight size={17} className="ml-1.5" />
             </Link>

@@ -9,6 +9,7 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Packages from "./pages/Packages";
 import SoloServices from "./pages/SoloServices";
 import SoftwareStack from "./pages/SoftwareStack";
+import Sectors from './pages/Sectors';
 import About from "./pages/About";
 import CaseStudies from "./pages/CaseStudies";
 import Assessment from "./pages/Assessment";
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/solo-services" element={<SoloServices />} />
           <Route path="/software-stack" element={<SoftwareStack />} />
+          <Route path="/sectors" element={<Sectors />} />
           <Route path="/about" element={<About />} />
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/assessment" element={<Assessment />} />

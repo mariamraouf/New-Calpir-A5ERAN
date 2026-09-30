@@ -6,8 +6,9 @@ import { TrendingUp, Clock, Zap, CheckCircle2, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import PageHero from '@/components/ui/PageHero';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import MetaSEO from '@/components/seo/MetaSEO';
 
@@ -97,16 +98,14 @@ const CaseStudies = () => {
       />
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom">
-          <motion.div {...reveal}>
-            <SectionLabel>Proof of Concept</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-navy">
-              Case <br /> <span className="text-emerald-700">Studies.</span>
-            </h1>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="The work"
+        title={<>What it looks like <br />when it is finished.</>}
+        body="How the setup, the systems and the monthly work come together for a real business, and what changed as a result."
+        image={OWNER_PHOTO.band}
+        primary={{ label: 'Start a free week', href: '/pricing' }}
+        secondary={{ label: 'See the packages', href: '/packages' }}
+      />
 
       <section className="py-24 px-6">
         <div className="container-custom">
@@ -170,14 +169,13 @@ const CaseStudies = () => {
       <section className="section-padding bg-emerald-700 text-white text-center shadow-inner">
         <div className="container-custom">
           <h2 className="text-4xl md:text-7xl mb-8 font-bold tracking-tight text-white">Ready for Your Own <br /> Success Story?</h2>
-          <Button asChild className="bg-navy text-white hover:bg-navy-800 px-12 py-8 rounded-xl font-bold text-xl tracking-tight transition-all btn-hover">
+          <Button asChild className="bg-deep text-white hover:bg-deep-900 px-12 py-8 rounded-xl font-bold text-xl tracking-tight transition-all btn-hover">
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>
       </section>
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

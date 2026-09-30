@@ -2,19 +2,15 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Layers, Sparkles, CheckCircle2, CreditCard, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Globe, BarChart3, Settings, Bot, Zap, Layers, Sparkles, CheckCircle2, CreditCard, ShieldCheck, Rocket, TrendingUp, Tag, KeyRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
-import ConnectedEcosystem from '@/components/visuals/ConnectedEcosystem';
 import ROICalculator from '@/components/home/ROICalculator';
 import FAQ from '@/components/home/FAQ';
-import SectorsSection from '@/components/home/SectorsSection';
 import MetaSEO from '@/components/seo/MetaSEO';
-import EmailCaptureCTA from '@/components/home/EmailCaptureCTA';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import LogoTicker from '@/components/home/LogoTicker';
 import LaunchTimeline from '@/components/home/LaunchTimeline';
@@ -25,6 +21,8 @@ import ShowcaseBand from '@/components/home/ShowcaseBand';
 import TrialBand from '@/components/home/TrialBand';
 import PhotoBand from '@/components/ui/PhotoBand';
 import { OWNER_PHOTO, TEAM_PHOTO } from '@/data/planPhotos';
+import { tintAt } from '@/data/departmentTints';
+import { cn } from '@/lib/utils';
 
 const Index = () => {
   const { openBooking } = useBookingModal();
@@ -76,60 +74,91 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      {/* Two columns, because a centred block of text on white left a screen
-          and a half of empty space above the fold. The panel on the right is
-          drawn rather than photographed: it shows what Calpir actually builds. */}
-      <section className="pt-10 sm:pt-14 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200 bg-gradient-to-b from-emerald-50/50 via-white to-white">
-        <div className="container-custom">
+      {/* A photograph behind a green wash, the same treatment every other page
+          wears, so the site reads as one thing. The four promises are tiles
+          rather than a bullet list, because a row of ticks beside plain text is
+          what a template looks like. The assessment stays white on top of it
+          all, which is where the eye should land. */}
+      <section className="relative overflow-hidden bg-deep">
+        <img
+          src={OWNER_PHOTO.band}
+          alt=""
+          aria-hidden
+          width={1500}
+          height={752}
+          className="absolute inset-0 w-full h-full object-cover opacity-35"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-900/96 via-deep-900/86 to-deep-800/62" />
+        <div className="absolute inset-0 bg-[radial-gradient(110%_85%_at_95%_8%,rgba(16,185,129,0.24),transparent_58%)]" />
+
+        <div className="relative container-custom pt-12 pb-14 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
           <motion.div {...reveal} className="grid lg:grid-cols-[1.05fr,1fr] gap-10 lg:gap-14 items-center">
 
             <div>
-              <div className="inline-flex items-center gap-2 border border-emerald-200 bg-emerald-50 px-3.5 py-1.5 mb-5 text-[13px] text-emerald-800 font-semibold rounded-full">
-                <Sparkles size={13} className="text-emerald-600 shrink-0" /> Set it up, then get it found
+              <div className="inline-flex items-center gap-2 bg-white/15 ring-1 ring-white/25 backdrop-blur px-3.5 py-1.5 mb-5 text-[13px] text-white font-semibold rounded-full">
+                <Sparkles size={13} className="text-emerald-300 shrink-0" /> Set it up, then get it found
               </div>
 
-              <h1 className="text-[2.1rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem] lg:leading-[1.02] mb-5 text-navy">
+              <h1 className="text-white text-[2.1rem] leading-[1.05] sm:text-5xl lg:text-[3.6rem] lg:leading-[1.02] mb-5">
                 Set up in 7 days. <br />
-                <span className="text-emerald-700">Found every month after.</span>
+                <span className="text-emerald-300">Found every month after.</span>
               </h1>
 
-              <p className="lede mb-7 max-w-[560px]">
+              <p className="text-emerald-50/85 text-[17px] sm:text-[18.5px] leading-relaxed mb-8 max-w-[560px]">
                 Entity, brand, website, CRM, payments and AI systems, built as one
                 connected setup. Then marketing, SEO, your CRM and operations run
                 monthly, so the business you launched keeps getting found.
               </p>
 
-              {/* Four things we do, in a grid, so the eye has something to land
-                  on other than a paragraph. */}
-              <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-8 max-w-[560px]">
+              {/* The four promises, as tiles. Each one is a claim we can be held
+                  to, so each one gets its own box rather than a tick in a list. */}
+              <div className="grid grid-cols-2 gap-3 mb-8 max-w-[560px]">
                 {[
-                  'Complete business setup',
-                  'Marketing and SEO run monthly',
-                  'Every price published up front',
-                  '100% code and account ownership',
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5">
-                    <CheckCircle2 size={17} className="text-emerald-600 shrink-0" />
-                    <span className="text-[15px] text-slate-700 font-medium">{item}</span>
-                  </div>
-                ))}
+                  { icon: Rocket, big: '7 days', small: 'Whole business set up' },
+                  { icon: TrendingUp, big: 'Monthly', small: 'Marketing and SEO run for you' },
+                  { icon: Tag, big: 'Published', small: 'Every price, before you ask' },
+                  { icon: KeyRound, big: '100%', small: 'Code and accounts in your name' },
+                ].map((t) => {
+                  const TileIcon = t.icon;
+                  return (
+                    <div
+                      key={t.big}
+                      className="rounded-xl bg-deep-900/55 ring-1 ring-white/20 backdrop-blur px-4 py-3.5"
+                    >
+                      <TileIcon size={17} className="text-emerald-300 mb-2.5" />
+                      <div className="text-white font-extrabold text-[1.15rem] leading-none tracking-tight">
+                        {t.big}
+                      </div>
+                      <div className="text-emerald-50/70 text-[12.5px] font-medium mt-1.5 leading-snug">
+                        {t.small}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
-              <EmailCaptureCTA />
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <Button
+                  asChild
+                  className="bg-white hover:bg-emerald-50 text-deep px-7 py-6 rounded-xl font-bold text-[15px] shadow-lg shadow-black/10"
+                >
+                  <Link to="/pricing">
+                    Get your free trial now <ArrowRight size={17} className="ml-1.5" />
+                  </Link>
+                </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => openBooking()}
-                  className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 px-6 py-5 rounded-xl font-semibold text-[15px]"
+                  className="border-white/35 bg-white/5 text-white hover:bg-white/15 hover:text-white px-7 py-6 rounded-xl font-semibold text-[15px]"
                 >
-                  Pick a time instead
-                </Button>
-                <Button asChild variant="outline" className="border-slate-300 text-navy hover:bg-slate-100 px-6 py-5 rounded-xl font-semibold text-[15px]">
-                  <Link to="/pricing">See plans and prices</Link>
+                  Book a call instead
                 </Button>
               </div>
+
+              <p className="text-emerald-50/60 text-[13px] mt-4">
+                Seven days free on every monthly plan. Nothing is charged until day eight.
+              </p>
             </div>
 
             <HeroAssessment />
@@ -138,36 +167,42 @@ const Index = () => {
       </section>
 
       {/* Full Setup Pillars Section */}
-      <section className="py-10 sm:py-12 bg-white border-b border-slate-200">
+      <section className="py-10 sm:py-14 bg-white border-b border-slate-200">
         <div className="container-custom">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
             {pillars.map((item, idx) => {
               const IconComponent = item.icon;
               return (
-                <div 
+                <div
                   key={idx}
-                  className="surface surface-hover p-5 md:p-6 group flex flex-col justify-between"
+                  className={cn(
+                    'rounded-2xl border p-5 md:p-6 group flex flex-col justify-between transition-shadow hover:shadow-md',
+                    tintAt(idx).bg,
+                    tintAt(idx).border,
+                  )}
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="num-badge">{item.pillar}</span>
-                      <span className="icon-circle group-hover:border-emerald-300 group-hover:text-emerald-700 transition-colors">
-                        <IconComponent size={17} />
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={cn('price-figure text-[1.45rem] font-extrabold leading-none', tintAt(idx).ink)}>
+                        {item.pillar}
+                      </span>
+                      <span className={cn('inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white shadow-sm', tintAt(idx).ink)}>
+                        <IconComponent size={18} />
                       </span>
                     </div>
-                    
-                    <h3 className="text-base sm:text-lg font-bold text-navy tracking-tight mb-2 group-hover:text-emerald-800 transition-colors">
+
+                    <h3 className="text-base sm:text-lg font-extrabold text-navy tracking-tight mb-2">
                       {item.title}
                     </h3>
-                    
+
                     <p className="text-[14px] text-slate-600 leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
 
-                  <div className="pt-3 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[12px] text-slate-400 font-semibold">
-                    <CheckCircle2 size={12} className="text-emerald-600 shrink-0" />
-                    <span>Included in Launch</span>
+                  <div className={cn('pt-3 mt-4 border-t flex items-center gap-1.5 text-[12px] font-bold', tintAt(idx).border, tintAt(idx).ink)}>
+                    <CheckCircle2 size={12} className="shrink-0" />
+                    <span>In every build</span>
                   </div>
                 </div>
               );
@@ -179,103 +214,8 @@ const Index = () => {
       {/* Scrolling Logo Ticker */}
       <LogoTicker />
 
-      {/* Sectors We Launch */}
-      <SectorsSection />
-
       {/* Launch Timeline */}
       <LaunchTimeline />
-
-      {/* Services Grid */}
-      <section className="section-padding border-b border-slate-200 section-alt">
-        <div className="container-custom">
-          <SectionLabel>The complete business modules</SectionLabel>
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
-            <h2 className="text-2xl sm:text-5xl md:text-6xl font-bold text-navy tracking-tight">
-              Every Department <br /> <span className="text-emerald-700">Ready To Generate Cash</span>
-            </h2>
-            <p className="text-slate-600 text-xs sm:text-base max-w-md">
-              We eliminate every technical, operational, and administrative bottleneck so your company operates as an integrated commercial machine.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {[
-              { title: "Brand, domain and SSL", icon: <ShieldCheck />, desc: "Visual identity, domain registration, certificates, and Google Search Console indexing.", link: "/services/website-development", outcomes: ["A brand you can hand to anyone", "Domain and certificate in your name", "Indexed by Google from day one"] },
-              { title: "High speed storefront", icon: <Globe />, desc: "React architecture built for instant global loading and for turning visitors into enquiries.", link: "/services/website-development", outcomes: ["Loads in under 1.5 seconds", "Built to convert, not just to look good", "Works properly on a phone"] },
-              { title: "CRM and sales pipelines", icon: <BarChart3 />, desc: "Automated lead intake, deal stages, two way calendar sync and instant routing.", link: "/services/crm-sales", outcomes: ["No lead sits untouched", "Deals visible at a glance", "Follow up happens without you"] },
-              { title: "Finance, billing and invoicing", icon: <CreditCard />, desc: "Stripe checkouts, recurring billing, automated quotes and accounting sync.", link: "/services/operations-hr", outcomes: ["Customers can pay you online", "Recurring billing that runs itself", "Your accounts stay in sync"] },
-              { title: "Operations, SOPs and payroll", icon: <Settings />, desc: "ClickUp or Notion boards, contractor onboarding, contracts, and Deel or Gusto payroll.", link: "/services/operations-hr", outcomes: ["Work lives in one place", "Processes written down, not remembered", "Contractors paid on time"] },
-              { title: "AI agents and automation", icon: <Bot />, desc: "Agents trained on your business for qualification and booking, plus Make or Zapier workflows.", link: "/services/ai-agents", outcomes: ["Answers at 2am without you", "Qualifies and books real calls", "Built with guardrails, not hype"] }
-            ].map((s, i) => (
-              <Link key={i} to={s.link} className="surface surface-hover p-6 sm:p-7 group flex flex-col">
-                <div className="flex items-start justify-between mb-5">
-                  <span className="num-badge">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="icon-circle group-hover:border-emerald-300 group-hover:text-emerald-700 transition-colors">
-                    {React.cloneElement(s.icon as React.ReactElement<any>, { size: 18 })}
-                  </span>
-                </div>
-                <h3 className="text-xl font-extrabold text-navy mb-2.5 leading-snug">{s.title}</h3>
-                <p className="text-slate-600 text-[15px] leading-relaxed mb-5">{s.desc}</p>
-                <div className="border-t border-slate-100 pt-4 mb-5 flex-grow">
-                  <p className="outcome-label mb-2.5">What you get</p>
-                  <ul className="space-y-1.5">
-                    {s.outcomes.map((o) => (
-                      <li key={o} className="flex items-start gap-2 text-[14px] text-slate-600">
-                        <CheckCircle2 size={15} className="text-emerald-500 shrink-0 mt-0.5" />
-                        <span>{o}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <span className="card-cta mt-auto">
-                  Explore this module <ArrowRight size={15} />
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
-            <Button asChild variant="outline" className="w-full sm:w-auto border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-[11px] sm:text-xs font-bold py-5 sm:py-6 px-6 sm:px-8 rounded-xl">
-              <Link to="/software-stack">Browse Our 100+ Integrated Software Stack <ArrowRight size={14} className="ml-1.5" /></Link>
-            </Button>
-            <Button asChild variant="outline" className="w-full sm:w-auto border-slate-300 text-zinc-800 hover:bg-slate-100 mono text-[11px] sm:text-xs font-bold py-5 sm:py-6 px-6 sm:px-8 rounded-xl">
-              <Link to="/solo-services">Browse Individual Solo Services <Layers size={14} className="ml-1.5" /></Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Ecosystem Visual */}
-      <section id="ecosystem" className="section-padding border-b border-slate-200 bg-gradient-to-b from-zinc-50 via-emerald-50/20 to-zinc-50 overflow-hidden">
-        <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
-            <div className="lg:col-span-5 space-y-4 sm:space-y-6">
-              <SectionLabel>The Calpir Complete Business Engine</SectionLabel>
-              <h2 className="text-2xl sm:text-5xl md:text-6xl text-navy font-bold leading-tight tracking-tight">
-                Everything connected. <br />
-                <span className="text-emerald-700">Everything Running Together.</span>
-              </h2>
-              <p className="text-xs sm:text-base md:text-lg text-slate-600 leading-relaxed">
-                Most founders spend months stitching together 8 disconnected software accounts. We deploy one seamless business engine where website traffic converts into CRM leads, leads trigger automated billing, contracts are signed automatically, and AI agents handle 24/7 customer conversations.
-              </p>
-              
-              <div className="space-y-2.5 pt-1 sm:pt-2">
-                <div className="flex items-center gap-2.5 mono text-[11px] sm:text-xs tracking-wider font-bold text-zinc-800">
-                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-emerald-600 rounded-full animate-ping" />
-                  Real Time Data Flow Across Legal, Ops, CRM, Finance, and AI
-                </div>
-                <div className="mono text-[11px] sm:text-xs text-emerald-800 font-bold tracking-wider border-l-2 border-emerald-600 pl-3 sm:pl-4 py-1.5 bg-emerald-50/60">
-                  One complete operational foundation. Zero gaps. Everything ready on day one.
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 flex justify-center items-center py-2 px-2 overflow-visible">
-              <ConnectedEcosystem />
-            </div>
-          </div>
-        </div>
-      </section>
 
       <PhotoBand
         photo={OWNER_PHOTO}
@@ -306,25 +246,89 @@ const Index = () => {
 
       <FAQ />
 
-      {/* Contact CTA */}
-      <section id="contact" className="section-padding border-t border-slate-200 bg-emerald-50/60">
-        <div className="container-custom text-center px-4">
-          <h2 className="text-3xl sm:text-6xl md:text-7xl mb-4 sm:mb-6 font-bold tracking-tight text-navy">
-            Ready to <br /> Launch Your Full Business?
-          </h2>
-          <p className="text-xs sm:text-base md:text-lg text-slate-600 mb-6 sm:mb-10 max-w-xl mx-auto leading-relaxed">
-            Book a free 30 minute consultation with Maria. We will map out your complete company setup from legal and brand to website, CRM, and AI operations.
-          </p>
-          <div className="max-w-md mx-auto">
-            <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-700 text-white px-6 sm:px-10 py-5 sm:py-7 rounded-xl font-bold text-xs sm:text-lg tracking-tight transition-all btn-hover shadow-md text-center whitespace-normal leading-tight">
-              <Link to="/contact">Book Your Free Call with Maria</Link>
-            </Button>
+      {/* The last thing on the page. It was a heading and a button on a pale
+          green wash, which is what every site ends with. This one puts the two
+          real choices side by side and prices both, because the reason
+          somebody scrolled this far is that they are deciding. */}
+      <section id="contact" className="relative overflow-hidden bg-deep">
+        <img
+          src={TEAM_PHOTO.band}
+          alt=""
+          aria-hidden
+          width={1500}
+          height={752}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover opacity-35"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-deep-900/96 via-deep-900/90 to-deep-800/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(110%_80%_at_85%_10%,rgba(16,185,129,0.28),transparent_60%)]" />
+
+        <div className="relative container-custom py-16 sm:py-20 px-4">
+          <div className="max-w-[640px] mb-10">
+            <span className="inline-flex items-center gap-2 bg-white/15 ring-1 ring-white/25 backdrop-blur text-white text-[12px] font-bold px-3.5 py-1.5 rounded-full mb-5">
+              Two ways in
+            </span>
+            <h2 className="text-white text-3xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] mb-4">
+              Build it once, <br />
+              <span className="text-emerald-300">or hand it over monthly.</span>
+            </h2>
+            <p className="text-emerald-50/85 text-[17px] leading-relaxed">
+              Both prices are on this site. Neither needs a call first, and the
+              monthly one does not charge you for a week.
+            </p>
           </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="rounded-2xl bg-white p-7 sm:p-8 shadow-xl">
+              <p className="text-[12px] font-bold tracking-wide uppercase text-emerald-700 mb-3">
+                Start free
+              </p>
+              <h3 className="text-navy text-2xl font-extrabold mb-2">A monthly department</h3>
+              <p className="text-slate-600 text-[15.5px] leading-relaxed mb-5">
+                Pick the department that is in your way. We start this week and
+                nothing is charged until day eight. Cancel any month.
+              </p>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="price-figure text-3xl font-extrabold text-navy">$249</span>
+                <span className="text-slate-500 font-semibold">a month, at the smallest</span>
+              </div>
+              <Button asChild className="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-6 rounded-xl font-bold text-[15px]">
+                <Link to="/pricing">
+                  Get your free trial now <ArrowRight size={17} className="ml-1.5" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="rounded-2xl bg-deep-900/70 ring-1 ring-white/20 backdrop-blur p-7 sm:p-8">
+              <p className="text-[12px] font-bold tracking-wide uppercase text-emerald-300 mb-3">
+                Or build first
+              </p>
+              <h3 className="text-white text-2xl font-extrabold mb-2">A one time package</h3>
+              <p className="text-emerald-50/80 text-[15.5px] leading-relaxed mb-5">
+                Company, brand, site, email, payments and CRM, built as one thing
+                and handed over in your name. Paid once.
+              </p>
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="price-figure text-3xl font-extrabold text-white">$1,499</span>
+                <span className="text-emerald-50/60 font-semibold">once, at the smallest</span>
+              </div>
+              <Button asChild variant="outline" className="w-full border-white/40 bg-transparent text-white hover:bg-white/15 hover:text-white py-6 rounded-xl font-semibold text-[15px]">
+                <Link to="/packages">See the three builds</Link>
+              </Button>
+            </div>
+          </div>
+
+          <p className="text-emerald-50/60 text-[13.5px] mt-7">
+            Would rather talk it through first?{' '}
+            <button type="button" onClick={() => openBooking()} className="text-white font-semibold underline underline-offset-4">
+              Book a free call
+            </button>
+            {' '}and we will tell you if you do not need us.
+          </p>
         </div>
       </section>
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

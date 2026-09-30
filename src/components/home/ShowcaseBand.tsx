@@ -110,7 +110,7 @@ const ShowcaseBand = () => {
               className={cn(
                 'px-4 py-2.5 rounded-full text-[14.5px] font-semibold transition-colors border',
                 active === i.id
-                  ? 'bg-navy text-white border-navy'
+                  ? 'bg-deep text-white border-deep'
                   : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-400 hover:text-navy',
               )}
             >
@@ -142,7 +142,7 @@ const ShowcaseBand = () => {
             <p className="text-slate-600 text-[17px] leading-relaxed mb-7">{item.body}</p>
             <Button
               asChild
-              className="bg-navy hover:bg-navy-800 text-white px-7 py-6 rounded-xl font-semibold text-[15px]"
+              className="bg-deep hover:bg-deep-900 text-white px-7 py-6 rounded-xl font-semibold text-[15px]"
             >
               <Link to={item.href}>
                 {item.cta} <ArrowRight size={17} className="ml-1.5" />

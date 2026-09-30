@@ -52,7 +52,7 @@ const BuyButton: React.FC<BuyButtonProps> = ({
           'w-full py-7 rounded-xl font-bold tracking-tight text-base transition-transform hover:-translate-y-0.5',
           variant === 'emerald'
             ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-            : 'bg-navy hover:bg-navy-800 text-white',
+            : 'bg-deep hover:bg-deep-900 text-white',
         )}
       >
         {busy ? (

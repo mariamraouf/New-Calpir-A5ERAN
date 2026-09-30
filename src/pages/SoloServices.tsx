@@ -5,8 +5,10 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Clock, ShieldCheck, PencilRuler } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import RelatedReading from '@/components/content/RelatedReading';
+import PageHero from '@/components/ui/PageHero';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import MetaSEO from '@/components/seo/MetaSEO';
@@ -46,21 +48,18 @@ const SoloServices = () => {
       />
       <Navbar />
 
-      <section className="pt-24 sm:pt-28 pb-12 px-4 sm:px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom">
-          <SectionLabel>Pick What You Need</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl leading-[0.95] mb-5 font-bold tracking-tight text-navy">
-            Solo <span className="text-emerald-700">Services.</span>
-          </h1>
-          <p className="text-base sm:text-xl text-slate-600 max-w-[800px] leading-relaxed">
-            All {allServicesCatalog.length} services, each with a price, each bookable on its own
-            without a full package.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        compact
+        eyebrow="Pick what you need"
+        title={<>One service. <br />One published price.</>}
+        body={`All ${allServicesCatalog.length} services, each with a price on the card, each bookable on its own without a package and without a call.`}
+        image={PLAN_PHOTOS['compliance-filings-monthly'].band}
+        primary={{ label: 'Browse the catalogue', href: '#catalogue' }}
+        secondary={{ label: 'Or a monthly plan', href: '/pricing' }}
+      />
 
       {/* The promise, stated plainly rather than buried in terms. */}
-      <section className="border-b border-slate-200 bg-navy text-white">
+      <section className="border-b border-slate-200 bg-deep text-white">
         <div className="container-custom px-4 sm:px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-5">
           <div className="flex items-start gap-3">
             <ShieldCheck size={20} className="text-emerald-400 shrink-0 mt-0.5" />
@@ -97,7 +96,7 @@ const SoloServices = () => {
       </section>
 
       {/* Category filter and currency */}
-      <section className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm">
+      <section id="catalogue" className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm scroll-mt-24">
         <div className="container-custom px-4 sm:px-6 py-3 space-y-2.5">
           <div className="flex gap-x-4 overflow-x-auto no-scrollbar">
             {['All', ...SERVICE_CATEGORIES.map((c) => c.name)].map((name) => {
@@ -273,7 +272,7 @@ const SoloServices = () => {
               <Button
                 type="button"
                 onClick={() => openBooking()}
-                className="bg-navy text-white hover:bg-navy-800 font-bold px-7 py-6 rounded-xl text-sm"
+                className="bg-deep text-white hover:bg-deep-900 font-bold px-7 py-6 rounded-xl text-sm"
               >
                 Tell us what you need
               </Button>
@@ -282,8 +281,12 @@ const SoloServices = () => {
         </div>
       </section>
 
+      <RelatedReading
+        slugs={['best-crm-tools-comparison', 'n8n-vs-make-vs-zapier', 'sop-examples-small-business']}
+        heading="Work out what you actually need."
+      />
+
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

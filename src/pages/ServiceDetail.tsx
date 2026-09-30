@@ -5,7 +5,8 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/ui/ScrollToTop';
+import RelatedReading from '@/components/content/RelatedReading';
+import { CATEGORY_ID_BY_NAME } from '@/data/categoryPlans';
 import { Button } from '@/components/ui/button';
 import ConnectedEcosystem from '@/components/visuals/ConnectedEcosystem';
 import NotFound from './NotFound';
@@ -169,8 +170,14 @@ const ServiceDetail = () => {
         </div>
       </section>
 
+      <RelatedReading
+        topic={CATEGORY_ID_BY_NAME[data.category]}
+        seed={`${data.title} ${data.category}`}
+        heading="Read this before you buy it."
+        intro="The guides we wrote on this exact subject, researched against primary sources rather than rewritten from whatever ranks first."
+      />
+
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

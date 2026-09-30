@@ -88,17 +88,17 @@ const Navbar = () => {
       {/* A thin utility strip. Email and the social accounts belong up here
           rather than only in the footer, where somebody who wants to check
           whether a company is real has to scroll the whole page to find them. */}
-      <div className="hidden lg:block bg-navy text-white/80">
+      <div className="hidden lg:block bg-gradient-to-r from-deep-900 via-deep-800 to-deep-700 text-emerald-50/85">
         <div className="container-custom h-9 flex items-center justify-between text-[13px]">
           <a
             href="mailto:info@calpir.com"
             className="inline-flex items-center gap-2 font-medium hover:text-white transition-colors"
           >
-            <Mail size={13} className="text-emerald-400" /> info@calpir.com
+            <Mail size={13} className="text-emerald-300" /> info@calpir.com
           </a>
 
           <div className="flex items-center gap-1">
-            <span className="mr-2 text-white/50">Follow the work</span>
+            <span className="mr-2 text-emerald-100/60">Follow the work</span>
             {SOCIALS.map(({ name, href, Icon }) => (
               <a
                 key={name}
@@ -242,14 +242,22 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <button
-            type="button"
-            onClick={() => openBooking()}
-            className="group bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-3 rounded-xl text-[14.5px] flex items-center gap-2 shadow-sm transition-all hover:-translate-y-0.5"
-          >
-            Book a free strategy call
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-          </button>
+          <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={() => openBooking()}
+              className="hidden xl:inline-flex text-[14.5px] font-semibold text-slate-600 hover:text-emerald-700 transition-colors px-2"
+            >
+              Book a call
+            </button>
+            <Link
+              to="/pricing"
+              className="group bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl text-[14.5px] flex items-center gap-2 shadow-sm shadow-emerald-600/20 transition-all hover:-translate-y-0.5"
+            >
+              Get your free trial now
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -266,13 +274,22 @@ const Navbar = () => {
       {isOpen && (
         <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 bg-white z-[99] overflow-y-auto border-b border-slate-200 shadow-2xl flex flex-col justify-between">
           <div className="p-5 sm:p-6 space-y-4">
-            <button
-              type="button"
-              onClick={() => { setIsOpen(false); openBooking(); }}
-              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-3.5 px-4 font-semibold rounded-xl text-[15px] flex items-center justify-center gap-2 shadow-md"
-            >
-              Book a free strategy call <ArrowRight size={16} />
-            </button>
+            <div className="space-y-2.5">
+              <Link
+                to="/pricing"
+                onClick={() => setIsOpen(false)}
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-center py-3.5 px-4 font-bold rounded-xl text-[15px] flex items-center justify-center gap-2 shadow-md"
+              >
+                Get your free trial now <ArrowRight size={16} />
+              </Link>
+              <button
+                type="button"
+                onClick={() => { setIsOpen(false); openBooking(); }}
+                className="w-full border border-emerald-600 text-emerald-800 text-center py-3 px-4 font-semibold rounded-xl text-[15px]"
+              >
+                Book a call
+              </button>
+            </div>
 
             <div className="border border-slate-200 rounded-xl overflow-hidden">
               <button

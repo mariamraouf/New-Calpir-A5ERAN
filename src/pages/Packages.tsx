@@ -3,13 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/ui/ScrollToTop';
+import RelatedReading from '@/components/content/RelatedReading';
+import PageHero from '@/components/ui/PageHero';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Sparkles, Rocket, BarChart3, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import PackageCard from '@/components/packages/PackageCard';
 import PhotoBand from '@/components/ui/PhotoBand';
-import { BUILD_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { Link, useLocation } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
@@ -159,20 +160,20 @@ const Packages = () => {
       />
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom text-center">
-          <p className="text-emerald-700 font-semibold mb-5 tracking-wide">Packages</p>
-          <h1 className="text-4xl md:text-6xl leading-[1.05] mb-6 font-extrabold tracking-tight text-navy">
-            One payment. <br />
-            <span className="text-emerald-700">A business that runs.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 max-w-[760px] mx-auto leading-relaxed">
-            Three fixed scope builds that take you from nothing to open, in 7 to
-            28 days. Click any feature to see exactly what gets built. A monthly
-            plan afterwards is optional.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="One time packages"
+        title={<>One payment. <br />A business that runs.</>}
+        body="Three fixed scope builds that take you from nothing to open in 7 to 28 days. Open any line to see exactly what gets built. A monthly plan afterwards is optional."
+        image={BUILD_PHOTO.band}
+        primary={{ label: 'See the three builds', href: '#builds' }}
+        secondary={{ label: 'Or a monthly plan', href: '/pricing' }}
+        stats={[
+          { value: '7 days', label: 'Fastest build, live' },
+          { value: '$1,499', label: 'Starter, paid once' },
+          { value: '100%', label: 'Registered in your name' },
+          { value: 'Nothing', label: 'Recurring, ever' },
+        ]}
+      />
 
       <PhotoBand
         photo={BUILD_PHOTO}
@@ -182,7 +183,7 @@ const Packages = () => {
         body="Every account, domain and login is registered in your name from the first day. Walk away whenever you like and you keep all of it."
       />
 
-      <section className="section-padding">
+      <section id="builds" className="section-padding scroll-mt-24">
         <div className="container-custom">
           {/* One time build packages */}
           <div className="flex justify-center mb-10">
@@ -195,7 +196,7 @@ const Packages = () => {
                   aria-pressed={currency === c}
                   className={cn(
                     'px-5 py-2 text-sm font-semibold rounded-full transition-colors',
-                    currency === c ? 'bg-navy text-white' : 'bg-transparent text-slate-500 hover:text-navy',
+                    currency === c ? 'bg-deep text-white' : 'bg-transparent text-slate-500 hover:text-navy',
                   )}
                 >
                   {c === 'usd' ? '$ USD' : c === 'gbp' ? '\u00A3 GBP' : '\u20AC EUR'}
@@ -336,8 +337,13 @@ const Packages = () => {
       </section>
 
       <FeatureModal featureKey={activeModal} onClose={() => setActiveModal(null)} />
+      <RelatedReading
+        slugs={['how-to-setup-new-business-2026', 'what-to-start-with-launch-guide', 'essential-tech-stack-automations']}
+        heading="Before you commit to a build."
+        intro="What the setup actually involves, in order, so you can judge whether the price is fair."
+      />
+
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Mail, Phone, MapPin, Sparkles, Loader2, CheckCircle2, Send } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import PageHero from '@/components/ui/PageHero';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
 import BookingSystem from '@/components/booking/BookingSystem';
 import { Input } from '@/components/ui/input';
@@ -75,17 +77,13 @@ const Contact = () => {
       />
       <Navbar />
       
-      <section className="pt-36 md:pt-44 pb-16 px-4 md:px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom">
-          <SectionLabel>Direct Transmission</SectionLabel>
-          <h1 className="text-4xl sm:text-6xl md:text-8xl leading-[0.9] mb-6 font-bold tracking-tight text-navy">
-            Get in <br /> <span className="text-emerald-700">Touch.</span>
-          </h1>
-          <p className="text-lg md:text-2xl text-slate-600 max-w-3xl leading-relaxed">
-            We genuinely love setting up businesses and seeing you succeed. Tell us what you want to build or book a live strategy session with Maria below.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        compact
+        eyebrow="Talk to us"
+        title={<>Tell us what you <br />want built.</>}
+        body="Say what the business is and what is in your way. You get a straight answer, a named thing and a number, whether or not you end up buying anything."
+        image={PLAN_PHOTOS['hr-admin-monthly'].band}
+      />
 
       <section className="py-16 md:py-20 px-4 md:px-6 border-b border-slate-200">
         <div className="container-custom">

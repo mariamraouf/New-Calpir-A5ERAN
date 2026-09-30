@@ -47,7 +47,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               className={cn(
                 'px-5 py-2 text-sm font-semibold rounded-full transition-colors',
                 currency === c.code
-                  ? 'bg-navy text-white'
+                  ? 'bg-deep text-white'
                   : 'bg-transparent text-slate-500 hover:text-navy',
               )}
             >
@@ -76,7 +76,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
       </div>
 
       {showBundle && bundle && (
-        <div className="bg-navy text-white p-8 md:p-12 rounded-2xl">
+        <div className="bg-deep text-white p-8 md:p-12 rounded-2xl">
           <div className="grid lg:grid-cols-[1.1fr,1fr] gap-10 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold mb-5">

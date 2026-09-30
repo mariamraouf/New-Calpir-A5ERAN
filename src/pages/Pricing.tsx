@@ -4,7 +4,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/ui/ScrollToTop';
+import RelatedReading from '@/components/content/RelatedReading';
+import PageHero from '@/components/ui/PageHero';
+import { TINTS } from '@/data/departmentTints';
+import { cn } from '@/lib/utils';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import MetaSEO from '@/components/seo/MetaSEO';
 import MonthlyPlans from '@/components/plans/MonthlyPlans';
 import { Button } from '@/components/ui/button';
@@ -31,23 +35,22 @@ const Pricing = () => {
       />
       <Navbar />
 
-      <section className="pt-36 md:pt-44 pb-16 px-6 border-b border-slate-200">
-        <div className="container-custom text-center max-w-[820px] mx-auto">
-          <p className="text-emerald-700 font-semibold mb-5 tracking-wide">
-            Monthly plans
-          </p>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-navy mb-6 leading-[1.05]">
-            Pick what you want run, <br className="hidden md:block" />
-            and what it costs.
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-            Six departments, each on its own monthly plan. Buy one, buy two, or
-            take the lot together and pay less than the sum. Cancel any month.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Monthly plans"
+        title={<>Pick what you want run, <br className="hidden md:block" />and what it costs.</>}
+        body="Six departments, each on its own monthly plan. Buy one, buy two, or take the lot together and pay less than the sum. Every one starts with a free week."
+        image={PLAN_PHOTOS['sales-crm-monthly'].band}
+        primary={{ label: 'Start a free week', href: '#plans' }}
+        secondary={{ label: 'One time builds instead', href: '/packages' }}
+        stats={[
+          { value: '7 days', label: 'Free before you pay' },
+          { value: '6', label: 'Departments to choose from' },
+          { value: '$249', label: 'The smallest plan' },
+          { value: 'Any month', label: 'Cancel, no tie in' },
+        ]}
+      />
 
-      <section className="py-16 md:py-20">
+      <section id="plans" className="py-16 md:py-20 scroll-mt-24">
         <div className="container-custom">
           <MonthlyPlans currency={currency} onCurrencyChange={setCurrency} />
         </div>
@@ -55,24 +58,40 @@ const Pricing = () => {
 
       <section className="py-16 md:py-20 border-t border-slate-200 bg-slate-50">
         <div className="container-custom">
-          <div className="grid md:grid-cols-3 gap-8 mb-14">
+          {/* Three promises, as three boxes. They were three headings and
+              three paragraphs on white, which reads as terms and conditions;
+              these are the reasons somebody buys, so they get a colour, a
+              number and a border each. */}
+          <div className="grid md:grid-cols-3 gap-5 mb-14">
             {[
               {
-                h: 'Fixed, not "from"',
-                p: 'The number on the card is the number you are charged. No "starting at", no asterisk, no quote call. If a job genuinely falls outside the listed scope you are told the new figure before anything starts, never on the invoice afterwards.',
+                n: '01',
+                h: 'Fixed, never "from"',
+                p: 'The number on the card is the number you are charged. No starting at, no asterisk, no quote call. If a job genuinely falls outside the listed scope you get the new figure before anything starts, never on the invoice afterwards.',
+                tint: TINTS.emerald,
               },
               {
+                n: '02',
                 h: 'Cancel any month',
-                p: 'No minimum term and no notice period. A retainer you cannot leave is not a service, it is a trap.',
+                p: 'No minimum term and no notice period, and everything we built stays in your accounts when you go. A retainer you cannot leave is not a service, it is a trap.',
+                tint: TINTS.violet,
               },
               {
+                n: '03',
                 h: 'Three currencies, set not converted',
-                p: 'Dollars, pounds and euros each have their own figure, so a price does not move because an exchange rate did.',
+                p: 'Dollars, pounds and euros each have their own figure, chosen and fixed. Your price does not move because an exchange rate did on a Tuesday.',
+                tint: TINTS.teal,
               },
             ].map((item) => (
-              <div key={item.h}>
-                <h3 className="text-lg font-bold text-navy mb-3">{item.h}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.p}</p>
+              <div
+                key={item.h}
+                className={cn('rounded-2xl border p-6 sm:p-7', item.tint.bg, item.tint.border)}
+              >
+                <div className={cn('price-figure text-[1.6rem] font-extrabold leading-none mb-4', item.tint.ink)}>
+                  {item.n}
+                </div>
+                <h3 className="text-navy text-[1.15rem] font-extrabold mb-2.5 leading-snug">{item.h}</h3>
+                <p className="text-slate-600 text-[15px] leading-relaxed">{item.p}</p>
               </div>
             ))}
           </div>
@@ -89,7 +108,7 @@ const Pricing = () => {
             </div>
             <Button
               asChild
-              className="bg-navy hover:bg-navy-800 text-white px-8 py-6 rounded-xl font-semibold text-base shrink-0"
+              className="bg-deep hover:bg-deep-900 text-white px-8 py-6 rounded-xl font-semibold text-base shrink-0"
             >
               <Link to="/packages">
                 See packages <ArrowRight size={18} className="ml-2" />
@@ -99,8 +118,13 @@ const Pricing = () => {
         </div>
       </section>
 
+      <RelatedReading
+        slugs={['how-to-setup-new-business-2026', 'crm-implementation-cost', 'ai-consulting-cost-small-business']}
+        heading="What this normally costs elsewhere."
+        intro="We publish what the rest of the market charges, including where it is cheaper than us."
+      />
+
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

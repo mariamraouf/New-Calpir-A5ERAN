@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, User, Calendar } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import PageHero from '@/components/ui/PageHero';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import MetaSEO from '@/components/seo/MetaSEO';
 import postsData from '@/content/posts.json';
 
@@ -20,13 +21,15 @@ const Blog = () => {
       />
       <Navbar />
       
-      <section className="pt-40 md:pt-48 pb-24 px-6 bg-gradient-to-b from-emerald-50/40 to-white">
+      <PageHero
+        eyebrow="Written by the people who build it"
+        title={<>Playbooks, prices <br />and plain answers.</>}
+        body="In depth guides on setting a company up, what the software actually costs, and how the automation is built. Written by the team that does the work, researched against primary sources."
+        image={PLAN_PHOTOS['brand-content-monthly'].band}
+      />
+
+      <section className="section-padding">
         <div className="container-custom">
-          <SectionLabel>The Intelligence Hub</SectionLabel>
-          <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-navy">Insights.</h1>
-          <p className="text-lg md:text-2xl text-slate-600 max-w-[800px] mb-16 leading-relaxed">
-            In depth playbooks, technical blueprints, and operational guides published by the engineering and launch team at Calpir.
-          </p>
           
           <div className="space-y-px bg-zinc-200 border border-slate-200 shadow-sm">
             {postsData.map((post, idx) => (
@@ -60,7 +63,6 @@ const Blog = () => {
       </section>
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

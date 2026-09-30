@@ -1,72 +1,86 @@
 "use client";
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import SectionLabel from '../ui/SectionLabel';
+  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
+} from '@/components/ui/accordion';
+
+/**
+ * The questions people actually ask before buying.
+ *
+ * It took a full screen with a heading the size of the hero, which is a lot of
+ * page for a list of answers. Two columns of compact rows instead, with the
+ * answers rewritten to be short and specific. Anything that needed a
+ * paragraph of metaphor to explain was the wrong answer.
+ */
 
 const faqs = [
   {
-    question: "How can you launch a whole business in 7 days?",
-    answer: "We do not start from scratch. We have built a proprietary Base Stack of pre-integrated tools (Website, CRM, Ops, AI). When you sign on, we deploy this battle-tested infrastructure and then customize the branding, content, and specific workflows for your business. It is the difference between building a car from raw steel vs. customizing a high-performance chassis."
+    q: 'Is the free week really free?',
+    a: 'Yes. Start a monthly plan and the work starts the same week, but the first invoice is not raised until day eight. Cancel inside the week and you are charged nothing at all. That is different from a refund, and it is the version we mean.',
   },
   {
-    question: "Do I own the code and the accounts?",
-    answer: "100%. Everything we build is yours. We set up the accounts in your name, and you have full ownership of the website source code, the CRM data, and the AI agent configurations. We are your implementation partners, not your landlords."
+    q: 'How can a whole business be set up in 7 days?',
+    a: 'Because we are not starting from raw parts. The website, CRM, payments, email and automation layer are already built and integrated. The week goes on your brand, your content, your pricing and the workflows that are specific to you.',
   },
   {
-    question: "What happens after the launch?",
-    answer: "Every package includes a post-launch support period (2 to 12 weeks depending on the tier). During this time, we monitor your systems, fix any issues, and provide training for your team. After that, you can choose to manage it yourself or sign up for one of our ongoing optimization retainers."
+    q: 'Do I own the code and the accounts?',
+    a: 'All of it. Every account is registered in your name from day one, the source code is handed over, and the CRM data is yours. Cancel and you keep everything, which is the opposite of how most of this industry works.',
   },
   {
-    question: "Can I use my existing tools like Slack or Shopify?",
-    answer: "Yes. While we have a recommended Golden Stack that works seamlessly together, our automation engine is platform agnostic. We can integrate almost any modern tool with an API into your new ecosystem."
+    q: 'What if I already use Slack, Shopify or Xero?',
+    a: 'We build around what you already pay for. There is a stack we recommend when you have no preference, but anything with a modern API can be integrated rather than replaced.',
   },
   {
-    question: "Is the AI actually useful or just a chatbot?",
-    answer: "We build Agents, not just Chatbots. Our agents are trained on your specific business data, can access your CRM to qualify leads, and can even trigger workflows like booking meetings or sending invoices. They are designed to replace manual labor, not just answer FAQs."
-  }
+    q: 'Is the AI a real agent or a chatbot?',
+    a: 'Both, and they are different things. The chatbot answers from your own services and prices. The agents do work: draft the quote, chase the unanswered proposal, write the call into the record. Anything that leaves the building is approved by a person first.',
+  },
+  {
+    q: 'What happens if I cancel?',
+    a: 'Nothing stops working. The accounts, the site, the CRM and the automations are yours and stay in your name. You lose us running them, not the things themselves.',
+  },
 ];
 
-const FAQ = () => {
-  return (
-    <section className="section-padding border-b border-slate-200 bg-slate-50/50">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
-          <div>
-            <SectionLabel>Inquiry</SectionLabel>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl mb-4 sm:mb-6 text-navy font-bold">
-              Common <br /> Questions.
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-lg leading-relaxed">
-              Everything you need to know about the Calpir deployment process and our technical philosophy.
-            </p>
-          </div>
-          
-          <div className="lg:col-span-2">
-            <Accordion type="single" collapsible className="w-full space-y-3 sm:space-y-4">
-              {faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`item-${i}`} className="border border-slate-200 px-4 sm:px-6 md:px-8 bg-white shadow-sm">
-                  <AccordionTrigger className="hover:no-underline py-4 sm:py-6 text-left text-navy hover:text-emerald-700 transition-colors">
-                    <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight">{faq.question}</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-4 sm:pb-6">
-                    <p className="text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+const FAQ = () => (
+  <section className="py-12 sm:py-16 border-b border-slate-200 bg-white">
+    <div className="container-custom">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
+        <div>
+          <p className="text-[12px] font-bold tracking-wide uppercase text-emerald-700 mb-2">
+            Before you ask
+          </p>
+          <h2 className="text-navy text-[1.6rem] sm:text-[2.1rem] font-extrabold tracking-tight leading-snug">
+            The six we get every week.
+          </h2>
         </div>
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-1.5 text-[14.5px] font-bold text-emerald-700 hover:text-emerald-800 shrink-0"
+        >
+          Ask us a seventh <ArrowRight size={15} />
+        </Link>
       </div>
-    </section>
-  );
-};
+
+      <Accordion type="single" collapsible className="grid md:grid-cols-2 gap-x-6 gap-y-0">
+        {faqs.map((faq, i) => (
+          <AccordionItem
+            key={faq.q}
+            value={`item-${i}`}
+            className="border-b border-slate-150 border-slate-200"
+          >
+            <AccordionTrigger className="hover:no-underline py-4 text-left text-navy hover:text-emerald-700 transition-colors">
+              <span className="text-[15.5px] font-bold tracking-tight pr-3">{faq.q}</span>
+            </AccordionTrigger>
+            <AccordionContent className="pb-4">
+              <p className="text-slate-600 text-[14.5px] leading-relaxed">{faq.a}</p>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
+  </section>
+);
 
 export default FAQ;

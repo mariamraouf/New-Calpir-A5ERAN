@@ -402,7 +402,7 @@ const Assessment = () => {
                       Book a free 30 minute strategy session with Maria to review your custom blueprint together.
                     </p>
                     <div className="pt-2">
-                      <Button asChild className="bg-navy text-white hover:bg-navy-800 px-10 py-6 rounded-xl font-bold text-base tracking-tight transition-all">
+                      <Button asChild className="bg-deep text-white hover:bg-deep-900 px-10 py-6 rounded-xl font-bold text-base tracking-tight transition-all">
                         <Link to="/contact">Book Free Strategy Session with Maria</Link>
                       </Button>
                     </div>

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/ui/ScrollToTop';
+import RelatedReading from '@/components/content/RelatedReading';
 import SectionLabel from '@/components/ui/SectionLabel';
 import MetaSEO from '@/components/seo/MetaSEO';
 import MonthlyPlans from '@/components/plans/MonthlyPlans';
@@ -250,7 +250,44 @@ const MarketingSeo = () => {
             </p>
           </div>
 
-          <div className="max-w-[420px] mx-auto">
+          {/* One card in a 420px column left two thirds of the screen empty
+              and pushed the currency switch out on its own. The card keeps its
+              natural width beside what it replaces, which is the comparison a
+              buyer is actually making. */}
+          <div className="grid lg:grid-cols-[1fr,420px] gap-10 lg:gap-14 items-start max-w-[980px] mx-auto">
+            <div className="lg:pt-4">
+              <h3 className="text-navy text-2xl font-extrabold mb-4 leading-snug">
+                What this replaces
+              </h3>
+              <ul className="space-y-3 mb-7">
+                {[
+                  ['An SEO agency', 'Usually $1,500 a month and a report you cannot act on.'],
+                  ['A content writer', 'Four articles a month, at a few hundred each.'],
+                  ['A social media manager', 'Three posts a week, written, designed and scheduled.'],
+                  ['An ads freelancer', 'Who takes a cut of your spend and wants you to spend more.'],
+                ].map(([a, b]) => (
+                  <li key={a} className="flex gap-3">
+                    <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-emerald-600 shrink-0" />
+                    <span>
+                      <span className="font-bold text-navy">{a}.</span>{' '}
+                      <span className="text-slate-600">{b}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-slate-600 leading-relaxed mb-6">
+                One team does all four, on one invoice, and the person writing
+                your content is the person watching your rankings. Seven days
+                free before anything is charged.
+              </p>
+              <Link
+                to="/pricing"
+                className="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800"
+              >
+                See all six monthly plans and the bundle <ArrowRight size={16} />
+              </Link>
+            </div>
+
             <MonthlyPlans
               currency={currency}
               onCurrencyChange={setCurrency}
@@ -258,44 +295,16 @@ const MarketingSeo = () => {
               showBundle={false}
             />
           </div>
-
-          <div className="text-center mt-10">
-            <Link
-              to="/packages"
-              className="mono text-xs tracking-wide font-bold text-emerald-700 hover:text-emerald-800 underline"
-            >
-              See all four monthly plans and the bundle
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Reading, for the internal links and because it is genuinely useful */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <SectionLabel>Worth reading first</SectionLabel>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-navy mb-10">
-            Before you spend anything.
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-5">
-            {RELATED_READING.map((post) => (
-              <Link
-                key={post.slug}
-                to={`/blog/${post.slug}`}
-                className="group surface surface-hover p-7 flex items-center justify-between gap-5"
-              >
-                <span className="font-bold text-navy group-hover:text-emerald-700 transition-colors leading-snug">
-                  {post.title}
-                </span>
-                <ArrowRight size={18} className="text-emerald-600 shrink-0" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <RelatedReading
+        topic="marketing-seo-monthly"
+        heading="Before you spend anything."
+        intro="What marketing and search actually cost elsewhere, and what to do first if you are not ready to hand it over."
+      />
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

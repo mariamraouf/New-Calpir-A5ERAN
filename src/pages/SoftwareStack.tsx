@@ -6,7 +6,6 @@ import { Search, HeartHandshake, ArrowRight, Sparkles, CheckCircle2 } from 'luci
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import SoftwareLogo from '@/components/ui/SoftwareLogo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -188,7 +187,6 @@ const SoftwareStack = () => {
       </section>
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

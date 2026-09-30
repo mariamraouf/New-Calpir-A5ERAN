@@ -34,9 +34,9 @@ const PhotoBand = ({ photo, eyebrow, title, body, cta, compact }: Props) => (
         height={752}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover opacity-55"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/60 to-navy/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-deep-900/95 via-deep-900/75 to-deep-800/35" />
 
       <div className="relative h-full container-custom flex items-end pb-9 sm:pb-12">
         <div className="max-w-[620px] text-white">

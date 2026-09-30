@@ -6,8 +6,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import RelatedReading from '@/components/content/RelatedReading';
+import PageHero from '@/components/ui/PageHero';
+import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import MetaSEO from '@/components/seo/MetaSEO';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
@@ -60,20 +62,14 @@ const Services = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 md:pt-48 pb-20 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom">
-          <motion.div {...reveal}>
-            <SectionLabel>The Capabilities</SectionLabel>
-            <h1 className="text-5xl md:text-8xl leading-[0.9] mb-8 font-bold tracking-tight text-navy">
-              Our <br /> <span className="text-emerald-700">Services.</span>
-            </h1>
-            <p className="text-lg md:text-2xl text-slate-600 max-w-[800px] leading-relaxed">
-              {allServicesCatalog.length} services across {CATEGORIES.length} categories. Take the
-              whole stack as a package, or any single piece on its own.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Everything we do"
+        title={<>Seven departments. <br />Sixty five services.</>}
+        body={`${allServicesCatalog.length} services across ${CATEGORIES.length} departments. Take a whole department on a monthly plan, take the lot as a build, or buy any single piece on its own.`}
+        image={PLAN_PHOTOS['ops-systems-monthly'].band}
+        primary={{ label: 'Buy one at a time', href: '/solo-services' }}
+        secondary={{ label: 'Or hand over a department', href: '/pricing' }}
+      />
 
       {/* Category index. Anchors so a visitor can jump straight to what they came for. */}
       {/* Sticks directly beneath the navbar, which is itself sticky at top-0 with
@@ -168,8 +164,12 @@ const Services = () => {
         </div>
       </section>
 
+      <RelatedReading
+        slugs={['how-to-setup-new-business-2026', 'essential-tech-stack-automations', 'best-crm-tools-comparison']}
+        heading="Start here if you are not sure."
+      />
+
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

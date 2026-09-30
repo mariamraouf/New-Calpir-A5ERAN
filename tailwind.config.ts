@@ -19,42 +19,54 @@ export default {
     },
     extend: {
       colors: {
-        /* The ink colour, and the dark ground.
-           The site used to be navy. Navy is a different brand from the logo,
-           which is green, and two unrelated colours fighting is what made the
-           pages feel off. This is a near black with a green cast: it reads as
-           ink on white, and as a deep brand colour when a whole band is
-           filled with it. The token is still called `navy` because it is used
-           in several hundred places; only its value changed. */
+        /* The ink colour.
+           Not black. A near black reads as a default and, on a page whose
+           whole identity is green, as an accident. This is a deep green dark
+           enough to carry a headline and warm enough to look chosen. The
+           token is still called `navy` because several hundred places use
+           it; only the value has ever changed. */
         navy: {
-          DEFAULT: "#0C231C",
-          900: "#0C231C",
-          800: "#10392C",
-          700: "#15543F",
-          50: "#F2F8F5",
+          DEFAULT: "#123A2B",
+          900: "#123A2B",
+          800: "#17513A",
+          700: "#1C6B4B",
+          50: "#F1FAF5",
+        },
+        /* The dark ground. Where a band is filled, it is filled with green,
+           not with something that reads as black on a phone in daylight. */
+        deep: {
+          DEFAULT: "#065F46",
+          900: "#044E39",
+          800: "#065F46",
+          700: "#047857",
+          600: "#059669",
         },
         /* The one attention colour. Rose, not amber: on a green and white
            page a warm yellow disappears into the emerald and reads as a
-           warning, where a rose badge is seen once and remembered. Used only
-           for the thing on a screen that should be noticed, never for body
-           text. The token is still called `gold` for the same reason as
-           above. */
+           warning, where a rose badge is seen once and remembered. */
         gold: {
           DEFAULT: "#E11D48",
           400: "#FB7185",
           50: "#FFF1F2",
         },
-        /* Same palette under an honest name, for anything written from here on. */
-        ink: {
-          DEFAULT: "#0C231C",
-          800: "#10392C",
-          700: "#15543F",
-          50: "#F2F8F5",
-        },
-        accent2: {
-          DEFAULT: "#E11D48",
-          400: "#FB7185",
-          50: "#FFF1F2",
+        /* Department tints.
+           Six white boxes in a row is not a design, it is a spreadsheet. Each
+           department carries its own pale ground and its own ink so a page of
+           six of them has rhythm. They are all low chroma so none of them
+           fights the emerald, and none of them is orange or navy. */
+        tint: {
+          emerald: "#ECFDF5",
+          "emerald-ink": "#047857",
+          teal: "#F0FDFA",
+          "teal-ink": "#0F766E",
+          sky: "#F0F9FF",
+          "sky-ink": "#0369A1",
+          violet: "#F5F3FF",
+          "violet-ink": "#6D28D9",
+          rose: "#FFF1F2",
+          "rose-ink": "#BE123C",
+          lime: "#F7FEE7",
+          "lime-ink": "#4D7C0F",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

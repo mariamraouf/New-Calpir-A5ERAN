@@ -8,7 +8,6 @@ import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import SectionLabel from '@/components/ui/SectionLabel';
-import ScrollToTop from '@/components/ui/ScrollToTop';
 import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
 import postsData from '@/content/posts.json';
@@ -189,7 +188,6 @@ const BlogPost = () => {
       </section>
 
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

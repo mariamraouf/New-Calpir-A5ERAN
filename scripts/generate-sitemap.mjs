@@ -16,6 +16,7 @@ const staticRoutes = [
   { url: '/case-studies', priority: '0.8' },
   { url: '/assessment', priority: '0.8' },
   { url: '/software-stack', priority: '0.7' },
+  { url: '/sectors', priority: '0.7' },
   { url: '/about', priority: '0.7' },
   { url: '/contact', priority: '0.7' },
   { url: '/blog', priority: '0.7' },

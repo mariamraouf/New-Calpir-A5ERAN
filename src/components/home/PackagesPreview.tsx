@@ -50,7 +50,7 @@ const PackagesPreview = () => {
                     'w-full py-6 rounded-xl font-semibold text-[15px] ' +
                     (pkg.featured
                       ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
-                      : 'bg-navy hover:bg-navy-800 text-white')
+                      : 'bg-deep hover:bg-deep-900 text-white')
                   }
                 >
                   <Link to={`/packages#${pkg.id}`}>

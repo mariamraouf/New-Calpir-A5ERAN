@@ -7,6 +7,7 @@ import {
   ChevronRight, ArrowRight, ArrowLeft, RotateCcw, Gauge, Check,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { TINTS, type Tint } from '@/data/departmentTints';
 import { Button } from '@/components/ui/button';
 import {
   MONTHLY_PLANS, ONE_TIME_PACKAGES, formatPrice, MONTHLY_TRIAL_DAYS,
@@ -33,14 +34,14 @@ type Need = 'scratch' | 'found' | 'customers' | 'systems' | 'people' | 'brand' |
 
 const CURRENCY: Currency = 'usd';
 
-const NEEDS: { id: Need; label: string; icon: React.ElementType; planId?: string }[] = [
-  { id: 'scratch', label: 'I am starting from scratch', icon: Rocket },
-  { id: 'found', label: 'Nobody can find us on Google', icon: Search, planId: 'marketing-seo-monthly' },
-  { id: 'customers', label: 'Enquiries are getting dropped', icon: PhoneOutgoing, planId: 'sales-crm-monthly' },
-  { id: 'systems', label: 'Our systems are a mess', icon: Settings, planId: 'ops-systems-monthly' },
-  { id: 'people', label: 'Hiring, payroll and HR', icon: Users, planId: 'hr-admin-monthly' },
-  { id: 'brand', label: 'We never post anything', icon: Palette, planId: 'brand-content-monthly' },
-  { id: 'paperwork', label: 'Filings and deadlines', icon: Landmark, planId: 'compliance-filings-monthly' },
+const NEEDS: { id: Need; label: string; icon: React.ElementType; planId?: string; tint: Tint }[] = [
+  { id: 'scratch', label: 'I am starting from scratch', icon: Rocket, tint: TINTS.emerald },
+  { id: 'found', label: 'Nobody can find us on Google', icon: Search, planId: 'marketing-seo-monthly', tint: TINTS.emerald },
+  { id: 'customers', label: 'Enquiries are getting dropped', icon: PhoneOutgoing, planId: 'sales-crm-monthly', tint: TINTS.violet },
+  { id: 'systems', label: 'Our systems are a mess', icon: Settings, planId: 'ops-systems-monthly', tint: TINTS.teal },
+  { id: 'people', label: 'Hiring, payroll and HR', icon: Users, planId: 'hr-admin-monthly', tint: TINTS.rose },
+  { id: 'brand', label: 'We never post anything', icon: Palette, planId: 'brand-content-monthly', tint: TINTS.sky },
+  { id: 'paperwork', label: 'Filings and deadlines', icon: Landmark, planId: 'compliance-filings-monthly', tint: TINTS.lime },
 ];
 
 const OWNERS = [
@@ -230,7 +231,7 @@ const HeroAssessment = () => {
   /* ---------------- render ---------------- */
   return (
     <div className="surface rounded-2xl overflow-hidden">
-      <div className="bg-navy px-6 sm:px-7 py-4 text-white">
+      <div className="bg-gradient-to-r from-deep-900 via-deep-800 to-deep-700 px-6 sm:px-7 py-4 text-white">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <Gauge size={17} className="text-emerald-400 shrink-0" />
@@ -269,20 +270,27 @@ const HeroAssessment = () => {
                     onClick={() => toggleNeed(n.id)}
                     aria-pressed={on}
                     className={cn(
-                      'w-full flex items-center gap-3.5 border rounded-xl px-4 py-3 text-left transition-colors',
+                      'w-full flex items-center gap-3 border rounded-xl px-3.5 py-3 text-left transition-all',
                       on
-                        ? 'border-emerald-600 bg-emerald-50'
-                        : 'border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/40',
+                        ? cn(n.tint.bg, n.tint.border, 'shadow-sm')
+                        : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50',
                     )}
                   >
-                    <Icon size={18} className={cn('shrink-0', on ? 'text-emerald-700' : 'text-slate-400')} />
-                    <span className={cn('font-semibold text-[15px] flex-grow', on ? 'text-navy' : 'text-slate-600')}>
+                    <span
+                      className={cn(
+                        'inline-flex items-center justify-center w-8 h-8 rounded-lg shrink-0 transition-colors',
+                        on ? cn('bg-white', n.tint.ink) : 'bg-slate-100 text-slate-400',
+                      )}
+                    >
+                      <Icon size={16} />
+                    </span>
+                    <span className={cn('font-semibold text-[15px] flex-grow leading-snug', on ? 'text-navy' : 'text-slate-600')}>
                       {n.label}
                     </span>
                     <span
                       className={cn(
                         'w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-colors',
-                        on ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300',
+                        on ? cn(n.tint.solid, 'border-transparent text-white') : 'border-slate-300',
                       )}
                     >
                       {on && <Check size={13} strokeWidth={3.5} />}
@@ -296,7 +304,7 @@ const HeroAssessment = () => {
               type="button"
               disabled={needs.length === 0}
               onClick={() => setLocked(true)}
-              className="w-full mt-5 bg-navy hover:bg-navy-800 disabled:opacity-40 text-white py-6 rounded-xl font-semibold text-[15px]"
+              className="w-full mt-5 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-200 disabled:text-slate-400 text-white py-6 rounded-xl font-bold text-[15px] transition-colors"
             >
               {needs.length === 0
                 ? 'Pick at least one'
@@ -386,7 +394,7 @@ const HeroAssessment = () => {
 
             <p className="text-slate-500 text-[14px] leading-snug mb-6">{result.note}</p>
 
-            <Button asChild className="w-full bg-navy hover:bg-navy-800 text-white py-6 rounded-xl font-semibold text-[15px]">
+            <Button asChild className="w-full bg-deep hover:bg-deep-900 text-white py-6 rounded-xl font-semibold text-[15px]">
               <Link to={result.href}>
                 {result.cta} <ArrowRight size={17} className="ml-1.5" />
               </Link>

@@ -59,7 +59,7 @@ const PackageCard = ({ pkg, index, currency = 'usd', action }: Props) => {
           'relative px-7 pt-7 pb-6 text-white',
           featured
             ? 'bg-gradient-to-br from-emerald-700 via-emerald-600 to-emerald-700'
-            : 'bg-gradient-to-br from-navy via-navy-800 to-navy',
+            : 'bg-gradient-to-br from-deep via-deep-800 to-deep',
         )}
       >
         {featured && (

@@ -31,7 +31,7 @@ const GrowthAndPlans = () => {
   return (
     <>
       {/* Marketing and SEO, given its own weight */}
-      <section className="section-padding bg-navy text-white">
+      <section className="section-padding bg-deep text-white">
         <div className="container-custom">
           <div className="grid lg:grid-cols-[1.02fr,1.15fr] gap-12 lg:gap-16 items-center mb-14">
             <div>
@@ -144,7 +144,7 @@ const GrowthAndPlans = () => {
                       decoding="async"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/45 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep/45 to-transparent" />
                     <span className="absolute bottom-3 left-3 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/95 text-emerald-700 shadow-sm">
                       <Icon size={17} />
                     </span>
@@ -172,7 +172,7 @@ const GrowthAndPlans = () => {
           <div className="text-center">
             <Button
               asChild
-              className="bg-navy hover:bg-navy-800 text-white px-10 py-7 rounded-xl font-bold tracking-tight transition-transform hover:-translate-y-1"
+              className="bg-deep hover:bg-deep-900 text-white px-10 py-7 rounded-xl font-bold tracking-tight transition-transform hover:-translate-y-1"
             >
               <Link to="/packages">
                 All plans, prices and one time packages <ArrowRight size={18} className="ml-2" />

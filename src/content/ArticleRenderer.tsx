@@ -123,7 +123,7 @@ const ArticleRenderer: React.FC<{ blocks: Block[] }> = ({ blocks }) => (
           return (
             <div key={i} className="overflow-x-auto my-8 border border-slate-200 shadow-sm">
               <table className="w-full text-left">
-                <thead className="bg-navy text-white">
+                <thead className="bg-deep text-white">
                   <tr>
                     {(b.head || []).map((h, j) => (
                       <th
