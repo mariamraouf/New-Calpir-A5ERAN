@@ -19,41 +19,55 @@ export default {
     },
     extend: {
       colors: {
-        /* The ink colour.
-           Not black. A near black reads as a default and, on a page whose
-           whole identity is green, as an accident. This is a deep green dark
-           enough to carry a headline and warm enough to look chosen. The
-           token is still called `navy` because several hundred places use
-           it; only the value has ever changed. */
+        /* The ink colour, and the dark ground.
+           A near black with a green cast: it reads as ink on white, and as a
+           deep brand colour when a whole band is filled with it. The token is
+           called `navy` for historical reasons; only its value has changed. */
         navy: {
-          DEFAULT: "#123A2B",
-          900: "#123A2B",
-          800: "#17513A",
-          700: "#1C6B4B",
-          50: "#F1FAF5",
+          DEFAULT: "#0C231C",
+          900: "#0C231C",
+          800: "#10392C",
+          700: "#15543F",
+          50: "#F2F8F5",
         },
-        /* The dark ground. Where a band is filled, it is filled with green,
-           not with something that reads as black on a phone in daylight. */
+        /* `deep` was briefly a bright emerald used for every filled band,
+           which turned the whole site green. It now points at the same ink as
+           `navy`, so a page that says `bg-deep` gets the dark ground it used
+           to have. Kept as its own token so the two can be told apart again
+           later without touching fifteen files. */
         deep: {
-          DEFAULT: "#065F46",
-          900: "#044E39",
-          800: "#065F46",
-          700: "#047857",
-          600: "#059669",
+          DEFAULT: "#0C231C",
+          900: "#0A1C17",
+          800: "#0C231C",
+          700: "#10392C",
+          600: "#15543F",
         },
         /* The one attention colour. Rose, not amber: on a green and white
            page a warm yellow disappears into the emerald and reads as a
-           warning, where a rose badge is seen once and remembered. */
+           warning, where a rose badge is seen once and remembered. Used only
+           for the thing on a screen that should be noticed, never for body
+           text. The token is still called `gold` for the same reason as
+           above. */
         gold: {
           DEFAULT: "#E11D48",
           400: "#FB7185",
           50: "#FFF1F2",
         },
-        /* Department tints.
-           Six white boxes in a row is not a design, it is a spreadsheet. Each
-           department carries its own pale ground and its own ink so a page of
-           six of them has rhythm. They are all low chroma so none of them
-           fights the emerald, and none of them is orange or navy. */
+        /* Same palette under an honest name, for anything written from here on. */
+        ink: {
+          DEFAULT: "#0C231C",
+          800: "#10392C",
+          700: "#15543F",
+          50: "#F2F8F5",
+        },
+        accent2: {
+          DEFAULT: "#E11D48",
+          400: "#FB7185",
+          50: "#FFF1F2",
+        },
+        /* Department tints. Pale grounds so a row of six cards has rhythm
+           rather than reading as a spreadsheet. None of them is green, which
+           is the point of them. */
         tint: {
           emerald: "#ECFDF5",
           "emerald-ink": "#047857",

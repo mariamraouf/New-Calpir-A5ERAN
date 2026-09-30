@@ -228,7 +228,7 @@ const About = () => {
               Tell us what is <br />
               <span className="text-emerald-300">in your way.</span>
             </h2>
-            <p className="text-emerald-50/85 text-[17px] leading-relaxed mb-7">
+            <p className="text-slate-200 text-[17px] leading-relaxed mb-7">
               Two minutes on the assessment gives you a named plan and a price.
               A call gives you a straight answer, including if the answer is
               that you do not need us yet.

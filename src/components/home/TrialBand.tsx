@@ -40,7 +40,7 @@ const POINTS = [
 ];
 
 const TrialBand = () => (
-  <section className="section-padding bg-emerald-50/70 border-b border-emerald-100">
+  <section className="section-padding section-alt border-b border-slate-200">
     <div className="container-custom">
       <div className="grid lg:grid-cols-[1fr,1.35fr] gap-10 lg:gap-14 items-center">
         <div>

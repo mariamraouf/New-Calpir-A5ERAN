@@ -89,7 +89,7 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover opacity-35"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-deep-900/96 via-deep-900/86 to-deep-800/62" />
-        <div className="absolute inset-0 bg-[radial-gradient(110%_85%_at_95%_8%,rgba(16,185,129,0.24),transparent_58%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(110%_85%_at_95%_8%,rgba(255,255,255,0.07),transparent_58%)]" />
 
         <div className="relative container-custom pt-12 pb-14 sm:pt-16 sm:pb-20 px-4 sm:px-6 lg:px-8">
           <motion.div {...reveal} className="grid lg:grid-cols-[1.05fr,1fr] gap-10 lg:gap-14 items-center">
@@ -104,7 +104,7 @@ const Index = () => {
                 <span className="text-emerald-300">Found every month after.</span>
               </h1>
 
-              <p className="text-emerald-50/85 text-[17px] sm:text-[18.5px] leading-relaxed mb-8 max-w-[560px]">
+              <p className="text-slate-200 text-[17px] sm:text-[18.5px] leading-relaxed mb-8 max-w-[560px]">
                 Entity, brand, website, CRM, payments and AI systems, built as one
                 connected setup. Then marketing, SEO, your CRM and operations run
                 monthly, so the business you launched keeps getting found.
@@ -129,7 +129,7 @@ const Index = () => {
                       <div className="text-white font-extrabold text-[1.15rem] leading-none tracking-tight">
                         {t.big}
                       </div>
-                      <div className="text-emerald-50/70 text-[12.5px] font-medium mt-1.5 leading-snug">
+                      <div className="text-slate-300 text-[12.5px] font-medium mt-1.5 leading-snug">
                         {t.small}
                       </div>
                     </div>
@@ -156,7 +156,7 @@ const Index = () => {
                 </Button>
               </div>
 
-              <p className="text-emerald-50/60 text-[13px] mt-4">
+              <p className="text-slate-400 text-[13px] mt-4">
                 Seven days free on every monthly plan. Nothing is charged until day eight.
               </p>
             </div>
@@ -261,7 +261,7 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover opacity-35"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-deep-900/96 via-deep-900/90 to-deep-800/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(110%_80%_at_85%_10%,rgba(16,185,129,0.28),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(110%_80%_at_85%_10%,rgba(255,255,255,0.07),transparent_60%)]" />
 
         <div className="relative container-custom py-16 sm:py-20 px-4">
           <div className="max-w-[640px] mb-10">
@@ -272,7 +272,7 @@ const Index = () => {
               Build it once, <br />
               <span className="text-emerald-300">or hand it over monthly.</span>
             </h2>
-            <p className="text-emerald-50/85 text-[17px] leading-relaxed">
+            <p className="text-slate-200 text-[17px] leading-relaxed">
               Both prices are on this site. Neither needs a call first, and the
               monthly one does not charge you for a week.
             </p>
@@ -304,13 +304,13 @@ const Index = () => {
                 Or build first
               </p>
               <h3 className="text-white text-2xl font-extrabold mb-2">A one time package</h3>
-              <p className="text-emerald-50/80 text-[15.5px] leading-relaxed mb-5">
+              <p className="text-slate-300 text-[15.5px] leading-relaxed mb-5">
                 Company, brand, site, email, payments and CRM, built as one thing
                 and handed over in your name. Paid once.
               </p>
               <div className="flex items-baseline gap-2 mb-6">
                 <span className="price-figure text-3xl font-extrabold text-white">$1,499</span>
-                <span className="text-emerald-50/60 font-semibold">once, at the smallest</span>
+                <span className="text-slate-400 font-semibold">once, at the smallest</span>
               </div>
               <Button asChild variant="outline" className="w-full border-white/40 bg-transparent text-white hover:bg-white/15 hover:text-white py-6 rounded-xl font-semibold text-[15px]">
                 <Link to="/packages">See the three builds</Link>
@@ -318,7 +318,7 @@ const Index = () => {
             </div>
           </div>
 
-          <p className="text-emerald-50/60 text-[13.5px] mt-7">
+          <p className="text-slate-400 text-[13.5px] mt-7">
             Would rather talk it through first?{' '}
             <button type="button" onClick={() => openBooking()} className="text-white font-semibold underline underline-offset-4">
               Book a free call

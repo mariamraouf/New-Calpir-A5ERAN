@@ -88,17 +88,17 @@ const Navbar = () => {
       {/* A thin utility strip. Email and the social accounts belong up here
           rather than only in the footer, where somebody who wants to check
           whether a company is real has to scroll the whole page to find them. */}
-      <div className="hidden lg:block bg-gradient-to-r from-deep-900 via-deep-800 to-deep-700 text-emerald-50/85">
+      <div className="hidden lg:block bg-navy text-white/75">
         <div className="container-custom h-9 flex items-center justify-between text-[13px]">
           <a
             href="mailto:info@calpir.com"
             className="inline-flex items-center gap-2 font-medium hover:text-white transition-colors"
           >
-            <Mail size={13} className="text-emerald-300" /> info@calpir.com
+            <Mail size={13} className="text-emerald-400" /> info@calpir.com
           </a>
 
           <div className="flex items-center gap-1">
-            <span className="mr-2 text-emerald-100/60">Follow the work</span>
+            <span className="mr-2 text-white/45">Follow the work</span>
             {SOCIALS.map(({ name, href, Icon }) => (
               <a
                 key={name}

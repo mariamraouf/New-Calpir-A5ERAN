@@ -61,7 +61,7 @@ const PageHero = ({
     {/* Two washes: one to darken for contrast, one to keep it green rather
         than letting the photograph's own colour take over the brand. */}
     <div className="absolute inset-0 bg-gradient-to-r from-deep-900/95 via-deep-900/80 to-deep-800/55" />
-    <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_92%_12%,rgba(16,185,129,0.22),transparent_58%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_92%_12%,rgba(255,255,255,0.07),transparent_58%)]" />
 
     <div
       className={cn(
@@ -88,7 +88,7 @@ const PageHero = ({
         </h1>
 
         {body && (
-          <p className="text-emerald-50/85 text-[17px] sm:text-[18.5px] leading-relaxed max-w-[600px] mb-7">
+          <p className="text-slate-200 text-[17px] sm:text-[18.5px] leading-relaxed max-w-[600px] mb-7">
             {body}
           </p>
         )}
@@ -135,7 +135,7 @@ const PageHero = ({
               <div className="price-figure text-white text-[1.55rem] font-extrabold leading-none">
                 {s.value}
               </div>
-              <div className="text-emerald-50/70 text-[12.5px] font-semibold mt-1.5 leading-snug">
+              <div className="text-slate-300 text-[12.5px] font-semibold mt-1.5 leading-snug">
                 {s.label}
               </div>
             </div>
