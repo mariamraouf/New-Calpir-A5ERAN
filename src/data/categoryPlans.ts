@@ -7,11 +7,11 @@
  * only the ones that happen to have a plan named after them.
  */
 export const CATEGORY_PLANS: Record<string, string[]> = {
-  'formation-compliance': ['compliance-filings-monthly'],
+  'formation-compliance': ['hr-admin-monthly'],
   'web-foundation': ['ops-systems-monthly'],
-  'brand-creative': ['brand-content-monthly'],
-  'sales-marketing': ['marketing-seo-monthly', 'sales-outreach-monthly'],
-  'ai-automation': ['ops-systems-monthly'],
+  'brand-creative': ['marketing-seo-monthly'],
+  'sales-marketing': ['marketing-seo-monthly', 'sales-crm-monthly'],
+  'ai-automation': ['sales-crm-monthly', 'ops-systems-monthly'],
   'operations-growth': ['ops-systems-monthly'],
   'people-talent': ['hr-admin-monthly'],
 };

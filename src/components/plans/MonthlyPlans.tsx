@@ -82,7 +82,7 @@ const MonthlyPlans: React.FC<MonthlyPlansProps> = ({
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold mb-5">
                 Best value
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              <h3 className="text-white text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 {bundle.name}
               </h3>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">{bundle.tagline}</p>

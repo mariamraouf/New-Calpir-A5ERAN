@@ -18,7 +18,7 @@ import { MONTHLY_PLANS, formatPrice } from '@/data/plans';
 const PLAN_ICONS: Record<string, React.ElementType> = {
   'marketing-seo-monthly': Search,
   'ops-systems-monthly': Settings,
-  'sales-outreach-monthly': PhoneOutgoing,
+  'sales-crm-monthly': PhoneOutgoing,
   'hr-admin-monthly': Users,
 };
 
@@ -29,55 +29,78 @@ const GrowthAndPlans = () => {
     <>
       {/* Marketing and SEO, given its own weight */}
       <section className="section-padding bg-navy text-white">
-        <div className="container-custom grid lg:grid-cols-[1.05fr,1fr] gap-14 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white mono text-[10px] tracking-wide font-bold mb-5">
-              Marketing &amp; SEO
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-[1.02fr,1.15fr] gap-12 lg:gap-16 items-center mb-14">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-600 text-white text-[11px] tracking-wide font-bold rounded-full mb-5">
+                Marketing &amp; SEO
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mb-7">
+                Built is half <br /> the job. <br />
+                <span className="text-emerald-400">Found is the other.</span>
+              </h2>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                A business nobody can find is a hobby with overheads. We do the
+                search work, the content, the ads and the email, and we report on
+                enquiries rather than impressions.
+              </p>
+              <p className="text-slate-400 leading-relaxed mb-9">
+                Ranking is not a one off. It is maintained, monthly, which is why
+                it sits in a plan rather than a project.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button
+                  asChild
+                  className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-7 rounded-xl font-bold tracking-tight transition-transform hover:-translate-y-1"
+                >
+                  <Link to="/marketing-seo">
+                    Marketing &amp; SEO <ArrowRight size={18} className="ml-2" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/25 bg-transparent text-white hover:bg-white/10 px-8 py-7 rounded-xl font-bold tracking-tight"
+                >
+                  <Link to="/pricing">See the plans</Link>
+                </Button>
+              </div>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mb-7">
-              Built is half <br /> the job. <br />
-              <span className="text-emerald-400">Found is the other.</span>
-            </h2>
-            <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-              A business nobody can find is a hobby with overheads. We do the
-              search work, the content, the ads, the email and the outbound, and
-              we report on enquiries rather than impressions.
-            </p>
-            <p className="text-slate-400 leading-relaxed mb-9">
-              Ranking is not a one off. It is maintained, monthly, which is why
-              it sits in a plan rather than a project.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Button
-                asChild
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-7 rounded-xl font-bold tracking-tight transition-transform hover:-translate-y-1"
-              >
-                <Link to="/marketing-seo">
-                  Marketing &amp; SEO <ArrowRight size={18} className="ml-2" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="border-zinc-700 bg-transparent text-white hover:bg-navy-800 px-8 py-7 rounded-xl font-bold tracking-tight"
-              >
-                <Link to="/packages">See the plans</Link>
-              </Button>
-            </div>
+
+            {/* A picture of the thing, rather than another paragraph about it. */}
+            <figure className="m-0">
+              <img
+                src="/img/marketing-seo.jpg"
+                alt="A search result ranking first, with tracked keywords and an average position climbing over seven months"
+                width={1200}
+                height={760}
+                loading="lazy"
+                decoding="async"
+                className="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+              />
+              <figcaption className="text-slate-400 text-[13px] mt-3">
+                What the work looks like from your side. Example view, not a client account.
+              </figcaption>
+            </figure>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { h: 'Technical SEO', p: 'Maintained every month, not audited once.' },
               { h: 'Four pieces of content', p: 'Researched, written, indexed.' },
               { h: 'Google Business Profile', p: 'Posts, photos, review responses.' },
               { h: 'Paid ads', p: 'Run and adjusted, if you run them.' },
-              { h: 'Email campaigns', p: 'One to your list, every month.' },
+              { h: 'Brand templates', p: 'Kept current so nobody starts blank.' },
               { h: 'A real report', p: 'What moved, and what did not.' },
             ].map((item) => (
-              <div key={item.h} className="border border-zinc-800 p-6 bg-navy-800/40">
-                <h3 className="font-bold tracking-tight mb-2 text-sm">{item.h}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{item.p}</p>
+              <div
+                key={item.h}
+                className="rounded-xl border border-white/12 bg-white/[0.06] p-6 transition-colors hover:border-emerald-400/50 hover:bg-white/[0.1]"
+              >
+                <h3 className="text-white font-extrabold tracking-tight mb-2 text-[15px]">
+                  {item.h}
+                </h3>
+                <p className="text-slate-300 text-sm leading-relaxed">{item.p}</p>
               </div>
             ))}
           </div>
@@ -93,8 +116,9 @@ const GrowthAndPlans = () => {
               Or let us <span className="text-emerald-700">run it.</span>
             </h2>
             <p className="text-lg text-slate-600 max-w-[720px] mx-auto leading-relaxed">
-              Six departments, each on its own monthly plan. Take one, take the lot
-              for less than the sum, cancel any month.
+              Four departments, each on its own monthly plan. Seven days free on every
+              one of them. Take one, take the lot for less than the sum, cancel any
+              month.
             </p>
           </div>
 

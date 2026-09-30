@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -17,6 +17,29 @@ import RecurringOption from '@/components/plans/RecurringOption';
 
 
 const Services = () => {
+  const location = useLocation();
+
+  /* The services menu links straight at a department, e.g. /services#people-talent.
+     React Router does not scroll to a hash on its own, and the sticky header
+     would cover the heading if it did, so we do it here with an offset. */
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.slice(1);
+    const scroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      const top = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top, behavior: 'smooth' });
+      return true;
+    };
+    // The sections animate in, so the element may not be laid out on the first
+    // frame after a cross page navigation.
+    if (!scroll()) {
+      const t = window.setTimeout(scroll, 250);
+      return () => window.clearTimeout(t);
+    }
+  }, [location.hash, location.key]);
+
   const reveal = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },

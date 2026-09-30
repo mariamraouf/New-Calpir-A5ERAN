@@ -21,6 +21,8 @@ import LaunchTimeline from '@/components/home/LaunchTimeline';
 import HeroAssessment from '@/components/home/HeroAssessment';
 import GrowthAndPlans from '@/components/home/GrowthAndPlans';
 import PackagesPreview from '@/components/home/PackagesPreview';
+import ShowcaseBand from '@/components/home/ShowcaseBand';
+import TrialBand from '@/components/home/TrialBand';
 
 const Index = () => {
   const { openBooking } = useBookingModal();
@@ -91,7 +93,7 @@ const Index = () => {
 
               <p className="lede mb-7 max-w-[560px]">
                 Entity, brand, website, CRM, payments and AI systems, built as one
-                connected setup. Then marketing, SEO, outbound and operations run
+                connected setup. Then marketing, SEO, your CRM and operations run
                 monthly, so the business you launched keeps getting found.
               </p>
 
@@ -273,9 +275,13 @@ const Index = () => {
         </div>
       </section>
 
+      <ShowcaseBand />
+
       <PackagesPreview />
 
       <GrowthAndPlans />
+
+      <TrialBand />
 
       <ROICalculator />
 

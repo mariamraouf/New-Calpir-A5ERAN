@@ -99,23 +99,23 @@ const MarketingSeo = () => {
     <div className="min-h-screen bg-white">
       <MetaSEO
         title="Marketing & SEO Services for Small Businesses | Calpir"
-        description="SEO, content, Google Business Profile, paid ads, email and outbound, run monthly from $899. Every price published. Built for US, UK and EU small businesses."
+        description="SEO, content, Google Business Profile, paid ads and email, run monthly for $799. Seven days free. Every price published. Built for US, UK and EU small businesses."
         path="/marketing-seo"
       />
       <Navbar />
 
-      <section className="pt-40 md:pt-48 pb-24 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
-        <div className="container-custom">
+      <section className="pt-14 md:pt-20 pb-16 px-6 border-b border-slate-200 bg-gradient-to-b from-emerald-50/40 to-white">
+        <div className="container-custom grid lg:grid-cols-[1fr,1.08fr] gap-12 lg:gap-16 items-center">
           <div className="max-w-[900px]">
             <SectionLabel>Marketing &amp; SEO</SectionLabel>
-            <h1 className="text-5xl md:text-7xl leading-[0.95] mb-8 font-bold tracking-tight text-navy">
+            <h1 className="text-[2.4rem] sm:text-5xl lg:text-[3.6rem] leading-[1.02] mb-6 font-bold tracking-tight text-navy">
               Being good is not <br />
               <span className="text-emerald-700">being found.</span>
             </h1>
-            <p className="text-lg md:text-2xl text-slate-600 leading-relaxed mb-8">
+            <p className="lede mb-7 max-w-[560px]">
               Most small businesses lose to competitors who are worse at the job
               and better at being seen. We do the search work, the content, the
-              ads and the outbound, monthly, and we show you what moved.
+              ads and the email, monthly, and we show you what moved.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button
@@ -135,6 +135,24 @@ const MarketingSeo = () => {
               </Button>
             </div>
           </div>
+
+          {/* The report is the product, as far as a customer experiences it, so
+              it is worth showing rather than describing. */}
+          <figure className="m-0">
+            <img
+              src="/img/monthly-report.jpg"
+              alt="A monthly marketing report showing enquiries, calls booked, keywords in the top three and cost per enquiry"
+              width={1200}
+              height={700}
+              loading="eager"
+              decoding="async"
+              className="w-full rounded-2xl border border-slate-200 shadow-xl"
+            />
+            <figcaption className="text-slate-500 text-[13px] mt-3">
+              The report you get on the first of every month. A worked example,
+              not a client account.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

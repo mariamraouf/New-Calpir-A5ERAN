@@ -1,21 +1,41 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import { CheckCircle2, XCircle, HelpCircle, ArrowRight, Sparkles, Rocket, BarChart3, Cpu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import PackageCard from '@/components/packages/PackageCard';
 import SectionLabel from '@/components/ui/SectionLabel';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import FeatureModal from '@/components/ui/FeatureModal';
 import MetaSEO from '@/components/seo/MetaSEO';
 import BuyButton from '@/components/plans/BuyButton';
 import { ONE_TIME_PACKAGES, formatPrice, type Currency } from '@/data/plans';
 
 const Packages = () => {
+  const location = useLocation();
   const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  /* The homepage cards link straight at a package, e.g. /packages#growth-build.
+     React Router does not scroll to a hash on its own. */
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.slice(1);
+    const scroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return false;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
+      return true;
+    };
+    if (!scroll()) {
+      const t = window.setTimeout(scroll, 250);
+      return () => window.clearTimeout(t);
+    }
+  }, [location.hash, location.key]);
+
   const [currency, setCurrency] = useState<Currency>('usd');
 
   // The one-time cards carry their own copy; price, id and timeline come from
@@ -174,74 +194,27 @@ const Packages = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24 items-stretch">
-            {packages.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <div key={i} className={cn(
-                  "bg-white p-8 md:p-10 border rounded-2xl flex flex-col relative surface-hover",
-                  p.featured ? "border-emerald-600 shadow-xl scale-[1.02] z-10 bg-emerald-50/20 ring-2 ring-emerald-600" : "border-slate-200 hover:border-emerald-600 hover:shadow-md"
-                )}>
-                  {p.featured && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-4 py-1 mono text-xs tracking-wide font-bold flex items-center gap-1.5 shadow-md">
-                      <Sparkles size={13} /> Most Popular Choice
-                    </div>
-                  )}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="mono text-xs tracking-wide text-emerald-800 font-bold">{p.badge}</div>
-                    <div className="p-2.5 bg-emerald-100/70 border border-emerald-200 text-emerald-700">
-                      <Icon size={20} />
-                    </div>
-                  </div>
-                  <h3 className="text-3xl font-bold text-navy mb-2">{p.name}</h3>
-                  <div className="price-figure text-5xl font-bold text-navy mb-1">
-                    {(() => { const b = buildFor(p.name); return b ? formatPrice(b.price, currency) : p.price; })()}
-                  </div>
-                  <div className="mono text-[11px] tracking-wide text-slate-400 font-bold mb-3">
-                    One time payment. Nothing recurring.
-                  </div>
-                  <div className="mono text-xs font-bold text-slate-600 mb-6">Best for: <span className="text-emerald-800">{p.bestFor}</span></div>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-8">{p.desc}</p>
-                  
-                  <div className="space-y-3 mb-10 flex-grow border-t border-slate-200 pt-6">
-                    {p.features.map((f, j) => (
-                      <div key={j} className="flex gap-3 items-start group/item">
-                        <CheckCircle2 className="text-emerald-600 shrink-0 mt-0.5" size={16} />
-                        {f.key ? (
-                          <button
-                            type="button"
-                            onClick={() => setActiveModal(f.key || null)}
-                            className="mono text-xs tracking-wider text-zinc-800 text-left font-semibold hover:text-emerald-700 transition-colors flex items-center gap-1.5"
-                          >
-                            <span className="underline decoration-dotted decoration-emerald-600/60 underline-offset-4">{f.label}</span>
-                            <HelpCircle size={13} className="text-emerald-600 shrink-0 opacity-70 group-item:opacity-100" />
-                          </button>
-                        ) : (
-                          <span className="mono text-xs tracking-wider text-zinc-800 leading-snug font-semibold">{f.label}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  {(() => {
-                    const b = buildFor(p.name);
-                    return b ? (
-                      <BuyButton
-                        planId={b.id}
-                        currency={currency}
-                        label={`Buy ${p.name}`}
-                        variant={p.featured ? 'emerald' : 'dark'}
-                        footnote={b.timeline}
-                      />
-                    ) : (
-                      <Button asChild className="w-full py-7 rounded-xl font-bold text-lg tracking-tight bg-navy-800 text-white">
-                        <Link to="/contact">Get started with {p.name}</Link>
-                      </Button>
-                    );
-                  })()}
-                </div>
-              );
-            })}
+          {/* The same card the homepage uses, so this page confirms what that
+              one said rather than restating it in a different shape. */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mb-24 items-stretch">
+            {ONE_TIME_PACKAGES.map((b, i) => (
+              <div key={b.id} id={b.id} className="scroll-mt-28">
+                <PackageCard
+                  pkg={b}
+                  index={i}
+                  currency={currency}
+                  action={
+                    <BuyButton
+                      planId={b.id}
+                      currency={currency}
+                      label={`Buy ${b.name}`}
+                      variant={b.featured ? 'emerald' : 'dark'}
+                      footnote={b.timeline}
+                    />
+                  }
+                />
+              </div>
+            ))}
           </div>
 
           {/* Detailed Color-Coded Comparison Table */}

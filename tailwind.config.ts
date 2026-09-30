@@ -19,20 +19,42 @@ export default {
     },
     extend: {
       colors: {
-        /* The ink colour. Pure black on white is harsh and makes a long page
-           tiring; a deep navy reads as considered rather than default. */
+        /* The ink colour, and the dark ground.
+           The site used to be navy. Navy is a different brand from the logo,
+           which is green, and two unrelated colours fighting is what made the
+           pages feel off. This is a near black with a green cast: it reads as
+           ink on white, and as a deep brand colour when a whole band is
+           filled with it. The token is still called `navy` because it is used
+           in several hundred places; only its value changed. */
         navy: {
-          DEFAULT: "#0B1B3D",
-          900: "#0B1B3D",
-          800: "#152A57",
-          700: "#1E3A6E",
-          50: "#F4F6FB",
+          DEFAULT: "#0C231C",
+          900: "#0C231C",
+          800: "#10392C",
+          700: "#15543F",
+          50: "#F2F8F5",
         },
-        /* Warm accent, for the one thing on a screen that should be noticed. */
+        /* The one attention colour. Rose, not amber: on a green and white
+           page a warm yellow disappears into the emerald and reads as a
+           warning, where a rose badge is seen once and remembered. Used only
+           for the thing on a screen that should be noticed, never for body
+           text. The token is still called `gold` for the same reason as
+           above. */
         gold: {
-          DEFAULT: "#F59E0B",
-          400: "#FBBF24",
-          50: "#FFFBEB",
+          DEFAULT: "#E11D48",
+          400: "#FB7185",
+          50: "#FFF1F2",
+        },
+        /* Same palette under an honest name, for anything written from here on. */
+        ink: {
+          DEFAULT: "#0C231C",
+          800: "#10392C",
+          700: "#15543F",
+          50: "#F2F8F5",
+        },
+        accent2: {
+          DEFAULT: "#E11D48",
+          400: "#FB7185",
+          50: "#FFF1F2",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

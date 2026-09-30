@@ -2,7 +2,8 @@
  * POST /api/checkout
  *
  * Creates a Stripe Checkout Session and returns the URL to send the buyer to.
- * Monthly plans open in subscription mode and recur until cancelled. One time
+ * Monthly plans open in subscription mode with a seven day trial and recur
+ * until cancelled. One time
  * packages open in payment mode and charge once.
  *
  * Body: { planId: string, currency?: 'usd' | 'gbp' | 'eur' }
@@ -26,50 +27,45 @@ interface CatalogEntry {
   /** Amounts in major units. Converted to the smallest unit below. */
   price: Record<Currency, number>;
   mode: 'subscription' | 'payment';
+  /** Free days before the first charge. Subscriptions only. */
+  trialDays?: number;
 }
 
 const CATALOG: Record<string, CatalogEntry> = {
   'marketing-seo-monthly': {
     name: 'Marketing & SEO plan',
-    description: 'Monthly SEO, content, social, email and reporting.',
-    price: { usd: 899, gbp: 719, eur: 839 },
+    description: 'Monthly SEO, content, social, email, ads and reporting.',
+    price: { usd: 799, gbp: 639, eur: 749 },
     mode: 'subscription',
+    trialDays: 7,
   },
   'ops-systems-monthly': {
     name: 'Ops & Systems plan',
-    description: 'Monthly website, automation and integration upkeep.',
-    price: { usd: 599, gbp: 479, eur: 559 },
+    description: 'The operational system built, documented and maintained monthly.',
+    price: { usd: 899, gbp: 719, eur: 839 },
     mode: 'subscription',
+    trialDays: 7,
   },
-  'sales-outreach-monthly': {
-    name: 'Sales & Outreach plan',
-    description: 'Monthly lead lists, cold email, calling and CRM upkeep.',
+  'sales-crm-monthly': {
+    name: 'Sales & CRM plan',
+    description: 'CRM built and maintained, website chatbot, email marketing and sequences.',
     price: { usd: 999, gbp: 799, eur: 929 },
     mode: 'subscription',
+    trialDays: 7,
   },
   'hr-admin-monthly': {
     name: 'HR & Admin plan',
-    description: 'Monthly HR records, contracts, payroll admin and compliance.',
+    description: 'Payroll, records, contracts, policies and one role recruited a month.',
     price: { usd: 449, gbp: 359, eur: 419 },
     mode: 'subscription',
-  },
-  'compliance-filings-monthly': {
-    name: 'Compliance & Filings plan',
-    description: 'Monthly filing deadlines, registered agent and company records.',
-    price: { usd: 249, gbp: 199, eur: 229 },
-    mode: 'subscription',
-  },
-  'brand-content-monthly': {
-    name: 'Brand & Content plan',
-    description: 'Monthly content calendar, graphics, video and brand templates.',
-    price: { usd: 699, gbp: 559, eur: 649 },
-    mode: 'subscription',
+    trialDays: 7,
   },
   'everything-monthly': {
     name: 'Everything plan',
-    description: 'All six monthly plans together, on one invoice.',
-    price: { usd: 2899, gbp: 2319, eur: 2699 },
+    description: 'All four monthly plans together, on one invoice.',
+    price: { usd: 2599, gbp: 2079, eur: 2419 },
     mode: 'subscription',
+    trialDays: 7,
   },
   'starter-build': {
     name: 'Starter package',
@@ -148,6 +144,14 @@ export default async function handler(req: any, res: any) {
   form.set('metadata[plan_id]', planId);
   if (entry.mode === 'subscription') {
     form.set('line_items[0][price_data][recurring][interval]', 'month');
+    // Seven free days. Stripe collects the card at checkout and raises the
+    // first invoice on day eight, so a customer who cancels inside the week
+    // is never charged. The site promises this, so the API has to honour it
+    // rather than leaving it as marketing copy.
+    if (entry.trialDays) {
+      form.set('subscription_data[trial_period_days]', String(entry.trialDays));
+      form.set('subscription_data[trial_settings][end_behavior][missing_payment_method]', 'cancel');
+    }
   }
 
   try {

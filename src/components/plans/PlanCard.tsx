@@ -4,7 +4,7 @@ import React from 'react';
 
 import { cn } from '@/lib/utils';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
-import { formatPrice, type Currency, type PlanPrice, type PlanItem } from '@/data/plans';
+import { formatPrice, type Currency, type PlanPrice, type PlanItem, MONTHLY_TRIAL_DAYS } from '@/data/plans';
 import BuyButton from './BuyButton';
 import IncludedList from './IncludedList';
 
@@ -75,7 +75,9 @@ const PlanCard: React.FC<PlanCardProps> = ({
         </span>
       </div>
       <p className="mono text-[11px] tracking-wide text-slate-400 mb-7">
-        {billing === 'month' ? 'Cancel any month. No tie in.' : 'Single payment. Nothing recurring.'}
+        {billing === 'month'
+          ? `Free for ${MONTHLY_TRIAL_DAYS} days, then cancel any month. No tie in.`
+          : 'Single payment. Nothing recurring.'}
       </p>
 
       <div className="mb-8 flex-grow">

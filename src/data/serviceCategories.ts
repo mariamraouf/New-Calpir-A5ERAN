@@ -35,7 +35,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     name: 'Sales & Marketing',
     id: 'sales-marketing',
     blurb:
-      'Getting found, getting enquiries, and turning them into paid work. Pipeline, outbound, search, email, ads and proposals.',
+      'Getting found, getting enquiries, and turning them into paid work. Search, content, ads, email, your CRM and the follow up.',
   },
   {
     name: 'AI & Automation',

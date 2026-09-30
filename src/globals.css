@@ -36,6 +36,20 @@
     letter-spacing: -0.022em;
   }
 
+  /* A heading inside a block that has already set light text must not be
+     dragged back to navy by the rule above. This was making the card titles
+     in the Marketing and SEO band navy on navy, which is to say invisible.
+     :where() carries no specificity, so an explicit colour on the heading
+     itself still wins. */
+  :where(.text-white, .text-slate-100, .text-slate-200) h1,
+  :where(.text-white, .text-slate-100, .text-slate-200) h2,
+  :where(.text-white, .text-slate-100, .text-slate-200) h3,
+  :where(.text-white, .text-slate-100, .text-slate-200) h4,
+  :where(.text-white, .text-slate-100, .text-slate-200) h5,
+  :where(.text-white, .text-slate-100, .text-slate-200) h6 {
+    color: inherit;
+  }
+
   h1 { font-weight: 900; letter-spacing: -0.032em; line-height: 1.02; }
   h2 { font-weight: 900; letter-spacing: -0.028em; line-height: 1.06; }
   h3 { font-weight: 800; }
