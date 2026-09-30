@@ -378,7 +378,7 @@ const HeroAssessment = () => {
               <RotateCcw size={13} /> Start again
             </button>
 
-            <p className="text-[12px] font-bold text-gold tracking-wide mb-2">{result.kind}</p>
+            <p className="text-[12px] font-bold text-gold-700 tracking-wide mb-2">{result.kind}</p>
             <h2 className="text-2xl font-extrabold text-navy leading-snug mb-2">{result.name}</h2>
 
             <div className="price-figure text-3xl font-extrabold text-navy mb-1">{result.price}</div>
@@ -386,7 +386,7 @@ const HeroAssessment = () => {
 
             <p className="text-slate-600 leading-relaxed mb-4">{result.blurb}</p>
 
-            <ul className="border-l-2 border-gold bg-gold-50/60 pl-4 py-3 mb-4 rounded-r-lg space-y-1.5">
+            <ul className="border-l-2 border-gold bg-gold-50 pl-4 py-3 mb-4 rounded-r-lg space-y-1.5">
               {result.lines.map((l) => (
                 <li key={l} className="text-slate-600 text-[14.5px] leading-snug">{l}</li>
               ))}

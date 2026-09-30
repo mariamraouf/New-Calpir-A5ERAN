@@ -26,7 +26,7 @@ export const TINTS: Record<string, Tint> = {
   teal: { bg: 'bg-teal-50', ink: 'text-teal-700', border: 'border-teal-200', solid: 'bg-teal-600' },
   sky: { bg: 'bg-sky-50', ink: 'text-sky-700', border: 'border-sky-200', solid: 'bg-sky-600' },
   violet: { bg: 'bg-violet-50', ink: 'text-violet-700', border: 'border-violet-200', solid: 'bg-violet-600' },
-  rose: { bg: 'bg-rose-50', ink: 'text-rose-700', border: 'border-rose-200', solid: 'bg-rose-600' },
+  rose: { bg: 'bg-gold-50', ink: 'text-gold-700', border: 'border-gold-300', solid: 'bg-gold-700' },
   lime: { bg: 'bg-lime-50', ink: 'text-lime-700', border: 'border-lime-200', solid: 'bg-lime-600' },
 };
 

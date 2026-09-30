@@ -42,16 +42,38 @@ export default {
           700: "#10392C",
           600: "#15543F",
         },
-        /* The one attention colour. Rose, not amber: on a green and white
-           page a warm yellow disappears into the emerald and reads as a
-           warning, where a rose badge is seen once and remembered. Used only
-           for the thing on a screen that should be noticed, never for body
-           text. The token is still called `gold` for the same reason as
-           above. */
+        /* The attention colour: terracotta, #B9794A.
+           The shade chosen for the brand. It is used for the one thing on a
+           screen that should be noticed and never for body text, so the scale
+           below exists mostly so it can be read as well as seen: the flat
+           shade is 3.6:1 on white, which is fine for a filled badge and not
+           enough for a word, and `700` is 6.3:1, which is. The token is still
+           called `gold` because several hundred places use that name; only
+           its value has ever changed. */
         gold: {
-          DEFAULT: "#E11D48",
-          400: "#FB7185",
-          50: "#FFF1F2",
+          DEFAULT: "#B9794A",
+          900: "#7A4923",
+          800: "#8A5329",
+          700: "#8A5329",
+          600: "#985C31",
+          500: "#A9683A",
+          400: "#D2A47E",
+          300: "#E3C4A8",
+          100: "#F6E9DC",
+          50: "#FAF2EA",
+        },
+        /* The same thing under an honest name. */
+        clay: {
+          DEFAULT: "#B9794A",
+          900: "#7A4923",
+          800: "#8A5329",
+          700: "#8A5329",
+          600: "#985C31",
+          500: "#A9683A",
+          400: "#D2A47E",
+          300: "#E3C4A8",
+          100: "#F6E9DC",
+          50: "#FAF2EA",
         },
         /* Same palette under an honest name, for anything written from here on. */
         ink: {
@@ -61,9 +83,9 @@ export default {
           50: "#F2F8F5",
         },
         accent2: {
-          DEFAULT: "#E11D48",
-          400: "#FB7185",
-          50: "#FFF1F2",
+          DEFAULT: "#B9794A",
+          400: "#D2A47E",
+          50: "#FAF2EA",
         },
         /* Department tints. Pale grounds so a row of six cards has rhythm
            rather than reading as a spreadsheet. None of them is green, which
@@ -77,8 +99,8 @@ export default {
           "sky-ink": "#0369A1",
           violet: "#F5F3FF",
           "violet-ink": "#6D28D9",
-          rose: "#FFF1F2",
-          "rose-ink": "#BE123C",
+          rose: "#FAF2EA",
+          "rose-ink": "#8A5329",
           lime: "#F7FEE7",
           "lime-ink": "#4D7C0F",
         },

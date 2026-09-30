@@ -196,7 +196,7 @@
 /* ------------------------------------------------------------------ */
 
 .num-badge {
-  @apply text-gold font-extrabold tracking-tight;
+  @apply text-gold-600 font-extrabold tracking-tight;
   font-size: 1.5rem;
   line-height: 1;
 }

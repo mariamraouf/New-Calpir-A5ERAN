@@ -74,7 +74,7 @@ const Pricing = () => {
                 n: '02',
                 h: 'Cancel any month',
                 p: 'No minimum term and no notice period, and everything we built stays in your accounts when you go. A retainer you cannot leave is not a service, it is a trap.',
-                tint: TINTS.violet,
+                tint: TINTS.rose,
               },
               {
                 n: '03',

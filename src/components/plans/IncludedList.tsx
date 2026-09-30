@@ -37,7 +37,7 @@ const IncludedList: React.FC<{ items: PlanItem[] }> = ({ items }) => {
                 <ChevronDown
                   size={16}
                   className={
-                    'text-gold shrink-0 mt-[3px] transition-transform duration-200 ' +
+                    'text-gold-600 shrink-0 mt-[3px] transition-transform duration-200 ' +
                     (isOpen ? 'rotate-0' : '-rotate-90')
                   }
                 />

@@ -64,7 +64,7 @@ const PlanCard: React.FC<PlanCardProps> = ({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
           {featured && (
-            <span className="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+            <span className="absolute top-3 left-3 bg-gold-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
               Most popular
             </span>
           )}

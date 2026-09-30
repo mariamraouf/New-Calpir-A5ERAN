@@ -44,7 +44,7 @@ const TrialBand = () => (
     <div className="container-custom">
       <div className="grid lg:grid-cols-[1fr,1.35fr] gap-10 lg:gap-14 items-center">
         <div>
-          <span className="inline-flex items-center gap-2 bg-gold text-white text-[12px] font-bold px-3 py-1.5 rounded-full mb-5">
+          <span className="inline-flex items-center gap-2 bg-gold-700 text-white text-[12px] font-bold px-3 py-1.5 rounded-full mb-5">
             Free trial
           </span>
           <h2 className="text-3xl sm:text-5xl text-navy leading-[1.05] mb-4">

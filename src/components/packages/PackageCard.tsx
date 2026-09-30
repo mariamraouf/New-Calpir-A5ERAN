@@ -63,7 +63,7 @@ const PackageCard = ({ pkg, index, currency = 'usd', action }: Props) => {
         )}
       >
         {featured && (
-          <span className="absolute top-5 right-5 bg-gold text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+          <span className="absolute top-5 right-5 bg-gold-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
             Most popular
           </span>
         )}
@@ -115,7 +115,7 @@ const PackageCard = ({ pkg, index, currency = 'usd', action }: Props) => {
                   <ChevronDown
                     size={16}
                     className={cn(
-                      'text-gold shrink-0 mt-[3px] transition-transform duration-200',
+                      'text-gold-600 shrink-0 mt-[3px] transition-transform duration-200',
                       isOpen ? 'rotate-0' : '-rotate-90',
                     )}
                   />

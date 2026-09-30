@@ -32,7 +32,7 @@ const RecurringOption: React.FC<RecurringOptionProps> = ({ categoryId, currency 
     <div className="rounded-2xl border border-gold/35 bg-gold-50/50 p-6 sm:p-7">
       <div className="flex flex-col lg:flex-row lg:items-center gap-6">
         <div className="lg:flex-1">
-          <div className="inline-flex items-center gap-2 text-gold font-bold text-[12.5px] mb-2.5">
+          <div className="inline-flex items-center gap-2 text-gold-700 font-bold text-[12.5px] mb-2.5">
             <Repeat size={14} /> Or make it recurring
           </div>
           <h4 className="text-xl font-extrabold text-navy mb-2 leading-snug">
@@ -58,7 +58,7 @@ const RecurringOption: React.FC<RecurringOptionProps> = ({ categoryId, currency 
                   {formatPrice(plan.price, currency)} a month
                 </p>
               </div>
-              <ChevronRight size={17} className="text-slate-300 group-hover:text-gold transition-colors shrink-0" />
+              <ChevronRight size={17} className="text-slate-300 group-hover:text-gold-600 transition-colors shrink-0" />
             </Link>
           ))}
 
