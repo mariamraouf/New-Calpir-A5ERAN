@@ -7,15 +7,18 @@ import { formatPrice, type Currency, type OneTimePackage } from '@/data/plans';
 import { PACKAGE_HIGHLIGHTS } from '@/data/packageHighlights';
 
 /**
- * One package, in the one style used everywhere.
+ * One build package.
  *
- * The homepage and the packages page used to draw these differently, which
- * made the second page feel like a different site. This is the single card,
- * used by both.
+ * Deliberately a different animal from the monthly plan card. A plan is a
+ * light, quiet, repeating thing you can leave any month, so it is a plain
+ * white card. A package is a single decision with a date on it, so it gets a
+ * filled header block, the price in white on green, and the delivery date
+ * stated in the header rather than buried in the body. Standing the two side
+ * by side, nobody should have to read a word to know which is which.
  *
- * Each line opens. A phrase like "five automated workflows" means nothing on
- * its own, and sending somebody to a comparison table to find out is a click
- * most people do not make, so the answer sits under the arrow.
+ * Each line opens in place. A phrase like "five automated workflows" means
+ * nothing on its own, and sending somebody to a comparison table to find out
+ * is a click most people do not make.
  */
 
 const ICONS: Record<string, React.ElementType> = {
@@ -33,116 +36,110 @@ interface Props {
 }
 
 const PackageCard = ({ pkg, index, currency = 'usd', action }: Props) => {
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<string[]>([]);
   const Icon = ICONS[pkg.id] || Rocket;
   const featured = !!pkg.featured;
   const lines = PACKAGE_HIGHLIGHTS[pkg.id] || [];
 
+  const toggle = (text: string) =>
+    setOpen((prev) => (prev.includes(text) ? prev.filter((t) => t !== text) : [...prev, text]));
+
   return (
     <div
       className={cn(
-        'relative flex flex-col rounded-2xl p-7 border',
+        'relative flex flex-col h-full overflow-hidden rounded-2xl border bg-white transition-shadow',
         featured
-          ? 'bg-navy border-navy text-white shadow-xl'
-          : 'surface surface-hover',
+          ? 'border-emerald-600 shadow-xl ring-1 ring-emerald-600'
+          : 'border-slate-200 shadow-sm hover:shadow-md',
       )}
     >
-      {featured && (
-        <span className="absolute -top-3 left-7 bg-gold text-white text-[12px] font-bold px-3 py-1 rounded-full shadow-sm">
-          Most popular
-        </span>
-      )}
-
-      <div className="flex items-start justify-between mb-5">
-        <span className={cn('num-badge', featured && 'text-gold-400')}>
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span
-          className={cn(
-            'inline-flex items-center justify-center w-10 h-10 rounded-full border',
-            featured
-              ? 'border-white/20 bg-white/10 text-white'
-              : 'border-slate-200 bg-white text-navy',
-          )}
-        >
-          <Icon size={18} />
-        </span>
-      </div>
-
-      <h3 className={cn('text-2xl font-extrabold mb-1.5', featured && 'text-white')}>
-        {pkg.name}
-      </h3>
-      <p className={cn('text-[15px] mb-5', featured ? 'text-slate-300' : 'text-slate-600')}>
-        {pkg.tagline}
-      </p>
-
-      <div className="flex items-baseline gap-2 mb-1">
-        <span className={cn('price-figure text-4xl font-extrabold', featured ? 'text-white' : 'text-navy')}>
-          {formatPrice(pkg.price, currency)}
-        </span>
-        <span className={cn('font-semibold', featured ? 'text-slate-400' : 'text-slate-500')}>
-          one time
-        </span>
-      </div>
-      <p className={cn('text-[13px] font-semibold mb-1', featured ? 'text-gold-400' : 'text-emerald-700')}>
-        {pkg.timeline}
-      </p>
-      <p className={cn('text-[13px] mb-6', featured ? 'text-slate-400' : 'text-slate-500')}>
-        One payment. Nothing recurring, no trial period, because it is built by the end of it.
-      </p>
-
+      {/* Filled header. This is the whole visual difference from a plan card. */}
       <div
         className={cn(
-          'divide-y mb-7 flex-grow border-t border-b',
-          featured ? 'divide-white/10 border-white/10' : 'divide-slate-100 border-slate-100',
+          'relative px-7 pt-7 pb-6 text-white',
+          featured
+            ? 'bg-gradient-to-br from-emerald-700 via-emerald-600 to-emerald-700'
+            : 'bg-gradient-to-br from-navy via-navy-800 to-navy',
         )}
       >
-        {lines.map((line) => {
-          const isOpen = open === line.text;
-          return (
-            <div key={line.text}>
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? null : line.text)}
-                aria-expanded={isOpen}
-                className="w-full flex items-start gap-2.5 py-3 text-left group"
-              >
-                <ChevronDown
-                  size={16}
-                  className={cn(
-                    'shrink-0 mt-[3px] transition-transform duration-200',
-                    isOpen ? 'rotate-0' : '-rotate-90',
-                    featured ? 'text-gold-400' : 'text-gold',
-                  )}
-                />
-                <span
-                  className={cn(
-                    'text-[15px] leading-snug font-medium transition-colors',
-                    featured
-                      ? 'text-slate-200 group-hover:text-white'
-                      : 'text-slate-700 group-hover:text-navy',
-                  )}
-                >
-                  {line.text}
-                </span>
-              </button>
+        {featured && (
+          <span className="absolute top-5 right-5 bg-gold text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+            Most popular
+          </span>
+        )}
 
-              {isOpen && (
-                <p
-                  className={cn(
-                    'text-[14px] leading-relaxed pl-[26px] pb-4 -mt-0.5',
-                    featured ? 'text-slate-400' : 'text-slate-500',
-                  )}
-                >
-                  {line.brief}
-                </p>
-              )}
+        <div className="flex items-center gap-2.5 mb-5">
+          <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/15 text-white">
+            <Icon size={17} />
+          </span>
+          <span className="text-[11px] font-bold tracking-[0.14em] uppercase text-white/60">
+            Build {String(index + 1).padStart(2, '0')}
+          </span>
+        </div>
+
+        <h3 className="text-white text-[28px] font-extrabold tracking-tight leading-none mb-2">
+          {pkg.name}
+        </h3>
+        <p className="text-white/70 text-[14.5px] leading-snug mb-6 min-h-[2.6em]">
+          {pkg.tagline}
+        </p>
+
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <div className="price-figure text-[2.6rem] font-extrabold leading-none text-white">
+              {formatPrice(pkg.price, currency)}
             </div>
-          );
-        })}
+            <div className="text-white/60 text-[13px] font-semibold mt-1.5">
+              Paid once, in full
+            </div>
+          </div>
+          <span className="shrink-0 rounded-full bg-white/15 px-3 py-1.5 text-[12.5px] font-bold text-white">
+            {pkg.timeline}
+          </span>
+        </div>
       </div>
 
-      {action}
+      {/* Body */}
+      <div className="flex flex-col flex-grow px-7 pt-6 pb-7">
+        <div className="divide-y divide-slate-100 border-b border-slate-100 mb-6 flex-grow">
+          {lines.map((line) => {
+            const isOpen = open.includes(line.text);
+            return (
+              <div key={line.text}>
+                <button
+                  type="button"
+                  onClick={() => toggle(line.text)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-start gap-2.5 py-3 text-left group"
+                >
+                  <ChevronDown
+                    size={16}
+                    className={cn(
+                      'text-gold shrink-0 mt-[3px] transition-transform duration-200',
+                      isOpen ? 'rotate-0' : '-rotate-90',
+                    )}
+                  />
+                  <span className="text-[15px] leading-snug text-slate-700 font-medium group-hover:text-navy transition-colors">
+                    {line.text}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <p className="text-[14px] leading-relaxed text-slate-500 pl-[26px] pb-4 -mt-0.5">
+                    {line.brief}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {action}
+
+        <p className="text-slate-400 text-[12.5px] leading-snug mt-3 text-center">
+          A single payment. Nothing recurring, nothing to cancel.
+        </p>
+      </div>
     </div>
   );
 };

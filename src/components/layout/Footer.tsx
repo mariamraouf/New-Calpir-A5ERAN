@@ -33,15 +33,6 @@ const Footer = () => {
                 info@calpir.com
               </a>
             </div>
-            <div className="flex items-center gap-2.5 text-xs mono text-slate-600">
-              <Phone size={14} className="text-emerald-600 shrink-0" />
-              <a href="tel:+447346875731" className="hover:text-emerald-700 transition-colors font-bold">
-                +44 7346 875731
-              </a>
-            </div>
-            <div className="flex items-center gap-2.5 text-[11px] mono text-emerald-800 font-bold tracking-wider">
-              <MapPin size={14} className="shrink-0" /> BRISTOL, UNITED KINGDOM
-            </div>
           </div>
         </div>
 
@@ -111,7 +102,7 @@ const Footer = () => {
       </div>
 
       <div className="container-custom pt-6 sm:pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-xs text-slate-500 mono text-center sm:text-left">
-        <p>© 2026 Calpir Technologies Ltd. Built with passion in Bristol.</p>
+        <p>© 2026 Calpir Technologies Ltd.</p>
         <p className="flex items-center gap-1.5 justify-center">
           Crafted with <Heart size={12} className="text-rose-600 fill-rose-600" /> for ambitious founders
         </p>

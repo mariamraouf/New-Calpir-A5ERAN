@@ -2,38 +2,40 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, CalendarClock, Ban, ArrowRight } from 'lucide-react';
+import { CalendarClock, Ban, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MONTHLY_TRIAL_DAYS } from '@/data/plans';
 
 /**
- * The seven day trial, said once, plainly, where everybody sees it.
+ * The free trial, said once, plainly, where everybody sees it.
  *
- * It is the single strongest thing on the page and it was buried inside the
- * plan cards. A refund promise asks somebody to believe they will get money
- * back; this asks them to believe we will not take it in the first place,
- * which is easier, and it is true: Stripe does not raise the first invoice
- * until day eight.
+ * It is the strongest thing on the page and it was buried inside the plan
+ * cards. A refund promise asks somebody to believe they will get money back;
+ * this asks them to believe we will not take it in the first place, which is
+ * easier, and it is true: Stripe does not raise the first invoice until day
+ * eight.
  *
- * It applies to the monthly plans only. The one time packages are finished
- * and handed over by the time a week is up, so there is nothing to trial.
+ * It leads with the offer rather than with the caveat. The caveat is still
+ * here, at the bottom, in a sentence a buyer can read before they decide,
+ * because a trial that quietly did not apply to what somebody bought is the
+ * kind of surprise that costs more than the sale was worth.
  */
 
 const POINTS = [
   {
     icon: CalendarClock,
-    title: `Seven days, free`,
-    body: 'Start any monthly plan today and the work starts today. The first invoice is not raised until day eight.',
+    title: 'The first week is free',
+    body: 'Start today and the work starts today. Nothing is charged until day eight.',
   },
   {
     icon: Ban,
     title: 'Did not work? Do not pay',
-    body: 'Cancel inside the week and you are charged nothing at all. Not refunded later, charged nothing.',
+    body: 'Cancel inside the week and you are charged nothing at all. Not refunded later. Charged nothing.',
   },
   {
     icon: ShieldCheck,
     title: 'And no tie in after it',
-    body: 'Month to month from there. Cancel any month, and everything we built stays in your accounts.',
+    body: 'Month to month from there. Cancel whenever, and everything we built stays in your accounts.',
   },
 ];
 
@@ -43,20 +45,20 @@ const TrialBand = () => (
       <div className="grid lg:grid-cols-[1fr,1.35fr] gap-10 lg:gap-14 items-center">
         <div>
           <span className="inline-flex items-center gap-2 bg-gold text-white text-[12px] font-bold px-3 py-1.5 rounded-full mb-5">
-            On every monthly plan
+            Free trial
           </span>
           <h2 className="text-3xl sm:text-5xl text-navy leading-[1.05] mb-4">
-            Try it for {MONTHLY_TRIAL_DAYS} days. <br />
-            <span className="text-emerald-700">Pay on day eight.</span>
+            Try us for {MONTHLY_TRIAL_DAYS} days. <br />
+            <span className="text-emerald-700">Decide after.</span>
           </h2>
           <p className="lede mb-7 max-w-[460px]">
-            Every recurring plan on this site starts with a free week. If it has
-            not earned its place by the end of it, you cancel and nothing is
-            charged.
+            Pick a department, we start on it this week, and you pay nothing
+            until the eighth day. If it has not earned its place by then, you
+            cancel and it has cost you nothing but a week of our time.
           </p>
           <Button asChild className="bg-navy hover:bg-navy-800 text-white px-7 py-6 rounded-xl font-semibold text-[15px]">
             <Link to="/pricing">
-              See the monthly plans <ArrowRight size={17} className="ml-1.5" />
+              Start a free week <ArrowRight size={17} className="ml-1.5" />
             </Link>
           </Button>
         </div>
@@ -69,14 +71,15 @@ const TrialBand = () => (
                 <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 mb-4">
                   <Icon size={18} />
                 </span>
-                <h3 className="text-navy text-[17px] font-extrabold mb-1.5">{p.title}</h3>
+                <h3 className="text-navy text-[17px] font-extrabold mb-1.5 leading-snug">{p.title}</h3>
                 <p className="text-slate-600 text-[14.5px] leading-relaxed">{p.body}</p>
               </div>
             );
           })}
           <p className="sm:col-span-3 text-slate-500 text-[13.5px] leading-snug">
-            One time packages are not trials: they are finished and handed over
-            inside 7 to 28 days, so there is nothing left to try.
+            The free week applies to the monthly plans. A build package and a
+            single service are paid for once and delivered, so there is nothing
+            to try and nothing to cancel.
           </p>
         </div>
       </div>

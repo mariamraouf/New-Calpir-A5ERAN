@@ -3,8 +3,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  Menu, X, ChevronDown, ArrowRight, Layers, Search,
+  Menu, X, ChevronDown, ArrowRight, Layers, Search, Mail,
   Landmark, Globe, Palette, Megaphone, Bot, Settings, Users,
+  Linkedin, Instagram, Facebook,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { allServicesCatalog } from '@/data/allServicesList';
@@ -57,7 +58,14 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Packages', href: '/packages' },
     { name: 'Case studies', href: '/case-studies' },
+    { name: 'Blog', href: '/blog' },
     { name: 'About', href: '/about' },
+  ];
+
+  const SOCIALS = [
+    { name: 'LinkedIn', href: 'https://linkedin.com/company/calpir', Icon: Linkedin },
+    { name: 'Instagram', href: 'https://www.instagram.com/calpir_/', Icon: Instagram },
+    { name: 'Facebook', href: 'https://www.facebook.com/people/Calpir/61593821930684/', Icon: Facebook },
   ];
 
   useEffect(() => {
@@ -77,6 +85,36 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-[100] shadow-sm">
+      {/* A thin utility strip. Email and the social accounts belong up here
+          rather than only in the footer, where somebody who wants to check
+          whether a company is real has to scroll the whole page to find them. */}
+      <div className="hidden lg:block bg-navy text-white/80">
+        <div className="container-custom h-9 flex items-center justify-between text-[13px]">
+          <a
+            href="mailto:info@calpir.com"
+            className="inline-flex items-center gap-2 font-medium hover:text-white transition-colors"
+          >
+            <Mail size={13} className="text-emerald-400" /> info@calpir.com
+          </a>
+
+          <div className="flex items-center gap-1">
+            <span className="mr-2 text-white/50">Follow the work</span>
+            {SOCIALS.map(({ name, href, Icon }) => (
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={name}
+                className="inline-flex items-center justify-center w-7 h-7 rounded-md hover:bg-white/10 hover:text-white transition-colors"
+              >
+                <Icon size={14} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="container-custom h-16 sm:h-20 flex items-center justify-between">
         {/* Brand */}
         <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center group gap-2.5 sm:gap-3.5">
@@ -101,7 +139,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navLinksBefore.map((link) => (
             <Link
               key={link.name}
@@ -297,8 +335,22 @@ const Navbar = () => {
           </div>
 
           <div className="p-5 border-t border-slate-200 bg-slate-50 text-[13px] text-slate-600 space-y-1 text-center">
-            <div className="font-semibold text-navy">Calpir Technologies • Bristol, UK</div>
-            <div className="text-emerald-800 font-semibold">+44 7346 875731 • info@calpir.com</div>
+            <div className="font-semibold text-navy">Calpir Technologies</div>
+            <a href="mailto:info@calpir.com" className="text-emerald-800 font-semibold">info@calpir.com</a>
+            <div className="flex items-center justify-center gap-2 pt-2">
+              {SOCIALS.map(({ name, href, Icon }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={name}
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-200 bg-white text-navy"
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}

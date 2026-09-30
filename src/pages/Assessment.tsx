@@ -181,7 +181,7 @@ const Assessment = () => {
         showError("Unable to transmit report. Please email info@calpir.com directly.");
       }
     } catch (err) {
-      showError("Connection error. Please reach out to info@calpir.com or call +44 7346 875731.");
+      showError("Connection error. Please reach out to info@calpir.com and we will pick it up.");
     } finally {
       setIsSendingReport(false);
     }
@@ -334,7 +334,7 @@ const Assessment = () => {
                       <PhoneInput
                         value={userPhone}
                         onChange={(val) => setUserPhone(val)}
-                        placeholder="7346 875731"
+                        placeholder="Your number"
                       />
                     </div>
 

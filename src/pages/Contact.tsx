@@ -60,7 +60,7 @@ const Contact = () => {
         showError("There was an issue sending your message. Please email info@calpir.com directly.");
       }
     } catch {
-      showError("Submission error. Please email us at info@calpir.com or call +44 7346 875731.");
+      showError("Submission error. Please email us at info@calpir.com and we will pick it up.");
     } finally {
       setIsSubmitting(false);
     }
@@ -113,27 +113,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 border border-slate-200 bg-slate-50 shadow-sm">
-                  <div className="text-emerald-700 p-3 bg-emerald-100/70 border border-emerald-300">
-                    <Phone size={22} />
-                  </div>
-                  <div>
-                    <div className="mono text-xs tracking-wider text-slate-500 font-bold">Direct Phone / WhatsApp</div>
-                    <a href="tel:+447346875731" className="text-base md:text-lg font-bold text-navy hover:text-emerald-700 transition-colors">
-                      +44 7346 875731
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 p-4 border border-slate-200 bg-slate-50 shadow-sm">
-                  <div className="text-emerald-700 p-3 bg-emerald-100/70 border border-emerald-300">
-                    <MapPin size={22} />
-                  </div>
-                  <div>
-                    <div className="mono text-xs tracking-wider text-slate-500 font-bold">HQ Location</div>
-                    <div className="text-base md:text-lg font-bold text-navy">Bristol, United Kingdom</div>
-                  </div>
-                </div>
               </div>
 
               <div className="p-5 border border-emerald-200 bg-emerald-50 space-y-1.5 shadow-sm">

@@ -85,10 +85,11 @@ const SoloServices = () => {
           <div className="flex items-start gap-3">
             <PencilRuler size={20} className="text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <div className="font-bold text-sm tracking-tight">Custom packages too</div>
+              <div className="font-bold text-sm tracking-tight">Bought once, not subscribed</div>
               <p className="text-slate-400 text-xs leading-relaxed mt-1">
-                Nothing here quite right? We build custom packages and bespoke services. Tell us the
-                problem and we will price it.
+                A single service is paid for once and delivered, so there is no trial and nothing
+                to cancel. The free week belongs to the monthly plans, where there is something
+                ongoing to try. Need something not listed? We build custom too.
               </p>
             </div>
           </div>

@@ -3,177 +3,200 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Users, Search, Settings, Briefcase, Rocket,
-  ChevronRight, ArrowRight, ArrowLeft, RotateCcw, Gauge, ShieldCheck,
+  Users, Search, Settings, Rocket, Palette, Landmark, PhoneOutgoing,
+  ChevronRight, ArrowRight, ArrowLeft, RotateCcw, Gauge, Check,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   MONTHLY_PLANS, ONE_TIME_PACKAGES, formatPrice, MONTHLY_TRIAL_DAYS,
+  type Currency,
 } from '@/data/plans';
 
 /**
- * The free growth assessment, sitting where the hero panel used to.
+ * The free growth assessment, in the hero.
  *
- * Four questions, about two minutes, and it ends with a named thing and a
- * number rather than a call to book. A visitor's real question is "what do I
- * need and what does it cost", so answering it on the first screen is worth
- * more than any amount of copy about what we do.
+ * It has to answer the question a visitor actually arrives with: what do I
+ * need, and what does it cost. So it covers everything the company sells
+ * rather than a slice of it. The first question is the six departments plus
+ * the build, and it takes more than one answer, because a business with a
+ * broken CRM and no payroll has two problems and deserves to be told both and
+ * given one number.
  *
- * The longer form version at /assessment collects contact details and sends a
- * written report. This one answers on the spot and costs the visitor nothing,
- * which is why it is the thing in the hero.
+ * The arithmetic is real. One department quotes that plan. Two quote both and
+ * add them up. Three or more quote the Everything plan, because at that point
+ * it is genuinely cheaper than the sum and saying otherwise would be selling
+ * somebody the worse of two options we own.
  */
 
-type Goal = 'customers' | 'found' | 'systems' | 'people' | 'scratch';
-type Owner = 'nobody' | 'me' | 'someone' | 'agency';
-type When = 'now' | 'month' | 'quarter' | 'looking';
+type Need = 'scratch' | 'found' | 'customers' | 'systems' | 'people' | 'brand' | 'paperwork';
 
-const GOALS: { id: Goal; label: string; icon: React.ElementType; note: string }[] = [
-  {
-    id: 'scratch',
-    label: 'I am starting from scratch',
-    icon: Rocket,
-    note: 'Company, brand, website, email, payments and CRM, built as one setup.',
-  },
-  {
-    id: 'found',
-    label: 'I need to be found on Google',
-    icon: Search,
-    note: 'Search, content, Google Business Profile and the reporting that proves it.',
-  },
-  {
-    id: 'customers',
-    label: 'Enquiries are getting dropped',
-    icon: Users,
-    note: 'A real CRM, a chatbot that answers out of hours, and email that follows up for you.',
-  },
-  {
-    id: 'systems',
-    label: 'My systems are a mess',
-    icon: Settings,
-    note: 'The operational system built properly, written down, and kept working.',
-  },
-  {
-    id: 'people',
-    label: 'Hiring, payroll and HR paperwork',
-    icon: Briefcase,
-    note: 'Payroll run, contracts drafted, and one role recruited every month.',
-  },
+const CURRENCY: Currency = 'usd';
+
+const NEEDS: { id: Need; label: string; icon: React.ElementType; planId?: string }[] = [
+  { id: 'scratch', label: 'I am starting from scratch', icon: Rocket },
+  { id: 'found', label: 'Nobody can find us on Google', icon: Search, planId: 'marketing-seo-monthly' },
+  { id: 'customers', label: 'Enquiries are getting dropped', icon: PhoneOutgoing, planId: 'sales-crm-monthly' },
+  { id: 'systems', label: 'Our systems are a mess', icon: Settings, planId: 'ops-systems-monthly' },
+  { id: 'people', label: 'Hiring, payroll and HR', icon: Users, planId: 'hr-admin-monthly' },
+  { id: 'brand', label: 'We never post anything', icon: Palette, planId: 'brand-content-monthly' },
+  { id: 'paperwork', label: 'Filings and deadlines', icon: Landmark, planId: 'compliance-filings-monthly' },
 ];
 
-const PLAN_FOR: Record<Exclude<Goal, 'scratch'>, string> = {
-  found: 'marketing-seo-monthly',
-  customers: 'sales-crm-monthly',
-  systems: 'ops-systems-monthly',
-  people: 'hr-admin-monthly',
-};
-
-const OWNERS: { id: Owner; label: string; note: string }[] = [
+const OWNERS = [
   { id: 'nobody', label: 'Nobody, honestly', note: 'It is on a list and it keeps moving to next week.' },
   { id: 'me', label: 'Me, between everything else', note: 'It gets done when nothing is on fire, so it mostly does not.' },
   { id: 'someone', label: 'Someone here, part time', note: 'One person doing it alongside their actual job.' },
   { id: 'agency', label: 'An agency, and I am not happy', note: 'Paying for it already and not seeing the work.' },
-];
+] as const;
 
-const WHENS: { id: When; label: string; note: string }[] = [
+const WHENS = [
   { id: 'now', label: 'Straight away', note: 'This is the thing blocking the next step.' },
   { id: 'month', label: 'Within the month', note: 'Soon, but I want to get it right.' },
   { id: 'quarter', label: 'This quarter', note: 'Planning ahead rather than reacting.' },
-  { id: 'looking', label: 'Just looking for now', note: 'Working out what this would cost.' },
-];
+  { id: 'looking', label: 'Just working out the cost', note: 'No timeline yet.' },
+] as const;
+
+type Owner = (typeof OWNERS)[number]['id'];
+type When = (typeof WHENS)[number]['id'];
 
 const STEPS = 4;
 
 const HeroAssessment = () => {
-  const [goal, setGoal] = useState<Goal | null>(null);
+  const [needs, setNeeds] = useState<Need[]>([]);
+  const [locked, setLocked] = useState(false);
   const [trading, setTrading] = useState<boolean | null>(null);
   const [owner, setOwner] = useState<Owner | null>(null);
   const [when, setWhen] = useState<When | null>(null);
 
-  const reset = () => { setGoal(null); setTrading(null); setOwner(null); setWhen(null); };
+  const reset = () => {
+    setNeeds([]); setLocked(false); setTrading(null); setOwner(null); setWhen(null);
+  };
   const back = () => {
     if (when) return setWhen(null);
     if (owner) return setOwner(null);
     if (trading !== null) return setTrading(null);
-    setGoal(null);
+    setLocked(false);
   };
 
-  const step = when ? 5 : owner ? 4 : trading !== null ? 3 : goal ? 2 : 1;
+  const step = when ? 5 : owner ? 4 : trading !== null ? 3 : locked ? 2 : 1;
 
-  /* ---------------- result ---------------- */
+  const toggleNeed = (id: Need) =>
+    setNeeds((prev) => (prev.includes(id) ? prev.filter((n) => n !== id) : [...prev, id]));
+
+  /* ---------------- the recommendation ---------------- */
   const result = (() => {
-    if (!goal || trading === null || !owner || !when) return null;
+    if (!locked || trading === null || !owner || !when) return null;
 
     const bundle = MONTHLY_PLANS.find((p) => p.bundles)!;
-    const urgent = when === 'now' || when === 'month';
+    const chosenPlans = needs
+      .map((n) => NEEDS.find((x) => x.id === n)?.planId)
+      .filter(Boolean)
+      .map((id) => MONTHLY_PLANS.find((p) => p.id === id)!)
+      .filter(Boolean);
 
-    // Not trading yet: they need the build first, whatever the goal.
+    const sum = chosenPlans.reduce((t, p) => t + p.price[CURRENCY], 0);
+    const symbol = formatPrice({ usd: 0, gbp: 0, eur: 0 }, CURRENCY).replace('0', '');
+    const money = (n: number) => `${symbol}${n.toLocaleString('en-US')}`;
+
+    const pressure =
+      owner === 'agency'
+        ? 'You are already paying somebody for this. Take the free week and compare the two reports at the end of it.'
+        : owner === 'nobody'
+          ? 'Nothing is being done here today, so a free week costs you nothing to find out.'
+          : 'One team on it full time, instead of it being somebody’s third priority.';
+
+    // Not trading yet: the build comes first, whatever else is wrong.
     if (!trading) {
-      const pkg = ONE_TIME_PACKAGES.find(
-        (p) => p.id === (goal === 'scratch' ? 'starter-build' : 'growth-build'),
-      )!;
-      const plan = goal === 'scratch' ? null : MONTHLY_PLANS.find((m) => m.id === PLAN_FOR[goal])!;
+      const wantsALot = chosenPlans.length >= 3 || needs.includes('scratch');
+      const pkg = ONE_TIME_PACKAGES.find((p) => p.id === (wantsALot ? 'growth-build' : 'starter-build'))!;
       return {
         kind: 'Start here',
         name: `${pkg.name} package`,
-        price: `${formatPrice(pkg.price, 'usd')} once`,
-        sub: pkg.timeline,
-        blurb: goal === 'scratch'
-          ? 'You need the business built before anything can be marketed. This is the whole setup: company, brand, site, email, payments and CRM, handed over in your name.'
-          : 'There is nothing to point traffic at yet. Build first, then run the marketing against something that converts.',
-        then: plan
-          ? `Then ${plan.name} at ${formatPrice(plan.price, 'usd')} a month once you are live, free for the first ${MONTHLY_TRIAL_DAYS} days.`
-          : `Add a monthly plan afterwards only if you want it kept running. Every one of them is free for ${MONTHLY_TRIAL_DAYS} days.`,
-        note: urgent
-          ? 'You said soon, so this is the fast route: one price, one team, a date you can hold us to.'
-          : 'Nothing to decide today. The price on the page is the price whenever you come back.',
+        price: `${formatPrice(pkg.price, CURRENCY)} once`,
+        sub: `${pkg.timeline}. Paid once, nothing recurring.`,
+        blurb:
+          'There is nothing to market or manage yet, so the build comes first: company, brand, site, email, payments and CRM, set up as one thing and registered to you.',
+        lines: chosenPlans.length
+          ? [`Then add ${chosenPlans.map((p) => p.name).join(' and ')} once you are live, from ${money(sum)} a month.`]
+          : ['Add a monthly plan afterwards only if you want it kept running.'],
         trial: false,
+        note: pressure,
         href: '/packages',
-        cta: 'See what is included',
+        cta: 'See what is in the build',
       };
     }
 
-    // Already trading and starting from scratch is a contradiction, so treat it
-    // as wanting the rebuild.
-    if (goal === 'scratch') {
+    // Trading, but nothing but "from scratch" ticked: they mean a rebuild.
+    if (chosenPlans.length === 0) {
       const pkg = ONE_TIME_PACKAGES.find((p) => p.id === 'growth-build')!;
       return {
         kind: 'Start here',
         name: `${pkg.name} package`,
-        price: `${formatPrice(pkg.price, 'usd')} once`,
-        sub: pkg.timeline,
-        blurb: 'You are trading, so this is a rebuild rather than a launch: a proper site, CRM, automations and the systems underneath.',
-        then: `Add a monthly plan afterwards if you want it kept running, free for the first ${MONTHLY_TRIAL_DAYS} days.`,
-        note: 'One time package. You pay once and own everything at the end of it.',
+        price: `${formatPrice(pkg.price, CURRENCY)} once`,
+        sub: `${pkg.timeline}. Paid once, nothing recurring.`,
+        blurb:
+          'You are trading, so this is a rebuild rather than a launch: a proper site, a real CRM, the automations and the systems underneath.',
+        lines: ['Add any monthly department afterwards if you want it kept running.'],
         trial: false,
+        note: pressure,
         href: '/packages',
-        cta: 'See what is included',
+        cta: 'See what is in the build',
       };
     }
 
-    const plan = MONTHLY_PLANS.find((m) => m.id === PLAN_FOR[goal])!;
+    // Only recommend the bundle when it is actually cheaper than what they
+    // picked. Three departments can still come to less than all six, and
+    // pushing somebody onto the dearer of two things we own would be a lie
+    // told by arithmetic.
+    if (sum >= bundle.price[CURRENCY]) {
+      return {
+        kind: 'Your plan',
+        name: 'Everything',
+        price: `${formatPrice(bundle.price, CURRENCY)} a month`,
+        sub: `Free for ${MONTHLY_TRIAL_DAYS} days. Cancel any month.`,
+        blurb:
+          'The departments you picked cost more bought separately than all six cost together, so this is us pointing you at the cheaper one.',
+        lines: [
+          `The ${chosenPlans.length} you picked come to ${money(sum)} a month on their own.`,
+          `All six together are ${formatPrice(bundle.price, CURRENCY)}, so you save ${money(sum - bundle.price[CURRENCY])} a month and get the other ${6 - chosenPlans.length} as well.`,
+          'One team, one invoice, one report.',
+        ],
+        trial: true,
+        note: pressure,
+        href: '/pricing',
+        cta: 'See everything included',
+      };
+    }
+
+    // Otherwise quote exactly what they picked, and say what the whole thing
+    // would cost so they can do the sum themselves.
+    const names =
+      chosenPlans.length === 1
+        ? chosenPlans[0].name
+        : chosenPlans.slice(0, -1).map((p) => p.name).join(', ') + ' and ' + chosenPlans[chosenPlans.length - 1].name;
+
     return {
-      kind: 'Your plan',
-      name: plan.name,
-      price: `${formatPrice(plan.price, 'usd')} a month`,
+      kind: chosenPlans.length === 1 ? 'Your plan' : `Your ${chosenPlans.length} plans`,
+      name: names,
+      price: `${money(sum)} a month`,
       sub: `Free for ${MONTHLY_TRIAL_DAYS} days. Cancel any month.`,
-      blurb: plan.tagline,
-      then: `Need more than one department? All four together are ${formatPrice(bundle.price, 'usd')} a month, less than the sum of them.`,
-      note: owner === 'agency'
-        ? 'You are already paying somebody for this. Take the week free and compare the two reports at the end of it.'
-        : owner === 'nobody'
-          ? 'Nothing is being done here today, so the week free costs you nothing to find out.'
-          : 'One team on it full time instead of it being somebody’s third priority.',
+      blurb: chosenPlans.map((p) => p.tagline).join(' '),
+      lines: [
+        chosenPlans.length === 1
+          ? `${chosenPlans[0].included.length} things happen every month, all of them listed before you pay a penny.`
+          : chosenPlans.map((p) => `${p.name}, ${formatPrice(p.price, CURRENCY)}`).join('. ') + '.',
+        `All six departments together are ${formatPrice(bundle.price, CURRENCY)}, if the list grows.`,
+      ],
       trial: true,
+      note: pressure,
       href: '/pricing',
       cta: 'See everything included',
     };
   })();
 
   /* ---------------- shared bits ---------------- */
-  const Option = ({
-    label, note, onClick,
-  }: { label: string; note?: string; onClick: () => void }) => (
+  const Option = ({ label, note, onClick }: { label: string; note?: string; onClick: () => void }) => (
     <button
       type="button"
       onClick={onClick}
@@ -207,8 +230,6 @@ const HeroAssessment = () => {
   /* ---------------- render ---------------- */
   return (
     <div className="surface rounded-2xl overflow-hidden">
-      {/* The header stays put through every step, so it always reads as one
-          thing being filled in rather than four separate screens. */}
       <div className="bg-navy px-6 sm:px-7 py-4 text-white">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
@@ -222,51 +243,81 @@ const HeroAssessment = () => {
           {Array.from({ length: STEPS }).map((_, i) => (
             <span
               key={i}
-              className={
-                'h-1.5 flex-1 rounded-full transition-colors ' +
-                (i < step - 1 ? 'bg-emerald-400' : 'bg-white/20')
-              }
+              className={'h-1.5 flex-1 rounded-full transition-colors ' + (i < step - 1 ? 'bg-emerald-400' : 'bg-white/20')}
             />
           ))}
         </div>
       </div>
 
       <div className="p-6 sm:p-7">
-        {/* step 1 */}
-        {!goal && (
+        {/* step 1: everything we do, and you can tick more than one */}
+        {!locked && (
           <>
             <Header
-              title="What would move your business forward?"
-              sub="Start with your biggest priority."
+              title="What is in your way right now?"
+              sub="Tick everything that applies. Most businesses tick more than one."
             />
-            <div className="space-y-2.5">
-              {GOALS.map((g) => {
-                const Icon = g.icon;
+
+            <div className="space-y-2">
+              {NEEDS.map((n) => {
+                const Icon = n.icon;
+                const on = needs.includes(n.id);
                 return (
                   <button
-                    key={g.id}
+                    key={n.id}
                     type="button"
-                    onClick={() => setGoal(g.id)}
-                    className="group w-full flex items-center gap-3.5 border border-slate-200 rounded-xl px-4 py-3.5 text-left hover:border-emerald-500 hover:bg-emerald-50/50 transition-colors"
+                    onClick={() => toggleNeed(n.id)}
+                    aria-pressed={on}
+                    className={cn(
+                      'w-full flex items-center gap-3.5 border rounded-xl px-4 py-3 text-left transition-colors',
+                      on
+                        ? 'border-emerald-600 bg-emerald-50'
+                        : 'border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/40',
+                    )}
                   >
-                    <Icon size={19} className="text-emerald-700 shrink-0" />
-                    <span className="font-semibold text-navy text-[15px] flex-grow">{g.label}</span>
-                    <ChevronRight size={17} className="text-slate-300 group-hover:text-emerald-600 transition-colors shrink-0" />
+                    <Icon size={18} className={cn('shrink-0', on ? 'text-emerald-700' : 'text-slate-400')} />
+                    <span className={cn('font-semibold text-[15px] flex-grow', on ? 'text-navy' : 'text-slate-600')}>
+                      {n.label}
+                    </span>
+                    <span
+                      className={cn(
+                        'w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-colors',
+                        on ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300',
+                      )}
+                    >
+                      {on && <Check size={13} strokeWidth={3.5} />}
+                    </span>
                   </button>
                 );
               })}
             </div>
-            <p className="text-center text-slate-400 text-[13px] mt-5 pt-5 border-t border-slate-100">
+
+            <Button
+              type="button"
+              disabled={needs.length === 0}
+              onClick={() => setLocked(true)}
+              className="w-full mt-5 bg-navy hover:bg-navy-800 disabled:opacity-40 text-white py-6 rounded-xl font-semibold text-[15px]"
+            >
+              {needs.length === 0
+                ? 'Pick at least one'
+                : `Continue with ${needs.length} ${needs.length === 1 ? 'thing' : 'things'}`}
+              <ArrowRight size={17} className="ml-1.5" />
+            </Button>
+
+            <p className="text-center text-slate-400 text-[13px] mt-4">
               Four questions. You get a name and a price, not a call.
             </p>
           </>
         )}
 
         {/* step 2 */}
-        {goal && trading === null && (
+        {locked && trading === null && (
           <>
             <BackLink />
-            <Header title="Are you already trading?" sub={GOALS.find((g) => g.id === goal)!.note} />
+            <Header
+              title="Are you already trading?"
+              sub="It decides whether you need a build first or a plan straight away."
+            />
             <div className="space-y-2.5">
               <Option
                 label="Yes, we are up and running"
@@ -283,7 +334,7 @@ const HeroAssessment = () => {
         )}
 
         {/* step 3 */}
-        {goal && trading !== null && !owner && (
+        {locked && trading !== null && !owner && (
           <>
             <BackLink />
             <Header title="Who is doing this work today?" sub="Be honest, it changes the answer." />
@@ -296,7 +347,7 @@ const HeroAssessment = () => {
         )}
 
         {/* step 4 */}
-        {goal && trading !== null && owner && !when && (
+        {locked && trading !== null && owner && !when && (
           <>
             <BackLink />
             <Header title="When do you want this handled?" sub="Last one." />
@@ -322,26 +373,16 @@ const HeroAssessment = () => {
             <p className="text-[12px] font-bold text-gold tracking-wide mb-2">{result.kind}</p>
             <h2 className="text-2xl font-extrabold text-navy leading-snug mb-2">{result.name}</h2>
 
-            <div className="flex items-baseline gap-2 mb-1">
-              <span className="price-figure text-3xl font-extrabold text-navy">{result.price}</span>
-            </div>
+            <div className="price-figure text-3xl font-extrabold text-navy mb-1">{result.price}</div>
             <p className="text-emerald-700 font-semibold text-[14px] mb-5">{result.sub}</p>
 
             <p className="text-slate-600 leading-relaxed mb-4">{result.blurb}</p>
 
-            {result.trial && (
-              <div className="flex items-start gap-2.5 border border-emerald-200 bg-emerald-50 rounded-xl px-4 py-3 mb-4">
-                <ShieldCheck size={17} className="text-emerald-700 shrink-0 mt-0.5" />
-                <p className="text-emerald-900 text-[14px] leading-snug">
-                  <b>{MONTHLY_TRIAL_DAYS} days free.</b> Nothing is charged until day eight, so if
-                  it has not worked you cancel and you pay nothing.
-                </p>
-              </div>
-            )}
-
-            <div className="border-l-2 border-gold bg-gold-50/60 pl-4 py-2.5 mb-4 rounded-r-lg">
-              <p className="text-slate-600 text-[14.5px] leading-snug">{result.then}</p>
-            </div>
+            <ul className="border-l-2 border-gold bg-gold-50/60 pl-4 py-3 mb-4 rounded-r-lg space-y-1.5">
+              {result.lines.map((l) => (
+                <li key={l} className="text-slate-600 text-[14.5px] leading-snug">{l}</li>
+              ))}
+            </ul>
 
             <p className="text-slate-500 text-[14px] leading-snug mb-6">{result.note}</p>
 
@@ -352,7 +393,7 @@ const HeroAssessment = () => {
             </Button>
 
             <p className="text-center text-slate-400 text-[13px] mt-4">
-              Want the written version?{' '}
+              Want it in writing?{' '}
               <Link to="/assessment" className="text-emerald-700 font-semibold underline">
                 Full growth assessment
               </Link>

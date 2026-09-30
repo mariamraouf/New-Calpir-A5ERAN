@@ -55,7 +55,7 @@ interface PhoneInputProps {
 export const PhoneInput: React.FC<PhoneInputProps> = ({
   value,
   onChange,
-  placeholder = "7346 875731",
+  placeholder = "Your number",
   className = ""
 }) => {
   const [selectedCountryIndex, setSelectedCountryIndex] = useState(0);

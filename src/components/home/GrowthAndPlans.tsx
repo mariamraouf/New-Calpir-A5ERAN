@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search, Settings, PhoneOutgoing, Users } from 'lucide-react';
+import { ArrowRight, Search, Settings, PhoneOutgoing, Users, Palette, Landmark } from 'lucide-react';
 import SectionLabel from '@/components/ui/SectionLabel';
 import { Button } from '@/components/ui/button';
 import { MONTHLY_PLANS, formatPrice } from '@/data/plans';
@@ -20,6 +20,8 @@ const PLAN_ICONS: Record<string, React.ElementType> = {
   'ops-systems-monthly': Settings,
   'sales-crm-monthly': PhoneOutgoing,
   'hr-admin-monthly': Users,
+  'brand-content-monthly': Palette,
+  'compliance-filings-monthly': Landmark,
 };
 
 const GrowthAndPlans = () => {
@@ -116,8 +118,8 @@ const GrowthAndPlans = () => {
               Or let us <span className="text-emerald-700">run it.</span>
             </h2>
             <p className="text-lg text-slate-600 max-w-[720px] mx-auto leading-relaxed">
-              Four departments, each on its own monthly plan. Seven days free on every
-              one of them. Take one, take the lot for less than the sum, cancel any
+              Six departments, each on its own monthly plan. Start free for seven days.
+              Take one, take the lot for a good deal less than the sum, cancel any
               month.
             </p>
           </div>

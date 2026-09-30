@@ -128,7 +128,7 @@ const BookingSystem: React.FC<BookingSystemProps> = ({ initialEmail = '', bare =
         showError(data?.error || "Booking failed. Please email info@calpir.com to lock in your time.");
       }
     } catch (err) {
-      showError("Connection error. Please reach out to info@calpir.com or call +44 7346 875731.");
+      showError("Connection error. Please reach out to info@calpir.com and we will pick it up.");
     } finally {
       setIsSending(false);
     }
