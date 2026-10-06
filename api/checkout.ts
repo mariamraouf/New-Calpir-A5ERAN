@@ -28,8 +28,7 @@
  * behaviour you want while the key is still missing.
  */
 
-import { servicePricing } from '../src/data/servicePricing';
-import { allServicesCatalog } from '../src/data/allServicesList';
+import { SERVICE_PRICES } from './_service-prices';
 
 type Currency = 'usd' | 'gbp' | 'eur';
 
@@ -62,19 +61,20 @@ const SELLABLE: Record<string, { mode: 'subscription' | 'payment'; trialDays?: n
  * and three packages are a short, slow moving list worth keeping in Stripe;
  * sixty five single jobs would mean sixty five products in two accounts, kept
  * in step with the page by hand forever. So the amount is built into the
- * Checkout Session at request time from src/data/servicePricing.ts, which is
- * the same file the page prints from. One source, read on the server, so the
- * page and the charge cannot disagree.
+ * Checkout Session at request time from ./_service-prices.ts.
+ *
+ * That file is generated from src/data/servicePricing.ts, the same file the
+ * page prints from, and scripts/check-service-prices.mjs fails the build if
+ * the two ever drift, so the page and the charge cannot disagree. It is a
+ * sibling rather than a direct import of src/ because a Vercel function
+ * cannot reliably import across the repository: doing so stopped this whole
+ * endpoint from loading and took the plans down with it.
  *
  * The browser still never sends an amount. It sends a slug, and anything not
  * in this map is refused before Stripe is contacted.
  */
-const SERVICE_NAMES: Record<string, string> = Object.fromEntries(
-  allServicesCatalog.map((s) => [s.slug, s.title]),
-);
-
 const sellableService = (slug: string, currency: Currency) => {
-  const price = servicePricing[slug];
+  const price = SERVICE_PRICES[slug];
   if (!price) return null;
 
   const amount = price[currency];
@@ -84,7 +84,7 @@ const sellableService = (slug: string, currency: Currency) => {
   }
 
   return {
-    name: SERVICE_NAMES[slug] || slug,
+    name: price.name,
     // Stripe wants the smallest unit. Every currency we sell in has 100 of
     // them, and the figures are whole, but round anyway rather than trust
     // floating point to hand us an integer.
