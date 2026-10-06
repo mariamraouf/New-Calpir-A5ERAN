@@ -28,7 +28,7 @@
  * behaviour you want while the key is still missing.
  */
 
-import { SERVICE_PRICES } from './_service-prices';
+import { SERVICE_PRICES } from './_service-prices.js';
 
 type Currency = 'usd' | 'gbp' | 'eur';
 

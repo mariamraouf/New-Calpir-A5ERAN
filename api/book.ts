@@ -11,7 +11,7 @@
 import {
   CALENDAR_ID, BOOKING_TIMEZONE, SLOT_TIMES, SLOT_MINUTES,
   getAccessToken, toRfc3339, addMinutesRfc, isValidEmail, isValidDate, missingEnv,
-} from './_google';
+} from './_google.js';
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
