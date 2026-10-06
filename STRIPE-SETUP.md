@@ -109,6 +109,38 @@ can actually be paid.
 - **Stripe Tax** (Tax → Settings): if you enable it, set your origin address
   and re-check `tax_behavior` on the prices first.
 
+## Is the key the right one? /api/stripe-health
+
+A Stripe key from the wrong account does not fail loudly. Stripe accepts it,
+answers 200, and reports that no price matches the lookup key. The site then
+tells the customer "that plan is not open for card payment yet", which reads
+like a problem with the products rather than with which account is being asked.
+Vercel cannot help either: once saved, a secret is write only, and the masked
+hint it shows is not enough to identify an account.
+
+So open **https://www.calpir.com/api/stripe-health** and it will tell you:
+
+```json
+{
+  "ok": true,
+  "account": { "id": "acct_...", "name": "Calpir", "country": "GB", "livemode": true },
+  "plans": { "found": [ ...ten ids... ], "missing": [] },
+  "verdict": "Healthy. This key belongs to Calpir and all 10 plans resolve."
+}
+```
+
+`ok: true` and an empty `missing` means payments work. Anything else names the
+problem: which account the key actually belongs to, which plans that account
+cannot sell, or that Stripe rejected the key outright. The key itself is never
+returned, logged or echoed, and account id and business name are not secrets:
+the account id is already inside the publishable key every visitor downloads.
+
+**Check it after any key change.** It answers 200 when healthy and 409 when not,
+so it also works as an uptime check.
+
+The same information now appears in the Vercel log when a checkout fails, naming
+the account the key reached rather than only the missing lookup key.
+
 ## One webhook, both accounts
 
 `api/stripe-webhook.ts` verifies a signature and sends an email. It never calls

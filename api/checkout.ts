@@ -79,9 +79,19 @@ async function resolvePrice(planId: string, secret: string): Promise<string | nu
     secret,
   );
   if (!ok || !Array.isArray(data?.data) || data.data.length === 0) {
+    // Say WHICH account, because the usual cause is a key from the wrong one.
+    // Stripe answers 200 with an empty list for a perfectly valid key on an
+    // account that happens not to sell this, so without naming the account
+    // this line reads like a missing product when it is a missing account.
+    const whose = await stripeGet('/account', secret);
+    const who = whose.ok
+      ? `${whose.data?.settings?.dashboard?.display_name || 'unnamed'} (${whose.data?.id})`
+      : `unknown, /account answered ${whose.status}`;
+
     console.error(
-      `no active Stripe price with lookup_key "${planId}". ` +
-        'Create it in this account, or the plan cannot be bought.',
+      `no active Stripe price with lookup_key "${planId}" in the account this ` +
+        `key belongs to: ${who}. Either create the price there, or the key is ` +
+        'from the wrong Stripe account. GET /api/stripe-health for the full picture.',
       data?.error?.message || '',
     );
     return null;
