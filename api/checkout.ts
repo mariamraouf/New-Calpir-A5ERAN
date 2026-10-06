@@ -28,6 +28,9 @@
  * behaviour you want while the key is still missing.
  */
 
+import { servicePricing } from '../src/data/servicePricing';
+import { allServicesCatalog } from '../src/data/allServicesList';
+
 type Currency = 'usd' | 'gbp' | 'eur';
 
 const CURRENCIES: Currency[] = ['usd', 'gbp', 'eur'];
@@ -50,6 +53,44 @@ const SELLABLE: Record<string, { mode: 'subscription' | 'payment'; trialDays?: n
   'starter-build': { mode: 'payment' },
   'growth-build': { mode: 'payment' },
   'ultimate-build': { mode: 'payment' },
+};
+
+/**
+ * The 65 solo services, which are sold one at a time.
+ *
+ * These have no Stripe Price of their own, and deliberately so. The six plans
+ * and three packages are a short, slow moving list worth keeping in Stripe;
+ * sixty five single jobs would mean sixty five products in two accounts, kept
+ * in step with the page by hand forever. So the amount is built into the
+ * Checkout Session at request time from src/data/servicePricing.ts, which is
+ * the same file the page prints from. One source, read on the server, so the
+ * page and the charge cannot disagree.
+ *
+ * The browser still never sends an amount. It sends a slug, and anything not
+ * in this map is refused before Stripe is contacted.
+ */
+const SERVICE_NAMES: Record<string, string> = Object.fromEntries(
+  allServicesCatalog.map((s) => [s.slug, s.title]),
+);
+
+const sellableService = (slug: string, currency: Currency) => {
+  const price = servicePricing[slug];
+  if (!price) return null;
+
+  const amount = price[currency];
+  if (typeof amount !== 'number' || !Number.isFinite(amount) || amount <= 0) {
+    console.error(`service "${slug}" has no usable ${currency} price`);
+    return null;
+  }
+
+  return {
+    name: SERVICE_NAMES[slug] || slug,
+    // Stripe wants the smallest unit. Every currency we sell in has 100 of
+    // them, and the figures are whole, but round anyway rather than trust
+    // floating point to hand us an integer.
+    unitAmount: Math.round(amount * 100),
+    turnaround: price.turnaround,
+  };
 };
 
 const STRIPE = 'https://api.stripe.com/v1';
@@ -121,10 +162,16 @@ export default async function handler(req: any, res: any) {
   const currency: Currency = CURRENCIES.includes(body.currency) ? body.currency : 'usd';
 
   const entry = SELLABLE[planId];
-  if (!entry) {
-    res.status(400).json({ ok: false, error: 'That plan does not exist.' });
+  const service = entry ? null : sellableService(planId, currency);
+
+  if (!entry && !service) {
+    res.status(400).json({ ok: false, error: 'That is not something we sell.' });
     return;
   }
+
+  // A solo service is a single job, bought once. No trial, and the site says
+  // so: the free week belongs to the monthly plans only.
+  const mode: 'subscription' | 'payment' = entry ? entry.mode : 'payment';
 
   const secret = process.env.STRIPE_SECRET_KEY;
   if (!secret) {
@@ -136,13 +183,16 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  const priceId = await resolvePrice(planId, secret);
-  if (!priceId) {
-    res.status(503).json({
-      ok: false,
-      error: 'That plan is not open for card payment yet. Book a call and we will invoice you.',
-    });
-    return;
+  let priceId: string | null = null;
+  if (entry) {
+    priceId = await resolvePrice(planId, secret);
+    if (!priceId) {
+      res.status(503).json({
+        ok: false,
+        error: 'That plan is not open for card payment yet. Book a call and we will invoice you.',
+      });
+      return;
+    }
   }
 
   const origin = siteOrigin(req);
@@ -150,10 +200,13 @@ export default async function handler(req: any, res: any) {
   // Stripe's REST API takes form encoded bodies with bracketed keys. Calling it
   // directly keeps the function dependency free and cold starts short.
   const form = new URLSearchParams();
-  form.set('mode', entry.mode);
+  form.set('mode', mode);
   form.set('currency', currency);
   form.set('success_url', `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`);
-  form.set('cancel_url', `${origin}/pricing?checkout=cancelled`);
+  form.set(
+    'cancel_url',
+    `${origin}${service ? '/solo-services' : '/pricing'}?checkout=cancelled`,
+  );
   form.set('billing_address_collection', 'required');
   form.set('allow_promotion_codes', 'true');
   // Stripe's Adaptive Pricing is on by default: it converts the price into the
@@ -162,12 +215,25 @@ export default async function handler(req: any, res: any) {
   // A visitor in Canada pays the dollar figure on the card, not a Canadian
   // dollar figure that moved since they read it.
   form.set('adaptive_pricing[enabled]', 'false');
-  form.set('line_items[0][price]', priceId);
+  if (priceId) {
+    form.set('line_items[0][price]', priceId);
+  } else if (service) {
+    // Priced here rather than in Stripe. See SERVICE_NAMES above for why.
+    form.set('line_items[0][price_data][currency]', currency);
+    form.set('line_items[0][price_data][unit_amount]', String(service.unitAmount));
+    form.set('line_items[0][price_data][tax_behavior]', 'exclusive');
+    form.set('line_items[0][price_data][product_data][name]', service.name);
+    form.set(
+      'line_items[0][price_data][product_data][description]',
+      `One off. Delivered in ${service.turnaround}.`,
+    );
+  }
   form.set('line_items[0][quantity]', '1');
   form.set('metadata[plan_id]', planId);
+  form.set('metadata[kind]', entry ? 'plan' : 'solo_service');
   form.set('metadata[source]', 'calpir.com');
 
-  if (entry.mode === 'subscription') {
+  if (entry && entry.mode === 'subscription') {
     // Seven free days. Stripe collects the card at checkout and raises the
     // first invoice on day eight, so a customer who cancels inside the week
     // is never charged. The site promises this, so the API has to honour it

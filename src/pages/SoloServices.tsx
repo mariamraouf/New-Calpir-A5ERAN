@@ -18,6 +18,7 @@ import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servic
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { SERVICE_CATEGORIES } from '@/data/serviceCategories';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
+import BuyButton from '@/components/plans/BuyButton';
 import { useAutoCurrency } from '@/lib/currency';
 
 /**
@@ -133,7 +134,7 @@ const SoloServices = () => {
                 onClick={() => setCurrency(c.code)}
                 aria-pressed={currency === c.code}
                 className={
-                  'px-3 py-1.5 mono text-[11px] font-bold tracking-wider transition-colors' +
+                  'px-3 py-1.5 mono text-[11px] font-bold tracking-wider transition-colors ' +
                   (currency === c.code
                     ? 'bg-emerald-600 text-white'
                     : 'bg-white text-slate-600 hover:text-emerald-700')
@@ -186,11 +187,11 @@ const SoloServices = () => {
                       {priced && (
                         <>
                           <div className="flex items-baseline gap-1.5">
-                            <span className="mono text-[10px] tracking-wide text-slate-500 font-bold">
-                              From
-                            </span>
                             <span className="text-3xl font-bold text-emerald-700">
                               {formatPrice(service.slug, currency)}
+                            </span>
+                            <span className="mono text-[10px] tracking-wide text-slate-500 font-bold">
+                              fixed
                             </span>
                           </div>
                           <div className="flex items-center gap-1.5 mono text-[11px] text-slate-500 tracking-wider mt-1 mb-4">
@@ -222,13 +223,31 @@ const SoloServices = () => {
                         >
                           What this includes <ArrowRight size={12} />
                         </Link>
-                        <Button
-                          type="button"
-                          onClick={() => openBooking()}
-                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold tracking-wider text-[11px] py-5 rounded-xl btn-hover"
-                        >
-                          Book this
-                        </Button>
+                        {priced ? (
+                          <>
+                            <BuyButton
+                              planId={service.slug}
+                              currency={currency}
+                              label="Buy now"
+                              size="compact"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => openBooking()}
+                              className="mono text-[10px] tracking-wider text-slate-500 hover:text-emerald-700 underline"
+                            >
+                              or talk to us first
+                            </button>
+                          </>
+                        ) : (
+                          <Button
+                            type="button"
+                            onClick={() => openBooking()}
+                            className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold tracking-wider text-[11px] py-5 rounded-xl btn-hover"
+                          >
+                            Book this
+                          </Button>
+                        )}
                       </div>
                     </motion.div>
                   );

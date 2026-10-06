@@ -15,6 +15,8 @@ interface BuyButtonProps {
   /** Printed under the button, e.g. the cancellation terms. */
   footnote?: string;
   variant?: 'emerald' | 'dark';
+  /** 'compact' for the dense service cards, where a plan sized button dwarfs the card. */
+  size?: 'default' | 'compact';
   className?: string;
 }
 
@@ -26,7 +28,7 @@ interface BuyButtonProps {
  * calendar rather than leaving a buyer staring at an error.
  */
 const BuyButton: React.FC<BuyButtonProps> = ({
-  planId, currency, label, footnote, variant = 'emerald', className,
+  planId, currency, label, footnote, variant = 'emerald', size = 'default', className,
 }) => {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +51,10 @@ const BuyButton: React.FC<BuyButtonProps> = ({
         onClick={handleBuy}
         disabled={busy}
         className={cn(
-          'w-full py-7 rounded-xl font-bold tracking-tight text-base transition-transform hover:-translate-y-0.5',
+          'w-full rounded-xl font-bold transition-transform hover:-translate-y-0.5',
+          size === 'compact'
+            ? 'py-5 text-[11px] tracking-wider'
+            : 'py-7 text-base tracking-tight',
           variant === 'emerald'
             ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
             : 'bg-deep hover:bg-deep-900 text-white',
@@ -57,12 +62,12 @@ const BuyButton: React.FC<BuyButtonProps> = ({
       >
         {busy ? (
           <>
-            <Loader2 size={18} className="mr-2 animate-spin" /> Opening checkout
+            <Loader2 size={size === 'compact' ? 14 : 18} className="mr-2 animate-spin" /> Opening checkout
           </>
         ) : (
           <>
             {label}
-            <ArrowRight size={18} className="ml-2" />
+            <ArrowRight size={size === 'compact' ? 14 : 18} className="ml-2" />
           </>
         )}
       </Button>

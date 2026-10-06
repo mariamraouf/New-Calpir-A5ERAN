@@ -16,6 +16,7 @@ import { allServicesCatalog } from '@/data/allServicesList';
 import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servicePricing';
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
+import BuyButton from '@/components/plans/BuyButton';
 import { useAutoCurrency } from '@/lib/currency';
 
 
@@ -57,9 +58,11 @@ const ServiceDetail = () => {
             <div className="mt-10 border border-slate-200 bg-white p-6 md:p-8 flex flex-col lg:flex-row lg:items-center gap-6 justify-between shadow-sm">
               <div>
                 <div className="flex items-center gap-3 flex-wrap">
-                  <span className="mono text-[11px] tracking-wide text-slate-500 font-bold">From</span>
                   <span className="text-4xl md:text-5xl font-bold text-emerald-700">
                     {formatPrice(data.slug, currency)}
+                  </span>
+                  <span className="mono text-[11px] tracking-wide text-slate-500 font-bold">
+                    fixed, one off
                   </span>
                   <div className="flex border border-slate-300">
                     {CURRENCIES.map((c) => (
@@ -69,7 +72,7 @@ const ServiceDetail = () => {
                         onClick={() => setCurrency(c.code)}
                         aria-pressed={currency === c.code}
                         className={
-                          'px-2.5 py-1 mono text-[10px] font-bold transition-colors' +
+                          'px-2.5 py-1 mono text-[10px] font-bold transition-colors ' +
                           (currency === c.code
                             ? 'bg-emerald-600 text-white'
                             : 'bg-white text-slate-600 hover:text-emerald-700')
@@ -85,16 +88,20 @@ const ServiceDetail = () => {
                   priced and agreed before it starts.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <div className="flex flex-col gap-3 shrink-0 w-full lg:w-[260px]">
+                <BuyButton
+                  planId={data.slug}
+                  currency={currency}
+                  label="Buy this service"
+                  footnote="Paid once. No subscription, no trial."
+                />
                 <Button
                   type="button"
+                  variant="outline"
                   onClick={() => openBooking()}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold tracking-tight px-7 py-6 rounded-xl"
+                  className="border-slate-300 text-navy hover:bg-slate-100 font-bold tracking-tight px-7 py-6 rounded-xl"
                 >
-                  Book this service
-                </Button>
-                <Button asChild variant="outline" className="border-slate-300 text-navy hover:bg-slate-100 font-bold tracking-tight px-7 py-6 rounded-xl">
-                  <Link to="/solo-services">All services and prices</Link>
+                  Talk to us first
                 </Button>
               </div>
             </div>
