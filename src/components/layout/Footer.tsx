@@ -44,7 +44,7 @@ const Footer = () => {
             <li><Link to="/marketing-seo" className="text-slate-600 hover:text-emerald-700 transition-colors">Marketing &amp; SEO</Link></li>
             <li><Link to="/services" className="text-slate-600 hover:text-emerald-700 transition-colors">All 65 Services</Link></li>
             <li><Link to="/software-stack" className="text-slate-600 hover:text-emerald-700 transition-colors">Our Software Stack</Link></li>
-            <li><Link to="/assessment" className="text-slate-600 hover:text-emerald-700 transition-colors">Free Growth Assessment</Link></li>
+            <li><Link to="/#assessment" className="text-slate-600 hover:text-emerald-700 transition-colors">Free Growth Assessment</Link></li>
             <li><Link to="/case-studies" className="text-slate-600 hover:text-emerald-700 transition-colors">Client Case Studies</Link></li>
           </ul>
         </div>

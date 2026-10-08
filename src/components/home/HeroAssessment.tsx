@@ -61,6 +61,23 @@ const WHENS = [
 type Owner = (typeof OWNERS)[number]['id'];
 type When = (typeof WHENS)[number]['id'];
 
+/**
+ * Where on /services each answer leads, for the buy it once route.
+ *
+ * A monthly plan is the right answer for most people, but not for somebody
+ * who wants one job done and then wants us gone. The result offers that
+ * alternative out loud rather than pretending the plan is the only door.
+ */
+const NEED_SECTION: Record<Need, string> = {
+  scratch: 'formation-compliance',
+  found: 'sales-marketing',
+  customers: 'sales-marketing',
+  systems: 'ai-automation',
+  people: 'people-talent',
+  brand: 'brand-creative',
+  paperwork: 'formation-compliance',
+};
+
 const STEPS = 4;
 
 const HeroAssessment = () => {
@@ -100,6 +117,21 @@ const HeroAssessment = () => {
     const symbol = formatPrice({ usd: 0, gbp: 0, eur: 0 }, CURRENCY).replace('0', '');
     const money = (n: number) => `${symbol}${n.toLocaleString('en-US')}`;
 
+    // The third answer, offered alongside whichever of the other two fits.
+    // Someone who wants one job done and then wants us gone should not have
+    // to work out for themselves that we sell it that way.
+    const sections = [...new Set(needs.map((n) => NEED_SECTION[n]))];
+    const pieces = {
+      href: sections.length === 1 ? `/services#${sections[0]}` : '/services',
+      label:
+        needs.length === 0
+          ? 'Or buy single services, one at a time'
+          : needs.length === 1
+            ? 'Or just buy the pieces for this, once'
+            : 'Or just buy the pieces, once',
+      note: 'Fixed prices, no plan. Three together takes 20% off, five takes 30%.',
+    };
+
     const pressure =
       owner === 'agency'
         ? 'You are already paying somebody for this. Take the free week and compare the two reports at the end of it.'
@@ -125,6 +157,7 @@ const HeroAssessment = () => {
         note: pressure,
         href: '/packages',
         cta: 'See what is in the build',
+        pieces,
       };
     }
 
@@ -143,6 +176,7 @@ const HeroAssessment = () => {
         note: pressure,
         href: '/packages',
         cta: 'See what is in the build',
+        pieces,
       };
     }
 
@@ -167,6 +201,7 @@ const HeroAssessment = () => {
         note: pressure,
         href: '/pricing',
         cta: 'See everything included',
+        pieces,
       };
     }
 
@@ -193,6 +228,7 @@ const HeroAssessment = () => {
       note: pressure,
       href: '/pricing',
       cta: 'See everything included',
+      pieces,
     };
   })();
 
@@ -400,10 +436,29 @@ const HeroAssessment = () => {
               </Link>
             </Button>
 
+            {/* The third door, said plainly rather than left to be discovered. */}
+            <Link
+              to={result.pieces.href}
+              className="mt-3 block border border-gold-300 bg-gold-50 hover:bg-gold-100 rounded-xl px-4 py-3.5 transition-colors group"
+            >
+              <span className="flex items-center justify-between gap-3">
+                <span className="text-gold-900 font-bold text-[14.5px] leading-snug">
+                  {result.pieces.label}
+                </span>
+                <ArrowRight
+                  size={16}
+                  className="text-gold-700 shrink-0 group-hover:translate-x-0.5 transition-transform"
+                />
+              </span>
+              <span className="block text-slate-600 text-[13px] leading-snug mt-1">
+                {result.pieces.note}
+              </span>
+            </Link>
+
             <p className="text-center text-slate-400 text-[13px] mt-4">
-              Want it in writing?{' '}
-              <Link to="/assessment" className="text-emerald-700 font-semibold underline">
-                Full growth assessment
+              Want this in writing?{' '}
+              <Link to="/contact" className="text-emerald-700 font-semibold underline">
+                Ask us to email it over
               </Link>
             </p>
           </>

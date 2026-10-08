@@ -132,7 +132,6 @@ const nav = `
   <a href="/services">Services</a>
   <a href="/software-stack">Software stack</a>
   <a href="/case-studies">Case studies</a>
-  <a href="/assessment">Assessment</a>
   <a href="/blog">Blog</a>
   <a href="/about">About</a>
   <a href="/contact">Contact</a>
@@ -173,7 +172,6 @@ async function buildRoutes() {
     ['/services', 'Services | Calpir', 'Everything Calpir builds: websites, CRM and sales systems, marketing, operations, AI agents and custom apps.', 'Services'],
     ['/software-stack', 'Software Stack | Calpir', 'The tools Calpir builds on and why: CRM, automation, hosting and AI infrastructure chosen to stay cheap to run.', 'Software stack'],
     ['/case-studies', 'Case Studies | Calpir', 'Real builds and real timelines: what we shipped for each client and what it changed for them.', 'Case studies'],
-    ['/assessment', 'Free Business Assessment | Calpir', 'Answer a few questions and get a clear picture of which parts of your business are ready to automate.', 'Free business assessment'],
     ['/sectors', 'Sectors We Launch | Calpir', 'The trades and industries Calpir sets up and runs, from joinery and dental to agencies and ecommerce. Fixed prices, seven days free on every monthly plan.', 'Sectors We Launch'],
     ['/about', 'About Calpir | Calpir', 'Who we are, how we work, and why we build entire business systems instead of standalone websites.', 'About Calpir'],
     ['/contact', 'Contact Calpir | Book Free Strategy Call', 'Get in touch with the Calpir team or book a live 30 minute consultation.', 'Contact Calpir'],

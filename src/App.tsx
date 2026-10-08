@@ -11,7 +11,6 @@ import SoftwareStack from "./pages/SoftwareStack";
 import Sectors from './pages/Sectors';
 import About from "./pages/About";
 import CaseStudies from "./pages/CaseStudies";
-import Assessment from "./pages/Assessment";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
@@ -46,7 +45,8 @@ const App = () => (
           <Route path="/sectors" element={<Sectors />} />
           <Route path="/about" element={<About />} />
           <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/assessment" element={<Assessment />} />
+          {/* The assessment lives in the home page hero now. */}
+          <Route path="/assessment" element={<Navigate to="/#assessment" replace />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />

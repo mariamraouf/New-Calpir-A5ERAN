@@ -13,7 +13,6 @@ const staticRoutes = [
   { url: '/marketing-seo', priority: '0.9' },
   { url: '/services', priority: '0.9' },
   { url: '/case-studies', priority: '0.8' },
-  { url: '/assessment', priority: '0.8' },
   { url: '/software-stack', priority: '0.7' },
   { url: '/sectors', priority: '0.7' },
   { url: '/about', priority: '0.7' },
