@@ -9,18 +9,35 @@ interface SoftwareLogoProps {
   className?: string;
 }
 
+/**
+ * A tool's logo, in that tool's own colours.
+ *
+ * Every one of these used to be repainted Calpir green: the icon was fetched
+ * with a colour baked into the URL, then drawn as a CSS mask filled with
+ * emerald, and the fallback images carried a hue rotate filter on top. The
+ * result was a hundred identical green silhouettes, which says nothing. Half
+ * the point of showing the stack is that people recognise HubSpot orange,
+ * Slack aubergine, Stripe indigo at a glance.
+ *
+ * Simple Icons serves each icon in its brand colour when no colour is asked
+ * for, so the fix is mostly deletion. The tile behind it is neutral now,
+ * because a green tile fights every logo that is not green.
+ *
+ * Four sources, in order, because no single one covers a hundred tools:
+ * Simple Icons, then unavatar, then Google's favicon service, then initials.
+ */
 const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   const [stage, setStage] = useState<number>(0);
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  // Stage 0: SimpleIcons pure SVG silhouette
-  // Stage 1: Unavatar domain icon
-  // Stage 2: Google S2 domain icon
-  // Stage 3: Monogram brand fallback
-  const primaryUrl = `https://cdn.simpleicons.org/${tool.slug}/047857`;
-  const unavatarUrl = tool.domain ? `https://unavatar.io/${tool.domain}` : `https://unavatar.io/${tool.slug}`;
-  const googleFaviconUrl = tool.domain ? `https://www.google.com/s2/favicons?domain=${tool.domain}&sz=128` : '';
+  // No colour segment on the end: that is what gives the brand's own hex.
+  const primaryUrl = `https://cdn.simpleicons.org/${tool.slug}`;
+  const unavatarUrl = tool.domain
+    ? `https://unavatar.io/${tool.domain}`
+    : `https://unavatar.io/${tool.slug}`;
+  const googleFaviconUrl = tool.domain
+    ? `https://www.google.com/s2/favicons?domain=${tool.domain}&sz=128`
+    : '';
 
   const getSource = () => {
     if (stage === 0) return primaryUrl;
@@ -39,17 +56,10 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
 
     const img = new Image();
     img.src = currentSource;
-    img.onload = () => {
-      setImageLoaded(true);
-      setHasError(false);
-    };
-    img.onerror = () => {
-      setImageLoaded(false);
-      setStage((prev) => prev + 1);
-    };
+    img.onload = () => setHasError(false);
+    img.onerror = () => setStage((prev) => prev + 1);
   }, [stage, currentSource]);
 
-  // Fallback monogram if image cannot be loaded
   if (hasError || stage >= 3 || !currentSource) {
     const initials = tool.name
       .split(' ')
@@ -59,10 +69,10 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
       .toUpperCase();
 
     return (
-      <div 
+      <div
         className={cn(
-          "w-10 h-10 bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold text-xs flex items-center justify-center mono shrink-0 shadow-sm transition-transform group-hover:scale-105",
-          className
+          'w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center mono shrink-0 transition-transform group-hover:scale-105',
+          className,
         )}
         title={tool.name}
       >
@@ -72,40 +82,19 @@ const SoftwareLogo: React.FC<SoftwareLogoProps> = ({ tool, className }) => {
   }
 
   return (
-    <div 
+    <div
       className={cn(
-        "w-10 h-10 bg-emerald-50/60 border border-emerald-200 group-hover:border-emerald-600 flex items-center justify-center p-2 transition-all shrink-0 shadow-sm", 
-        className
+        'w-10 h-10 rounded-lg bg-white border border-slate-200 group-hover:border-slate-300 flex items-center justify-center p-1.5 transition-all shrink-0',
+        className,
       )}
       title={tool.name}
     >
-      {stage === 0 ? (
-        /* CSS mask guarantees 100% exact identical emerald green fill (#047857) matching the Anthropic/Claude logo */
-        <div
-          className="w-6 h-6 bg-emerald-700 group-hover:bg-emerald-600 transition-all duration-200 group-hover:scale-110"
-          style={{
-            WebkitMaskImage: `url("${currentSource}")`,
-            maskImage: `url("${currentSource}")`,
-            WebkitMaskRepeat: 'no-repeat',
-            maskRepeat: 'no-repeat',
-            WebkitMaskPosition: 'center',
-            maskPosition: 'center',
-            WebkitMaskSize: 'contain',
-            maskSize: 'contain',
-          }}
-        />
-      ) : (
-        /* Fallback source with exact emerald hue tint */
-        <img
-          src={currentSource}
-          alt={`${tool.name} Logo`}
-          style={{
-            filter: "invert(35%) sepia(85%) saturate(800%) hue-rotate(130deg) brightness(85%) contrast(100%)"
-          }}
-          className="w-full h-full object-contain group-hover:scale-110 transition-transform"
-          loading="lazy"
-        />
-      )}
+      <img
+        src={currentSource}
+        alt={`${tool.name} logo`}
+        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-200"
+        loading="lazy"
+      />
     </div>
   );
 };
