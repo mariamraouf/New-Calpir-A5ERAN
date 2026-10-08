@@ -23,8 +23,8 @@ const CaseStudies = () => {
   const cases = [
     {
       id: "01",
-      client: "Amad Health",
-      industry: "HealthTech Startup // Saudi Arabia",
+      client: "A healthcare startup",
+      industry: "HealthTech // Saudi Arabia",
       title: "From Zero to Full Infrastructure",
       challenge: "A startup in Saudi Arabia with nothing but a vision. No digital presence, no systems, and no technical foundation.",
       built: [
@@ -40,12 +40,12 @@ const CaseStudies = () => {
         { label: "Market Ready", value: "Day 1", icon: <Globe size={20} /> }
       ],
       quote: "Calpir built our entire company digital nervous system from scratch. We went from an idea to a fully operational startup in weeks.",
-      author: "Founder, Amad Health",
+      author: "Founder, Saudi Arabia",
       image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: "02",
-      client: "Create More Productions",
+      client: "A production company",
       industry: "Media Production // Michigan, USA",
       title: "The Production Powerhouse System",
       challenge: "A Michigan based production company struggling with fragmented tools and manual project tracking.",
@@ -62,12 +62,12 @@ const CaseStudies = () => {
         { label: "Admin Saved", value: "30h/wk", icon: <Clock size={20} /> }
       ],
       quote: "Our entire business now runs on a single, unified system. No more chasing emails or lost files.",
-      author: "CEO, Create More Productions",
+      author: "CEO, Michigan",
       image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800"
     },
     {
       id: "03",
-      client: "7 Figure Enterprise",
+      client: "A professional services firm",
       industry: "Professional Services // Canada",
       title: "Scaling a Canadian Giant",
       challenge: "A 7 figure plus company in Canada outgrowing their legacy systems and needing a modern, AI ready infrastructure.",
