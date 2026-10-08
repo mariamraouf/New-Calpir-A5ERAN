@@ -18,6 +18,7 @@ import MetaSEO from '@/components/seo/MetaSEO';
 import BuyButton from '@/components/plans/BuyButton';
 import { ONE_TIME_PACKAGES, formatPrice, type Currency } from '@/data/plans';
 import { useAutoCurrency } from '@/lib/currency';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 const Packages = () => {
   const location = useLocation();
@@ -343,6 +344,8 @@ const Packages = () => {
         heading="Before you commit to a build."
         intro="What the setup actually involves, in order, so you can judge whether the price is fair."
       />
+
+      <TrialStrip tone="deep" />
 
       <Footer />
     </div>

@@ -18,6 +18,7 @@ import { servicePricing, formatPrice, CURRENCIES, Currency } from '@/data/servic
 import { useBookingModal } from '@/components/booking/BookingModalProvider';
 import BuyButton from '@/components/plans/BuyButton';
 import { useAutoCurrency } from '@/lib/currency';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 
 const ServiceDetail = () => {
@@ -184,6 +185,8 @@ const ServiceDetail = () => {
         heading="Read this before you buy it."
         intro="The guides we wrote on this exact subject, researched against primary sources rather than rewritten from whatever ranks first."
       />
+
+      <TrialStrip tone="deep" />
 
       <Footer />
     </div>

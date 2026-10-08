@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { allSoftwareStack, softwareCategoriesList } from '@/data/softwareCatalog';
 import { cn } from '@/lib/utils';
 import MetaSEO from '@/components/seo/MetaSEO';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 const SoftwareStack = () => {
   const [search, setSearch] = useState('');
@@ -185,6 +186,8 @@ const SoftwareStack = () => {
           </div>
         </div>
       </section>
+
+      <TrialStrip tone="sky" />
 
       <Footer />
     </div>

@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 import SystemStatus from '@/components/visuals/SystemStatus';
 import MetaSEO from '@/components/seo/MetaSEO';
 import AnimatedStat from '@/components/ui/AnimatedStat';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 const About = () => {
   const reveal = {
@@ -244,6 +245,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <TrialStrip tone="emerald" />
 
       <Footer />
     </div>

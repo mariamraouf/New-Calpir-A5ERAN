@@ -19,6 +19,7 @@ import { BUNDLE_TIERS } from '@/lib/checkout';
 import CategoryAccordion from '@/components/services/CategoryAccordion';
 import ServiceBasketProvider, { BasketBar } from '@/components/services/ServiceBasket';
 import RecurringOption from '@/components/plans/RecurringOption';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 /**
  * Every service, on one page.
@@ -184,7 +185,9 @@ const Services = () => {
           heading="Start here if you are not sure."
         />
 
-        <Footer />
+        <TrialStrip tone="clay" />
+
+      <Footer />
 
         {/* Sits above the footer once anything is ticked. */}
         <BasketBar currency={currency} />

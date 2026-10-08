@@ -10,6 +10,7 @@ import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPh
 import SectionLabel from '@/components/ui/SectionLabel';
 import MetaSEO from '@/components/seo/MetaSEO';
 import postsData from '@/content/posts.json';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 const Blog = () => {
   return (
@@ -61,6 +62,8 @@ const Blog = () => {
           </div>
         </div>
       </section>
+
+      <TrialStrip tone="clay" />
 
       <Footer />
     </div>

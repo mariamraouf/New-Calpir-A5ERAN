@@ -14,6 +14,7 @@ import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
 import { allServicesCatalog } from '@/data/allServicesList';
 import { servicePricing, CURRENCIES } from '@/data/servicePricing';
 import { useAutoCurrency } from '@/lib/currency';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 /**
  * The marketing and search pillar.
@@ -303,6 +304,8 @@ const MarketingSeo = () => {
         heading="Before you spend anything."
         intro="What marketing and search actually cost elsewhere, and what to do first if you are not ready to hand it over."
       />
+
+      <TrialStrip tone="violet" />
 
       <Footer />
     </div>

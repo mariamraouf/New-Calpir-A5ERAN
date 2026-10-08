@@ -15,6 +15,7 @@ import PhoneInput from '@/components/ui/PhoneInput';
 import { showSuccess, showError } from '@/utils/toast';
 import { trackLeadGeneration } from '@/utils/analytics';
 import MetaSEO from '@/components/seo/MetaSEO';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 const Contact = () => {
   const formRef = useRef<HTMLDivElement>(null);
@@ -282,6 +283,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <TrialStrip tone="sky" />
 
       <Footer />
     </div>

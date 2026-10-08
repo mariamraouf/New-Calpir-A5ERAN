@@ -13,6 +13,7 @@ import NotFound from './NotFound';
 import postsData from '@/content/posts.json';
 import articleBlocks from '@/content/articleBlocks.json';
 import ArticleRenderer, { Block } from '@/content/ArticleRenderer';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -186,6 +187,8 @@ const BlogPost = () => {
           </Button>
         </div>
       </section>
+
+      <TrialStrip tone="teal" />
 
       <Footer />
     </div>

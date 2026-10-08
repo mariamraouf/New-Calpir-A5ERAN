@@ -8,6 +8,7 @@ import MetaSEO from '@/components/seo/MetaSEO';
 import SectorsSection from '@/components/home/SectorsSection';
 import PhotoBand from '@/components/ui/PhotoBand';
 import { PLAN_PHOTOS, BUILD_PHOTO } from '@/data/planPhotos';
+import TrialStrip from '@/components/plans/TrialStrip';
 
 /**
  * Sectors, on a page of their own.
@@ -47,7 +48,9 @@ const Sectors = () => (
       cta={{ label: 'Tell us about it', href: '/contact' }}
     />
 
-    <Footer />
+    <TrialStrip tone="violet" />
+
+      <Footer />
   </div>
 );
 
