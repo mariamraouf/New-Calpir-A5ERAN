@@ -93,6 +93,29 @@ const sellableService = (slug: string, currency: Currency) => {
   };
 };
 
+/**
+ * Buying several services at once.
+ *
+ * Three or more together takes 20 percent off, five or more takes 30. The
+ * thresholds live here and nowhere else: the page reads them from the same
+ * export so the banner, the running total and the actual charge cannot drift
+ * apart, and the browser never sends a percentage, only a list of slugs.
+ *
+ * Applied as a Stripe coupon rather than by quietly shrinking each line, so
+ * the buyer sees Subtotal, Discount and Total spelled out on Stripe's page
+ * instead of having to trust that the numbers already moved.
+ */
+export const BUNDLE_TIERS = [
+  { min: 5, percent: 30 },
+  { min: 3, percent: 20 },
+] as const;
+
+export const bundleDiscount = (count: number): number =>
+  BUNDLE_TIERS.find((t) => count >= t.min)?.percent ?? 0;
+
+/** Nobody is buying more than the catalogue, and it caps the work per request. */
+const MAX_ITEMS = 12;
+
 const STRIPE = 'https://api.stripe.com/v1';
 
 /**
@@ -143,6 +166,52 @@ async function resolvePrice(planId: string, secret: string): Promise<string | nu
   return id;
 }
 
+/**
+ * Mint a single use coupon for this basket.
+ *
+ * Made per checkout rather than kept as two standing coupons, so there is
+ * nothing to provision by hand in either Stripe account and nothing a
+ * customer can discover and reuse: max_redemptions is 1 and it expires with
+ * the session. Returns null if Stripe refuses, and the caller then charges
+ * full price rather than failing the sale, because a missing discount is a
+ * complaint and a broken checkout is a lost customer.
+ */
+async function bundleCoupon(
+  percent: number,
+  count: number,
+  secret: string,
+): Promise<string | null> {
+  const form = new URLSearchParams();
+  form.set('percent_off', String(percent));
+  form.set('duration', 'once');
+  form.set('max_redemptions', '1');
+  form.set('name', `Bundle of ${count} services, ${percent}% off`);
+  // An hour is longer than anyone takes to type a card, and short enough that
+  // an abandoned one cannot be dug up later.
+  form.set('redeem_by', String(Math.floor(Date.now() / 1000) + 60 * 60));
+  form.set('metadata[source]', 'calpir.com bundle');
+
+  try {
+    const r = await fetch(`${STRIPE}/coupons`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: form.toString(),
+    });
+    const data: any = await r.json();
+    if (!r.ok || !data?.id) {
+      console.error('could not create the bundle coupon:', data?.error?.message || r.status);
+      return null;
+    }
+    return data.id as string;
+  } catch (err: any) {
+    console.error('could not reach Stripe for the bundle coupon:', err?.message || err);
+    return null;
+  }
+}
+
 const siteOrigin = (req: any): string => {
   const envUrl = process.env.SITE_URL;
   if (envUrl) return envUrl.replace(/\/$/, '');
@@ -158,16 +227,48 @@ export default async function handler(req: any, res: any) {
   }
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  const planId = String(body.planId || '');
   const currency: Currency = CURRENCIES.includes(body.currency) ? body.currency : 'usd';
 
-  const entry = SELLABLE[planId];
-  const service = entry ? null : sellableService(planId, currency);
+  // One id or a basket of them. Duplicates collapse, because ticking a box
+  // twice is not an order for two.
+  const requested: string[] = Array.isArray(body.planIds)
+    ? body.planIds.map((x: unknown) => String(x || ''))
+    : [String(body.planId || '')];
 
-  if (!entry && !service) {
+  const planIds = [...new Set(requested.filter(Boolean))];
+
+  if (planIds.length === 0) {
+    res.status(400).json({ ok: false, error: 'Nothing was selected.' });
+    return;
+  }
+  if (planIds.length > MAX_ITEMS) {
+    res.status(400).json({ ok: false, error: `That is more than ${MAX_ITEMS} things at once.` });
+    return;
+  }
+
+  const planId = planIds[0];
+  const entry = planIds.length === 1 ? SELLABLE[planId] : undefined;
+
+  // A basket is services only. A plan renews and a service does not, and
+  // Stripe cannot put both in one session, so this is refused rather than
+  // half honoured.
+  const services = entry ? [] : planIds.map((id) => sellableService(id, currency));
+
+  if (!entry && services.some((x) => !x)) {
+    const unknown = planIds.filter((_, i) => !services[i]);
+    if (planIds.length > 1 && unknown.some((id) => SELLABLE[id])) {
+      res.status(400).json({
+        ok: false,
+        error: 'A monthly plan cannot be bought in the same basket as one off services.',
+      });
+      return;
+    }
     res.status(400).json({ ok: false, error: 'That is not something we sell.' });
     return;
   }
+
+  const service = entry ? null : services[0];
+  const percentOff = entry ? 0 : bundleDiscount(services.length);
 
   // A solo service is a single job, bought once. No trial, and the site says
   // so: the free week belongs to the monthly plans only.
@@ -208,7 +309,9 @@ export default async function handler(req: any, res: any) {
     `${origin}${service ? '/solo-services' : '/pricing'}?checkout=cancelled`,
   );
   form.set('billing_address_collection', 'required');
-  form.set('allow_promotion_codes', 'true');
+  // Stripe refuses a session that both carries a discount and invites a
+  // promotion code, so the bundle discount wins when there is one.
+  if (!percentOff) form.set('allow_promotion_codes', 'true');
   // Stripe's Adaptive Pricing is on by default: it converts the price into the
   // buyer's local currency at its own rate. The pricing page promises three
   // currencies that are set rather than converted, so it is turned off here.
@@ -217,20 +320,32 @@ export default async function handler(req: any, res: any) {
   form.set('adaptive_pricing[enabled]', 'false');
   if (priceId) {
     form.set('line_items[0][price]', priceId);
-  } else if (service) {
-    // Priced here rather than in Stripe. See SERVICE_NAMES above for why.
-    form.set('line_items[0][price_data][currency]', currency);
-    form.set('line_items[0][price_data][unit_amount]', String(service.unitAmount));
-    form.set('line_items[0][price_data][tax_behavior]', 'exclusive');
-    form.set('line_items[0][price_data][product_data][name]', service.name);
-    form.set(
-      'line_items[0][price_data][product_data][description]',
-      `One off. Delivered in ${service.turnaround}.`,
-    );
+    form.set('line_items[0][quantity]', '1');
+  } else {
+    // Priced here rather than in Stripe. See the note above sellableService.
+    // One line per service, so the buyer sees what they are paying for rather
+    // than a single lump labelled "services".
+    services.forEach((svc, i) => {
+      if (!svc) return;
+      form.set(`line_items[${i}][price_data][currency]`, currency);
+      form.set(`line_items[${i}][price_data][unit_amount]`, String(svc.unitAmount));
+      form.set(`line_items[${i}][price_data][tax_behavior]`, 'exclusive');
+      form.set(`line_items[${i}][price_data][product_data][name]`, svc.name);
+      form.set(
+        `line_items[${i}][price_data][product_data][description]`,
+        `One off. Delivered in ${svc.turnaround}.`,
+      );
+      form.set(`line_items[${i}][quantity]`, '1');
+    });
   }
-  form.set('line_items[0][quantity]', '1');
+
   form.set('metadata[plan_id]', planId);
-  form.set('metadata[kind]', entry ? 'plan' : 'solo_service');
+  form.set('metadata[kind]', entry ? 'plan' : services.length > 1 ? 'service_bundle' : 'solo_service');
+  if (!entry) {
+    form.set('metadata[service_ids]', planIds.join(','));
+    form.set('metadata[service_count]', String(services.length));
+    if (percentOff) form.set('metadata[bundle_discount]', `${percentOff}%`);
+  }
   form.set('metadata[source]', 'calpir.com');
 
   if (entry && entry.mode === 'subscription') {
@@ -250,6 +365,17 @@ export default async function handler(req: any, res: any) {
     // an invoice and access to the billing portal like everybody else.
     form.set('customer_creation', 'always');
     form.set('invoice_creation[enabled]', 'true');
+  }
+
+  if (percentOff > 0) {
+    const coupon = await bundleCoupon(percentOff, services.length, secret);
+    if (coupon) {
+      form.set('discounts[0][coupon]', coupon);
+    } else {
+      // Charging full price beats refusing the sale. Put the promotion code
+      // box back, since there is no longer a discount to clash with.
+      form.set('allow_promotion_codes', 'true');
+    }
   }
 
   try {
