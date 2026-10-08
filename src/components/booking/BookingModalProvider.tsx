@@ -4,7 +4,7 @@ import React, { createContext, useCallback, useContext, useMemo, useState } from
 import { CalendarCheck, Loader2, Mail, Send } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import BookingSystem from '@/components/booking/BookingSystem';
+import CalendlyEmbed from '@/components/booking/CalendlyEmbed';
 import { showSuccess, showError } from '@/utils/toast';
 import { trackLeadGeneration } from '@/utils/analytics';
 import { cn } from '@/lib/utils';
@@ -218,7 +218,7 @@ export const BookingModalProvider: React.FC<{ children: React.ReactNode }> = ({ 
 
           <div className={tab === 'message' ? 'p-5 sm:p-8' : ''}>
             {tab === 'book' ? (
-              <BookingSystem initialEmail={email} bare />
+              <CalendlyEmbed initialEmail={email} height={660} />
             ) : (
               <MessageForm initialEmail={email} onSent={close} />
             )}

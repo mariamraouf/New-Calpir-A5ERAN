@@ -7,7 +7,7 @@ import Footer from '@/components/layout/Footer';
 import PageHero from '@/components/ui/PageHero';
 import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
 import SectionLabel from '@/components/ui/SectionLabel';
-import BookingSystem from '@/components/booking/BookingSystem';
+import CalendlyEmbed from '@/components/booking/CalendlyEmbed';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -278,7 +278,7 @@ const Contact = () => {
                 Select a time for your 30 minute strategy session. Times are automatically adjusted to your local timezone.
               </p>
             </div>
-            <BookingSystem />
+            <CalendlyEmbed height={760} />
           </div>
         </div>
       </section>
