@@ -130,7 +130,6 @@ const nav = `
   <a href="/">Home</a>
   <a href="/packages">Packages</a>
   <a href="/services">Services</a>
-  <a href="/solo-services">Solo services</a>
   <a href="/software-stack">Software stack</a>
   <a href="/case-studies">Case studies</a>
   <a href="/assessment">Assessment</a>
@@ -172,7 +171,6 @@ async function buildRoutes() {
     ['/pricing', 'Pricing | Monthly Plans from $449 | Calpir', 'Marketing and SEO, operations, sales and HR, each on a monthly plan from $449. Take one or take all four for less than the sum. Cancel any month.', 'Monthly plans and pricing'],
     ['/packages', 'Packages | Complete Business Setup from $1,499 | Calpir', 'Three fixed scope packages that take a business from idea to running in 7 to 28 days. One payment, every price published, pay online.', 'One time packages'],
     ['/services', 'Services | Calpir', 'Everything Calpir builds: websites, CRM and sales systems, marketing, operations, AI agents and custom apps.', 'Services'],
-    ['/solo-services', 'Solo Services | Calpir', 'Book individual services on their own, website, CRM, automation or AI agents, without a full package.', 'Solo services'],
     ['/software-stack', 'Software Stack | Calpir', 'The tools Calpir builds on and why: CRM, automation, hosting and AI infrastructure chosen to stay cheap to run.', 'Software stack'],
     ['/case-studies', 'Case Studies | Calpir', 'Real builds and real timelines: what we shipped for each client and what it changed for them.', 'Case studies'],
     ['/assessment', 'Free Business Assessment | Calpir', 'Answer a few questions and get a clear picture of which parts of your business are ready to automate.', 'Free business assessment'],

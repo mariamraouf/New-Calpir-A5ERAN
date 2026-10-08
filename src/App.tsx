@@ -2,12 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navigate, BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Packages from "./pages/Packages";
-import SoloServices from "./pages/SoloServices";
 import SoftwareStack from "./pages/SoftwareStack";
 import Sectors from './pages/Sectors';
 import About from "./pages/About";
@@ -41,7 +40,8 @@ const App = () => (
           <Route path="/packages" element={<Packages />} />
           <Route path="/marketing-seo" element={<MarketingSeo />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
-          <Route path="/solo-services" element={<SoloServices />} />
+          {/* Merged into /services. Kept as a redirect for old links. */}
+          <Route path="/solo-services" element={<Navigate to="/services" replace />} />
           <Route path="/software-stack" element={<SoftwareStack />} />
           <Route path="/sectors" element={<Sectors />} />
           <Route path="/about" element={<About />} />

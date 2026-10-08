@@ -220,7 +220,7 @@ const Navbar = () => {
                     <Search size={14} className="text-emerald-700" /> Marketing &amp; SEO
                   </Link>
                   <Link
-                    to="/solo-services"
+                    to="/services"
                     onClick={() => setIsServicesOpen(false)}
                     className="flex items-center gap-2 text-[13.5px] font-semibold text-navy hover:text-emerald-700 transition-colors"
                   >
@@ -324,7 +324,7 @@ const Navbar = () => {
                     );
                   })}
                   <Link
-                    to="/solo-services"
+                    to="/services"
                     onClick={() => setIsOpen(false)}
                     className="flex items-center gap-3 px-3 py-3 rounded-lg text-[14.5px] font-semibold text-emerald-800 bg-emerald-50 mt-1"
                   >

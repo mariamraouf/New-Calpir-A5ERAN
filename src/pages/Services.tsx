@@ -1,176 +1,195 @@
 "use client";
 
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Tag } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import RelatedReading from '@/components/content/RelatedReading';
 import PageHero from '@/components/ui/PageHero';
-import { PLAN_PHOTOS, TEAM_PHOTO, BUILD_PHOTO, OWNER_PHOTO } from '@/data/planPhotos';
-import SectionLabel from '@/components/ui/SectionLabel';
 import MetaSEO from '@/components/seo/MetaSEO';
+import { Button } from '@/components/ui/button';
+import { PLAN_PHOTOS } from '@/data/planPhotos';
 import { allServicesCatalog } from '@/data/allServicesList';
-import { serviceIconMap, FallbackIcon } from '@/lib/serviceIcons';
-import { ArchitectureFlow } from '@/components/visuals/ArchitectureFlow';
 import { SERVICE_CATEGORIES as CATEGORIES } from '@/data/serviceCategories';
+import { CURRENCIES } from '@/data/servicePricing';
+import { useAutoCurrency } from '@/lib/currency';
+import { tintAt } from '@/data/departmentTints';
+import { BUNDLE_TIERS } from '@/lib/checkout';
+import CategoryAccordion from '@/components/services/CategoryAccordion';
+import ServiceBasketProvider, { BasketBar } from '@/components/services/ServiceBasket';
 import RecurringOption from '@/components/plans/RecurringOption';
 
-
+/**
+ * Every service, on one page.
+ *
+ * There used to be two: /services to browse and /solo-services to buy, with
+ * the same sixty five things on both and no way to tell which one you wanted.
+ * /solo-services now redirects here.
+ *
+ * Folded into seven departments rather than laid out as sixty five cards, so
+ * the whole range fits on a screen and the visitor picks where to look. Each
+ * card has a tick box, because buying three at once is worth 20 percent and
+ * five is worth 30, and an offer nobody can act on in one go is a poster
+ * rather than a price.
+ */
 const Services = () => {
-  const location = useLocation();
+  const [currency, setCurrency] = useAutoCurrency();
 
-  /* The services menu links straight at a department, e.g. /services#people-talent.
-     React Router does not scroll to a hash on its own, and the sticky header
-     would cover the heading if it did, so we do it here with an offset. */
-  useEffect(() => {
-    if (!location.hash) return;
-    const id = location.hash.slice(1);
-    const scroll = () => {
-      const el = document.getElementById(id);
-      if (!el) return false;
-      const top = el.getBoundingClientRect().top + window.scrollY - 96;
-      window.scrollTo({ top, behavior: 'smooth' });
-      return true;
-    };
-    // The sections animate in, so the element may not be laid out on the first
-    // frame after a cross page navigation.
-    if (!scroll()) {
-      const t = window.setTimeout(scroll, 250);
-      return () => window.clearTimeout(t);
-    }
-  }, [location.hash, location.key]);
+  const byCategory = useMemo(
+    () =>
+      CATEGORIES.map((category) => ({
+        category,
+        services: allServicesCatalog.filter((s) => s.category === category.name),
+      })),
+    [],
+  );
 
-  const reveal = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: '-60px' },
-    transition: { duration: 0.45, ease: 'easeOut' },
-  } as const;
-
-  const byCategory = (name: string) =>
-    allServicesCatalog.filter((s) => s.category === name);
+  const tiers = [...BUNDLE_TIERS].sort((a, b) => a.min - b.min);
 
   return (
-    <div className="min-h-screen bg-white relative">
-      <MetaSEO
-        title="Services | Calpir"
-        description="Every service Calpir offers, grouped by category: websites, branding, CRM and marketing, AI automation, operations, recruiting, HR and payroll."
-        path="/services"
-      />
-      <Navbar />
+    <ServiceBasketProvider>
+      <div className="min-h-screen bg-white relative">
+        <MetaSEO
+          title="Services | 65 Fixed Price Services | Calpir"
+          description="Every service Calpir sells, in seven departments: formation, websites, brand, sales and marketing, AI automation, operations and people. Fixed prices. Take three together for 20% off, five for 30%."
+          path="/services"
+        />
+        <Navbar />
 
-      {/* Hero */}
-      <PageHero
-        eyebrow="Everything we do"
-        title={<>Seven departments. <br />Sixty five services.</>}
-        body={`${allServicesCatalog.length} services across ${CATEGORIES.length} departments. Take a whole department on a monthly plan, take the lot as a build, or buy any single piece on its own.`}
-        image={PLAN_PHOTOS['ops-systems-monthly'].band}
-        primary={{ label: 'Buy one at a time', href: '/solo-services' }}
-        secondary={{ label: 'Or hand over a department', href: '/pricing' }}
-      />
+        <PageHero
+          eyebrow="Everything we do"
+          title={<>Seven departments. <br />Sixty five services.</>}
+          body="Buy any single piece at a fixed price, take three together and save 20 percent, or hand a whole department over on a monthly plan."
+          image={PLAN_PHOTOS['ops-systems-monthly'].band}
+          primary={{ label: 'See the departments', href: '#departments' }}
+          secondary={{ label: 'Monthly plans instead', href: '/pricing' }}
+        />
 
-      {/* Category index. Anchors so a visitor can jump straight to what they came for. */}
-      {/* Sticks directly beneath the navbar, which is itself sticky at top-0 with
-          z-[100]. Matching the navbar's own top-16 sm:top-20 measurement keeps the
-          two bars from overlapping. */}
-      <section className="border-b border-slate-200 bg-white/95 backdrop-blur-md sticky top-16 sm:top-20 z-[90] shadow-sm">
-        <div className="container-custom px-6">
-          <nav
-            aria-label="Service categories"
-            className="flex gap-x-4 lg:gap-x-5 overflow-x-auto py-4 no-scrollbar"
-          >
-            {CATEGORIES.map((c) => (
-              <a
-                key={c.id}
-                href={`#${c.id}`}
-                className="group flex items-baseline gap-1.5 whitespace-nowrap mono text-[11px] tracking-wider font-bold text-slate-600 hover:text-emerald-700 transition-colors"
-              >
-                {c.name}
-                <span className="text-[10px] text-slate-400 group-hover:text-emerald-600">
-                  {byCategory(c.name).length}
-                </span>
-              </a>
-            ))}
-          </nav>
-        </div>
-      </section>
-
-      {/* Interactive Flow Visual */}
-      <section className="section-padding border-b border-slate-200 bg-slate-50/70">
-        <div className="container-custom">
-          <ArchitectureFlow />
-        </div>
-      </section>
-
-      {/* Services by category */}
-      <section className="section-padding">
-        <div className="container-custom">
-          {CATEGORIES.map((category) => {
-            const services = byCategory(category.name);
-            if (services.length === 0) return null;
-
-            return (
-              <div
-                key={category.id}
-                id={category.id}
-                className="mb-20 scroll-mt-36 pt-8 border-t border-slate-200 first:border-t-0 first:pt-0"
-              >
-                <motion.div {...reveal} className="mb-8 max-w-[760px]">
-                  <div className="flex flex-wrap items-center gap-4 mb-4">
-                    <SectionLabel>{category.name}</SectionLabel>
-                    <span className="text-[13.5px] text-slate-500 font-semibold">
-                      {services.length} services
-                    </span>
-                  </div>
-                  <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                    {category.blurb}
-                  </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {services.map((service) => {
-                    const Icon = serviceIconMap[service.iconName] || FallbackIcon;
-                    return (
-                      <Link
-                        key={service.id}
-                        to={`/services/${service.slug}`}
-                        className="surface surface-hover p-7 group flex flex-col"
-                      >
-                        <div className="text-emerald-700 mb-5 group-hover:scale-110 transition-transform origin-left">
-                          <Icon size={32} />
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-navy mb-2.5 leading-tight">
-                          {service.title}
-                        </h3>
-                        <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">
-                          {service.shortDesc}
-                        </p>
-                        <span className="card-cta mt-auto">
-                          See what is included <ArrowRight size={15} />
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-7">
-                  <RecurringOption categoryId={category.id} />
-                </div>
+        {/* The offer, stated once and plainly, right where the browsing starts. */}
+        <section className="py-8 sm:py-10 bg-gold-50 border-b border-gold-300">
+          <div className="container-custom">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-8">
+              <span className="shrink-0 w-12 h-12 rounded-xl bg-gold-600 text-white flex items-center justify-center">
+                <Tag size={22} />
+              </span>
+              <div className="flex-1">
+                <h2 className="text-navy text-xl sm:text-2xl font-extrabold tracking-tight mb-1.5">
+                  Take more than one and the price drops.
+                </h2>
+                <p className="text-slate-700 text-[15px] leading-relaxed max-w-2xl">
+                  Tick anything below. {tiers[0].min} services together takes{' '}
+                  <strong className="text-gold-800">{tiers[0].percent}% off the lot</strong>, and{' '}
+                  {tiers[1].min} or more takes{' '}
+                  <strong className="text-gold-800">{tiers[1].percent}%</strong>. The discount is
+                  applied at checkout, on everything in the basket.
+                </p>
               </div>
-            );
-          })}
-        </div>
-      </section>
+              <div className="flex gap-2 shrink-0">
+                {tiers.map((t) => (
+                  <div
+                    key={t.min}
+                    className="bg-white border border-gold-300 rounded-xl px-4 py-3 text-center min-w-[92px]"
+                  >
+                    <div className="text-2xl font-bold text-gold-700 leading-none price-figure">
+                      {t.percent}%
+                    </div>
+                    <div className="mono text-[10px] tracking-wider text-slate-600 mt-1">
+                      {t.min}+ services
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <RelatedReading
-        slugs={['how-to-setup-new-business-2026', 'essential-tech-stack-automations', 'best-crm-tools-comparison']}
-        heading="Start here if you are not sure."
-      />
+        {/* Currency, and a reminder that the figures are set rather than from. */}
+        <section className="py-6 border-b border-slate-200 bg-white sticky top-16 sm:top-20 z-[90] backdrop-blur-md bg-white/95">
+          <div className="container-custom flex flex-wrap items-center justify-between gap-4">
+            <p className="mono text-[11px] tracking-wider text-slate-600">
+              {allServicesCatalog.length} services · every price fixed, never from
+            </p>
+            <div className="flex border border-slate-300 rounded-lg overflow-hidden">
+              {CURRENCIES.map((c) => (
+                <button
+                  key={c.code}
+                  type="button"
+                  onClick={() => setCurrency(c.code)}
+                  aria-pressed={currency === c.code}
+                  className={
+                    'px-3 py-1.5 mono text-[11px] font-bold tracking-wider transition-colors ' +
+                    (currency === c.code
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-white text-slate-600 hover:text-emerald-700')
+                  }
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <Footer />
-    </div>
+        <section id="departments" className="section-padding scroll-mt-32">
+          <div className="container-custom space-y-4">
+            {byCategory.map(({ category, services }, i) => (
+              <CategoryAccordion
+                key={category.id}
+                category={category}
+                services={services}
+                currency={currency}
+                tint={tintAt(i)}
+                defaultOpen={i === 0}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* The other way to buy, for anyone who ticked half a department. */}
+        <section className="section-padding border-t border-slate-200 bg-slate-50">
+          <div className="container-custom">
+            <div className="max-w-2xl mb-8">
+              <h2 className="text-navy text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">
+                Buying most of a department? Rent it instead.
+              </h2>
+              <p className="text-slate-600 leading-relaxed">
+                A monthly plan covers the whole department, every month, for less than
+                buying the pieces once. It starts with a free week and you can cancel
+                any month.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {CATEGORIES.slice(0, 2).map((c) => (
+                <RecurringOption key={c.id} categoryId={c.id} currency={currency} />
+              ))}
+            </div>
+            <Button
+              asChild
+              className="mt-7 bg-deep hover:bg-deep-900 text-white font-bold tracking-tight px-8 py-6 rounded-xl"
+            >
+              <Link to="/pricing">
+                Compare every monthly plan <ArrowRight size={18} className="ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </section>
+
+        <RelatedReading
+          slugs={[
+            'how-to-setup-new-business-2026',
+            'essential-tech-stack-automations',
+            'best-crm-tools-comparison',
+          ]}
+          heading="Start here if you are not sure."
+        />
+
+        <Footer />
+
+        {/* Sits above the footer once anything is ticked. */}
+        <BasketBar currency={currency} />
+      </div>
+    </ServiceBasketProvider>
   );
 };
 

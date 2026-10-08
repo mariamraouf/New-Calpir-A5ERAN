@@ -42,7 +42,7 @@ const Footer = () => {
           <ul className="space-y-2 text-xs sm:text-sm">
             <li><Link to="/packages" className="text-emerald-700 hover:text-emerald-800 font-bold transition-colors">Monthly Plans &amp; Packages</Link></li>
             <li><Link to="/marketing-seo" className="text-slate-600 hover:text-emerald-700 transition-colors">Marketing &amp; SEO</Link></li>
-            <li><Link to="/solo-services" className="text-slate-600 hover:text-emerald-700 transition-colors">All Solo Services</Link></li>
+            <li><Link to="/services" className="text-slate-600 hover:text-emerald-700 transition-colors">All 65 Services</Link></li>
             <li><Link to="/software-stack" className="text-slate-600 hover:text-emerald-700 transition-colors">Our Software Stack</Link></li>
             <li><Link to="/assessment" className="text-slate-600 hover:text-emerald-700 transition-colors">Free Growth Assessment</Link></li>
             <li><Link to="/case-studies" className="text-slate-600 hover:text-emerald-700 transition-colors">Client Case Studies</Link></li>

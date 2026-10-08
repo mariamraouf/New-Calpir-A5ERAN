@@ -305,7 +305,7 @@ const Packages = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
               <h2 className="text-3xl md:text-5xl font-bold text-navy">Need something specific?</h2>
               <Button asChild variant="outline" className="border-emerald-600 text-emerald-800 hover:bg-emerald-50 mono text-xs font-bold">
-                <Link to="/solo-services">View All Solo Services <ArrowRight size={14} className="ml-1" /></Link>
+                <Link to="/services">View All 65 Services <ArrowRight size={14} className="ml-1" /></Link>
               </Button>
             </div>
             
